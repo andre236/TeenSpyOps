@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PersistableFontDetails xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Letterset>ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,;:?!-_~#"'&amp;()[]|`\/@°+=*$£€&lt;&gt;%ãõéáóêíìçÁÀÃÂÓÒÕÔÉÈÊÍÌÎÚÙÛÇ´úùûüôàâ–²</Letterset>
+  <AdjustHeight>0</AdjustHeight>
+  <AdjustWidth>1</AdjustWidth>
+  <SampleText>Você conseguiu organizar</SampleText>
+  <ShiftHorz>0</ShiftHorz>
+  <ShiftVert>0</ShiftVert>
+  <ShowGrid>true</ShowGrid>
+  <ShowBoundary>false</ShowBoundary>
+  <Size>21</Size>
+  <StrikeOut>false</StrikeOut>
+  <Underline>false</Underline>
+  <IsFill>true</IsFill>
+  <IsOutlineOne>false</IsOutlineOne>
+  <IsOutlineTwo>false</IsOutlineTwo>
+  <IsShadow>false</IsShadow>
+  <OutlineOneWidth>3</OutlineOneWidth>
+  <OutlineTwoWidth>4</OutlineTwoWidth>
+  <ShadowWidth>4</ShadowWidth>
+  <ShadowOffsetX>1</ShadowOffsetX>
+  <ShadowOffsetY>1</ShadowOffsetY>
+  <FontStyleDisplayName>Bold</FontStyleDisplayName>
+  <Height>25</Height>
+  <Width>26</Width>
+  <FontFamilyName>Eras ITC</FontFamilyName>
+  <FontStyleName>Normal</FontStyleName>
+  <FontStretchName>Normal</FontStretchName>
+  <FontWeightName>Bold</FontWeightName>
+  <FillColourName>#FF00FF00</FillColourName>
+  <OutlineOneColourName>#FF42210B</OutlineOneColourName>
+  <OutlineTwoColourName>#FF00B2FF</OutlineTwoColourName>
+  <ShadowColourName>#80000000</ShadowColourName>
+  <SampleBackgroundColourName>#00FFFFFF</SampleBackgroundColourName>
+</PersistableFontDetails>
