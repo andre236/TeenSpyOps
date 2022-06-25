@@ -7,8 +7,10 @@ namespace Player
     {
         private bool _onCoolDownSkill;
 
-        [Range(0,15)][SerializeField] private float _timerToXRay;
-        
+        [Range(0,15)][SerializeField] private float _timerXRay;
+        [Range(0, 15)][SerializeField] private float _timerDigital;
+
+
         [SerializeField] private UnityEvent _activatedXRay;
 
         private void Awake()
@@ -22,7 +24,7 @@ namespace Player
                 return;
 
             _activatedXRay?.Invoke();
-            Invoke(nameof(SetOffCoolDown), _timerToXRay);
+            Invoke(nameof(SetOffCoolDown), _timerXRay);
         }
 
         private bool SetOffCoolDown()
