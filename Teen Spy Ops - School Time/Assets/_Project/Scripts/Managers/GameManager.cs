@@ -51,9 +51,13 @@ namespace Manager
         {
             if (CurrentState != GameState.Paused)
             {
+                CurrentState = GameState.Running;
+                PausedGame?.Invoke(false);
+            }
+            else
+            {
                 CurrentState = GameState.Paused;
                 PausedGame?.Invoke(true);
-
             }
         }
 

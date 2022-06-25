@@ -7,7 +7,8 @@ namespace Manager
     public class UIManager : MonoBehaviour
     {
         private Text _timerLevelText;
-        
+        private Text _informationLevelText;
+
         private GameObject _pausePage;
         private Button _menuButton;
 
@@ -16,12 +17,18 @@ namespace Manager
         {
             _pausePage = GameObject.Find("PausePage");
             _menuButton = GameObject.Find("MenuButton").GetComponent<Button>();
-            _timerLevelText = GameObject.Find("TimerText").GetComponent<Text>();    
+            _timerLevelText = GameObject.Find("TimerText").GetComponent<Text>();
+            _informationLevelText = GameObject.Find("InformationLevelText").GetComponent<Text>();
         }
 
         private void Start()
         {
             _pausePage.SetActive(false);
+        }
+
+        public void OnGetInformationLevel(string levelName, int levelNumber, int amountObjects)
+        {
+            _informationLevelText.text = string.Concat("Fase ", levelNumber, ": ", levelName, " Objetos Restantes: ",amountObjects);
         }
 
         public void OnCountdownPerfomed(float currentTime)
