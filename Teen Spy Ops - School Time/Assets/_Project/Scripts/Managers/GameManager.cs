@@ -1,40 +1,31 @@
-using System;
 using UnityEngine;
 
 namespace Manager
 {
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] private float _timerLevel;
+        public GameState CurrentState { get; private set; }
+        [SerializeField] public SkillState CurrentSkill { get; private set; }
 
-
-
-        public Action CountdownPerfomed;
-
-
-
-        public GameState CurrentState;
-
-        public float TimerLevel { get => _timerLevel; set => _timerLevel = value; }
+        [field:SerializeField] public float TimerLevel { get ; private set; }
 
         private void Awake()
         {
-            CountdownPerfomed += CountdownTimerLevel;
+            
         }
 
-
-        private void CountdownTimerLevel()
+        internal void OnCountdownTimerLevel()
         {
             if (CurrentState != GameState.Running)
                 return;
 
-            if (_timerLevel > 0)
+            if (TimerLevel > 0)
             {
-                _timerLevel -= Time.deltaTime;
+                TimerLevel -= Time.deltaTime;
             }
             else
             {
-                _timerLevel = 0;
+                TimerLevel = 0;
                 CurrentState = GameState.None;
             }
 
@@ -43,19 +34,14 @@ namespace Manager
         public void OnInitializedLevel()
         {
             CurrentState = GameState.Running;
+            CurrentSkill = SkillState.Normal;
         }
 
-        public void OnPausedGame()
-        {
-            CurrentState = GameState.Paused;
-        }
+        public void OnPausedGame() => CurrentState = GameState.Paused;
 
-        public void OnUnPausedGame()
-        {
-            CurrentState = GameState.Running;
-        }
+        public void OnUnPausedGame() => CurrentState = GameState.Running;
 
-
+        public void OnActivedXRay() => CurrentSkill = SkillState.XRay;
 
     }
 }

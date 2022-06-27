@@ -9,7 +9,7 @@ namespace Player
         private bool _onCoolDownSkill;
 
         [Range(0, 15)][SerializeField] private float _timerXRay;
-        [Range(0, 15)][SerializeField] private float _timerDigital;
+        [Range(0, 15)][SerializeField] private float _timerFingerprint;
         
         [SerializeField] private float _firstRangeVisionXRay;
         [SerializeField] private float _secondRangeVisionXRay;
@@ -23,7 +23,8 @@ namespace Player
             _cursorMaskVision = GameObject.Find("CursorMask");    
         }
 
-        private void Start()
+
+        public void OnInitializedLevel()
         {
             _cursorMaskVision.SetActive(false);
             _onCoolDownSkill = false;

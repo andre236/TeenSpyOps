@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ namespace Manager
         private Text _timerLevelText;
         private Text _informationLevelText;
         private Text _amountTinaHintText;
+        private Text _amountItemsLeftText;
 
         private GameObject _pausePage;
         private GameObject _winPage;
@@ -16,6 +18,8 @@ namespace Manager
         private GameObject _bellAnimation;
 
         private Button _pauseMenuButton;
+        private Button _closeButton;
+        private Button _returnButton;
         private Button _xRayButton;
 
         private void Awake()
@@ -27,17 +31,25 @@ namespace Manager
             _bellAnimation = GameObject.Find("Bell");
 
             _pauseMenuButton = GameObject.Find("MenuButton").GetComponent<Button>();
+            _closeButton = GameObject.Find("CloseButton").GetComponent<Button>();
+            _returnButton = GameObject.Find("ReturnButton").GetComponent<Button>();
+            _xRayButton = GameObject.Find("XRayButton").GetComponent<Button>();
+            
+
             _timerLevelText = GameObject.Find("TimerText").GetComponent<Text>();
             _informationLevelText = GameObject.Find("InformationLevelText").GetComponent<Text>();
             _amountTinaHintText = GameObject.Find("AmoutTinaHintText").GetComponent<Text>();
+            _amountItemsLeftText = GameObject.Find("AmountItemsLeft").GetComponent<Text>();
 
-            _xRayButton = GameObject.Find("XRayButton").GetComponent<Button>();
         }
 
         private void Start()
         {
             _pauseMenuButton.onClick.AddListener(FindObjectOfType<EventManager>().OnPausedGame);
             _xRayButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedXRay);
+
+            _closeButton.onClick.AddListener(FindObjectOfType<EventManager>().OnUnPausedGame);
+            _returnButton.onClick.AddListener(FindObjectOfType<EventManager>().OnUnPausedGame);
 
         }
 
@@ -49,14 +61,16 @@ namespace Manager
             _hintPage.SetActive(false);
             _bellAnimation.SetActive(false);
 
+            _informationLevelText.text = string.Concat("Fase ", 3, ": ", "Sala de aula");
+
         }
 
-        public void OnGetInformationLevel(string levelName, int levelNumber, int amountObjects)
+        internal void ShowAmoutItemsLeft(int amountItemsLeft)
         {
-            _informationLevelText.text = string.Concat("Fase ", levelNumber, ": ", levelName, " Objetos Restantes: ",amountObjects);
+            _amountItemsLeftText.text = string.Concat("Objetos Restantes: ", amountItemsLeft.ToString());
         }
 
-        public void OnCountdownPerfomed(float currentTime)
+        public void ShowCountdownPerfomedText(float currentTime)
         {
             string minSec = string.Format("{0}:{1:00}", (int)currentTime / 60, (int)currentTime % 60);
             _timerLevelText.text = minSec;

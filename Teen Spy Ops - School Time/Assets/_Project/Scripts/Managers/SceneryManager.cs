@@ -25,8 +25,9 @@ namespace Manager
 
         internal void OnActivedXRay()
         {
-            _normalScene.SetActive(false);
             _xRayScene.SetActive(true);
+            _normalScene.SetActive(false);
+            _nightVisionScene.SetActive(false);
         }
     }
 }
