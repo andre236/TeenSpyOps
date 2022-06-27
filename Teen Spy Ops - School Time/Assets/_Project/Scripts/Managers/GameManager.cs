@@ -6,12 +6,12 @@ namespace Manager
     public class GameManager : MonoBehaviour
     {
         [SerializeField] private float _timerLevel;
-        
-        private GameObject _xRayScene;
-        private GameObject _nightVisionScene;
+
+
 
         public Action CountdownPerfomed;
-        public Action<bool> PausedGame;
+
+
 
         public GameState CurrentState;
 
@@ -20,21 +20,15 @@ namespace Manager
         private void Awake()
         {
             CountdownPerfomed += CountdownTimerLevel;
-            _xRayScene = GameObject.FindGameObjectWithTag("XRay");
-            _nightVisionScene = GameObject.FindGameObjectWithTag("NightVision");
         }
 
-        private void Start()
-        {
-            CurrentState = GameState.Running;
-        }
 
         private void CountdownTimerLevel()
         {
             if (CurrentState != GameState.Running)
                 return;
 
-            if(_timerLevel > 0)
+            if (_timerLevel > 0)
             {
                 _timerLevel -= Time.deltaTime;
             }
@@ -44,22 +38,23 @@ namespace Manager
                 CurrentState = GameState.None;
             }
 
-            Debug.Log(_timerLevel.ToString());
         }
 
-        public void PauseGame()
+        public void OnInitializedLevel()
         {
-            if (CurrentState != GameState.Paused)
-            {
-                CurrentState = GameState.Running;
-                PausedGame?.Invoke(false);
-            }
-            else
-            {
-                CurrentState = GameState.Paused;
-                PausedGame?.Invoke(true);
-            }
+            CurrentState = GameState.Running;
         }
+
+        public void OnPausedGame()
+        {
+            CurrentState = GameState.Paused;
+        }
+
+        public void OnUnPausedGame()
+        {
+            CurrentState = GameState.Running;
+        }
+
 
 
     }

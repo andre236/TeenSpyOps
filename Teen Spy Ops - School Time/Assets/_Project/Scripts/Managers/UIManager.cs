@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,22 +7,48 @@ namespace Manager
     {
         private Text _timerLevelText;
         private Text _informationLevelText;
+        private Text _amountTinaHintText;
 
         private GameObject _pausePage;
-        private Button _menuButton;
+        private GameObject _winPage;
+        private GameObject _gameOverPage;
+        private GameObject _hintPage;
+        private GameObject _bellAnimation;
 
+        private Button _pauseMenuButton;
+        private Button _xRayButton;
 
         private void Awake()
         {
             _pausePage = GameObject.Find("PausePage");
-            _menuButton = GameObject.Find("MenuButton").GetComponent<Button>();
+            _winPage = GameObject.Find("WinPage");
+            _gameOverPage = GameObject.Find("GameOverPage");
+            _hintPage = GameObject.Find("HintPage");
+            _bellAnimation = GameObject.Find("Bell");
+
+            _pauseMenuButton = GameObject.Find("MenuButton").GetComponent<Button>();
             _timerLevelText = GameObject.Find("TimerText").GetComponent<Text>();
             _informationLevelText = GameObject.Find("InformationLevelText").GetComponent<Text>();
+            _amountTinaHintText = GameObject.Find("AmoutTinaHintText").GetComponent<Text>();
+
+            _xRayButton = GameObject.Find("XRayButton").GetComponent<Button>();
         }
 
         private void Start()
         {
+            _pauseMenuButton.onClick.AddListener(FindObjectOfType<EventManager>().OnPausedGame);
+            _xRayButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedXRay);
+
+        }
+
+        public void OnInitializedLevel()
+        {
             _pausePage.SetActive(false);
+            _winPage.SetActive(false);
+            _gameOverPage.SetActive(false);
+            _hintPage.SetActive(false);
+            _bellAnimation.SetActive(false);
+
         }
 
         public void OnGetInformationLevel(string levelName, int levelNumber, int amountObjects)
@@ -37,9 +62,8 @@ namespace Manager
             _timerLevelText.text = minSec;
         }
 
-        public void OnPausedGame(bool isPaused)
-        {
-            _pausePage.SetActive(isPaused);
-        }
+        public void OnPausedGame() => _pausePage.SetActive(true);
+
+        public void OnUnPausedGame() => _pausePage.SetActive(false);
     }
 }

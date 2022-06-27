@@ -6,6 +6,7 @@ TagManager:
   tags:
   - XRay
   - NightVision
+  - Normal
   layers:
   - Default
   - TransparentFX

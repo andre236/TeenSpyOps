@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,23 +8,34 @@ namespace Player
     {
         private bool _onCoolDownSkill;
 
-        [Range(0,15)][SerializeField] private float _timerXRay;
+        [Range(0, 15)][SerializeField] private float _timerXRay;
         [Range(0, 15)][SerializeField] private float _timerDigital;
+        
+        [SerializeField] private float _firstRangeVisionXRay;
+        [SerializeField] private float _secondRangeVisionXRay;
+        [SerializeField] private float _thirdRangeVisionXRay;
 
+        private GameObject _cursorMaskVision;
 
-        [SerializeField] private UnityEvent _activatedXRay;
 
         private void Awake()
         {
-            
+            _cursorMaskVision = GameObject.Find("CursorMask");    
         }
 
-        private void ActiveXRay()
+        private void Start()
+        {
+            _cursorMaskVision.SetActive(false);
+            _onCoolDownSkill = false;
+        }
+
+        public void OnActivedXRay()
         {
             if (_onCoolDownSkill)
                 return;
 
-            _activatedXRay?.Invoke();
+            _cursorMaskVision.gameObject.SetActive(true);
+            _onCoolDownSkill = true;
             Invoke(nameof(SetOffCoolDown), _timerXRay);
         }
 
