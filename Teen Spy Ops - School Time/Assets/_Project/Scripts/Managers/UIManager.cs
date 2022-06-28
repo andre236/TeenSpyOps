@@ -11,6 +11,8 @@ namespace Manager
         private Text _amountTinaHintText;
         private Text _amountItemsLeftText;
 
+        private Animator _barsAnimation;
+
         private GameObject _pausePage;
         private GameObject _winPage;
         private GameObject _gameOverPage;
@@ -30,6 +32,8 @@ namespace Manager
             _hintPage = GameObject.Find("HintPage");
             _bellAnimation = GameObject.Find("Bell");
 
+            _barsAnimation = GameObject.Find("Canvas").GetComponent<Animator>();
+
             _pauseMenuButton = GameObject.Find("MenuButton").GetComponent<Button>();
             _closeButton = GameObject.Find("CloseButton").GetComponent<Button>();
             _returnButton = GameObject.Find("ReturnButton").GetComponent<Button>();
@@ -47,6 +51,7 @@ namespace Manager
         {
             _pauseMenuButton.onClick.AddListener(FindObjectOfType<EventManager>().OnPausedGame);
             _xRayButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedXRay);
+            _xRayButton.onClick.AddListener(PlayHudAnimation);
 
             _closeButton.onClick.AddListener(FindObjectOfType<EventManager>().OnUnPausedGame);
             _returnButton.onClick.AddListener(FindObjectOfType<EventManager>().OnUnPausedGame);
@@ -64,20 +69,25 @@ namespace Manager
             _informationLevelText.text = string.Concat("Fase ", 3, ": ", "Sala de aula");
 
         }
-
+        
+        public void PlayHudAnimation()
+        {
+            _barsAnimation.SetBool("OnXray", !_barsAnimation.GetBool("OnXray"));
+        }
+        
         internal void ShowAmoutItemsLeft(int amountItemsLeft)
         {
             _amountItemsLeftText.text = string.Concat("Objetos Restantes: ", amountItemsLeft.ToString());
         }
 
-        public void ShowCountdownPerfomedText(float currentTime)
+        internal void ShowCountdownPerfomedText(float currentTime)
         {
             string minSec = string.Format("{0}:{1:00}", (int)currentTime / 60, (int)currentTime % 60);
             _timerLevelText.text = minSec;
         }
 
-        public void OnPausedGame() => _pausePage.SetActive(true);
+        internal void OnPausedGame() => _pausePage.SetActive(true);
 
-        public void OnUnPausedGame() => _pausePage.SetActive(false);
+        internal void OnUnPausedGame() => _pausePage.SetActive(false);
     }
 }

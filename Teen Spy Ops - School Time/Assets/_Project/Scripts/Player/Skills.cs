@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using Manager;
 
 namespace Player
 {
@@ -10,19 +11,20 @@ namespace Player
 
         [Range(0, 15)][SerializeField] private float _timerXRay;
         [Range(0, 15)][SerializeField] private float _timerFingerprint;
-        
-        [SerializeField] private float _firstRangeVisionXRay;
-        [SerializeField] private float _secondRangeVisionXRay;
-        [SerializeField] private float _thirdRangeVisionXRay;
 
+        [Range(0, 99)] [SerializeField] private float _firstDistanceRangeXray;
+        [Range(0, 99)] [SerializeField] private float _secondDistanceRangeXray;
+        [Range(0, 99)] [SerializeField] private float _thirdDistanceRangeXray;
+
+        private GameManager _gameManager;
         private GameObject _cursorMaskVision;
 
 
         private void Awake()
         {
+            _gameManager = FindObjectOfType<GameManager>();
             _cursorMaskVision = GameObject.Find("CursorMask");    
         }
-
 
         public void OnInitializedLevel()
         {
@@ -35,9 +37,23 @@ namespace Player
             if (_onCoolDownSkill)
                 return;
 
-            _cursorMaskVision.gameObject.SetActive(true);
+            _cursorMaskVision.SetActive(true);
+
+            switch (_gameManager.CurrentDistance)
+            {
+                case XRayDistance.First:
+                    _cursorMaskVision.transform.localScale = new Vector2(_firstDistanceRangeXray, _firstDistanceRangeXray);
+                    break;
+                case XRayDistance.Second:
+                    _cursorMaskVision.transform.localScale = new Vector2(_secondDistanceRangeXray, _secondDistanceRangeXray);
+                    break;
+                case XRayDistance.Third:
+                    _cursorMaskVision.transform.localScale = new Vector2(_thirdDistanceRangeXray, _thirdDistanceRangeXray);
+                    break;
+            }
+
             _onCoolDownSkill = true;
-            Invoke(nameof(SetOffCoolDown), _timerXRay);
+            //Invoke(nameof(SetOffCoolDown), _timerXRay);
         }
 
         private bool SetOffCoolDown()

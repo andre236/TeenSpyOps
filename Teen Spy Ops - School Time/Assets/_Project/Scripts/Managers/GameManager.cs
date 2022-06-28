@@ -6,12 +6,13 @@ namespace Manager
     {
         public GameState CurrentState { get; private set; }
         [SerializeField] public SkillState CurrentSkill { get; private set; }
+        [SerializeField] public XRayDistance CurrentDistance { get; private set; }
 
-        [field:SerializeField] public float TimerLevel { get ; private set; }
+        [field: SerializeField] public float TimerLevel { get; private set; }
 
         private void Awake()
         {
-            
+
         }
 
         internal void OnCountdownTimerLevel()
@@ -31,17 +32,29 @@ namespace Manager
 
         }
 
-        public void OnInitializedLevel()
+        internal void OnInitializedLevel()
         {
             CurrentState = GameState.Running;
             CurrentSkill = SkillState.Normal;
+            CurrentDistance = XRayDistance.First;
         }
 
-        public void OnPausedGame() => CurrentState = GameState.Paused;
+        internal void OnPausedGame() => CurrentState = GameState.Paused;
 
-        public void OnUnPausedGame() => CurrentState = GameState.Running;
+        internal void OnUnPausedGame() => CurrentState = GameState.Running;
 
-        public void OnActivedXRay() => CurrentSkill = SkillState.XRay;
+        internal void OnActivedXRay()
+        {
+            CurrentSkill = SkillState.XRay;
 
+            if (CurrentDistance == XRayDistance.First)
+            {
+                CurrentDistance = XRayDistance.Third;
+            }
+            else
+            {
+                CurrentDistance--;
+            }
+        }
     }
 }

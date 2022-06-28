@@ -22,6 +22,8 @@ namespace Manager
         public Action PausedGame;
         public Action UnPausedGame;
 
+        public Action<string> ItemCollected;
+
         // -- Player Skills -- //
         public Action ActivedXRay;
 
@@ -36,9 +38,11 @@ namespace Manager
             _sceneryManager = FindObjectOfType<SceneryManager>();
             _levelManager = FindObjectOfType<LevelManager>();
 
+           
             // -- Player -- //
             _skills = FindObjectOfType<Skills>();
 
+            
         }
 
         private void Start()
@@ -49,6 +53,7 @@ namespace Manager
             InitializedGame += _uiManager.OnInitializedLevel;
             InitializedGame += _skills.OnInitializedLevel;
             InitializedGame += _levelManager.OnInitializedLevel;
+            InitializedGame += _sceneryManager.OnInitializedLevel;
 
             CountdownPerfomed += _gameManager.OnCountdownTimerLevel;
 
@@ -65,6 +70,7 @@ namespace Manager
             foreach(Collectable coll in _levelManager.ItemsCollectable)
             {
                 coll.Collected += _levelManager.OnCollected;
+                ActivedXRay += coll.OnActivatedXray;
             }
             
 
