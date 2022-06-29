@@ -2,5 +2,6 @@ public enum XRayDistance
 {
     First,
     Second,
-    Third
+    Third,
+    None
 }

@@ -5,8 +5,8 @@ namespace Manager
     public class GameManager : MonoBehaviour
     {
         public GameState CurrentState { get; private set; }
-        [SerializeField] public SkillState CurrentSkill { get; private set; }
-        [SerializeField] public XRayDistance CurrentDistance { get; private set; }
+        [field: SerializeField] public SkillState CurrentSkill { get; private set; }
+        [field: SerializeField] public XRayDistance CurrentDistance { get; private set; }
 
         [field: SerializeField] public float TimerLevel { get; private set; }
 
@@ -36,7 +36,7 @@ namespace Manager
         {
             CurrentState = GameState.Running;
             CurrentSkill = SkillState.Normal;
-            CurrentDistance = XRayDistance.First;
+            CurrentDistance = XRayDistance.None;
         }
 
         internal void OnPausedGame() => CurrentState = GameState.Paused;
@@ -45,16 +45,26 @@ namespace Manager
 
         internal void OnActivedXRay()
         {
-            CurrentSkill = SkillState.XRay;
 
-            if (CurrentDistance == XRayDistance.First)
+            if (CurrentSkill != SkillState.XRay)
             {
-                CurrentDistance = XRayDistance.Third;
+                CurrentSkill = SkillState.XRay;
             }
-            else
+
+            if (CurrentSkill == SkillState.XRay)
             {
-                CurrentDistance--;
+                if (CurrentDistance > XRayDistance.First)
+                {
+                    CurrentDistance--;
+                }
+                else
+                {
+                    CurrentDistance = XRayDistance.None;
+                    CurrentSkill = SkillState.Normal;
+                }
             }
+
+
         }
     }
 }

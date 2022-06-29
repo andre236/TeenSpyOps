@@ -47,7 +47,6 @@ namespace Manager
 
         private void Start()
         {
-
             // -- Events -- //
             InitializedGame += _gameManager.OnInitializedLevel;
             InitializedGame += _uiManager.OnInitializedLevel;
@@ -73,7 +72,6 @@ namespace Manager
                 ActivedXRay += coll.OnActivatedXray;
             }
             
-
             InitializedGame?.Invoke();
         }
 
@@ -88,7 +86,6 @@ namespace Manager
         // -- Reference in buttons -- //
         public void OnActivedXRay()
         {
-
             ActivedXRay?.Invoke();
         }
 

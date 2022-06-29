@@ -40,6 +40,14 @@ namespace Manager
 
         internal void OnActivedXRay()
         {
+            if(_gameManager.CurrentSkill != SkillState.XRay)
+            {
+                _xRayScene.SetActive(false);
+                _normalScene.SetActive(true);
+                _nightVisionScene.SetActive(false);
+                return;
+            }
+
             _xRayScene.SetActive(true);
             _normalScene.SetActive(false);
             _nightVisionScene.SetActive(false);

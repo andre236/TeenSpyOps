@@ -9,8 +9,8 @@ namespace Player
     {
         private bool _onCoolDownSkill;
 
-        [Range(0, 15)][SerializeField] private float _timerXRay;
-        [Range(0, 15)][SerializeField] private float _timerFingerprint;
+        [Range(0, 15)] [SerializeField] private float _timerXRay;
+        [Range(0, 15)] [SerializeField] private float _timerFingerprint;
 
         [Range(0, 99)] [SerializeField] private float _firstDistanceRangeXray;
         [Range(0, 99)] [SerializeField] private float _secondDistanceRangeXray;
@@ -23,7 +23,7 @@ namespace Player
         private void Awake()
         {
             _gameManager = FindObjectOfType<GameManager>();
-            _cursorMaskVision = GameObject.Find("CursorMask");    
+            _cursorMaskVision = GameObject.Find("CursorMask");
         }
 
         public void OnInitializedLevel()
@@ -32,10 +32,13 @@ namespace Player
             _onCoolDownSkill = false;
         }
 
-        public void OnActivedXRay()
+        internal void OnActivedXRay()
         {
-            if (_onCoolDownSkill)
+            if (_gameManager.CurrentSkill != SkillState.XRay)
+            {
+                _cursorMaskVision.SetActive(false);
                 return;
+            }
 
             _cursorMaskVision.SetActive(true);
 

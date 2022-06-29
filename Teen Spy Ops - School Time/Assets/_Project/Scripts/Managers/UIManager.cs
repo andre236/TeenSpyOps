@@ -18,6 +18,7 @@ namespace Manager
         private GameObject _gameOverPage;
         private GameObject _hintPage;
         private GameObject _bellAnimation;
+        private GameObject _guessingPage;
 
         private Button _pauseMenuButton;
         private Button _closeButton;
@@ -31,6 +32,7 @@ namespace Manager
             _gameOverPage = GameObject.Find("GameOverPage");
             _hintPage = GameObject.Find("HintPage");
             _bellAnimation = GameObject.Find("Bell");
+            _guessingPage = GameObject.Find("GuessingPage");
 
             _barsAnimation = GameObject.Find("Canvas").GetComponent<Animator>();
 
@@ -65,6 +67,7 @@ namespace Manager
             _gameOverPage.SetActive(false);
             _hintPage.SetActive(false);
             _bellAnimation.SetActive(false);
+            _guessingPage.SetActive(false);
 
             _informationLevelText.text = string.Concat("Fase ", 3, ": ", "Sala de aula");
 
@@ -72,7 +75,14 @@ namespace Manager
         
         public void PlayHudAnimation()
         {
-            _barsAnimation.SetBool("OnXray", !_barsAnimation.GetBool("OnXray"));
+            GameManager gameManager = FindObjectOfType<GameManager>();
+
+            if(gameManager.CurrentSkill == SkillState.XRay)
+                _barsAnimation.SetBool("OnXray", true);
+            else
+                _barsAnimation.SetBool("OnXray", false);
+
+
         }
         
         internal void ShowAmoutItemsLeft(int amountItemsLeft)

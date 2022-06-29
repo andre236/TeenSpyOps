@@ -6,9 +6,13 @@ namespace Objects
 {
     public class Collectable : MonoBehaviour
     {
+        [SerializeField] private string _nameObject;
+        [SerializeField] private Sprite _spriteObject;
+
         [SerializeField] private SkillState _currentTypeObject;
         [SerializeField] private XRayDistance _currentDistanceHidden;
 
+        public Action<Collectable> GotQuestion;
         public Action<Collectable> Collected;
         
 
@@ -29,8 +33,7 @@ namespace Objects
 
             if(gameManager.CurrentSkill == _currentTypeObject && gameManager.CurrentDistance <= _currentDistanceHidden)
             {
-                Collected?.Invoke(this);
-                Destroy(gameObject);
+                GotQuestion?.Invoke(this);
             }
         }
 
