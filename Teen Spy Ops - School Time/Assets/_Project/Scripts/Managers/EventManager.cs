@@ -77,7 +77,6 @@ namespace Manager
             InitializedGame?.Invoke();
         }
 
-
         private void Update()
         {
             CountdownPerfomed?.Invoke();
@@ -87,7 +86,11 @@ namespace Manager
         }
 
         // -- Reference in buttons -- //
-        public void OnActivedXRay() => ActivedXRay?.Invoke();
+        public void OnActivedXRay()
+        {
+
+            ActivedXRay?.Invoke();
+        }
 
         public void OnPausedGame() => PausedGame?.Invoke();
 

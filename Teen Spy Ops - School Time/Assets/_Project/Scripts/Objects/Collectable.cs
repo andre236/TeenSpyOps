@@ -27,22 +27,25 @@ namespace Objects
         {
             var gameManager = FindObjectOfType<GameManager>();
 
-            if(gameManager.CurrentSkill == _currentTypeObject && gameManager.CurrentDistance == _currentDistanceHidden)
+            if(gameManager.CurrentSkill == _currentTypeObject && gameManager.CurrentDistance <= _currentDistanceHidden)
             {
                 Collected?.Invoke(this);
-                Collected = null;
                 Destroy(gameObject);
             }
         }
 
         internal void OnActivatedXray()
         {
-            //var gameManager = FindObjectOfType<GameManager>();
+            if (this == null)
+                return;
+            
+            var gameManager = FindObjectOfType<GameManager>();
 
-            //if (gameManager.CurrentSkill == _currentTypeObject && gameManager.CurrentDistance == _currentDistanceHidden)
-            //    gameObject.SetActive(true);
-            //else
-            //    gameObject.SetActive(false);
+            if (gameManager.CurrentSkill == _currentTypeObject && gameManager.CurrentDistance <= _currentDistanceHidden)
+                gameObject.SetActive(true);
+            else
+                gameObject.SetActive(false);
+
         }
     }
 }
