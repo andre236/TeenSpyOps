@@ -12,7 +12,7 @@ namespace Objects
         [SerializeField] private SkillState _currentTypeObject;
         [SerializeField] private XRayDistance _currentDistanceHidden;
 
-        public Action<Collectable> GotQuestion;
+        public Action<string, Sprite> GotQuestion;
         public Action<Collectable> Collected;
         
 
@@ -33,7 +33,7 @@ namespace Objects
 
             if(gameManager.CurrentSkill == _currentTypeObject && gameManager.CurrentDistance <= _currentDistanceHidden)
             {
-                GotQuestion?.Invoke(this);
+                GotQuestion?.Invoke(_nameObject, gameObject.GetComponent<Sprite>());
             }
         }
 

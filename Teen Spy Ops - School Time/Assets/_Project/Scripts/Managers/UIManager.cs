@@ -68,6 +68,7 @@ namespace Manager
             _hintPage.SetActive(false);
             _bellAnimation.SetActive(false);
             _guessingPage.SetActive(false);
+            _barsAnimation.enabled = false;
 
             _informationLevelText.text = string.Concat("Fase ", 3, ": ", "Sala de aula");
 
@@ -77,7 +78,9 @@ namespace Manager
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
 
-            if(gameManager.CurrentSkill == SkillState.XRay)
+            _barsAnimation.enabled = true;
+
+            if (gameManager.CurrentSkill == SkillState.XRay)
                 _barsAnimation.SetBool("OnXray", true);
             else
                 _barsAnimation.SetBool("OnXray", false);
@@ -99,5 +102,11 @@ namespace Manager
         internal void OnPausedGame() => _pausePage.SetActive(true);
 
         internal void OnUnPausedGame() => _pausePage.SetActive(false);
+
+        internal void OnGotQuestion(string itemName, Sprite itemSprite)
+        {
+            Image itemImage = _guessingPage.transform.Find("ItemImage").GetComponent<Image>();
+
+        }
     }
 }
