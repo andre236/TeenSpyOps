@@ -1,5 +1,7 @@
+using Objects;
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Manager
@@ -20,7 +22,10 @@ namespace Manager
         private GameObject _bellAnimation;
         private GameObject _guessingPage;
 
-        private Button[] _answersButton;
+        private Image _errorIcon;
+        private Image _errorIcon2;
+
+        [SerializeField] private Button[] _answersButton;
         private Button _pauseMenuButton;
         private Button _closeButton;
         private Button _returnButton;
@@ -34,16 +39,20 @@ namespace Manager
             _hintPage = GameObject.Find("HintPage");
             _bellAnimation = GameObject.Find("Bell");
             _guessingPage = GameObject.Find("GuessingPage");
-            _answersButton = _guessingPage.GetComponentsInChildren<Button>();
+
+
+            _errorIcon = _guessingPage.transform.Find("Panel").transform.Find("ErrorIcon").GetComponent<Image>();
+            _errorIcon2 = _guessingPage.transform.Find("Panel").transform.Find("ErrorIcon2").GetComponent<Image>();
 
             _barsAnimation = GameObject.Find("Canvas").GetComponent<Animator>();
 
-            
+
+            _answersButton = _guessingPage.GetComponentsInChildren<Button>();
             _pauseMenuButton = GameObject.Find("MenuButton").GetComponent<Button>();
             _closeButton = GameObject.Find("CloseButton").GetComponent<Button>();
             _returnButton = GameObject.Find("ReturnButton").GetComponent<Button>();
             _xRayButton = GameObject.Find("XRayButton").GetComponent<Button>();
-            
+
 
             _timerLevelText = GameObject.Find("TimerText").GetComponent<Text>();
             _informationLevelText = GameObject.Find("InformationLevelText").GetComponent<Text>();
@@ -76,7 +85,7 @@ namespace Manager
             _informationLevelText.text = string.Concat("Fase ", 3, ": ", "Sala de aula");
 
         }
-        
+
         public void PlayHudAnimation()
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
@@ -90,7 +99,7 @@ namespace Manager
 
 
         }
-        
+
         internal void ShowAmoutItemsLeft(int amountItemsLeft)
         {
             _amountItemsLeftText.text = string.Concat("Objetos Restantes: ", amountItemsLeft.ToString());
@@ -108,13 +117,69 @@ namespace Manager
 
         internal void OnGotQuestion(string itemName, Sprite itemSprite, Sprite modalName, Sprite correctModalName)
         {
+            var randomButton = UnityEngine.Random.Range(0, 2);
+
+            SpriteState spriteState = new SpriteState();
+            spriteState = _answersButton[randomButton].spriteState;
+            _answersButton[randomButton].GetComponent<Image>().sprite = modalName;
+            _answersButton[randomButton].onClick.AddListener(OnChosenCorrect);
+
+            spriteState.pressedSprite = correctModalName;
+            spriteState.selectedSprite = correctModalName;
+
+            for (int i = 0; i <= 2; i++)
+            {
+                if (i != randomButton)
+                {
+                    _answersButton[i].onClick.AddListener(OnChosenIncorrect);
+                }
+            }
+
+            _answersButton[randomButton].spriteState = spriteState;
+
             Image itemImage = _guessingPage.transform.Find("Panel").transform.Find("ItemImage").GetComponent<Image>();
 
             itemImage.sprite = itemSprite;
 
+            _errorIcon.gameObject.SetActive(false);
+            _errorIcon2.gameObject.SetActive(false);
+
             _guessingPage.SetActive(true);
 
 
+
+        }
+
+        internal void OnChosenCorrect()
+        {
+            Invoke(nameof(OnCollected), 0f);
+            _guessingPage.SetActive(false);
+
+        }
+
+        internal void OnChosenIncorrect()
+        {
+            if (!_errorIcon.gameObject.activeSelf)
+                _errorIcon.gameObject.SetActive(true);
+            else
+            {
+                _errorIcon2.gameObject.SetActive(true);
+                Invoke(nameof(OverChancesChose), 0.5f);
+            }
+
+
+        }
+
+        internal void OverChancesChose()
+        {
+            _guessingPage.SetActive(false);
+            _errorIcon.gameObject.SetActive(false);
+            _errorIcon2.gameObject.SetActive(false);
+        }
+
+        internal void OnCollected(Collectable coll)
+        {
+            _guessingPage.SetActive(false);
         }
     }
 }

@@ -1,13 +1,11 @@
 using System;
 using UnityEngine;
-using UnityEngine.Events;
 using Manager;
 
 namespace Player
 {
     public class Skills : MonoBehaviour
     {
-        private bool _onCoolDownSkill;
 
         [Range(0, 15)] [SerializeField] private float _timerXRay;
         [Range(0, 15)] [SerializeField] private float _timerFingerprint;
@@ -29,7 +27,6 @@ namespace Player
         public void OnInitializedLevel()
         {
             _cursorMaskVision.SetActive(false);
-            _onCoolDownSkill = false;
         }
 
         internal void OnActivedXRay()
@@ -55,13 +52,8 @@ namespace Player
                     break;
             }
 
-            _onCoolDownSkill = true;
-            //Invoke(nameof(SetOffCoolDown), _timerXRay);
         }
 
-        private bool SetOffCoolDown()
-        {
-            return _onCoolDownSkill = false;
-        }
+ 
     }
 }

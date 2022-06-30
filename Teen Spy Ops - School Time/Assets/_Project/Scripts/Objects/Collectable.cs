@@ -1,6 +1,7 @@
 using UnityEngine;
 using Manager;
 using System;
+using UnityEngine.Events;
 
 namespace Objects
 {
@@ -15,6 +16,8 @@ namespace Objects
         private XRayDistance _currentDistanceHidden;
 
         [SerializeField] private ItemConfig _itemConfig;
+
+        [SerializeField] private UnityAction CorrectChoosen;
 
         public Action<string, Sprite, Sprite, Sprite> GotQuestion;
         public Action<Collectable> Collected;

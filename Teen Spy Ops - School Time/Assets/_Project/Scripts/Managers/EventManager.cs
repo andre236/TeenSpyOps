@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Player;
 using System;
 using Objects;
@@ -72,6 +73,7 @@ namespace Manager
             foreach(Collectable coll in _levelManager.ItemsCollectable)
             {
                 coll.Collected += _levelManager.OnCollected;
+                coll.Collected += _uiManager.OnCollected;
 
                 coll.GotQuestion += _uiManager.OnGotQuestion;
                 
