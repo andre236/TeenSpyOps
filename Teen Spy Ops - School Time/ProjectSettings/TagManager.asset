@@ -44,3 +44,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Backgrounds
+    uniqueID: 2415826929
+    locked: 0
+  - name: Furniture
+    uniqueID: 1308635525
+    locked: 0
+  - name: Objects
+    uniqueID: 1130464871
+    locked: 0
+  - name: Cursor
+    uniqueID: 2882877041
+    locked: 0

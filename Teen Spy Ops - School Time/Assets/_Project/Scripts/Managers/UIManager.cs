@@ -20,6 +20,7 @@ namespace Manager
         private GameObject _bellAnimation;
         private GameObject _guessingPage;
 
+        private Button[] _answersButton;
         private Button _pauseMenuButton;
         private Button _closeButton;
         private Button _returnButton;
@@ -33,9 +34,11 @@ namespace Manager
             _hintPage = GameObject.Find("HintPage");
             _bellAnimation = GameObject.Find("Bell");
             _guessingPage = GameObject.Find("GuessingPage");
+            _answersButton = _guessingPage.GetComponentsInChildren<Button>();
 
             _barsAnimation = GameObject.Find("Canvas").GetComponent<Animator>();
 
+            
             _pauseMenuButton = GameObject.Find("MenuButton").GetComponent<Button>();
             _closeButton = GameObject.Find("CloseButton").GetComponent<Button>();
             _returnButton = GameObject.Find("ReturnButton").GetComponent<Button>();
@@ -103,9 +106,14 @@ namespace Manager
 
         internal void OnUnPausedGame() => _pausePage.SetActive(false);
 
-        internal void OnGotQuestion(string itemName, Sprite itemSprite)
+        internal void OnGotQuestion(string itemName, Sprite itemSprite, Sprite modalName, Sprite correctModalName)
         {
-            Image itemImage = _guessingPage.transform.Find("ItemImage").GetComponent<Image>();
+            Image itemImage = _guessingPage.transform.Find("Panel").transform.Find("ItemImage").GetComponent<Image>();
+
+            itemImage.sprite = itemSprite;
+
+            _guessingPage.SetActive(true);
+
 
         }
     }

@@ -3,6 +3,7 @@ using UnityEngine;
 using Player;
 using System;
 using Objects;
+using Controllers;
 
 namespace Manager
 {
@@ -12,7 +13,8 @@ namespace Manager
         private SceneryManager _sceneryManager;
         private UIManager _uiManager;
         private LevelManager _levelManager;
-        
+
+        private GuessController _guessController;
         private Skills _skills;
 
         // -- System -- //
@@ -38,11 +40,12 @@ namespace Manager
             _sceneryManager = FindObjectOfType<SceneryManager>();
             _levelManager = FindObjectOfType<LevelManager>();
 
-           
+            // -- Controllers -- //
+            _guessController = FindObjectOfType<GuessController>();
+
             // -- Player -- //
             _skills = FindObjectOfType<Skills>();
 
-            
         }
 
         private void Start()
@@ -69,6 +72,9 @@ namespace Manager
             foreach(Collectable coll in _levelManager.ItemsCollectable)
             {
                 coll.Collected += _levelManager.OnCollected;
+
+                coll.GotQuestion += _uiManager.OnGotQuestion;
+                
                 ActivedXRay += coll.OnActivatedXray;
             }
             

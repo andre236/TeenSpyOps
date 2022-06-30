@@ -6,15 +6,29 @@ namespace Objects
 {
     public class Collectable : MonoBehaviour
     {
-        [SerializeField] private string _nameObject;
-        [SerializeField] private Sprite _spriteObject;
+        private string _nameObject;
+        private Sprite _spriteObject;
+        private Sprite _modalNameObject;
+        private Sprite _correctModalNameObject;
 
-        [SerializeField] private SkillState _currentTypeObject;
-        [SerializeField] private XRayDistance _currentDistanceHidden;
+        private SkillState _currentTypeObject;
+        private XRayDistance _currentDistanceHidden;
 
-        public Action<string, Sprite> GotQuestion;
+        [SerializeField] private ItemConfig _itemConfig;
+
+        public Action<string, Sprite, Sprite, Sprite> GotQuestion;
         public Action<Collectable> Collected;
-        
+
+        private void Awake()
+        {
+            _nameObject = _itemConfig.NameObject;
+            _spriteObject = _itemConfig.SpriteObject;
+            _modalNameObject = _itemConfig.ModalNameObject;
+            _correctModalNameObject = _itemConfig.CorrectModalNameObject;
+            GetComponent<SpriteRenderer>().sprite = _spriteObject;
+            _currentTypeObject = _itemConfig.CurrentTypeObject;
+            _currentDistanceHidden = _itemConfig.CurrentDistanceHidden;
+        }
 
         private void Start()
         {
@@ -31,9 +45,10 @@ namespace Objects
         {
             var gameManager = FindObjectOfType<GameManager>();
 
-            if(gameManager.CurrentSkill == _currentTypeObject && gameManager.CurrentDistance <= _currentDistanceHidden)
+            if (gameManager.CurrentSkill == _currentTypeObject && gameManager.CurrentDistance <= _currentDistanceHidden)
             {
-                GotQuestion?.Invoke(_nameObject, gameObject.GetComponent<Sprite>());
+                Debug.Log("Clicou em " + _nameObject);
+                GotQuestion?.Invoke(_nameObject, _spriteObject, _modalNameObject, _correctModalNameObject);
             }
         }
 
@@ -41,7 +56,7 @@ namespace Objects
         {
             if (this == null)
                 return;
-            
+
             var gameManager = FindObjectOfType<GameManager>();
 
             if (gameManager.CurrentSkill == _currentTypeObject && gameManager.CurrentDistance <= _currentDistanceHidden)

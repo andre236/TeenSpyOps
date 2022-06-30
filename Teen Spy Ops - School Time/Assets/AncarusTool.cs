@@ -11,7 +11,7 @@ namespace ancarustool
         [MenuItem("Tools/Setup/Create Default Folders")]
         public static void CreateFolders()
         {
-            Dir("_Project", "Scripts", "Scenes", "Scenes/Done", "Scenes/Creating", "Animations", "Images", "Images/HUD","Images/Backgrounds", "Images/Tileset", "Scripts", "Scripts/Managers", "Audio", "Audio/BGM", "Audio/SFX", "Fonts");
+            Dir("_Project", "Scripts", "Scenes", "Scenes/Done", "Scenes/Creating", "Animations", "Images", "Images/HUD","Images/Backgrounds", "Images/Tileset", "Scripts", "Scripts/Managers", "Audio", "Audio/BGM", "Audio/SFX", "Fonts", "Prefab");
             Refresh();
         }
 
