@@ -12,6 +12,13 @@ namespace Objects
         private Sprite _modalNameObject;
         private Sprite _correctModalNameObject;
 
+        private Sprite _modalObjectA;
+        private Sprite _incorrectModalA;
+        private Sprite _modalObjectB;
+        private Sprite _incorrectModalB;
+
+        private Animator _clickOverAnimation;
+
         private SkillState _currentTypeObject;
         private XRayDistance _currentDistanceHidden;
 
@@ -19,8 +26,9 @@ namespace Objects
 
         [SerializeField] private UnityAction CorrectChoosen;
 
-        public Action<string, Sprite, Sprite, Sprite> GotQuestion;
+        public Action<Sprite, Sprite, Sprite, Sprite, Sprite, Sprite, Sprite> GotQuestion;
         public Action<Collectable> Collected;
+
 
         private void Awake()
         {
@@ -28,6 +36,14 @@ namespace Objects
             _spriteObject = _itemConfig.SpriteObject;
             _modalNameObject = _itemConfig.ModalNameObject;
             _correctModalNameObject = _itemConfig.CorrectModalNameObject;
+            
+            _modalObjectA = _itemConfig.ModalObjectA;
+            _modalObjectB = _itemConfig.ModalObjectB;
+            _incorrectModalA = _itemConfig.IncorrectModalA;
+            _incorrectModalB = _itemConfig.IncorrectModalB;
+
+            _clickOverAnimation = GetComponent<Animator>();
+
             GetComponent<SpriteRenderer>().sprite = _spriteObject;
             _currentTypeObject = _itemConfig.CurrentTypeObject;
             _currentDistanceHidden = _itemConfig.CurrentDistanceHidden;
@@ -50,10 +66,12 @@ namespace Objects
 
             if (gameManager.CurrentSkill == _currentTypeObject && gameManager.CurrentDistance <= _currentDistanceHidden)
             {
-                Debug.Log("Clicou em " + _nameObject);
-                GotQuestion?.Invoke(_nameObject, _spriteObject, _modalNameObject, _correctModalNameObject);
+                _clickOverAnimation.Play("GettingItem");
+                GotQuestion?.Invoke(_spriteObject, _modalNameObject, _correctModalNameObject, _modalObjectA, _incorrectModalA, _modalObjectB, _incorrectModalB);
             }
         }
+
+
 
         internal void OnActivatedXray()
         {

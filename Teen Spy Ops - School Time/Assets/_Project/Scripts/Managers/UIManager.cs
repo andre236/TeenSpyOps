@@ -22,8 +22,8 @@ namespace Manager
         private GameObject _bellAnimation;
         private GameObject _guessingPage;
 
-        private Image _errorIcon;
-        private Image _errorIcon2;
+        private GameObject _errorIcon;
+        private GameObject _errorIcon2;
 
         [SerializeField] private Button[] _answersButton;
         private Button _pauseMenuButton;
@@ -41,8 +41,8 @@ namespace Manager
             _guessingPage = GameObject.Find("GuessingPage");
 
 
-            _errorIcon = _guessingPage.transform.Find("Panel").transform.Find("ErrorIcon").GetComponent<Image>();
-            _errorIcon2 = _guessingPage.transform.Find("Panel").transform.Find("ErrorIcon2").GetComponent<Image>();
+            _errorIcon = _guessingPage.transform.Find("Panel").transform.Find("ErrorIcon").gameObject;
+            _errorIcon2 = _guessingPage.transform.Find("Panel").transform.Find("ErrorIcon2").gameObject;
 
             _barsAnimation = GameObject.Find("Canvas").GetComponent<Animator>();
 
@@ -72,19 +72,7 @@ namespace Manager
 
         }
 
-        public void OnInitializedLevel()
-        {
-            _pausePage.SetActive(false);
-            _winPage.SetActive(false);
-            _gameOverPage.SetActive(false);
-            _hintPage.SetActive(false);
-            _bellAnimation.SetActive(false);
-            _guessingPage.SetActive(false);
-            _barsAnimation.enabled = false;
 
-            _informationLevelText.text = string.Concat("Fase ", 3, ": ", "Sala de aula");
-
-        }
 
         public void PlayHudAnimation()
         {
@@ -111,31 +99,86 @@ namespace Manager
             _timerLevelText.text = minSec;
         }
 
+        internal void ChosenCorrect()
+        {
+            Invoke(nameof(OnCollected), 0f);
+            _guessingPage.SetActive(false);
+
+        }
+
+
+        internal void OverChancesChose()
+        {
+            _errorIcon.gameObject.SetActive(false);
+            _errorIcon2.gameObject.SetActive(false);
+            _guessingPage.SetActive(false);
+        }
+
+        // -------------------- OBSERVERS ------------
+
+
+        public void OnInitializedLevel()
+        {
+            _pausePage.SetActive(false);
+            _winPage.SetActive(false);
+            _gameOverPage.SetActive(false);
+            _hintPage.SetActive(false);
+            _bellAnimation.SetActive(false);
+            _guessingPage.SetActive(false);
+            _barsAnimation.enabled = false;
+
+            _informationLevelText.text = string.Concat("Fase ", 3, ": ", "Sala de aula");
+
+        }
+
         internal void OnPausedGame() => _pausePage.SetActive(true);
 
         internal void OnUnPausedGame() => _pausePage.SetActive(false);
 
-        internal void OnGotQuestion(string itemName, Sprite itemSprite, Sprite modalName, Sprite correctModalName)
+        internal void OnGotQuestion(Sprite itemSprite, Sprite modalName, Sprite correctModalName, Sprite modalObjectA, Sprite incorrectModalA, Sprite modalObjectB, Sprite incorrectModalB)
         {
-            var randomButton = UnityEngine.Random.Range(0, 2);
+            SpriteState spriteStateCorrectModal = new SpriteState();
+            spriteStateCorrectModal = _answersButton[0].spriteState;
+            _answersButton[0].GetComponent<Image>().sprite = modalName;
+            _answersButton[0].spriteState = spriteStateCorrectModal;
 
-            SpriteState spriteState = new SpriteState();
-            spriteState = _answersButton[randomButton].spriteState;
-            _answersButton[randomButton].GetComponent<Image>().sprite = modalName;
-            _answersButton[randomButton].onClick.AddListener(OnChosenCorrect);
+            spriteStateCorrectModal.pressedSprite = correctModalName;
+            spriteStateCorrectModal.selectedSprite = correctModalName;
 
-            spriteState.pressedSprite = correctModalName;
-            spriteState.selectedSprite = correctModalName;
+            _answersButton[0].spriteState = spriteStateCorrectModal;
+            
+            // -- Referencing SpriteModalA
+            SpriteState spriteStateModalA = new SpriteState();
+            spriteStateModalA = _answersButton[1].spriteState;
+            _answersButton[1].GetComponent<Image>().sprite = modalObjectA;
+            _answersButton[1].spriteState = spriteStateModalA;
 
-            for (int i = 0; i <= 2; i++)
+            spriteStateModalA.pressedSprite = incorrectModalA;
+            spriteStateModalA.selectedSprite = incorrectModalA;
+
+
+            _answersButton[1].spriteState = spriteStateModalA;
+
+            // -- Referencing SpriteModalB
+            SpriteState spriteStateModalB = new SpriteState();
+            spriteStateModalB = _answersButton[2].spriteState;
+            _answersButton[2].GetComponent<Image>().sprite = modalObjectB;
+            _answersButton[2].spriteState = spriteStateModalB;
+
+            spriteStateModalB.pressedSprite = incorrectModalB;
+            spriteStateModalB.selectedSprite = incorrectModalB;
+
+            _answersButton[2].spriteState = spriteStateModalB;
+
+            int[] randomNumbers = new int[3] { UnityEngine.Random.Range(0, 2), UnityEngine.Random.Range(0, 2) , UnityEngine.Random.Range(0, 2) };
+            
+            for(int i = 0; i < 3; i++)
             {
-                if (i != randomButton)
-                {
-                    _answersButton[i].onClick.AddListener(OnChosenIncorrect);
-                }
-            }
+                _answersButton[i].gameObject.transform.SetSiblingIndex(randomNumbers[i]);
+                _answersButton[i].interactable = true;
 
-            _answersButton[randomButton].spriteState = spriteState;
+            }
+     
 
             Image itemImage = _guessingPage.transform.Find("Panel").transform.Find("ItemImage").GetComponent<Image>();
 
@@ -143,38 +186,25 @@ namespace Manager
 
             _errorIcon.gameObject.SetActive(false);
             _errorIcon2.gameObject.SetActive(false);
+            
+
 
             _guessingPage.SetActive(true);
-
-
-
-        }
-
-        internal void OnChosenCorrect()
-        {
-            Invoke(nameof(OnCollected), 0f);
-            _guessingPage.SetActive(false);
 
         }
 
         internal void OnChosenIncorrect()
         {
-            if (!_errorIcon.gameObject.activeSelf)
-                _errorIcon.gameObject.SetActive(true);
+            if (!_errorIcon.activeSelf)
+            {
+                _errorIcon.SetActive(true);
+                _errorIcon2.SetActive(false);
+            }
             else
             {
-                _errorIcon2.gameObject.SetActive(true);
+                _errorIcon2.SetActive(true);
                 Invoke(nameof(OverChancesChose), 0.5f);
             }
-
-
-        }
-
-        internal void OverChancesChose()
-        {
-            _guessingPage.SetActive(false);
-            _errorIcon.gameObject.SetActive(false);
-            _errorIcon2.gameObject.SetActive(false);
         }
 
         internal void OnCollected(Collectable coll)

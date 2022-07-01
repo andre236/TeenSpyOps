@@ -25,14 +25,17 @@ namespace Manager
         public Action PausedGame;
         public Action UnPausedGame;
 
-        public Action<string> ItemCollected;
 
         // -- Player Skills -- //
         public Action ActivedXRay;
 
         // -- Items -- //
         public int AmountItems { get; private set; }
-         
+        public Action<string> ItemCollected;
+
+        public Action ChosenCorrect;
+        public Action ChosenIncorrect;
+
         private void Awake()
         {
             // -- Managers -- //
@@ -70,11 +73,14 @@ namespace Manager
             ActivedXRay += _sceneryManager.OnActivedXRay;
             ActivedXRay += _skills.OnActivedXRay;
 
-            foreach(Collectable coll in _levelManager.ItemsCollectable)
+            ChosenIncorrect += _guessController.OnChosenIncorrect;
+            ChosenIncorrect += _uiManager.OnChosenIncorrect;
+
+
+            foreach (Collectable coll in _levelManager.ItemsCollectable)
             {
                 coll.Collected += _levelManager.OnCollected;
                 coll.Collected += _uiManager.OnCollected;
-
                 coll.GotQuestion += _uiManager.OnGotQuestion;
                 
                 ActivedXRay += coll.OnActivatedXray;
@@ -92,11 +98,9 @@ namespace Manager
         }
 
         // -- Reference in buttons -- //
-        public void OnActivedXRay()
-        {
-            ActivedXRay?.Invoke();
-        }
-
+        public void OnActivedXRay() => ActivedXRay?.Invoke();
+        public void OnChosenCorrect() => ChosenCorrect?.Invoke();
+        public void OnChosenIncorrect() => ChosenIncorrect?.Invoke();
         public void OnPausedGame() => PausedGame?.Invoke();
 
         public void OnUnPausedGame() => UnPausedGame?.Invoke();
