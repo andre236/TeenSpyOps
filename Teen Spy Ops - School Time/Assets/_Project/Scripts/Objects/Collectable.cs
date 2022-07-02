@@ -9,13 +9,9 @@ namespace Objects
     {
         private string _nameObject;
         private Sprite _spriteObject;
-        private Sprite _modalNameObject;
-        private Sprite _correctModalNameObject;
-
-        private Sprite _modalObjectA;
-        private Sprite _incorrectModalA;
-        private Sprite _modalObjectB;
-        private Sprite _incorrectModalB;
+        private Sprite _normalModal;
+        private Sprite _correctModal;
+        private Sprite _incorrectModal;
 
         private Animator _clickOverAnimation;
 
@@ -26,7 +22,7 @@ namespace Objects
 
         [SerializeField] private UnityAction CorrectChoosen;
 
-        public Action<Sprite, Sprite, Sprite, Sprite, Sprite, Sprite, Sprite> GotQuestion;
+        public Action<string, Sprite, Sprite, Sprite, Sprite> GotQuestion;
         public Action<Collectable> Collected;
 
 
@@ -34,13 +30,9 @@ namespace Objects
         {
             _nameObject = _itemConfig.NameObject;
             _spriteObject = _itemConfig.SpriteObject;
-            _modalNameObject = _itemConfig.ModalNameObject;
-            _correctModalNameObject = _itemConfig.CorrectModalNameObject;
-            
-            _modalObjectA = _itemConfig.ModalObjectA;
-            _modalObjectB = _itemConfig.ModalObjectB;
-            _incorrectModalA = _itemConfig.IncorrectModalA;
-            _incorrectModalB = _itemConfig.IncorrectModalB;
+            _normalModal = _itemConfig.ModalScriptable.DefaultCorrectModal;
+            _correctModal = _itemConfig.ModalScriptable.DefaultCorrectModal;
+            _incorrectModal = _itemConfig.ModalScriptable.DefaultIncorrectModal;
 
             _clickOverAnimation = GetComponent<Animator>();
 
@@ -66,8 +58,7 @@ namespace Objects
 
             if (gameManager.CurrentSkill == _currentTypeObject && gameManager.CurrentDistance <= _currentDistanceHidden)
             {
-                _clickOverAnimation.Play("GettingItem");
-                GotQuestion?.Invoke(_spriteObject, _modalNameObject, _correctModalNameObject, _modalObjectA, _incorrectModalA, _modalObjectB, _incorrectModalB);
+                GotQuestion?.Invoke(_nameObject, _spriteObject, _normalModal, _correctModal, _incorrectModal);
             }
         }
 

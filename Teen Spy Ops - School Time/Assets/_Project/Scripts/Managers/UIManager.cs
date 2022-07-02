@@ -135,40 +135,10 @@ namespace Manager
 
         internal void OnUnPausedGame() => _pausePage.SetActive(false);
 
-        internal void OnGotQuestion(Sprite itemSprite, Sprite modalName, Sprite correctModalName, Sprite modalObjectA, Sprite incorrectModalA, Sprite modalObjectB, Sprite incorrectModalB)
+        internal void OnGotQuestion(string nameObject, Sprite itemSprite, Sprite normalModal, Sprite correctModalName, Sprite incorrectModal)
         {
-            SpriteState spriteStateCorrectModal = new SpriteState();
-            spriteStateCorrectModal = _answersButton[0].spriteState;
-            _answersButton[0].GetComponent<Image>().sprite = modalName;
-            _answersButton[0].spriteState = spriteStateCorrectModal;
-
-            spriteStateCorrectModal.pressedSprite = correctModalName;
-            spriteStateCorrectModal.selectedSprite = correctModalName;
-
-            _answersButton[0].spriteState = spriteStateCorrectModal;
-            
-            // -- Referencing SpriteModalA
-            SpriteState spriteStateModalA = new SpriteState();
-            spriteStateModalA = _answersButton[1].spriteState;
-            _answersButton[1].GetComponent<Image>().sprite = modalObjectA;
-            _answersButton[1].spriteState = spriteStateModalA;
-
-            spriteStateModalA.pressedSprite = incorrectModalA;
-            spriteStateModalA.selectedSprite = incorrectModalA;
-
-
-            _answersButton[1].spriteState = spriteStateModalA;
-
-            // -- Referencing SpriteModalB
-            SpriteState spriteStateModalB = new SpriteState();
-            spriteStateModalB = _answersButton[2].spriteState;
-            _answersButton[2].GetComponent<Image>().sprite = modalObjectB;
-            _answersButton[2].spriteState = spriteStateModalB;
-
-            spriteStateModalB.pressedSprite = incorrectModalB;
-            spriteStateModalB.selectedSprite = incorrectModalB;
-
-            _answersButton[2].spriteState = spriteStateModalB;
+            Text nameObjectText = _answersButton[0].GetComponentInChildren<Text>();
+            nameObjectText.text = nameObject;
 
             int[] randomNumbers = new int[3] { UnityEngine.Random.Range(0, 2), UnityEngine.Random.Range(0, 2) , UnityEngine.Random.Range(0, 2) };
             
@@ -178,16 +148,13 @@ namespace Manager
                 _answersButton[i].interactable = true;
 
             }
-     
-
+   
             Image itemImage = _guessingPage.transform.Find("Panel").transform.Find("ItemImage").GetComponent<Image>();
 
             itemImage.sprite = itemSprite;
 
             _errorIcon.gameObject.SetActive(false);
             _errorIcon2.gameObject.SetActive(false);
-            
-
 
             _guessingPage.SetActive(true);
 
@@ -195,6 +162,7 @@ namespace Manager
 
         internal void OnChosenIncorrect()
         {
+            
             if (!_errorIcon.activeSelf)
             {
                 _errorIcon.SetActive(true);

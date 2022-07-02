@@ -14,11 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <NameObject>k__BackingField: Pen
   <SpriteObject>k__BackingField: {fileID: 21300000, guid: 07f40ebdd1ff36847b4ff7fa006a974b, type: 3}
-  <ModalNameObject>k__BackingField: {fileID: 21300000, guid: 01db6bf9597da1940a6fc9c975a7810a, type: 3}
-  <CorrectModalNameObject>k__BackingField: {fileID: 21300000, guid: 44667aa750dc54440b24f681a0a43f05, type: 3}
-  <ModalObjectA>k__BackingField: {fileID: 21300000, guid: 452a895422b645d48a287fe2df39b550, type: 3}
-  <IncorrectModalA>k__BackingField: {fileID: 21300000, guid: a85cca54785cccb4287366ffb177a3d6, type: 3}
-  <ModalObjectB>k__BackingField: {fileID: 21300000, guid: 7daf52abfba99344e88ce5c1235873bc, type: 3}
-  <IncorrectModalB>k__BackingField: {fileID: 21300000, guid: 041b34b420e637f4f90fa8ee2dfcc5c5, type: 3}
+  <ModalScriptable>k__BackingField: {fileID: 11400000, guid: 1eda32ccc77b2dc43937cf03ef50fa50, type: 2}
   <CurrentTypeObject>k__BackingField: 1
   <CurrentDistanceHidden>k__BackingField: 2

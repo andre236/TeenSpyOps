@@ -101,6 +101,7 @@ namespace Manager
         public void OnActivedXRay() => ActivedXRay?.Invoke();
         public void OnChosenCorrect() => ChosenCorrect?.Invoke();
         public void OnChosenIncorrect() => ChosenIncorrect?.Invoke();
+
         public void OnPausedGame() => PausedGame?.Invoke();
 
         public void OnUnPausedGame() => UnPausedGame?.Invoke();
