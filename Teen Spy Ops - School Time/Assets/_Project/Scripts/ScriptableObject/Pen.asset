@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Pen
   m_EditorClassIdentifier: 
   <NameObject>k__BackingField: Pen
+  <FakeNames>k__BackingField:
+  - Pencil
+  - Eraser
   <SpriteObject>k__BackingField: {fileID: 21300000, guid: 07f40ebdd1ff36847b4ff7fa006a974b, type: 3}
   <ModalScriptable>k__BackingField: {fileID: 11400000, guid: 1eda32ccc77b2dc43937cf03ef50fa50, type: 2}
-  <CurrentTypeObject>k__BackingField: 1
-  <CurrentDistanceHidden>k__BackingField: 2

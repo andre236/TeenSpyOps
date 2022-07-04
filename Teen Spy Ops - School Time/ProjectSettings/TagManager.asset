@@ -7,6 +7,7 @@ TagManager:
   - XRay
   - NightVision
   - Normal
+  - Fingerprint
   layers:
   - Default
   - TransparentFX

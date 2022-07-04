@@ -8,11 +8,6 @@ namespace Controllers
 
         [field: SerializeField] public int CurrentNumberAttempts { get; private set; }
 
-        private void Awake()
-        {
-
-        }
-
         public void OnGotQuestion()
         {
             CurrentNumberAttempts = NumberAttempts;

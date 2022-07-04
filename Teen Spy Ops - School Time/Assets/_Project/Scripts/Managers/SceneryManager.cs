@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Manager
@@ -10,6 +11,7 @@ namespace Manager
         private GameObject _secondDistance;
         private GameObject _firstDistace;
         private GameObject _nightVisionScene;
+        private GameObject _fingerprintScene;
         
         private GameManager _gameManager;
 
@@ -25,6 +27,7 @@ namespace Manager
             _thirdDistance = GameObject.Find("ThirdDistance");
 
             _nightVisionScene = GameObject.FindGameObjectWithTag("NightVision");
+            _fingerprintScene = GameObject.FindGameObjectWithTag("Fingerprint");
         }
 
         internal void OnInitializedLevel()
@@ -36,6 +39,7 @@ namespace Manager
             _normalScene.SetActive(true);
             _nightVisionScene.SetActive(false);
             _xRayScene.SetActive(false);
+            _fingerprintScene.SetActive(false);
         }
 
         internal void OnActivedXRay()
@@ -71,6 +75,38 @@ namespace Manager
                     break;
             }
 
+        }
+
+        internal void OnActivedFingerprint()
+        {
+            if (_gameManager.CurrentSkill != SkillState.Fingerprint)
+            {
+                _xRayScene.SetActive(false);
+                _normalScene.SetActive(true);
+                _nightVisionScene.SetActive(false);
+                return;
+            }
+
+            _fingerprintScene.SetActive(true);
+            _xRayScene.SetActive(false);
+            _normalScene.SetActive(false);
+            _nightVisionScene.SetActive(false);
+        }
+
+        internal void OnActivedNightVision()
+        {
+            if (_gameManager.CurrentSkill != SkillState.NightVision)
+            {
+                _normalScene.SetActive(true);
+                _xRayScene.SetActive(false);
+                _nightVisionScene.SetActive(false);
+                return;
+            }
+
+            _nightVisionScene.SetActive(true);
+            _xRayScene.SetActive(false);
+            _normalScene.SetActive(false);
+            _fingerprintScene.SetActive(false);
         }
     }
 }

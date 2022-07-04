@@ -30,6 +30,8 @@ namespace Manager
         private Button _closeButton;
         private Button _returnButton;
         private Button _xRayButton;
+        private Button _fingerprintButton;
+        private Button _nightVisionButton;
 
         private void Awake()
         {
@@ -52,7 +54,8 @@ namespace Manager
             _closeButton = GameObject.Find("CloseButton").GetComponent<Button>();
             _returnButton = GameObject.Find("ReturnButton").GetComponent<Button>();
             _xRayButton = GameObject.Find("XRayButton").GetComponent<Button>();
-
+            _fingerprintButton = GameObject.Find("FingerprintButton").GetComponent<Button>();
+            _nightVisionButton = GameObject.Find("NightVisionButton").GetComponent<Button>();
 
             _timerLevelText = GameObject.Find("TimerText").GetComponent<Text>();
             _informationLevelText = GameObject.Find("InformationLevelText").GetComponent<Text>();
@@ -66,6 +69,10 @@ namespace Manager
             _pauseMenuButton.onClick.AddListener(FindObjectOfType<EventManager>().OnPausedGame);
             _xRayButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedXRay);
             _xRayButton.onClick.AddListener(PlayHudAnimation);
+
+            _fingerprintButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedFingerprint);
+
+            _nightVisionButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedNightVision);
 
             _closeButton.onClick.AddListener(FindObjectOfType<EventManager>().OnUnPausedGame);
             _returnButton.onClick.AddListener(FindObjectOfType<EventManager>().OnUnPausedGame);
@@ -99,13 +106,6 @@ namespace Manager
             _timerLevelText.text = minSec;
         }
 
-        internal void ChosenCorrect()
-        {
-            Invoke(nameof(OnCollected), 0f);
-            _guessingPage.SetActive(false);
-
-        }
-
 
         internal void OverChancesChose()
         {
@@ -135,10 +135,15 @@ namespace Manager
 
         internal void OnUnPausedGame() => _pausePage.SetActive(false);
 
-        internal void OnGotQuestion(string nameObject, Sprite itemSprite, Sprite normalModal, Sprite correctModalName, Sprite incorrectModal)
+        internal void OnGotQuestion(string nameObject, string[] fakeNames, Sprite itemSprite, Sprite normalModal, Sprite correctModalName, Sprite incorrectModal)
         {
             Text nameObjectText = _answersButton[0].GetComponentInChildren<Text>();
-            nameObjectText.text = nameObject;
+            nameObjectText.text = nameObject.ToUpper();
+            Text fakeNameA = _answersButton[1].GetComponentInChildren<Text>();
+            Text fakeNameB = _answersButton[2].GetComponentInChildren<Text>();
+            fakeNameA.text = fakeNames[0].ToUpper();
+            fakeNameB.text = fakeNames[1].ToUpper();
+
 
             int[] randomNumbers = new int[3] { UnityEngine.Random.Range(0, 2), UnityEngine.Random.Range(0, 2) , UnityEngine.Random.Range(0, 2) };
             
@@ -146,15 +151,14 @@ namespace Manager
             {
                 _answersButton[i].gameObject.transform.SetSiblingIndex(randomNumbers[i]);
                 _answersButton[i].interactable = true;
-
             }
    
             Image itemImage = _guessingPage.transform.Find("Panel").transform.Find("ItemImage").GetComponent<Image>();
 
             itemImage.sprite = itemSprite;
 
-            _errorIcon.gameObject.SetActive(false);
-            _errorIcon2.gameObject.SetActive(false);
+            _errorIcon.SetActive(false);
+            _errorIcon2.SetActive(false);
 
             _guessingPage.SetActive(true);
 
@@ -175,9 +179,14 @@ namespace Manager
             }
         }
 
-        internal void OnCollected(Collectable coll)
+        internal void OnCollected()
         {
             _guessingPage.SetActive(false);
+        }
+
+        private void OnActivedFingerprint()
+        {
+            // ?
         }
     }
 }

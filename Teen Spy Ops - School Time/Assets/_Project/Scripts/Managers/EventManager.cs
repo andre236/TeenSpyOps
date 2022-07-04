@@ -28,10 +28,12 @@ namespace Manager
 
         // -- Player Skills -- //
         public Action ActivedXRay;
+        public Action ActivedFingerprint;
+        public Action ActivedNightVision;
 
         // -- Items -- //
         public int AmountItems { get; private set; }
-        public Action<string> ItemCollected;
+        public Action ItemCollected;
 
         public Action ChosenCorrect;
         public Action ChosenIncorrect;
@@ -73,17 +75,27 @@ namespace Manager
             ActivedXRay += _sceneryManager.OnActivedXRay;
             ActivedXRay += _skills.OnActivedXRay;
 
+            ActivedFingerprint += _gameManager.OnActivedFingerprint;
+            ActivedFingerprint += _sceneryManager.OnActivedFingerprint;
+            ActivedFingerprint += _skills.OnActivedFingerprint;
+
+            ActivedNightVision += _gameManager.OnActivedNightVision;
+            ActivedNightVision += _sceneryManager.OnActivedNightVision;
+            ActivedNightVision += _skills.OnActivedNightVision;
+
             ChosenIncorrect += _guessController.OnChosenIncorrect;
             ChosenIncorrect += _uiManager.OnChosenIncorrect;
 
+            ItemCollected += _levelManager.OnCollected;
+            ItemCollected += _uiManager.OnCollected;
 
             foreach (Collectable coll in _levelManager.ItemsCollectable)
             {
-                coll.Collected += _levelManager.OnCollected;
-                coll.Collected += _uiManager.OnCollected;
                 coll.GotQuestion += _uiManager.OnGotQuestion;
-                
+                coll.CheckedItemOnList += _levelManager.OnCheckedItemOnList;
+
                 ActivedXRay += coll.OnActivatedXray;
+                ActivedNightVision += coll.OnActivedNightVision;
             }
             
             InitializedGame?.Invoke();
@@ -99,7 +111,13 @@ namespace Manager
 
         // -- Reference in buttons -- //
         public void OnActivedXRay() => ActivedXRay?.Invoke();
-        public void OnChosenCorrect() => ChosenCorrect?.Invoke();
+        public void OnActivedNightVision()
+        {
+            ActivedNightVision?.Invoke();
+        }
+        public void OnActivedFingerprint() => ActivedFingerprint?.Invoke();
+        public void OnChosenCorrect() => ItemCollected?.Invoke();
+
         public void OnChosenIncorrect() => ChosenIncorrect?.Invoke();
 
         public void OnPausedGame() => PausedGame?.Invoke();

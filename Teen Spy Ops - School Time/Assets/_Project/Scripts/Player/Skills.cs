@@ -54,6 +54,14 @@ namespace Player
 
         }
 
- 
+        internal void OnActivedFingerprint()
+        {
+            Debug.Log("Poder fingerprint ativado!");
+        }
+
+        internal void OnActivedNightVision()
+        {
+            Debug.Log("Poder Visão Noturna ativado!");
+        }
     }
 }

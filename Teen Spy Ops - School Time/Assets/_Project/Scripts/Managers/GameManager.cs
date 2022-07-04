@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Manager
@@ -65,6 +66,32 @@ namespace Manager
             }
 
 
+        }
+
+        internal void OnActivedFingerprint()
+        {
+
+            if (CurrentSkill != SkillState.Fingerprint)
+            {
+                CurrentSkill = SkillState.Fingerprint;
+            }
+            else
+            {
+                CurrentSkill = SkillState.Normal;
+            }
+        }
+
+        internal void OnActivedNightVision()
+        {
+
+            if (CurrentSkill != SkillState.NightVision)
+            {
+                CurrentSkill = SkillState.NightVision;
+            }
+            else
+            {
+                CurrentSkill = SkillState.Normal;
+            }
         }
     }
 }
