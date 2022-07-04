@@ -96,6 +96,7 @@ namespace Manager
 
                 ActivedXRay += coll.OnActivatedXray;
                 ActivedNightVision += coll.OnActivedNightVision;
+                ActivedFingerprint += coll.OnActivedFingerprint;
             }
             
             InitializedGame?.Invoke();

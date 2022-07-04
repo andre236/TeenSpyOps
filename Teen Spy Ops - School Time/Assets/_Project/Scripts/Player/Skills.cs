@@ -56,11 +56,13 @@ namespace Player
 
         internal void OnActivedFingerprint()
         {
+            _cursorMaskVision.SetActive(false);
             Debug.Log("Poder fingerprint ativado!");
         }
 
         internal void OnActivedNightVision()
         {
+            _cursorMaskVision.SetActive(false);
             Debug.Log("Poder Visão Noturna ativado!");
         }
     }

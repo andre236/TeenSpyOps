@@ -46,15 +46,17 @@ namespace Manager
         {
             if(_gameManager.CurrentSkill != SkillState.XRay)
             {
-                _xRayScene.SetActive(false);
                 _normalScene.SetActive(true);
+                _xRayScene.SetActive(false);
                 _nightVisionScene.SetActive(false);
+                _fingerprintScene.SetActive(false);
                 return;
             }
 
             _xRayScene.SetActive(true);
             _normalScene.SetActive(false);
             _nightVisionScene.SetActive(false);
+            _fingerprintScene.SetActive(false);
 
             switch (_gameManager.CurrentDistance)
             {
@@ -81,9 +83,11 @@ namespace Manager
         {
             if (_gameManager.CurrentSkill != SkillState.Fingerprint)
             {
-                _xRayScene.SetActive(false);
                 _normalScene.SetActive(true);
+                _xRayScene.SetActive(false);
                 _nightVisionScene.SetActive(false);
+                _fingerprintScene.SetActive(false);
+
                 return;
             }
 
@@ -100,6 +104,7 @@ namespace Manager
                 _normalScene.SetActive(true);
                 _xRayScene.SetActive(false);
                 _nightVisionScene.SetActive(false);
+                _fingerprintScene.SetActive(false);
                 return;
             }
 

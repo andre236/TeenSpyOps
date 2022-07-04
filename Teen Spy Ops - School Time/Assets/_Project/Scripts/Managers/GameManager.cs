@@ -74,11 +74,14 @@ namespace Manager
             if (CurrentSkill != SkillState.Fingerprint)
             {
                 CurrentSkill = SkillState.Fingerprint;
+                
             }
             else
             {
                 CurrentSkill = SkillState.Normal;
+            CurrentDistance = XRayDistance.None;
             }
+
         }
 
         internal void OnActivedNightVision()
@@ -91,7 +94,9 @@ namespace Manager
             else
             {
                 CurrentSkill = SkillState.Normal;
+            CurrentDistance = XRayDistance.None;
             }
+
         }
     }
 }
