@@ -18,6 +18,8 @@ namespace Manager
 
         internal void OnCollected()
         {
+            CurrentObject.GetComponent<Collectable>().GotQuestion = null;
+
             ItemsCollectable.Remove(CurrentObject.GetComponent<Collectable>());
             Destroy(CurrentObject);
             ItemsLeft = ItemsCollectable.Count;

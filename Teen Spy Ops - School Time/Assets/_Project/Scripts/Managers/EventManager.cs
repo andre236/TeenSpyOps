@@ -27,6 +27,7 @@ namespace Manager
         public Action WonGame;
         public Action LosedGame;
 
+
         // -- Player Skills -- //
         public Action ActivedXRay;
         public Action ActivedFingerprint;
@@ -116,7 +117,7 @@ namespace Manager
                 CountdownPerfomed?.Invoke();
             else
                 LosedGame?.Invoke();
-            
+
             _uiManager.ShowCountdownPerfomedText(_gameManager.TimerLevel);
             _uiManager.ShowAmoutItemsLeft(_levelManager.ItemsLeft);
         }
@@ -147,5 +148,11 @@ namespace Manager
         }
 
         public void RestartScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        public void LoadLevelSelectScene() => SceneManager.LoadScene("LEVELSELECT");
+        public void LoadMainMenuScene() => SceneManager.LoadScene("MAINMENU");
+        public void LoadNextLevelScene()
+        {
+
+        }
     }
 }

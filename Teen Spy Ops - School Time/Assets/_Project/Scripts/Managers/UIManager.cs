@@ -31,9 +31,8 @@ namespace Manager
         private Button _xRayButton;
         private Button _fingerprintButton;
         private Button _nightVisionButton;
-        private Button _restartScene;
-        private Button _playAgainButton;
-        private Button _winPlayAgainButton;
+        private Button _phasesButton;
+        private Button _mainMenuButton;
 
         private void Awake()
         {
@@ -58,9 +57,9 @@ namespace Manager
             _xRayButton = GameObject.Find("XRayButton").GetComponent<Button>();
             _fingerprintButton = GameObject.Find("FingerprintButton").GetComponent<Button>();
             _nightVisionButton = GameObject.Find("NightVisionButton").GetComponent<Button>();
-            _restartScene = GameObject.Find("RestartButton").GetComponent<Button>();
-            _playAgainButton = GameObject.Find("PlayAgainButton").GetComponent<Button>();
-            _winPlayAgainButton = GameObject.Find("WinPlayAgainButton").GetComponent<Button>();
+            _phasesButton = GameObject.Find("PhasesButton").GetComponent<Button>();
+            //_mainMenuButton = GameObject.Find("MainMenuButton").GetComponent<Button>();
+
 
             _timerLevelText = GameObject.Find("TimerText").GetComponent<Text>();
             _informationLevelText = GameObject.Find("InformationLevelText").GetComponent<Text>();
@@ -82,12 +81,10 @@ namespace Manager
             _nightVisionButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedNightVision);
             _closeButton.onClick.AddListener(FindObjectOfType<EventManager>().OnUnPausedGame);
             _returnButton.onClick.AddListener(FindObjectOfType<EventManager>().OnUnPausedGame);
-            _restartScene.onClick.AddListener(FindObjectOfType<EventManager>().RestartScene);
-            _playAgainButton.onClick.AddListener(FindObjectOfType<EventManager>().RestartScene);
-            _winPlayAgainButton.onClick.AddListener(FindObjectOfType<EventManager>().RestartScene);
+
+            //_mainMenuButton.onClick.AddListener(FindObjectOfType<EventManager>().LoadMainMenuScene);
+            _phasesButton.onClick.AddListener(FindObjectOfType<EventManager>().LoadLevelSelectScene);
         }
-
-
 
         public void PlayHudAnimation()
         {
@@ -116,8 +113,10 @@ namespace Manager
 
         internal void ShowGameOverPage()
         {
-            _bellAnimation.SetActive(false);
             _gameOverPage.SetActive(true);
+
+            Button playAgainButton = GameObject.Find("PlayAgainButton").GetComponent<Button>();
+            playAgainButton.onClick.AddListener(FindObjectOfType<EventManager>().RestartScene);
         }
 
         internal void OverChancesChose()
@@ -145,7 +144,13 @@ namespace Manager
 
         }
 
-        internal void OnPausedGame() => _pausePage.SetActive(true);
+        internal void OnPausedGame()
+        {
+            _pausePage.SetActive(true);
+
+            Button restartSceneButton = GameObject.Find("RestartButton").GetComponent<Button>();
+            restartSceneButton.onClick.AddListener(FindObjectOfType<EventManager>().RestartScene);
+        }
 
         internal void OnUnPausedGame() => _pausePage.SetActive(false);
 
@@ -227,6 +232,8 @@ namespace Manager
             _gameOverPage.SetActive(false);
             _winPage.SetActive(true);
 
+            Button playAgainButton = GameObject.Find("PlayAgainButton").GetComponent<Button>();
+            playAgainButton.onClick.AddListener(FindObjectOfType<EventManager>().RestartScene);
         }
 
         internal void OnLosedGame()
