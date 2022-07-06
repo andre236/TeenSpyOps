@@ -627,7 +627,7 @@ GameObject:
   - component: {fileID: 176959260}
   - component: {fileID: 176959259}
   m_Layer: 5
-  m_Name: ProceedButton
+  m_Name: NextLevelButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3003,7 +3003,7 @@ GameObject:
   - component: {fileID: 802477746}
   - component: {fileID: 802477745}
   m_Layer: 5
-  m_Name: ProceedButton
+  m_Name: NextLevelButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4357,7 +4357,7 @@ MonoBehaviour:
   <CurrentGameState>k__BackingField: 0
   <CurrentSkill>k__BackingField: 0
   <CurrentDistance>k__BackingField: 0
-  <InitialTimerLevel>k__BackingField: 15
+  <InitialTimerLevel>k__BackingField: 3
 --- !u!1 &1018696379
 GameObject:
   m_ObjectHideFlags: 0

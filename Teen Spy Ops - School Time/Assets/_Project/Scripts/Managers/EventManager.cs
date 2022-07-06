@@ -150,9 +150,6 @@ namespace Manager
         public void RestartScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         public void LoadLevelSelectScene() => SceneManager.LoadScene("LEVELSELECT");
         public void LoadMainMenuScene() => SceneManager.LoadScene("MAINMENU");
-        public void LoadNextLevelScene()
-        {
-
-        }
+        public void LoadNextLevelScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
