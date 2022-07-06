@@ -1,7 +1,5 @@
-using Objects;
 using System;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace Manager
@@ -21,9 +19,10 @@ namespace Manager
         private GameObject _hintPage;
         private GameObject _bellAnimation;
         private GameObject _guessingPage;
-
         private GameObject _errorIcon;
         private GameObject _errorIcon2;
+
+        private Image _xRayBarImage;
 
         [SerializeField] private Button[] _answersButton;
         private Button _pauseMenuButton;
@@ -32,6 +31,9 @@ namespace Manager
         private Button _xRayButton;
         private Button _fingerprintButton;
         private Button _nightVisionButton;
+        private Button _restartScene;
+        private Button _playAgainButton;
+        private Button _winPlayAgainButton;
 
         private void Awake()
         {
@@ -42,12 +44,12 @@ namespace Manager
             _bellAnimation = GameObject.Find("Bell");
             _guessingPage = GameObject.Find("GuessingPage");
 
-
             _errorIcon = _guessingPage.transform.Find("Panel").transform.Find("ErrorIcon").gameObject;
             _errorIcon2 = _guessingPage.transform.Find("Panel").transform.Find("ErrorIcon2").gameObject;
 
             _barsAnimation = GameObject.Find("Canvas").GetComponent<Animator>();
 
+            _xRayBarImage = GameObject.Find("XRayBar").GetComponent<Image>();
 
             _answersButton = _guessingPage.GetComponentsInChildren<Button>();
             _pauseMenuButton = GameObject.Find("MenuButton").GetComponent<Button>();
@@ -56,6 +58,9 @@ namespace Manager
             _xRayButton = GameObject.Find("XRayButton").GetComponent<Button>();
             _fingerprintButton = GameObject.Find("FingerprintButton").GetComponent<Button>();
             _nightVisionButton = GameObject.Find("NightVisionButton").GetComponent<Button>();
+            _restartScene = GameObject.Find("RestartButton").GetComponent<Button>();
+            _playAgainButton = GameObject.Find("PlayAgainButton").GetComponent<Button>();
+            _winPlayAgainButton = GameObject.Find("WinPlayAgainButton").GetComponent<Button>();
 
             _timerLevelText = GameObject.Find("TimerText").GetComponent<Text>();
             _informationLevelText = GameObject.Find("InformationLevelText").GetComponent<Text>();
@@ -64,6 +69,9 @@ namespace Manager
 
         }
 
+        
+
+
         private void Start()
         {
             _pauseMenuButton.onClick.AddListener(FindObjectOfType<EventManager>().OnPausedGame);
@@ -71,12 +79,12 @@ namespace Manager
             _xRayButton.onClick.AddListener(PlayHudAnimation);
 
             _fingerprintButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedFingerprint);
-
             _nightVisionButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedNightVision);
-
             _closeButton.onClick.AddListener(FindObjectOfType<EventManager>().OnUnPausedGame);
             _returnButton.onClick.AddListener(FindObjectOfType<EventManager>().OnUnPausedGame);
-
+            _restartScene.onClick.AddListener(FindObjectOfType<EventManager>().RestartScene);
+            _playAgainButton.onClick.AddListener(FindObjectOfType<EventManager>().RestartScene);
+            _winPlayAgainButton.onClick.AddListener(FindObjectOfType<EventManager>().RestartScene);
         }
 
 
@@ -106,6 +114,11 @@ namespace Manager
             _timerLevelText.text = minSec;
         }
 
+        internal void ShowGameOverPage()
+        {
+            _bellAnimation.SetActive(false);
+            _gameOverPage.SetActive(true);
+        }
 
         internal void OverChancesChose()
         {
@@ -125,6 +138,7 @@ namespace Manager
             _hintPage.SetActive(false);
             _bellAnimation.SetActive(false);
             _guessingPage.SetActive(false);
+            _xRayBarImage.gameObject.SetActive(false);
             _barsAnimation.enabled = false;
 
             _informationLevelText.text = string.Concat("Fase ", 3, ": ", "Sala de aula");
@@ -145,14 +159,14 @@ namespace Manager
             fakeNameB.text = fakeNames[1].ToUpper();
 
 
-            int[] randomNumbers = new int[3] { UnityEngine.Random.Range(0, 2), UnityEngine.Random.Range(0, 2) , UnityEngine.Random.Range(0, 2) };
-            
-            for(int i = 0; i < 3; i++)
+            int[] randomNumbers = new int[3] { UnityEngine.Random.Range(0, 2), UnityEngine.Random.Range(0, 2), UnityEngine.Random.Range(0, 2) };
+
+            for (int i = 0; i < 3; i++)
             {
                 _answersButton[i].gameObject.transform.SetSiblingIndex(randomNumbers[i]);
                 _answersButton[i].interactable = true;
             }
-   
+
             Image itemImage = _guessingPage.transform.Find("Panel").transform.Find("ItemImage").GetComponent<Image>();
 
             itemImage.sprite = itemSprite;
@@ -166,7 +180,7 @@ namespace Manager
 
         internal void OnChosenIncorrect()
         {
-            
+
             if (!_errorIcon.activeSelf)
             {
                 _errorIcon.SetActive(true);
@@ -184,9 +198,45 @@ namespace Manager
             _guessingPage.SetActive(false);
         }
 
-        private void OnActivedFingerprint()
+        internal void OnActivedXRay()
         {
-            // ?
+            GameManager gameManager = FindObjectOfType<GameManager>();
+
+            switch (gameManager.CurrentDistance)
+            {
+                case XRayDistance.First:
+                    _xRayBarImage.fillAmount = 0.33f;
+                    break;
+                case XRayDistance.Second:
+                    _xRayBarImage.fillAmount = 0.66f;
+                    break;
+                case XRayDistance.Third:
+                    _xRayBarImage.gameObject.SetActive(true);
+                    _xRayBarImage.fillAmount = 1f;
+                    break;
+                case XRayDistance.None:
+                    _xRayBarImage.gameObject.SetActive(false);
+                    break;
+            }
         }
+
+        internal void OnWonGame()
+        {
+            _pausePage.SetActive(false);
+            _guessingPage.SetActive(false);
+            _gameOverPage.SetActive(false);
+            _winPage.SetActive(true);
+
+        }
+
+        internal void OnLosedGame()
+        {
+            _pausePage.SetActive(false);
+            _guessingPage.SetActive(false);
+            _winPage.SetActive(false);
+            _bellAnimation.SetActive(true);
+            Invoke(nameof(ShowGameOverPage), 2f);
+        }
+
     }
 }

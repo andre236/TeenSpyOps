@@ -7,14 +7,11 @@ namespace Mechanic
     {
         private GameManager _gameManager;
 
-        private void Awake()
-        {
-            _gameManager = FindObjectOfType<GameManager>();
-        }
+        private void Awake() => _gameManager = FindObjectOfType<GameManager>();
 
         private void Update()
         {
-            if (_gameManager.CurrentState == GameState.Paused)
+            if (_gameManager.CurrentGameState != GameState.Running)
                 return;
 
             Vector2 mousePosition = Input.mousePosition;

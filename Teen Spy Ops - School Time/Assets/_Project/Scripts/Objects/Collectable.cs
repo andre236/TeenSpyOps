@@ -1,7 +1,7 @@
-using UnityEngine;
-using Manager;
 using System;
+using UnityEngine;
 using UnityEngine.Events;
+using Manager;
 
 namespace Objects
 {
@@ -9,6 +9,8 @@ namespace Objects
     {
         private string _nameObject;
         private string[] _fakeNames;
+        [SerializeField] private string _hintObject;
+        
         private Sprite _spriteObject;
         private Sprite _normalModal;
         private Sprite _correctModal;
@@ -21,7 +23,6 @@ namespace Objects
         [field: SerializeField] public XRayDistance CurrentDistanceHidden { get; private set; }
         [Space]
         [SerializeField] private ItemConfig _itemConfig;
-
         [SerializeField] private UnityAction CorrectChoosen;
 
         public Action<string,string[], Sprite, Sprite, Sprite, Sprite> GotQuestion;

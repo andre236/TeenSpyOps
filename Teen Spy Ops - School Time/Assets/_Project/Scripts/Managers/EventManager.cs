@@ -1,8 +1,7 @@
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Events;
-using Player;
 using System;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using Player;
 using Objects;
 using Controllers;
 
@@ -25,6 +24,8 @@ namespace Manager
         public Action PausedGame;
         public Action UnPausedGame;
 
+        public Action WonGame;
+        public Action LosedGame;
 
         // -- Player Skills -- //
         public Action ActivedXRay;
@@ -71,9 +72,16 @@ namespace Manager
             UnPausedGame += _gameManager.OnUnPausedGame;
             UnPausedGame += _uiManager.OnUnPausedGame;
 
+            WonGame += _gameManager.OnWonGame;
+            WonGame += _uiManager.OnWonGame;
+
+            LosedGame += _gameManager.OnLosedGame;
+            LosedGame += _uiManager.OnLosedGame;
+
             ActivedXRay += _gameManager.OnActivedXRay;
             ActivedXRay += _sceneryManager.OnActivedXRay;
             ActivedXRay += _skills.OnActivedXRay;
+            ActivedXRay += _uiManager.OnActivedXRay;
 
             ActivedFingerprint += _gameManager.OnActivedFingerprint;
             ActivedFingerprint += _sceneryManager.OnActivedFingerprint;
@@ -98,31 +106,46 @@ namespace Manager
                 ActivedNightVision += coll.OnActivedNightVision;
                 ActivedFingerprint += coll.OnActivedFingerprint;
             }
-            
+
             InitializedGame?.Invoke();
         }
 
         private void Update()
         {
-            CountdownPerfomed?.Invoke();
-
+            if (_gameManager.TimerLevel > 0)
+                CountdownPerfomed?.Invoke();
+            else
+                LosedGame?.Invoke();
+            
             _uiManager.ShowCountdownPerfomedText(_gameManager.TimerLevel);
             _uiManager.ShowAmoutItemsLeft(_levelManager.ItemsLeft);
         }
 
         // -- Reference in buttons -- //
         public void OnActivedXRay() => ActivedXRay?.Invoke();
-        public void OnActivedNightVision()
-        {
-            ActivedNightVision?.Invoke();
-        }
+        public void OnActivedNightVision() => ActivedNightVision?.Invoke();
         public void OnActivedFingerprint() => ActivedFingerprint?.Invoke();
-        public void OnChosenCorrect() => ItemCollected?.Invoke();
+        public void OnChosenCorrect()
+        {
+            ItemCollected?.Invoke();
+            if (_levelManager.ItemsCollectable.Count <= 0)
+                WonGame?.Invoke();
+        }
 
         public void OnChosenIncorrect() => ChosenIncorrect?.Invoke();
 
-        public void OnPausedGame() => PausedGame?.Invoke();
+        public void OnPausedGame()
+        {
+            if (_gameManager.CurrentGameState == GameState.Running)
+                PausedGame?.Invoke();
+        }
 
-        public void OnUnPausedGame() => UnPausedGame?.Invoke();
+        public void OnUnPausedGame()
+        {
+            if (_gameManager.CurrentGameState == GameState.Paused)
+                UnPausedGame?.Invoke();
+        }
+
+        public void RestartScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

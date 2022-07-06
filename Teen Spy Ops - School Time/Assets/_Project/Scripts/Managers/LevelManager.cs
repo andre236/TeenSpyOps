@@ -24,5 +24,7 @@ namespace Manager
         }
 
         internal void OnCheckedItemOnList(GameObject collectableObject) => CurrentObject = collectableObject;
+
+
     }
 }

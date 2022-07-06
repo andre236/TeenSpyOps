@@ -5,20 +5,15 @@ namespace Manager
 {
     public class GameManager : MonoBehaviour
     {
-        public GameState CurrentState { get; private set; }
+        [field: SerializeField] public GameState CurrentGameState { get; private set; }
         [field: SerializeField] public SkillState CurrentSkill { get; private set; }
         [field: SerializeField] public XRayDistance CurrentDistance { get; private set; }
-
-        [field: SerializeField] public float TimerLevel { get; private set; }
-
-        private void Awake()
-        {
-
-        }
+        [field: SerializeField] public float InitialTimerLevel { get; private set; }
+        public float TimerLevel { get; private set; }
 
         internal void OnCountdownTimerLevel()
         {
-            if (CurrentState != GameState.Running)
+            if (CurrentGameState != GameState.Running)
                 return;
 
             if (TimerLevel > 0)
@@ -28,24 +23,27 @@ namespace Manager
             else
             {
                 TimerLevel = 0;
-                CurrentState = GameState.None;
+                CurrentGameState = GameState.Ended;
             }
 
         }
 
         internal void OnInitializedLevel()
         {
-            CurrentState = GameState.Running;
+            TimerLevel = InitialTimerLevel;
+            CurrentGameState = GameState.Running;
             CurrentSkill = SkillState.Normal;
             CurrentDistance = XRayDistance.None;
         }
 
-        internal void OnPausedGame() => CurrentState = GameState.Paused;
+        internal void OnPausedGame() => CurrentGameState = GameState.Paused;
 
-        internal void OnUnPausedGame() => CurrentState = GameState.Running;
+        internal void OnUnPausedGame() => CurrentGameState = GameState.Running;
 
         internal void OnActivedXRay()
         {
+            if (CurrentGameState != GameState.Running)
+                return;
 
             if (CurrentSkill != SkillState.XRay)
             {
@@ -70,22 +68,43 @@ namespace Manager
 
         internal void OnActivedFingerprint()
         {
+            if (CurrentGameState != GameState.Running)
+                return;
 
             if (CurrentSkill != SkillState.Fingerprint)
             {
                 CurrentSkill = SkillState.Fingerprint;
-                
+
             }
             else
             {
                 CurrentSkill = SkillState.Normal;
-            CurrentDistance = XRayDistance.None;
+                CurrentDistance = XRayDistance.None;
             }
 
         }
 
+        internal void OnLosedGame()
+        {
+            if (CurrentGameState != GameState.Running)
+                return;
+
+            CurrentGameState = GameState.Ended;
+        }
+
+        internal void OnWonGame()
+        {
+            if (CurrentGameState != GameState.Running)
+                return;
+
+            CurrentGameState = GameState.Ended;
+            Debug.Log("Fim de jogo! Coletou todos os objetos!");
+        }
+
         internal void OnActivedNightVision()
         {
+            if (CurrentGameState != GameState.Running)
+                return;
 
             if (CurrentSkill != SkillState.NightVision)
             {
@@ -94,7 +113,7 @@ namespace Manager
             else
             {
                 CurrentSkill = SkillState.Normal;
-            CurrentDistance = XRayDistance.None;
+                CurrentDistance = XRayDistance.None;
             }
 
         }

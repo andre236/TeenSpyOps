@@ -2,5 +2,6 @@ public enum GameState
 {
     None,
     Running,
-    Paused
+    Paused,
+    Ended
 }
