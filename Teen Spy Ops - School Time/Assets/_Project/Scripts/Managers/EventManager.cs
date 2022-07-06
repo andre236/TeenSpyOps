@@ -15,6 +15,7 @@ namespace Manager
         private LevelManager _levelManager;
 
         private GuessController _guessController;
+        private Quest _questPlayer;
         private Skills _skills;
 
         // -- System -- //
@@ -27,6 +28,7 @@ namespace Manager
         public Action WonGame;
         public Action LosedGame;
 
+        public Action<int> EarnedStars;
 
         // -- Player Skills -- //
         public Action ActivedXRay;
@@ -39,6 +41,8 @@ namespace Manager
 
         public Action ChosenCorrect;
         public Action ChosenIncorrect;
+        public Action DecreasedStars;
+
 
         private void Awake()
         {
@@ -52,6 +56,7 @@ namespace Manager
             _guessController = FindObjectOfType<GuessController>();
 
             // -- Player -- //
+            _questPlayer = FindObjectOfType<Quest>();
             _skills = FindObjectOfType<Skills>();
 
         }
@@ -65,7 +70,7 @@ namespace Manager
             InitializedGame += _levelManager.OnInitializedLevel;
             InitializedGame += _sceneryManager.OnInitializedLevel;
 
-            CountdownPerfomed += _gameManager.OnCountdownTimerLevel;
+            CountdownPerfomed += _levelManager.OnCountdownTimerLevel;
 
             PausedGame += _gameManager.OnPausedGame;
             PausedGame += _uiManager.OnPausedGame;
@@ -94,9 +99,12 @@ namespace Manager
 
             ChosenIncorrect += _guessController.OnChosenIncorrect;
             ChosenIncorrect += _uiManager.OnChosenIncorrect;
+            ChosenIncorrect += _questPlayer.OnChosenIncorrect;
 
             ItemCollected += _levelManager.OnCollected;
             ItemCollected += _uiManager.OnCollected;
+
+            DecreasedStars += _questPlayer.OnDecreasedStar;
 
             foreach (Collectable coll in _levelManager.ItemsCollectable)
             {
@@ -108,17 +116,20 @@ namespace Manager
                 ActivedFingerprint += coll.OnActivedFingerprint;
             }
 
+            EarnedStars += _levelManager.OnEarnedStars;
+            EarnedStars += _uiManager.OnEarnedStars;
+
             InitializedGame?.Invoke();
         }
 
         private void Update()
         {
-            if (_gameManager.TimerLevel > 0)
+            if (_levelManager.TimerLevel > 0)
                 CountdownPerfomed?.Invoke();
             else
                 LosedGame?.Invoke();
 
-            _uiManager.ShowCountdownPerfomedText(_gameManager.TimerLevel);
+            _uiManager.ShowCountdownPerfomedText(_levelManager.TimerLevel);
             _uiManager.ShowAmoutItemsLeft(_levelManager.ItemsLeft);
         }
 
@@ -130,10 +141,17 @@ namespace Manager
         {
             ItemCollected?.Invoke();
             if (_levelManager.ItemsCollectable.Count <= 0)
+            {
                 WonGame?.Invoke();
+                EarnedStars?.Invoke(_questPlayer.CurrentNumberStars);
+            }
         }
 
-        public void OnChosenIncorrect() => ChosenIncorrect?.Invoke();
+        public void OnChosenIncorrect()
+        {
+            ChosenIncorrect?.Invoke();
+            
+        }
 
         public void OnPausedGame()
         {

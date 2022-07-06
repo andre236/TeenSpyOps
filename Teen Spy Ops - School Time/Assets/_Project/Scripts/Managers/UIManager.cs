@@ -274,5 +274,10 @@ namespace Manager
 
         }
 
+        internal void OnEarnedStars(int amountStars)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }
