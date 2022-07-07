@@ -274,5 +274,12 @@ namespace Manager
 
         }
 
+        internal void OnEarnedStars(int amountStars)
+        {
+            var winPageStars = _winPage.GetComponent<Animator>();
+
+            winPageStars.SetInteger("NumberStars", amountStars);
+        }
+
     }
 }
