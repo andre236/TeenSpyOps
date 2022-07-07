@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Player;
 
 namespace Manager
 {
@@ -74,6 +75,9 @@ namespace Manager
                 return;
 
             CurrentGameState = GameState.Ended;
+
+            var quest = FindObjectOfType<Quest>();
+            Debug.Log("O NÚMERO DE ESTRELAS CONQUISTADAS DA FASE É: " + quest.CurrentNumberStars);
         }
 
         internal void OnStoppedTime()

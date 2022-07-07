@@ -71,6 +71,7 @@ namespace Manager
             InitializedGame += _sceneryManager.OnInitializedLevel;
 
             CountdownPerfomed += _levelManager.OnCountdownTimerLevel;
+            CountdownPerfomed += _questPlayer.OnCountdownPerfomed;
 
             PausedGame += _gameManager.OnPausedGame;
             PausedGame += _uiManager.OnPausedGame;
@@ -82,6 +83,7 @@ namespace Manager
             WonGame += _uiManager.OnWonGame;
 
             LosedGame += _gameManager.OnLosedGame;
+            LosedGame += _questPlayer.OnLosedGame;
             LosedGame += _uiManager.OnLosedGame;
 
             ActivedXRay += _gameManager.OnActivedXRay;
@@ -104,8 +106,6 @@ namespace Manager
             ItemCollected += _levelManager.OnCollected;
             ItemCollected += _uiManager.OnCollected;
 
-            DecreasedStars += _questPlayer.OnDecreasedStar;
-
             foreach (Collectable coll in _levelManager.ItemsCollectable)
             {
                 coll.GotQuestion += _uiManager.OnGotQuestion;
@@ -116,7 +116,7 @@ namespace Manager
                 ActivedFingerprint += coll.OnActivedFingerprint;
             }
 
-            EarnedStars += _levelManager.OnEarnedStars;
+            //EarnedStars += _levelManager.OnEarnedStars;
             EarnedStars += _uiManager.OnEarnedStars;
 
             InitializedGame?.Invoke();
@@ -127,7 +127,10 @@ namespace Manager
             if (_levelManager.TimerLevel > 0)
                 CountdownPerfomed?.Invoke();
             else
+            {
                 LosedGame?.Invoke();
+                EarnedStars?.Invoke(_questPlayer.CurrentNumberStars);
+            }
 
             _uiManager.ShowCountdownPerfomedText(_levelManager.TimerLevel);
             _uiManager.ShowAmoutItemsLeft(_levelManager.ItemsLeft);

@@ -54,9 +54,6 @@ namespace Manager
 
         internal void OnCheckedItemOnList(GameObject collectableObject) => CurrentObject = collectableObject;
 
-        internal void OnEarnedStars(int amountStars)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

@@ -276,7 +276,9 @@ namespace Manager
 
         internal void OnEarnedStars(int amountStars)
         {
-            throw new NotImplementedException();
+            var winPageStars = _winPage.GetComponent<Animator>();
+
+            winPageStars.SetInteger("NumberStars", amountStars);
         }
 
     }
