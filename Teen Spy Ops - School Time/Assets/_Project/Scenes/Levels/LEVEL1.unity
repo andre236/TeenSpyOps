@@ -5864,10 +5864,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelName: 
-<<<<<<< Updated upstream
-=======
-  <InitialTimerLevel>k__BackingField: 10
->>>>>>> Stashed changes
   ItemsCollectable: []
   <CurrentObject>k__BackingField: {fileID: 0}
 --- !u!1 &1388546665

@@ -90,18 +90,6 @@ namespace Manager
                 return;
 
             CurrentGameState = GameState.Ended;
-<<<<<<< Updated upstream
-=======
-
-        }
-
-        internal void OnStoppedTime()
-        {
-            if (CurrentGameState != GameState.Running)
-                return;
-
-            CurrentGameState = GameState.Ended;
->>>>>>> Stashed changes
         }
 
         internal void OnWonGame()
