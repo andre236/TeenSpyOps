@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using Player;
 
 namespace Manager
 {
@@ -8,29 +9,13 @@ namespace Manager
         [field: SerializeField] public GameState CurrentGameState { get; private set; }
         [field: SerializeField] public SkillState CurrentSkill { get; private set; }
         [field: SerializeField] public XRayDistance CurrentDistance { get; private set; }
-        [field: SerializeField] public float InitialTimerLevel { get; private set; }
-        public float TimerLevel { get; private set; }
 
-        internal void OnCountdownTimerLevel()
-        {
-            if (CurrentGameState != GameState.Running)
-                return;
 
-            if (TimerLevel > 0)
-            {
-                TimerLevel -= Time.deltaTime;
-            }
-            else
-            {
-                TimerLevel = 0;
-                CurrentGameState = GameState.Ended;
-            }
 
-        }
+
 
         internal void OnInitializedLevel()
         {
-            TimerLevel = InitialTimerLevel;
             CurrentGameState = GameState.Running;
             CurrentSkill = SkillState.Normal;
             CurrentDistance = XRayDistance.None;
@@ -85,6 +70,17 @@ namespace Manager
         }
 
         internal void OnLosedGame()
+        {
+            if (CurrentGameState != GameState.Running)
+                return;
+
+            CurrentGameState = GameState.Ended;
+
+            var quest = FindObjectOfType<Quest>();
+            Debug.Log("O NÚMERO DE ESTRELAS CONQUISTADAS DA FASE É: " + quest.CurrentNumberStars);
+        }
+
+        internal void OnStoppedTime()
         {
             if (CurrentGameState != GameState.Running)
                 return;
