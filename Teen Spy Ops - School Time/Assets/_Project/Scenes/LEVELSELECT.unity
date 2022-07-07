@@ -2580,27 +2580,40 @@ MonoBehaviour:
   - Unlocked: 0
     Stars: 0
     PhaseButtonPrefab: {fileID: 2087624074}
+    StarsImage:
+    - {fileID: 1895384290}
+    - {fileID: 1328879014}
+    - {fileID: 744712657}
+    - {fileID: 760405139}
+    - {fileID: 1148150667}
   - Unlocked: 0
     Stars: 0
     PhaseButtonPrefab: {fileID: 1670386859}
+    StarsImage: []
   - Unlocked: 0
     Stars: 0
     PhaseButtonPrefab: {fileID: 1566008907}
+    StarsImage: []
   - Unlocked: 0
     Stars: 0
     PhaseButtonPrefab: {fileID: 458614100}
+    StarsImage: []
   - Unlocked: 0
     Stars: 0
     PhaseButtonPrefab: {fileID: 1053682474}
+    StarsImage: []
   - Unlocked: 0
     Stars: 0
     PhaseButtonPrefab: {fileID: 2042802786}
+    StarsImage: []
   - Unlocked: 0
     Stars: 0
     PhaseButtonPrefab: {fileID: 174822094}
+    StarsImage: []
   - Unlocked: 0
     Stars: 0
     PhaseButtonPrefab: {fileID: 164823527}
+    StarsImage: []
 --- !u!1 &1139488512
 GameObject:
   m_ObjectHideFlags: 0
