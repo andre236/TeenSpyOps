@@ -1,11 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Manager
 {
     public class PhaseManager : MonoBehaviour
     {
+        private int _currentLevelSelected = -1;
+
+        private Button _playButton;
 
         [System.Serializable]
         public class Phase
@@ -18,14 +22,20 @@ namespace Manager
 
         public List<Phase> PhaseList;
 
-        private void Awake()
-        {
-
-        }
+        private void Awake() => _playButton = GameObject.Find("PlayButton").GetComponent<Button>();
 
         private void Start()
         {
             ActiveButtonStars();
+            CheckHavePhaseSelected();
+        }
+
+        private void CheckHavePhaseSelected()
+        {
+            if (_currentLevelSelected > -1)
+                _playButton.interactable = true;
+            else
+                _playButton.interactable = false;
         }
 
         private void ActiveButtonStars()
@@ -34,7 +44,7 @@ namespace Manager
             foreach (Phase phaseButton in PhaseList)
             {
                 phaseButton.PhaseButtonPrefab.GetComponent<Button>().interactable = phaseButton.Unlocked;
-                
+
                 phaseButton.Stars = -1;
 
                 phaseButton.StarsImage = phaseButton.PhaseButtonPrefab.GetComponentsInChildren<RawImage>();
@@ -58,7 +68,19 @@ namespace Manager
             }
         }
 
+        public void EnterPhaseSelected()
+        {
+            if (_currentLevelSelected > -1)
+                SceneManager.LoadScene("LEVEL" + _currentLevelSelected);
+            else
+                _playButton.interactable = false;
+        }
 
+        public void SendIndexPhase(int phaseIndex)
+        {
+            _currentLevelSelected = phaseIndex;
+            CheckHavePhaseSelected();
+        }
 
     }
 }

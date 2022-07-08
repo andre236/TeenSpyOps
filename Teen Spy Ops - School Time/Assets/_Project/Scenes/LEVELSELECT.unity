@@ -400,7 +400,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 164823530}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1138243297}
+        m_TargetAssemblyTypeName: Manager.PhaseManager, Assembly-CSharp
+        m_MethodName: SendIndexPhase
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 8
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &164823530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,7 +534,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 174822097}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1138243297}
+        m_TargetAssemblyTypeName: Manager.PhaseManager, Assembly-CSharp
+        m_MethodName: SendIndexPhase
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &174822097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1329,7 +1353,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 458614103}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1138243297}
+        m_TargetAssemblyTypeName: Manager.PhaseManager, Assembly-CSharp
+        m_MethodName: SendIndexPhase
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &458614103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2347,7 +2383,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1053682477}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1138243297}
+        m_TargetAssemblyTypeName: Manager.PhaseManager, Assembly-CSharp
+        m_MethodName: SendIndexPhase
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1053682477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2580,22 +2628,17 @@ MonoBehaviour:
   - Unlocked: 1
     Stars: 0
     PhaseButtonPrefab: {fileID: 2087624074}
-    StarsImage:
-    - {fileID: 1895384290}
-    - {fileID: 1328879014}
-    - {fileID: 744712657}
-    - {fileID: 760405139}
-    - {fileID: 1148150667}
+    StarsImage: []
   - Unlocked: 0
     Stars: 0
     PhaseButtonPrefab: {fileID: 1670386859}
     StarsImage: []
   - Unlocked: 0
-    Stars: 3
+    Stars: 0
     PhaseButtonPrefab: {fileID: 1566008907}
     StarsImage: []
   - Unlocked: 0
-    Stars: 4
+    Stars: 0
     PhaseButtonPrefab: {fileID: 458614100}
     StarsImage: []
   - Unlocked: 0
@@ -2696,7 +2739,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1139488515}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1138243297}
+        m_TargetAssemblyTypeName: Manager.PhaseManager, Assembly-CSharp
+        m_MethodName: EnterPhaseSelected
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1139488515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4328,7 +4383,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1566008910}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1138243297}
+        m_TargetAssemblyTypeName: Manager.PhaseManager, Assembly-CSharp
+        m_MethodName: SendIndexPhase
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1566008910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4523,7 +4590,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1670386862}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1138243297}
+        m_TargetAssemblyTypeName: Manager.PhaseManager, Assembly-CSharp
+        m_MethodName: SendIndexPhase
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1670386862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5156,7 +5235,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2042802789}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1138243297}
+        m_TargetAssemblyTypeName: Manager.PhaseManager, Assembly-CSharp
+        m_MethodName: SendIndexPhase
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 6
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2042802789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5351,7 +5442,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2087624077}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1138243297}
+        m_TargetAssemblyTypeName: Manager.PhaseManager, Assembly-CSharp
+        m_MethodName: SendIndexPhase
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2087624077
 MonoBehaviour:
   m_ObjectHideFlags: 0
