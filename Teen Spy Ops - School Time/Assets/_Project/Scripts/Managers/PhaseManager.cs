@@ -6,7 +6,7 @@ namespace Manager
 {
     public class PhaseManager : MonoBehaviour
     {
-    
+
         [System.Serializable]
         public class Phase
         {
@@ -30,15 +30,31 @@ namespace Manager
 
         private void ActiveButtonStars()
         {
-            PlayerPrefs.SetInt("StarsLevel" + 3, 3);
-            PlayerPrefs.SetInt("StarsLevel" + 6, 1);
-            PlayerPrefs.SetInt("StarsLevel" + 2, 0);
-            PlayerPrefs.SetInt("StarsLevel" + 0, 2);
 
             foreach (Phase phaseButton in PhaseList)
             {
-                phaseButton.Stars = PlayerPrefs.GetInt("StarsLevel" + PhaseList.IndexOf(phaseButton));
-                phaseButton.StarsImage[PhaseList.IndexOf(phaseButton)].gameObject.SetActive(true);
+                phaseButton.PhaseButtonPrefab.GetComponent<Button>().interactable = phaseButton.Unlocked;
+                
+                phaseButton.Stars = -1;
+
+                phaseButton.StarsImage = phaseButton.PhaseButtonPrefab.GetComponentsInChildren<RawImage>();
+
+                if (PlayerPrefs.GetInt("StarsLevel" + PhaseList.IndexOf(phaseButton)) > 0)
+                    phaseButton.Stars = PlayerPrefs.GetInt("StarsLevel" + PhaseList.IndexOf(phaseButton)) - 1;
+                else
+                    phaseButton.Stars = -1;
+
+                for (int i = 0; i < phaseButton.StarsImage.Length; i++)
+                    phaseButton.StarsImage[i].gameObject.SetActive(false);
+
+                for (int i = 0; i < phaseButton.StarsImage.Length; i++)
+                {
+                    if (i <= phaseButton.Stars && i > -1 && phaseButton.Unlocked)
+                        phaseButton.StarsImage[i].gameObject.SetActive(true);
+                    else
+                        phaseButton.StarsImage[i].gameObject.SetActive(false);
+
+                }
             }
         }
 
