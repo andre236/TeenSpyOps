@@ -52,6 +52,7 @@ namespace Manager
             if (CurrentGameState != GameState.Running)
                 return;
 
+
             if (CurrentSkill != SkillState.Fingerprint)
             {
                 CurrentSkill = SkillState.Fingerprint;
@@ -59,8 +60,8 @@ namespace Manager
             }
             else
             {
-                CurrentSkill = SkillState.Normal;
                 CurrentDistance = XRayDistance.None;
+                CurrentSkill = SkillState.Normal;
             }
 
         }

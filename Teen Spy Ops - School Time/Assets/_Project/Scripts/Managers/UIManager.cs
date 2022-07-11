@@ -82,7 +82,7 @@ namespace Manager
             //_phasesButton.onClick.AddListener(FindObjectOfType<EventManager>().LoadLevelSelectScene);
         }
 
-        public void PlayHudAnimation()
+        internal void PlayHudAnimation()
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
 

@@ -6,9 +6,12 @@ namespace Player
 {
     public class Skills : MonoBehaviour
     {
+        [Range(0, 60)] [SerializeField] private float _timerXray;
+        [Range(0, 60)] [SerializeField] private float _cooldownToXray;
 
-        [Range(0, 15)] [SerializeField] private float _timerXRay;
-        [Range(0, 15)] [SerializeField] private float _timerFingerprint;
+        [Range(0, 60)] [SerializeField] private float _timerFingerprint;
+        [Range(0, 60)] [SerializeField] private float _cooldownFingerprint;
+
 
         [Range(0, 99)] [SerializeField] private float _firstDistanceRangeXray;
         [Range(0, 99)] [SerializeField] private float _secondDistanceRangeXray;
@@ -19,6 +22,14 @@ namespace Player
         private void Awake() => _cursorMaskVision = GameObject.Find("CursorMask");
 
         public void OnInitializedLevel() => _cursorMaskVision.SetActive(false);
+
+        internal void OnCooldownSkills()
+        {
+            if(_timerXray > 0)
+            {
+                _timerXray -= Time.deltaTime;
+            }
+        }
 
         internal void OnActivedXRay()
         {
@@ -31,6 +42,8 @@ namespace Player
             }
 
             _cursorMaskVision.SetActive(true);
+
+
 
             switch (gameManager.CurrentDistance)
             {
