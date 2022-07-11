@@ -58,8 +58,8 @@ namespace Manager
 
         internal void OnEarnedStars(int amountStars)
         {
-            PlayerPrefs.SetInt(string.Concat("STARS"+ SceneManager.GetActiveScene().name), amountStars);
-            Debug.Log("STARS" + SceneManager.GetActiveScene().name);
+            if(PlayerPrefs.GetInt(string.Concat("STARS",SceneManager.GetActiveScene().name)) < amountStars)
+                PlayerPrefs.SetInt(string.Concat("STARS", SceneManager.GetActiveScene().name), amountStars);
         }
 
         internal void OnWonGame()

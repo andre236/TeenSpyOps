@@ -45,7 +45,7 @@ namespace Manager
             foreach (Phase phaseButton in PhaseList)
             {
 
-
+                // Verifying if Unlocked or not
                 if (PlayerPrefs.GetInt("LEVEL" + PhaseList.IndexOf(phaseButton)) > 0)
                     phaseButton.Unlocked = true;
                 else
@@ -57,8 +57,10 @@ namespace Manager
 
                 phaseButton.StarsImage = phaseButton.PhaseButtonPrefab.GetComponentsInChildren<RawImage>();
 
-                if (PlayerPrefs.GetInt("STARSLEVEL"+ PhaseList.IndexOf(phaseButton)) > 0)
-                    phaseButton.Stars = PlayerPrefs.GetInt("STARSLEVEL" + PhaseList.IndexOf(phaseButton));
+                // Verifying if have stars on level
+                if (PlayerPrefs.GetInt("STARSLEVEL" + PhaseList.IndexOf(phaseButton)) > 0)
+                    phaseButton.Stars = PlayerPrefs.GetInt("STARSLEVEL" + PhaseList.IndexOf(phaseButton)) - 1;
+
                 else
                     phaseButton.Stars = -1;
 
@@ -71,10 +73,10 @@ namespace Manager
                     else
                         phaseButton.StarsImage[i].gameObject.SetActive(false);
                 }
-                
+
             }
 
-            
+
         }
 
         public void EnterPhaseSelected()
