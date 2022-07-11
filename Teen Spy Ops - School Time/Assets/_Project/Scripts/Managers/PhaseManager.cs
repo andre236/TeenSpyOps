@@ -49,8 +49,8 @@ namespace Manager
 
                 phaseButton.StarsImage = phaseButton.PhaseButtonPrefab.GetComponentsInChildren<RawImage>();
 
-                if (PlayerPrefs.GetInt("StarsLevel" + PhaseList.IndexOf(phaseButton)) > 0)
-                    phaseButton.Stars = PlayerPrefs.GetInt("StarsLevel" + PhaseList.IndexOf(phaseButton)) - 1;
+                if (PlayerPrefs.GetInt(string.Concat("STARSLEVEL", PhaseList.IndexOf(phaseButton))) > 0)
+                    phaseButton.Stars = PlayerPrefs.GetInt("STARSLEVEL" + PhaseList.IndexOf(phaseButton)) - 1;
                 else
                     phaseButton.Stars = -1;
 

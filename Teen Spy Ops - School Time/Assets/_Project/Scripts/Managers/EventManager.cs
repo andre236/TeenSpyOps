@@ -116,7 +116,7 @@ namespace Manager
                 ActivedFingerprint += coll.OnActivedFingerprint;
             }
 
-            //EarnedStars += _levelManager.OnEarnedStars;
+            EarnedStars += _levelManager.OnEarnedStars;
             EarnedStars += _uiManager.OnEarnedStars;
 
             InitializedGame?.Invoke();

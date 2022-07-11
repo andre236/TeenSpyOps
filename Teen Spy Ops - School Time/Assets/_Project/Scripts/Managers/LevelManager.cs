@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Objects;
 using System;
+using UnityEngine.SceneManagement;
 
 namespace Manager
 {
@@ -54,6 +55,9 @@ namespace Manager
 
         internal void OnCheckedItemOnList(GameObject collectableObject) => CurrentObject = collectableObject;
 
-        
+        internal void OnEarnedStars(int amountStars)
+        {
+            PlayerPrefs.SetInt(string.Concat("STARS"+ SceneManager.GetActiveScene().name), amountStars);
+        }
     }
 }
