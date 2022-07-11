@@ -119,6 +119,8 @@ namespace Manager
             EarnedStars += _levelManager.OnEarnedStars;
             EarnedStars += _uiManager.OnEarnedStars;
 
+            WonGame += _levelManager.OnWonGame;
+
             InitializedGame?.Invoke();
         }
 

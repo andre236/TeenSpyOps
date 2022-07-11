@@ -10,10 +10,6 @@ namespace Manager
         [field: SerializeField] public SkillState CurrentSkill { get; private set; }
         [field: SerializeField] public XRayDistance CurrentDistance { get; private set; }
 
-
-
-
-
         internal void OnInitializedLevel()
         {
             CurrentGameState = GameState.Running;

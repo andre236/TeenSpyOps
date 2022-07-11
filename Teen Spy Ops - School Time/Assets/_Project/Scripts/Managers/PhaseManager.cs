@@ -40,32 +40,41 @@ namespace Manager
 
         private void ActiveButtonStars()
         {
+            PlayerPrefs.SetInt("LEVEL" + 0, 1);
 
             foreach (Phase phaseButton in PhaseList)
             {
+
+
+                if (PlayerPrefs.GetInt("LEVEL" + PhaseList.IndexOf(phaseButton)) > 0)
+                    phaseButton.Unlocked = true;
+                else
+                    phaseButton.Unlocked = false;
+
                 phaseButton.PhaseButtonPrefab.GetComponent<Button>().interactable = phaseButton.Unlocked;
 
                 phaseButton.Stars = -1;
 
                 phaseButton.StarsImage = phaseButton.PhaseButtonPrefab.GetComponentsInChildren<RawImage>();
 
-                if (PlayerPrefs.GetInt(string.Concat("STARSLEVEL", PhaseList.IndexOf(phaseButton))) > 0)
-                    phaseButton.Stars = PlayerPrefs.GetInt("STARSLEVEL" + PhaseList.IndexOf(phaseButton)) - 1;
+                if (PlayerPrefs.GetInt("STARSLEVEL"+ PhaseList.IndexOf(phaseButton)) > 0)
+                    phaseButton.Stars = PlayerPrefs.GetInt("STARSLEVEL" + PhaseList.IndexOf(phaseButton));
                 else
                     phaseButton.Stars = -1;
 
                 for (int i = 0; i < phaseButton.StarsImage.Length; i++)
+                {
                     phaseButton.StarsImage[i].gameObject.SetActive(false);
 
-                for (int i = 0; i < phaseButton.StarsImage.Length; i++)
-                {
                     if (i <= phaseButton.Stars && i > -1 && phaseButton.Unlocked)
                         phaseButton.StarsImage[i].gameObject.SetActive(true);
                     else
                         phaseButton.StarsImage[i].gameObject.SetActive(false);
-
                 }
+                
             }
+
+            
         }
 
         public void EnterPhaseSelected()
