@@ -125,10 +125,13 @@ AnimationClip:
     classID: 224
     script: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< Updated upstream
 =======
 >>>>>>> Feedback-GameOver-Win
+=======
+>>>>>>> LoginMenu
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -151,6 +154,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       - serializedVersion: 3
         time: 1.5166667
@@ -162,6 +166,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
 >>>>>>> Feedback-GameOver-Win
+=======
+>>>>>>> LoginMenu
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -192,10 +198,14 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
 <<<<<<< HEAD
+<<<<<<< HEAD
         time: 0.8333333
 =======
         time: 1
 >>>>>>> Feedback-GameOver-Win
+=======
+        time: 0.8333333
+>>>>>>> LoginMenu
         value: 549
         inSlope: 0
         outSlope: 0
@@ -242,10 +252,14 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
 <<<<<<< HEAD
+<<<<<<< HEAD
         time: 0.8333333
 =======
         time: 1
 >>>>>>> Feedback-GameOver-Win
+=======
+        time: 0.8333333
+>>>>>>> LoginMenu
         value: 306
         inSlope: 0
         outSlope: 0
@@ -270,9 +284,12 @@ AnimationClip:
     classID: 224
     script: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> Stashed changes
 >>>>>>> Feedback-GameOver-Win
+=======
+>>>>>>> LoginMenu
   m_PPtrCurves:
   - curve:
     - time: 0
@@ -298,10 +315,13 @@ AnimationClip:
     - time: 0.8
       value: {fileID: 21300000, guid: e1664a68b95aa7f4e82f16b4edda4e3c, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< Updated upstream
 =======
 >>>>>>> Feedback-GameOver-Win
+=======
+>>>>>>> LoginMenu
     - time: 0.8333333
       value: {fileID: 21300000, guid: cad0ada450180b4469100a4ce7f47e95, type: 3}
     - time: 0.8833333
@@ -322,6 +342,7 @@ AnimationClip:
       value: {fileID: 21300000, guid: 257d4e01c938e954daf705630c8fe7db, type: 3}
     - time: 1.3
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: {fileID: 21300000, guid: e1664a68b95aa7f4e82f16b4edda4e3c, type: 3}
 =======
       value: {fileID: 21300000, guid: cad0ada450180b4469100a4ce7f47e95, type: 3}
@@ -341,6 +362,9 @@ AnimationClip:
       value: {fileID: 21300000, guid: f9ef232bad4249244a3de8b171fd4499, type: 3}
 >>>>>>> Stashed changes
 >>>>>>> Feedback-GameOver-Win
+=======
+      value: {fileID: 21300000, guid: e1664a68b95aa7f4e82f16b4edda4e3c, type: 3}
+>>>>>>> LoginMenu
     attribute: m_Sprite
     path: 
     classID: 114
@@ -407,10 +431,13 @@ AnimationClip:
     - {fileID: 21300000, guid: 257d4e01c938e954daf705630c8fe7db, type: 3}
     - {fileID: 21300000, guid: e1664a68b95aa7f4e82f16b4edda4e3c, type: 3}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< Updated upstream
 =======
 >>>>>>> Feedback-GameOver-Win
+=======
+>>>>>>> LoginMenu
     - {fileID: 21300000, guid: cad0ada450180b4469100a4ce7f47e95, type: 3}
     - {fileID: 21300000, guid: f9ef232bad4249244a3de8b171fd4499, type: 3}
     - {fileID: 21300000, guid: 257d4e01c938e954daf705630c8fe7db, type: 3}
@@ -420,6 +447,7 @@ AnimationClip:
     - {fileID: 21300000, guid: cad0ada450180b4469100a4ce7f47e95, type: 3}
     - {fileID: 21300000, guid: f9ef232bad4249244a3de8b171fd4499, type: 3}
     - {fileID: 21300000, guid: 257d4e01c938e954daf705630c8fe7db, type: 3}
+<<<<<<< HEAD
 <<<<<<< HEAD
     - {fileID: 21300000, guid: e1664a68b95aa7f4e82f16b4edda4e3c, type: 3}
 =======
@@ -433,12 +461,15 @@ AnimationClip:
     - {fileID: 21300000, guid: f9ef232bad4249244a3de8b171fd4499, type: 3}
 >>>>>>> Stashed changes
 >>>>>>> Feedback-GameOver-Win
+=======
+    - {fileID: 21300000, guid: e1664a68b95aa7f4e82f16b4edda4e3c, type: 3}
+>>>>>>> LoginMenu
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.6666666
+    m_StopTime: 1.3333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -693,10 +724,13 @@ AnimationClip:
     classID: 224
     script: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< Updated upstream
 =======
 >>>>>>> Feedback-GameOver-Win
+=======
+>>>>>>> LoginMenu
   - curve:
       serializedVersion: 2
       m_Curve:
@@ -719,6 +753,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
       - serializedVersion: 3
         time: 1.5166667
@@ -730,6 +765,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
 >>>>>>> Feedback-GameOver-Win
+=======
+>>>>>>> LoginMenu
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -760,10 +797,14 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
 <<<<<<< HEAD
+<<<<<<< HEAD
         time: 0.8333333
 =======
         time: 1
 >>>>>>> Feedback-GameOver-Win
+=======
+        time: 0.8333333
+>>>>>>> LoginMenu
         value: 549
         inSlope: 0
         outSlope: 0
@@ -810,10 +851,14 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
 <<<<<<< HEAD
+<<<<<<< HEAD
         time: 0.8333333
 =======
         time: 1
 >>>>>>> Feedback-GameOver-Win
+=======
+        time: 0.8333333
+>>>>>>> LoginMenu
         value: 306
         inSlope: 0
         outSlope: 0
@@ -838,9 +883,12 @@ AnimationClip:
     classID: 224
     script: {fileID: 0}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> Stashed changes
 >>>>>>> Feedback-GameOver-Win
+=======
+>>>>>>> LoginMenu
   m_EulerEditorCurves:
   - curve:
       serializedVersion: 2
