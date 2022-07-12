@@ -18,18 +18,28 @@ namespace Player
         [Range(0, 99)] [SerializeField] private float _thirdDistanceRangeXray;
 
         private GameObject _cursorMaskVision;
+        private GameObject _laserMask;
 
-        private void Awake() => _cursorMaskVision = GameObject.Find("CursorMask");
-
-        public void OnInitializedLevel() => _cursorMaskVision.SetActive(false);
-
-        internal void OnCooldownSkills()
+        private void Awake()
         {
-            if(_timerXray > 0)
-            {
-                _timerXray -= Time.deltaTime;
-            }
+            _cursorMaskVision = GameObject.Find("CursorMask");
+            _laserMask = GameObject.Find("LaserMask");
         }
+
+        public void OnInitializedLevel()
+        {
+            _cursorMaskVision.SetActive(false);
+            _laserMask.SetActive(false);
+
+        }
+
+        //internal void OnCooldownSkills()
+        //{
+        //    if(_timerXray > 0)
+        //    {
+        //        _timerXray -= Time.deltaTime;
+        //    }
+        //}
 
         internal void OnActivedXRay()
         {
@@ -41,7 +51,11 @@ namespace Player
                 return;
             }
 
-            _cursorMaskVision.SetActive(true);
+            if(!_cursorMaskVision.activeSelf)
+                Invoke(nameof(ActiveMaskCursor), 1f);
+            
+            //_cursorMaskVision.SetActive(true);
+            _laserMask.SetActive(false);
 
 
 
@@ -60,16 +74,29 @@ namespace Player
 
         }
 
+
         internal void OnActivedFingerprint()
         {
+            _laserMask.SetActive(true);
             _cursorMaskVision.SetActive(false);
-            Debug.Log("Poder fingerprint ativado!");
+
+            _laserMask.GetComponent<Animator>().speed = 1/(_timerFingerprint / 2);
+
+            
+                Debug.Log("Poder fingerprint ativado!");
         }
 
         internal void OnActivedNightVision()
         {
+            _laserMask.SetActive(false);
+
             _cursorMaskVision.SetActive(false);
             Debug.Log("Poder Visão Noturna ativado!");
+        }
+
+        private void ActiveMaskCursor()
+        {
+            _cursorMaskVision.SetActive(true);
         }
     }
 }
