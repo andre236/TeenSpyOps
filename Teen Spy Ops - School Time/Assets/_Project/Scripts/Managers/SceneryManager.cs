@@ -53,7 +53,7 @@ namespace Manager
                 return;
             }
 
-            _xRayScene.SetActive(true);
+            _xRayScene.SetActive(true);            
             _normalScene.SetActive(false);
             _nightVisionScene.SetActive(false);
             _fingerprintScene.SetActive(false);
@@ -74,6 +74,11 @@ namespace Manager
                     _firstDistace.SetActive(false);
                     _secondDistance.SetActive(false);
                     _thirdDistance.SetActive(true);
+                    break;
+                case XRayDistance.None:
+                    _firstDistace.SetActive(false);
+                    _secondDistance.SetActive(false);
+                    _thirdDistance.SetActive(false);
                     break;
             }
 
