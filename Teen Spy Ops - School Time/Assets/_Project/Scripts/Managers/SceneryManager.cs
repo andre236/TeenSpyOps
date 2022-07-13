@@ -12,8 +12,13 @@ namespace Manager
         private GameObject _firstDistace;
         private GameObject _nightVisionScene;
         private GameObject _fingerprintScene;
-        
+
+        private Animator _xRayAnimator;
+
         private GameManager _gameManager;
+
+        public Action<GameObject> DefinedActivedScenery;
+        public Action DefinedStandardActivedScenery;
 
         private void Awake()
         {
@@ -21,13 +26,20 @@ namespace Manager
 
             _normalScene = GameObject.FindGameObjectWithTag("Normal");
             _xRayScene = GameObject.FindGameObjectWithTag("XRay");
-            
+            _xRayAnimator = _xRayScene.GetComponent<Animator>();
+
             _firstDistace = GameObject.Find("FirstDistance");
             _secondDistance = GameObject.Find("SecondDistance");
             _thirdDistance = GameObject.Find("ThirdDistance");
 
             _nightVisionScene = GameObject.FindGameObjectWithTag("NightVision");
             _fingerprintScene = GameObject.FindGameObjectWithTag("Fingerprint");
+        }
+
+        private void Start()
+        {
+            DefinedActivedScenery += OnDefinedActiveScenery;
+            DefinedStandardActivedScenery += OnDefinedStandardActivedScenery;
         }
 
         internal void OnInitializedLevel()
@@ -42,21 +54,46 @@ namespace Manager
             _fingerprintScene.SetActive(false);
         }
 
+        private void OnDefinedStandardActivedScenery()
+        {
+            _firstDistace.SetActive(false);
+            _secondDistance.SetActive(false);
+            _thirdDistance.SetActive(false);
+            _nightVisionScene.SetActive(false);
+            _xRayScene.SetActive(false);
+            _fingerprintScene.SetActive(false);
+
+            _normalScene.SetActive(true);
+        }
+
+        private void OnDefinedActiveScenery(GameObject gameObj)
+        {
+            _normalScene.SetActive(false);
+            _nightVisionScene.SetActive(false);
+            _xRayScene.SetActive(false);
+            _fingerprintScene.SetActive(false);
+
+            if (!gameObj.activeSelf)
+                gameObj.SetActive(true);
+
+        }
+
         internal void OnActivedXRay()
         {
-            if(_gameManager.CurrentSkill != SkillState.XRay)
+            if (_gameManager.CurrentSkill != SkillState.XRay)
             {
-                _normalScene.SetActive(true);
-                _xRayScene.SetActive(false);
-                _nightVisionScene.SetActive(false);
-                _fingerprintScene.SetActive(false);
+                DefinedStandardActivedScenery?.Invoke();
                 return;
             }
 
-            _xRayScene.SetActive(true);            
+            //DefinedActivedScenery?.Invoke(_xRayScene);
+
+            _xRayScene.SetActive(true);
             _normalScene.SetActive(false);
             _nightVisionScene.SetActive(false);
             _fingerprintScene.SetActive(false);
+
+            _xRayAnimator.SetBool("OnXRay", true);
 
             switch (_gameManager.CurrentDistance)
             {
@@ -79,44 +116,34 @@ namespace Manager
                     _firstDistace.SetActive(false);
                     _secondDistance.SetActive(false);
                     _thirdDistance.SetActive(false);
+                    _xRayAnimator.SetBool("OnXRay", false);
+
                     break;
             }
 
+            
         }
 
         internal void OnActivedFingerprint()
         {
             if (_gameManager.CurrentSkill != SkillState.Fingerprint)
             {
-                _normalScene.SetActive(true);
-                _xRayScene.SetActive(false);
-                _nightVisionScene.SetActive(false);
-                _fingerprintScene.SetActive(false);
-
+                DefinedStandardActivedScenery?.Invoke();
                 return;
             }
 
-            _fingerprintScene.SetActive(true);
-            _xRayScene.SetActive(false);
-            _normalScene.SetActive(false);
-            _nightVisionScene.SetActive(false);
+            DefinedActivedScenery(_fingerprintScene);
         }
 
         internal void OnActivedNightVision()
         {
             if (_gameManager.CurrentSkill != SkillState.NightVision)
             {
-                _normalScene.SetActive(true);
-                _xRayScene.SetActive(false);
-                _nightVisionScene.SetActive(false);
-                _fingerprintScene.SetActive(false);
+                DefinedStandardActivedScenery?.Invoke();
                 return;
             }
 
-            _nightVisionScene.SetActive(true);
-            _xRayScene.SetActive(false);
-            _normalScene.SetActive(false);
-            _fingerprintScene.SetActive(false);
+            DefinedActivedScenery?.Invoke(_nightVisionScene);
         }
     }
 }

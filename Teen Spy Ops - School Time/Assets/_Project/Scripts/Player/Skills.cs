@@ -26,7 +26,7 @@ namespace Player
             _laserMask = GameObject.Find("LaserMask");
         }
 
-        public void OnInitializedLevel()
+        internal void OnInitializedLevel()
         {
             _cursorMaskVision.SetActive(false);
             _laserMask.SetActive(false);
