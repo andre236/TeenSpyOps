@@ -33,24 +33,36 @@ namespace Objects
         {
             _nameObject = _itemConfig.NameObject;
             _fakeNames = _itemConfig.FakeNames;
-            _spriteObject = _itemConfig.SpriteObject;
+
+
             _normalModal = _itemConfig.ModalScriptable.DefaultCorrectModal;
             _correctModal = _itemConfig.ModalScriptable.DefaultCorrectModal;
             _incorrectModal = _itemConfig.ModalScriptable.DefaultIncorrectModal;
 
             _clickOverAnimation = GetComponent<Animator>();
 
-            GetComponent<SpriteRenderer>().sprite = _spriteObject;
+            
+            
         }
 
         private void Start()
         {
             var gameManager = FindObjectOfType<GameManager>();
 
+
+            if (CurrentTypeObject == SkillState.XRay)
+                _spriteObject = _itemConfig.SpriteXRayObject;
+            else
+                _spriteObject = _itemConfig.DefaultSpriteObject;
+
+            GetComponent<SpriteRenderer>().sprite = _spriteObject;
+
             if (gameManager.CurrentSkill == CurrentTypeObject && gameManager.CurrentDistance == CurrentDistanceHidden)
                 gameObject.SetActive(true);
             else
                 gameObject.SetActive(false);
+
+
         }
 
 

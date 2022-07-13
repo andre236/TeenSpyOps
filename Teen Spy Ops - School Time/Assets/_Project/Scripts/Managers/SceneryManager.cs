@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Manager
@@ -54,17 +55,7 @@ namespace Manager
             _fingerprintScene.SetActive(false);
         }
 
-        private void OnDefinedStandardActivedScenery()
-        {
-            _firstDistace.SetActive(false);
-            _secondDistance.SetActive(false);
-            _thirdDistance.SetActive(false);
-            _nightVisionScene.SetActive(false);
-            _xRayScene.SetActive(false);
-            _fingerprintScene.SetActive(false);
-
-            _normalScene.SetActive(true);
-        }
+        private void OnDefinedStandardActivedScenery() => StartCoroutine(nameof(ActiveDefaultSceneWithDelay));
 
         private void OnDefinedActiveScenery(GameObject gameObj)
         {
@@ -83,10 +74,9 @@ namespace Manager
             if (_gameManager.CurrentSkill != SkillState.XRay)
             {
                 DefinedStandardActivedScenery?.Invoke();
+                _xRayAnimator.SetBool("OnXRay", false);
                 return;
             }
-
-            //DefinedActivedScenery?.Invoke(_xRayScene);
 
             _xRayScene.SetActive(true);
             _normalScene.SetActive(false);
@@ -116,8 +106,6 @@ namespace Manager
                     _firstDistace.SetActive(false);
                     _secondDistance.SetActive(false);
                     _thirdDistance.SetActive(false);
-                    _xRayAnimator.SetBool("OnXRay", false);
-
                     break;
             }
 
@@ -144,6 +132,20 @@ namespace Manager
             }
 
             DefinedActivedScenery?.Invoke(_nightVisionScene);
+        }
+
+        private IEnumerator ActiveDefaultSceneWithDelay()
+        {
+            yield return new WaitForSeconds(2f);
+            
+            _firstDistace.SetActive(false);
+            _secondDistance.SetActive(false);
+            _thirdDistance.SetActive(false);
+            _nightVisionScene.SetActive(false);
+            _xRayScene.SetActive(false);
+            _fingerprintScene.SetActive(false);
+
+            _normalScene.SetActive(true);
         }
     }
 }
