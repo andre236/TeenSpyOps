@@ -15,6 +15,7 @@ namespace Manager
         private GameObject _fingerprintScene;
 
         private Animator _xRayAnimator;
+        private Animator _nightVisionAnimator;
 
         private GameManager _gameManager;
 
@@ -34,6 +35,8 @@ namespace Manager
             _thirdDistance = GameObject.Find("ThirdDistance");
 
             _nightVisionScene = GameObject.FindGameObjectWithTag("NightVision");
+            _nightVisionAnimator = _nightVisionScene.GetComponent<Animator>();
+
             _fingerprintScene = GameObject.FindGameObjectWithTag("Fingerprint");
         }
 
@@ -59,13 +62,14 @@ namespace Manager
 
         private void OnDefinedActiveScenery(GameObject gameObj)
         {
+            if (gameObj.activeSelf)
+                return;
+
             _normalScene.SetActive(false);
             _nightVisionScene.SetActive(false);
             _xRayScene.SetActive(false);
             _fingerprintScene.SetActive(false);
-
-            if (!gameObj.activeSelf)
-                gameObj.SetActive(true);
+            gameObj.SetActive(true);
 
         }
 
@@ -78,10 +82,7 @@ namespace Manager
                 return;
             }
 
-            _xRayScene.SetActive(true);
-            _normalScene.SetActive(false);
-            _nightVisionScene.SetActive(false);
-            _fingerprintScene.SetActive(false);
+            DefinedActivedScenery?.Invoke(_xRayScene);
 
             _xRayAnimator.SetBool("OnXRay", true);
 
@@ -109,7 +110,7 @@ namespace Manager
                     break;
             }
 
-            
+
         }
 
         internal void OnActivedFingerprint()
@@ -128,16 +129,19 @@ namespace Manager
             if (_gameManager.CurrentSkill != SkillState.NightVision)
             {
                 DefinedStandardActivedScenery?.Invoke();
+                _nightVisionAnimator.SetBool("OnNightVision", false);
                 return;
             }
 
             DefinedActivedScenery?.Invoke(_nightVisionScene);
+
+            _nightVisionAnimator.SetBool("OnNightVision", true);
         }
 
         private IEnumerator ActiveDefaultSceneWithDelay()
         {
             yield return new WaitForSeconds(2f);
-            
+
             _firstDistace.SetActive(false);
             _secondDistance.SetActive(false);
             _thirdDistance.SetActive(false);

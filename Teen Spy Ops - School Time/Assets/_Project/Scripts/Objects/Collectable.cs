@@ -34,7 +34,6 @@ namespace Objects
             _nameObject = _itemConfig.NameObject;
             _fakeNames = _itemConfig.FakeNames;
 
-
             _normalModal = _itemConfig.ModalScriptable.DefaultCorrectModal;
             _correctModal = _itemConfig.ModalScriptable.DefaultCorrectModal;
             _incorrectModal = _itemConfig.ModalScriptable.DefaultIncorrectModal;

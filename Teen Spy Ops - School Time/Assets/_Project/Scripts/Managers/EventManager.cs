@@ -35,6 +35,8 @@ namespace Manager
         public Action ActivedFingerprint;
         public Action ActivedNightVision;
 
+        public Action CountdownXRayTimer;
+
         // -- Items -- //
         public int AmountItems { get; private set; }
         public Action ItemCollected;
@@ -72,6 +74,8 @@ namespace Manager
 
             CountdownPerfomed += _levelManager.OnCountdownTimerLevel;
             CountdownPerfomed += _questPlayer.OnCountdownPerfomed;
+
+            CountdownXRayTimer += _skills.OnCountdownXRayTimer;
 
             PausedGame += _gameManager.OnPausedGame;
             PausedGame += _uiManager.OnPausedGame;
@@ -133,6 +137,8 @@ namespace Manager
                 LosedGame?.Invoke();
                 EarnedStars?.Invoke(_questPlayer.CurrentNumberStars);
             }
+
+            CountdownXRayTimer?.Invoke();
 
             _uiManager.ShowCountdownPerfomedText(_levelManager.TimerLevel);
             _uiManager.ShowAmoutItemsLeft(_levelManager.ItemsLeft);

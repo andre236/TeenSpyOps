@@ -43,6 +43,14 @@ namespace Manager
                     CurrentSkill = SkillState.Normal;
                 }
             }
+        }
+
+        internal void OnCountdownXRayTimer()
+        {
+            if (CurrentGameState != GameState.Running)
+                return;
+
+            var skills = FindObjectOfType<Skills>();
 
 
         }
@@ -73,8 +81,6 @@ namespace Manager
 
             CurrentGameState = GameState.Ended;
 
-            var quest = FindObjectOfType<Quest>();
-            Debug.Log("O NÚMERO DE ESTRELAS CONQUISTADAS DA FASE É: " + quest.CurrentNumberStars);
         }
 
         internal void OnStoppedTime()
@@ -91,7 +97,6 @@ namespace Manager
                 return;
 
             CurrentGameState = GameState.Ended;
-            Debug.Log("Fim de jogo! Coletou todos os objetos!");
         }
 
         internal void OnActivedNightVision()

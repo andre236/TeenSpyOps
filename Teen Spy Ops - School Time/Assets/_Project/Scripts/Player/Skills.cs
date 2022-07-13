@@ -6,13 +6,30 @@ namespace Player
 {
     public class Skills : MonoBehaviour
     {
-        [Range(0, 60)] [SerializeField] private float _timerXray;
-        [Range(0, 60)] [SerializeField] private float _cooldownToXray;
-
-        [Range(0, 60)] [SerializeField] private float _timerFingerprint;
-        [Range(0, 60)] [SerializeField] private float _cooldownFingerprint;
+        [SerializeField] private bool _alreadyXRayCast;
+        [SerializeField] private bool _alreadyFingerprint;
+        [SerializeField] private bool _alreadyNightVision;
 
 
+        [field: Range(0, 60)] [field: SerializeField] public float TimerXray { get; private set; }
+        [field: Range(0, 60)] [field: SerializeField] public float CurrentTimerXray { get; private set; }
+        [field: Range(0, 60)] [field: SerializeField] public float CooldownToXray { get; private set; }
+        [field: Space]
+        [field: Range(0, 60)] [field: SerializeField] public float TimerFingerprint { get; private set; }
+        [field: Range(0, 60)] [field: SerializeField] public float CurrentTimerFingerprint { get; private set; }
+
+        [field: Range(0, 60)] [field: SerializeField] public float CooldownFingerprint { get; private set; }
+        [field: Space]
+        [field: Range(0, 60)] [field:SerializeField] public float TimerNightVision { get; private set; }
+        [field: Range(0, 60)] [field: SerializeField] public float CurrentTimerNightVision { get; private set; }
+
+        [field: Range(0, 60)] [field: SerializeField] public float CooldownNightVision { get; private set; }
+        
+        public bool AlreadyXRayCast { get => _alreadyXRayCast; private set => _alreadyXRayCast = value; }
+        public bool AlreadyFingerprint { get => _alreadyFingerprint; private set => _alreadyFingerprint = value; }
+        public bool AlreadyNightVision { get => _alreadyNightVision; private set => _alreadyNightVision = value; }
+
+        [Space]
         [Range(0, 99)] [SerializeField] private float _firstDistanceRangeXray;
         [Range(0, 99)] [SerializeField] private float _secondDistanceRangeXray;
         [Range(0, 99)] [SerializeField] private float _thirdDistanceRangeXray;
@@ -31,15 +48,37 @@ namespace Player
             _cursorMaskVision.SetActive(false);
             _laserMask.SetActive(false);
 
+            CurrentTimerXray = TimerXray;
+            CurrentTimerFingerprint = TimerFingerprint;
+            CurrentTimerNightVision = TimerNightVision;
+
         }
 
-        //internal void OnCooldownSkills()
-        //{
-        //    if(_timerXray > 0)
-        //    {
-        //        _timerXray -= Time.deltaTime;
-        //    }
-        //}
+        internal void OnCountdownXRayTimer()
+        {
+            if (AlreadyXRayCast)
+                return;
+
+            if (CurrentTimerXray > 0)
+            {
+                CurrentTimerXray -= Time.deltaTime;
+            }
+            else
+            {
+                CurrentTimerXray = TimerXray;
+                AlreadyXRayCast = true;
+                Debug.Log("Skill pronta para uso novamente.");
+            }
+
+             
+        }
+
+        internal void OnCooldownTimerprint()
+        {
+            if (AlreadyFingerprint)
+                return;
+
+        }
 
         internal void OnActivedXRay()
         {
@@ -57,7 +96,7 @@ namespace Player
             //_cursorMaskVision.SetActive(true);
             _laserMask.SetActive(false);
 
-
+            AlreadyXRayCast = false;
 
             switch (gameManager.CurrentDistance)
             {
@@ -80,7 +119,7 @@ namespace Player
             _laserMask.SetActive(true);
             _cursorMaskVision.SetActive(false);
 
-            _laserMask.GetComponent<Animator>().speed = 1/(_timerFingerprint / 2);
+            _laserMask.GetComponent<Animator>().speed = 1/(TimerFingerprint / 2);
 
             
                 Debug.Log("Poder fingerprint ativado!");
