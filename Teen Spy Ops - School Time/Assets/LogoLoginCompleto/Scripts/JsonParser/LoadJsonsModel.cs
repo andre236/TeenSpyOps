@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class LoadJsonsModel : MonoBehaviour
 {
     public string[] urls;
@@ -11,21 +12,16 @@ public class LoadJsonsModel : MonoBehaviour
     {
         platformVerification();
         urls = new string[4];
-        urls[0] = CurrentUrl + "/Tutorial.json";
-        urls[1] = CurrentUrl + "/Pedagogico.json";
-        urls[2] = CurrentUrl + "/AchievementsNames.json";
-        urls[3] = CurrentUrl + "/AchievementsInfos.json";
+        urls[0] = CurrentUrl + "/ObjetosFase.json";
     }
     private void Start()
     {
         //Aqui você vai chamar a função para pegar todos os jsons que serão utilizados no jogo
-        JsonParserWeb.instance.JsonStringReturn(urls[0], "SetTutorialJson");
-        JsonParserWeb.instance.JsonStringReturn(urls[1], "SetpedagogicJson");
-        JsonParserWeb.instance.JsonStringReturn(urls[2], "SetAchievementsNamesJson");
-        JsonParserWeb.instance.JsonStringReturn(urls[3], "SetAchievementsInfoJson");
+        JsonParserWeb.instance.JsonStringReturn(urls[0], nameof(SetObjetosFaseJson));
+
     }
 
-    public void SetTutorialJson()
+    public void SetObjetosFaseJson()
     {
         Texts.TexTurials = JsonParserWeb.instance.JStringReturnValue().data; //apos fazer a conexão aplica o valor do json pra variavel statoca da classe Texts
         Debug.Log("tutorial loaded");

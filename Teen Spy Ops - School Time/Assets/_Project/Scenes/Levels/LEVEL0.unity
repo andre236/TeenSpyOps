@@ -1426,7 +1426,7 @@ GameObject:
   - component: {fileID: 325208797}
   - component: {fileID: 325208796}
   m_Layer: 5
-  m_Name: CooldownFingerprintImage
+  m_Name: FingerprintCooldownImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3052,7 +3052,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -7409,7 +7409,7 @@ GameObject:
   - component: {fileID: 1557587042}
   - component: {fileID: 1557587041}
   m_Layer: 5
-  m_Name: CooldownNightVisionImage
+  m_Name: NightVisionCooldownImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7485,6 +7485,7 @@ GameObject:
   - component: {fileID: 1578504625}
   - component: {fileID: 1578504624}
   - component: {fileID: 1578504623}
+  - component: {fileID: 1578504626}
   m_Layer: 5
   m_Name: FingerprintButton
   m_TagString: Untagged
@@ -7502,7 +7503,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 325208795}
   m_Father: {fileID: 5627143}
@@ -7532,7 +7533,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -7548,7 +7549,7 @@ MonoBehaviour:
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
+    m_HighlightedTrigger: 
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
@@ -7595,6 +7596,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1578504621}
   m_CullTransparentMesh: 1
+--- !u!95 &1578504626
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578504621}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 965ce6dd327670744a0ec196aa3cde45, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1588427087
 GameObject:
   m_ObjectHideFlags: 0
@@ -8779,7 +8800,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1773809116
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8790,7 +8811,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 328531242}
   m_RootOrder: 0
@@ -9166,12 +9187,15 @@ MonoBehaviour:
   <TimerXray>k__BackingField: 25
   <CurrentTimerXray>k__BackingField: 0
   <CooldownToXray>k__BackingField: 40
-  <TimerFingerprint>k__BackingField: 15
+  <CurrentCooldownToXray>k__BackingField: 0
+  <TimerFingerprint>k__BackingField: 16
   <CurrentTimerFingerprint>k__BackingField: 0
   <CooldownFingerprint>k__BackingField: 30
+  <CurrentCooldownFingerprint>k__BackingField: 0
   <TimerNightVision>k__BackingField: 20
   <CurrentTimerNightVision>k__BackingField: 0
   <CooldownNightVision>k__BackingField: 35
+  <CurrentCooldownNightVision>k__BackingField: 0
   _firstDistanceRangeXray: 1
   _secondDistanceRangeXray: 2
   _thirdDistanceRangeXray: 3
@@ -9868,6 +9892,7 @@ GameObject:
   - component: {fileID: 2005380533}
   - component: {fileID: 2005380532}
   - component: {fileID: 2005380531}
+  - component: {fileID: 2005380534}
   m_Layer: 5
   m_Name: NightVisionButton
   m_TagString: Untagged
@@ -9915,7 +9940,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -9978,6 +10003,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2005380529}
   m_CullTransparentMesh: 1
+--- !u!95 &2005380534
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005380529}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 07daea3fdcf6a924b8980c6d617359f3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2075289384
 GameObject:
   m_ObjectHideFlags: 0

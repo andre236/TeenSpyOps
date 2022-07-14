@@ -23,7 +23,9 @@ namespace Manager
         private GameObject _errorIcon2;
 
         private Image _xRayBarImage;
-
+        private Image _xRayCooldownImage;
+        private Image _fingerprintCooldownImage;
+        private Image _nightVisionCooldownImage;
         [SerializeField] private Button[] _answersButton;
         private Button _pauseMenuButton;
         private Button _closeButton;
@@ -33,6 +35,8 @@ namespace Manager
         private Button _nightVisionButton;
         private Button _phasesButton;
         private Button _mainMenuButton;
+
+        
 
         private void Awake()
         {
@@ -49,6 +53,9 @@ namespace Manager
             _barsAnimation = GameObject.Find("Canvas").GetComponent<Animator>();
 
             _xRayBarImage = GameObject.Find("XRayBar").GetComponent<Image>();
+            _xRayCooldownImage = GameObject.Find("XRayCooldownImage").GetComponent<Image>();
+            _fingerprintCooldownImage = GameObject.Find("FingerprintCooldownImage").GetComponent<Image>();
+            _nightVisionCooldownImage = GameObject.Find("NightVisionCooldownImage").GetComponent<Image>();
 
             _answersButton = _guessingPage.GetComponentsInChildren<Button>();
             _pauseMenuButton = GameObject.Find("MenuButton").GetComponent<Button>();
@@ -59,13 +66,14 @@ namespace Manager
             _nightVisionButton = GameObject.Find("NightVisionButton").GetComponent<Button>();
 
 
-
             _timerLevelText = GameObject.Find("TimerText").GetComponent<Text>();
             _informationLevelText = GameObject.Find("InformationLevelText").GetComponent<Text>();
             _amountTinaHintText = GameObject.Find("AmoutTinaHintText").GetComponent<Text>();
             _amountItemsLeftText = GameObject.Find("AmountItemsLeft").GetComponent<Text>();
 
         }
+
+
 
         private void Start()
         {
@@ -81,6 +89,8 @@ namespace Manager
 
             //_phasesButton.onClick.AddListener(FindObjectOfType<EventManager>().LoadLevelSelectScene);
         }
+
+
 
         internal void PlayHudAnimation()
         {
@@ -145,7 +155,13 @@ namespace Manager
             _hintPage.SetActive(false);
             _bellAnimation.SetActive(false);
             _guessingPage.SetActive(false);
+
             _xRayBarImage.gameObject.SetActive(false);
+
+            _xRayCooldownImage.gameObject.SetActive(false);
+            _fingerprintCooldownImage.gameObject.SetActive(false);
+            _nightVisionCooldownImage.gameObject.SetActive(false);
+            
             _barsAnimation.enabled = false;
 
             _informationLevelText.text = string.Concat("Fase ", 3, ": ", "Sala de aula");
@@ -223,6 +239,8 @@ namespace Manager
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
 
+            _xRayButton.interactable = false;
+
             switch (gameManager.CurrentDistance)
             {
                 case XRayDistance.First:
@@ -239,6 +257,67 @@ namespace Manager
                     _xRayBarImage.gameObject.SetActive(false);
                     break;
             }
+        }
+
+        internal void OnCountdownTimerXray(float timer, float initialTimer)
+        {
+            int timerInt = (int)timer;
+
+            if (timer > 0)
+            {
+                _xRayCooldownImage.gameObject.SetActive(true);
+                _xRayCooldownImage.fillAmount = timer / initialTimer;
+            }
+            else
+            {
+                _xRayCooldownImage.fillAmount = 0;
+                _xRayCooldownImage.gameObject.SetActive(false);
+                _xRayButton.interactable = true;
+            }
+        }
+
+        internal void OnCountdownTimerFingerprint(float timer, float initialTimer)
+        {
+            int timerInt = (int)timer;
+
+            if (timer > 0)
+            {
+                _fingerprintCooldownImage.gameObject.SetActive(true);
+                _fingerprintCooldownImage.fillAmount = timer / initialTimer;
+            }
+            else
+            {
+                _fingerprintCooldownImage.fillAmount = 0;
+                _fingerprintCooldownImage.gameObject.SetActive(false);
+                _fingerprintButton.interactable = true;
+            }
+        }
+
+        internal void OnCountdownTimerNightVision(float timer, float initialTimer)
+        {
+            int timerInt = (int)timer;
+
+            if (timer > 0)
+            {
+                _nightVisionCooldownImage.gameObject.SetActive(true);
+                _nightVisionCooldownImage.fillAmount = timer / initialTimer;
+            }
+            else
+            {
+                _nightVisionCooldownImage.fillAmount = 0;
+                _nightVisionCooldownImage.gameObject.SetActive(false);
+                _nightVisionButton.interactable = true;
+            }
+        }
+
+        internal void OnActivedFingerprint()
+        {
+            _fingerprintButton.interactable = false;
+        }
+
+        internal void OnActivedNightVision()
+        {
+            _nightVisionButton.interactable = false;
         }
 
         internal void OnWonGame()

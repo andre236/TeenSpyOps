@@ -75,7 +75,9 @@ namespace Manager
             CountdownPerfomed += _levelManager.OnCountdownTimerLevel;
             CountdownPerfomed += _questPlayer.OnCountdownPerfomed;
 
-            CountdownXRayTimer += _skills.OnCountdownXRayTimer;
+            //CountdownXRayTimer += _skills.OnCountdownXRayTimer;
+
+
 
             PausedGame += _gameManager.OnPausedGame;
             PausedGame += _uiManager.OnPausedGame;
@@ -98,10 +100,12 @@ namespace Manager
             ActivedFingerprint += _gameManager.OnActivedFingerprint;
             ActivedFingerprint += _sceneryManager.OnActivedFingerprint;
             ActivedFingerprint += _skills.OnActivedFingerprint;
+            ActivedFingerprint += _uiManager.OnActivedFingerprint;
 
             ActivedNightVision += _gameManager.OnActivedNightVision;
             ActivedNightVision += _sceneryManager.OnActivedNightVision;
             ActivedNightVision += _skills.OnActivedNightVision;
+            ActivedNightVision += _uiManager.OnActivedNightVision;
 
             ChosenIncorrect += _guessController.OnChosenIncorrect;
             ChosenIncorrect += _uiManager.OnChosenIncorrect;
@@ -120,10 +124,16 @@ namespace Manager
                 ActivedFingerprint += coll.OnActivedFingerprint;
             }
 
+
+
             EarnedStars += _levelManager.OnEarnedStars;
             EarnedStars += _uiManager.OnEarnedStars;
 
             WonGame += _levelManager.OnWonGame;
+
+            _skills.CountdownXrayTimer += _uiManager.OnCountdownTimerXray;
+            _skills.CountdownFingerprintTimer += _uiManager.OnCountdownTimerFingerprint;
+            _skills.CountdownNightVisionTimer += _uiManager.OnCountdownTimerNightVision;
 
             InitializedGame?.Invoke();
         }
@@ -138,7 +148,7 @@ namespace Manager
                 EarnedStars?.Invoke(_questPlayer.CurrentNumberStars);
             }
 
-            CountdownXRayTimer?.Invoke();
+            
 
             _uiManager.ShowCountdownPerfomedText(_levelManager.TimerLevel);
             _uiManager.ShowAmoutItemsLeft(_levelManager.ItemsLeft);
