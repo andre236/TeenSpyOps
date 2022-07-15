@@ -75,10 +75,6 @@ namespace Manager
             CountdownPerfomed += _levelManager.OnCountdownTimerLevel;
             CountdownPerfomed += _questPlayer.OnCountdownPerfomed;
 
-            //CountdownXRayTimer += _skills.OnCountdownXRayTimer;
-
-
-
             PausedGame += _gameManager.OnPausedGame;
             PausedGame += _uiManager.OnPausedGame;
 
@@ -124,16 +120,18 @@ namespace Manager
                 ActivedFingerprint += coll.OnActivedFingerprint;
             }
 
-
-
             EarnedStars += _levelManager.OnEarnedStars;
             EarnedStars += _uiManager.OnEarnedStars;
 
             WonGame += _levelManager.OnWonGame;
 
-            _skills.CountdownXrayTimer += _uiManager.OnCountdownTimerXray;
-            _skills.CountdownFingerprintTimer += _uiManager.OnCountdownTimerFingerprint;
-            _skills.CountdownNightVisionTimer += _uiManager.OnCountdownTimerNightVision;
+            _skills.CountdownXrayTimer += _uiManager.OnCountdownXrayTimer;
+
+            _skills.CountdownXrayCooldown += _uiManager.OnCountdownCooldownXray;
+            _skills.CountdownFingerprintCooldown += _uiManager.OnCountdownTimerFingerprint;
+            _skills.CountdownNightVisionCooldown += _uiManager.OnCountdownTimerNightVision;
+
+
 
             InitializedGame?.Invoke();
         }
@@ -148,16 +146,14 @@ namespace Manager
                 EarnedStars?.Invoke(_questPlayer.CurrentNumberStars);
             }
 
-            
-
             _uiManager.ShowCountdownPerfomedText(_levelManager.TimerLevel);
             _uiManager.ShowAmoutItemsLeft(_levelManager.ItemsLeft);
         }
 
         // -- Reference in buttons -- //
-        public void OnActivedXRay() => ActivedXRay?.Invoke();
-        public void OnActivedNightVision() => ActivedNightVision?.Invoke();
-        public void OnActivedFingerprint() => ActivedFingerprint?.Invoke();
+        internal void OnActivedXRay() => ActivedXRay?.Invoke();
+        internal void OnActivedNightVision() => ActivedNightVision?.Invoke();
+        internal void OnActivedFingerprint() => ActivedFingerprint?.Invoke();
         public void OnChosenCorrect()
         {
             ItemCollected?.Invoke();
@@ -174,21 +170,21 @@ namespace Manager
             
         }
 
-        public void OnPausedGame()
+        internal void OnPausedGame()
         {
             if (_gameManager.CurrentGameState == GameState.Running)
                 PausedGame?.Invoke();
         }
 
-        public void OnUnPausedGame()
+        internal void OnUnPausedGame()
         {
             if (_gameManager.CurrentGameState == GameState.Paused)
                 UnPausedGame?.Invoke();
         }
 
-        public void RestartScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        public void LoadLevelSelectScene() => SceneManager.LoadScene("LEVELSELECT");
-        public void LoadMainMenuScene() => SceneManager.LoadScene("MAINMENU");
-        public void LoadNextLevelScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        internal void RestartScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        internal void LoadLevelSelectScene() => SceneManager.LoadScene("LEVELSELECT");
+        internal void LoadMainMenuScene() => SceneManager.LoadScene("MAINMENU");
+        internal void LoadNextLevelScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

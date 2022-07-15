@@ -24,6 +24,7 @@ namespace Manager
 
         private Image _xRayBarImage;
         private Image _xRayCooldownImage;
+        private Image _xRayTimerImage;
         private Image _fingerprintCooldownImage;
         private Image _nightVisionCooldownImage;
         [SerializeField] private Button[] _answersButton;
@@ -54,6 +55,7 @@ namespace Manager
 
             _xRayBarImage = GameObject.Find("XRayBar").GetComponent<Image>();
             _xRayCooldownImage = GameObject.Find("XRayCooldownImage").GetComponent<Image>();
+            _xRayTimerImage = GameObject.Find("").GetComponent<Image>();
             _fingerprintCooldownImage = GameObject.Find("FingerprintCooldownImage").GetComponent<Image>();
             _nightVisionCooldownImage = GameObject.Find("NightVisionCooldownImage").GetComponent<Image>();
 
@@ -109,6 +111,11 @@ namespace Manager
         internal void ShowAmoutItemsLeft(int amountItemsLeft)
         {
             _amountItemsLeftText.text = string.Concat("Objetos Restantes: ", amountItemsLeft.ToString());
+        }
+
+        internal void OnCountdownXrayTimer(float timer, float initialTimer)
+        {
+            throw new NotImplementedException();
         }
 
         internal void ShowCountdownPerfomedText(float currentTime)
@@ -259,7 +266,7 @@ namespace Manager
             }
         }
 
-        internal void OnCountdownTimerXray(float timer, float initialTimer)
+        internal void OnCountdownCooldownXray(float timer, float initialTimer)
         {
             int timerInt = (int)timer;
 

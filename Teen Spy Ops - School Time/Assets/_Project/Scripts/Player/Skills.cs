@@ -46,9 +46,11 @@ namespace Player
         private GameObject _cursorMaskVision;
         private GameObject _laserMask;
 
-        public Action<float, float> CountdownNightVisionTimer;
+        public Action<float, float> CountdownNightVisionCooldown;
+        public Action<float, float> CountdownXrayCooldown;
+        public Action<float, float> CountdownFingerprintCooldown;
+
         public Action<float, float> CountdownXrayTimer;
-        public Action<float, float> CountdownFingerprintTimer;
 
         private void Awake()
         {
@@ -85,7 +87,8 @@ namespace Player
 
             _laserMask.SetActive(false);
             AlreadyXRayCast = false;
-            StartCoroutine(CooldownToUseXray(CurrentCooldownToXray, CooldownToXray, AlreadyXRayCast));
+
+            StartCoroutine(TimerForSkill(CurrentTimerXray, TimerXray ,CurrentCooldownToXray, CooldownToXray, AlreadyXRayCast, CountdownXrayTimer,CountdownXrayCooldown));
 
             switch (gameManager.CurrentDistance)
             {
@@ -109,7 +112,7 @@ namespace Player
 
             _laserMask.GetComponent<Animator>().speed = 1 / (TimerFingerprint / 2);
 
-            StartCoroutine(CooldownToUseFingerprint(CurrentCooldownFingerprint, CurrentCooldownFingerprint, AlreadyFingerprint));
+            StartCoroutine(CooldownToUseSkill(CurrentCooldownFingerprint, CurrentCooldownFingerprint, AlreadyFingerprint, CountdownFingerprintCooldown));
             AlreadyFingerprint = false;
 
             Debug.Log("Poder fingerprint ativado!");
@@ -121,7 +124,8 @@ namespace Player
 
             _cursorMaskVision.SetActive(false);
 
-            StartCoroutine(CooldownToUseNightVision(CurrentTimerNightVision, CooldownNightVision, AlreadyNightVision));
+
+            StartCoroutine(CooldownToUseSkill(CurrentCooldownNightVision, CooldownNightVision, AlreadyNightVision, CountdownNightVisionCooldown));
             AlreadyNightVision = false;
 
             Debug.Log("Poder Visão Noturna ativado!");
@@ -132,74 +136,53 @@ namespace Player
             _cursorMaskVision.SetActive(true);
         }
 
-        IEnumerator CooldownToUseXray(float timer, float initialTime, bool alreadySkill)
+        IEnumerator TimerForSkill(float timer, float initialTimer, float cooldown, float initialCooldown, bool alreadySkill, Action<float, float> countdownUsingSkill, Action<float,float> countdownSkillCooldown)
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
 
-            while (timer > 0)
+            while(timer > 0)
             {
-                if (gameManager.CurrentGameState == GameState.Running)
+                if(gameManager.CurrentGameState == GameState.Running)
                 {
                     timer -= Time.deltaTime;
                 }
 
-                CountdownXrayTimer?.Invoke(timer, initialTime);
+                countdownUsingSkill?.Invoke(timer, initialTimer);
+
                 yield return timer;
             }
 
-            if (timer <= 0)
+            if(timer <= 0)
             {
-                alreadySkill = true;
-                Debug.Log("A skill está pronta");
-
+                StartCoroutine(CooldownToUseSkill(cooldown, initialCooldown, alreadySkill, countdownSkillCooldown));
             }
         }
 
-        IEnumerator CooldownToUseFingerprint(float timer, float initialTime, bool alreadySkill)
+        IEnumerator CooldownToUseSkill(float cooldown, float initialCooldown, bool alreadySkill, Action<float, float> countdownSkill)
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
 
-            while (timer > 0)
+            while (cooldown > 0)
             {
                 if (gameManager.CurrentGameState == GameState.Running)
                 {
-                    timer -= Time.deltaTime;
+                    cooldown -= Time.deltaTime;
+                    Debug.Log("O Timer está em: " + cooldown + " da skill ");
                 }
 
-                CountdownFingerprintTimer?.Invoke(timer, initialTime);
-                yield return timer;
+                countdownSkill?.Invoke(cooldown, initialCooldown);
+
+                yield return cooldown;
             }
 
-            if (timer <= 0)
+            if (cooldown <= 0)
             {
                 alreadySkill = true;
                 Debug.Log("A skill está pronta");
-
             }
         }
 
-        IEnumerator CooldownToUseNightVision(float timer, float initialTime, bool alreadySkill)
-        {
-            GameManager gameManager = FindObjectOfType<GameManager>();
-
-            while (timer > 0)
-            {
-                if (gameManager.CurrentGameState == GameState.Running)
-                {
-                    timer -= Time.deltaTime;
-                }
-
-                CountdownNightVisionTimer?.Invoke(timer, initialTime);
-                yield return timer;
-            }
-
-            if (timer <= 0)
-            {
-                alreadySkill = true;
-                Debug.Log("A skill está pronta");
-
-            }
-        }
+        
 
 
     }
