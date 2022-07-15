@@ -29,7 +29,7 @@ namespace Manager
             if (CurrentSkill != SkillState.XRay)
             {
                 CurrentSkill = SkillState.XRay;
-                CurrentDistance = XRayDistance.Third;
+                CurrentDistance = XRayDistance.First;
             }
 
         }
