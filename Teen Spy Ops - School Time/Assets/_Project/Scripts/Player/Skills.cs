@@ -51,6 +51,8 @@ namespace Player
         public Action<float, float> CountdownFingerprintCooldown;
 
         public Action<float, float> CountdownXrayTimer;
+        public Action<float, float> CountdownFingerprintTimer;
+        public Action<float, float> CountdownNightVisionTimer;
 
         private void Awake()
         {
@@ -112,7 +114,7 @@ namespace Player
 
             _laserMask.GetComponent<Animator>().speed = 1 / (TimerFingerprint / 2);
 
-            StartCoroutine(CooldownToUseSkill(CurrentCooldownFingerprint, CurrentCooldownFingerprint, AlreadyFingerprint, CountdownFingerprintCooldown));
+            StartCoroutine(TimerForSkill(CurrentTimerFingerprint,TimerFingerprint,CurrentCooldownFingerprint, CurrentCooldownFingerprint, AlreadyFingerprint, CountdownFingerprintTimer,CountdownFingerprintCooldown));
             AlreadyFingerprint = false;
 
             Debug.Log("Poder fingerprint ativado!");
@@ -121,11 +123,9 @@ namespace Player
         internal void OnActivedNightVision()
         {
             _laserMask.SetActive(false);
-
             _cursorMaskVision.SetActive(false);
 
-
-            StartCoroutine(CooldownToUseSkill(CurrentCooldownNightVision, CooldownNightVision, AlreadyNightVision, CountdownNightVisionCooldown));
+            StartCoroutine(TimerForSkill(CurrentTimerNightVision,TimerNightVision,CurrentCooldownNightVision, CooldownNightVision, AlreadyNightVision, CountdownNightVisionTimer,CountdownNightVisionCooldown));
             AlreadyNightVision = false;
 
             Debug.Log("Poder Visão Noturna ativado!");
@@ -167,7 +167,6 @@ namespace Player
                 if (gameManager.CurrentGameState == GameState.Running)
                 {
                     cooldown -= Time.deltaTime;
-                    Debug.Log("O Timer está em: " + cooldown + " da skill ");
                 }
 
                 countdownSkill?.Invoke(cooldown, initialCooldown);
@@ -178,7 +177,6 @@ namespace Player
             if (cooldown <= 0)
             {
                 alreadySkill = true;
-                Debug.Log("A skill está pronta");
             }
         }
 

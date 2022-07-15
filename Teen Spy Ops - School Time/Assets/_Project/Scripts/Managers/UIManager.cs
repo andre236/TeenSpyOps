@@ -25,8 +25,11 @@ namespace Manager
         private Image _xRayBarImage;
         private Image _xRayCooldownImage;
         private Image _xRayTimerImage;
+        private Image _fingerprintTimerImage;
         private Image _fingerprintCooldownImage;
+        private Image _nightVisionTimerImage;
         private Image _nightVisionCooldownImage;
+
         [SerializeField] private Button[] _answersButton;
         private Button _pauseMenuButton;
         private Button _closeButton;
@@ -55,8 +58,10 @@ namespace Manager
 
             _xRayBarImage = GameObject.Find("XRayBar").GetComponent<Image>();
             _xRayCooldownImage = GameObject.Find("XRayCooldownImage").GetComponent<Image>();
-            _xRayTimerImage = GameObject.Find("").GetComponent<Image>();
+            _xRayTimerImage = GameObject.Find("XRayTimerImage").GetComponent<Image>();
+            _fingerprintTimerImage = GameObject.Find("FingerprintTimerImage").GetComponent<Image>();
             _fingerprintCooldownImage = GameObject.Find("FingerprintCooldownImage").GetComponent<Image>();
+            _nightVisionTimerImage = GameObject.Find("NightVisionTimerImage").GetComponent<Image>();
             _nightVisionCooldownImage = GameObject.Find("NightVisionCooldownImage").GetComponent<Image>();
 
             _answersButton = _guessingPage.GetComponentsInChildren<Button>();
@@ -113,10 +118,7 @@ namespace Manager
             _amountItemsLeftText.text = string.Concat("Objetos Restantes: ", amountItemsLeft.ToString());
         }
 
-        internal void OnCountdownXrayTimer(float timer, float initialTimer)
-        {
-            throw new NotImplementedException();
-        }
+
 
         internal void ShowCountdownPerfomedText(float currentTime)
         {
@@ -165,8 +167,11 @@ namespace Manager
 
             _xRayBarImage.gameObject.SetActive(false);
 
+            _xRayTimerImage.gameObject.SetActive(false);
             _xRayCooldownImage.gameObject.SetActive(false);
+            _fingerprintTimerImage.gameObject.SetActive(false);
             _fingerprintCooldownImage.gameObject.SetActive(false);
+            _nightVisionTimerImage.gameObject.SetActive(false);
             _nightVisionCooldownImage.gameObject.SetActive(false);
             
             _barsAnimation.enabled = false;
@@ -246,8 +251,6 @@ namespace Manager
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
 
-            _xRayButton.interactable = false;
-
             switch (gameManager.CurrentDistance)
             {
                 case XRayDistance.First:
@@ -266,13 +269,28 @@ namespace Manager
             }
         }
 
-        internal void OnCountdownCooldownXray(float timer, float initialTimer)
+        internal void OnCountdownXrayTimer(float timer, float initialTimer)
         {
-            int timerInt = (int)timer;
+            _xRayButton.interactable = false;
 
             if (timer > 0)
             {
+                _xRayTimerImage.gameObject.SetActive(true);
                 _xRayCooldownImage.gameObject.SetActive(true);
+                _xRayTimerImage.fillAmount = timer / initialTimer;
+            }
+            else
+            {
+                _xRayTimerImage.fillAmount = 0;
+                _xRayTimerImage.gameObject.SetActive(false);
+            }
+        }
+
+        internal void OnCountdownCooldownXray(float timer, float initialTimer)
+        {
+
+            if (timer > 0)
+            {
                 _xRayCooldownImage.fillAmount = timer / initialTimer;
             }
             else
@@ -283,13 +301,27 @@ namespace Manager
             }
         }
 
-        internal void OnCountdownTimerFingerprint(float timer, float initialTimer)
+        internal void OnCountdownFingerprintTimer(float timer, float initialTimer)
         {
-            int timerInt = (int)timer;
+            _fingerprintButton.interactable = false;
 
             if (timer > 0)
             {
+                _fingerprintTimerImage.gameObject.SetActive(true);
                 _fingerprintCooldownImage.gameObject.SetActive(true);
+                _fingerprintTimerImage.fillAmount = timer / initialTimer;
+            }
+            else
+            {
+                _fingerprintTimerImage.fillAmount = 0;
+                _fingerprintTimerImage.gameObject.SetActive(false);
+            }
+        }
+
+        internal void OnCountdownFingerprintCooldown(float timer, float initialTimer)
+        {
+            if (timer > 0)
+            {
                 _fingerprintCooldownImage.fillAmount = timer / initialTimer;
             }
             else
@@ -300,13 +332,27 @@ namespace Manager
             }
         }
 
-        internal void OnCountdownTimerNightVision(float timer, float initialTimer)
+        internal void OnCountdownNightVisionTimer(float timer, float initialTimer)
         {
-            int timerInt = (int)timer;
+            _nightVisionButton.interactable = false;
 
             if (timer > 0)
             {
+                _nightVisionTimerImage.gameObject.SetActive(true);
                 _nightVisionCooldownImage.gameObject.SetActive(true);
+                _nightVisionTimerImage.fillAmount = timer / initialTimer;
+            }
+            else
+            {
+                _nightVisionTimerImage.fillAmount = 0;
+                _nightVisionTimerImage.gameObject.SetActive(false);
+            }
+        }
+
+        internal void OnCountdownNightVisionCooldown(float timer, float initialTimer)
+        {
+            if (timer > 0)
+            {
                 _nightVisionCooldownImage.fillAmount = timer / initialTimer;
             }
             else

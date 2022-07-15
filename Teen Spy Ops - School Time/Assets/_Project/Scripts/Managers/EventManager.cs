@@ -35,7 +35,6 @@ namespace Manager
         public Action ActivedFingerprint;
         public Action ActivedNightVision;
 
-        public Action CountdownXRayTimer;
 
         // -- Items -- //
         public int AmountItems { get; private set; }
@@ -91,17 +90,14 @@ namespace Manager
             ActivedXRay += _gameManager.OnActivedXRay;
             ActivedXRay += _sceneryManager.OnActivedXRay;
             ActivedXRay += _skills.OnActivedXRay;
-            ActivedXRay += _uiManager.OnActivedXRay;
 
             ActivedFingerprint += _gameManager.OnActivedFingerprint;
             ActivedFingerprint += _sceneryManager.OnActivedFingerprint;
             ActivedFingerprint += _skills.OnActivedFingerprint;
-            ActivedFingerprint += _uiManager.OnActivedFingerprint;
 
             ActivedNightVision += _gameManager.OnActivedNightVision;
             ActivedNightVision += _sceneryManager.OnActivedNightVision;
             ActivedNightVision += _skills.OnActivedNightVision;
-            ActivedNightVision += _uiManager.OnActivedNightVision;
 
             ChosenIncorrect += _guessController.OnChosenIncorrect;
             ChosenIncorrect += _uiManager.OnChosenIncorrect;
@@ -126,12 +122,12 @@ namespace Manager
             WonGame += _levelManager.OnWonGame;
 
             _skills.CountdownXrayTimer += _uiManager.OnCountdownXrayTimer;
+            _skills.CountdownFingerprintTimer += _uiManager.OnCountdownFingerprintTimer;
+            _skills.CountdownNightVisionTimer += _uiManager.OnCountdownNightVisionTimer;
 
             _skills.CountdownXrayCooldown += _uiManager.OnCountdownCooldownXray;
-            _skills.CountdownFingerprintCooldown += _uiManager.OnCountdownTimerFingerprint;
-            _skills.CountdownNightVisionCooldown += _uiManager.OnCountdownTimerNightVision;
-
-
+            _skills.CountdownFingerprintCooldown += _uiManager.OnCountdownFingerprintCooldown;
+            _skills.CountdownNightVisionCooldown += _uiManager.OnCountdownNightVisionCooldown;
 
             InitializedGame?.Invoke();
         }
