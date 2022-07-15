@@ -32,9 +32,10 @@ namespace Manager
 
         // -- Player Skills -- //
         public Action ActivedXRay;
+        public Action UpgradeXRayVision;
+
         public Action ActivedFingerprint;
         public Action ActivedNightVision;
-
 
         // -- Items -- //
         public int AmountItems { get; private set; }
@@ -90,6 +91,11 @@ namespace Manager
             ActivedXRay += _gameManager.OnActivedXRay;
             ActivedXRay += _sceneryManager.OnActivedXRay;
             ActivedXRay += _skills.OnActivedXRay;
+
+            UpgradeXRayVision += _gameManager.OnUpgradeXRayVision;
+            UpgradeXRayVision += _sceneryManager.OnUpgradeXRayVision;
+            UpgradeXRayVision += _skills.OnUpgradeXRayVision;
+            UpgradeXRayVision += _uiManager.OnUpgradeXRayVision;
 
             ActivedFingerprint += _gameManager.OnActivedFingerprint;
             ActivedFingerprint += _sceneryManager.OnActivedFingerprint;
@@ -158,6 +164,7 @@ namespace Manager
 
         // -- Reference in buttons -- //
         internal void OnActivedXRay() => ActivedXRay?.Invoke();
+        internal void OnUpgradeVision() => UpgradeXRayVision?.Invoke();
         internal void OnActivedNightVision() => ActivedNightVision?.Invoke();
         internal void OnActivedFingerprint() => ActivedFingerprint?.Invoke();
         public void OnChosenCorrect()

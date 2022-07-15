@@ -76,6 +76,8 @@ namespace Player
 
         }
 
+
+
         internal void OnActivedXRay()
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
@@ -94,6 +96,14 @@ namespace Player
 
             StartCoroutine(TimerForSkill(CurrentTimerXray, TimerXray ,CurrentCooldownToXray, CooldownToXray, AlreadyXRayCast, CountdownXrayTimer,CountdownXrayCooldown));
 
+
+
+        }
+
+        internal void OnUpgradeXRayVision()
+        {
+            GameManager gameManager = FindObjectOfType<GameManager>();
+
             switch (gameManager.CurrentDistance)
             {
                 case XRayDistance.First:
@@ -106,7 +116,6 @@ namespace Player
                     _cursorMaskVision.transform.localScale = new Vector2(_thirdDistanceRangeXray, _thirdDistanceRangeXray);
                     break;
             }
-
         }
 
         internal void OnActivedFingerprint()

@@ -37,6 +37,7 @@ namespace Manager
         private Button _xRayButton;
         private Button _fingerprintButton;
         private Button _nightVisionButton;
+        private Button _upgradeVisionButton;
         private Button _phasesButton;
         private Button _mainMenuButton;
 
@@ -71,7 +72,7 @@ namespace Manager
             _xRayButton = GameObject.Find("XRayButton").GetComponent<Button>();
             _fingerprintButton = GameObject.Find("FingerprintButton").GetComponent<Button>();
             _nightVisionButton = GameObject.Find("NightVisionButton").GetComponent<Button>();
-
+            _upgradeVisionButton = GameObject.Find("UpgradeVisionButton").GetComponent<Button>();
 
             _timerLevelText = GameObject.Find("TimerText").GetComponent<Text>();
             _informationLevelText = GameObject.Find("InformationLevelText").GetComponent<Text>();
@@ -87,6 +88,8 @@ namespace Manager
             _pauseMenuButton.onClick.AddListener(FindObjectOfType<EventManager>().OnPausedGame);
             _xRayButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedXRay);
             _xRayButton.onClick.AddListener(PlayHudAnimation);
+
+            _upgradeVisionButton.onClick.AddListener(FindObjectOfType<EventManager>().OnUpgradeVision);
 
             _fingerprintButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedFingerprint);
             _fingerprintButton.onClick.AddListener(PlayHudAnimation);
@@ -276,26 +279,31 @@ namespace Manager
             _guessingPage.SetActive(false);
         }
 
-        internal void OnActivedXRay()
+        internal void OnUpgradeXRayVision()
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
+            Animator xRayBarAnimation = _xRayBarImage.GetComponent<Animator>();
 
-            switch (gameManager.CurrentDistance)
-            {
-                case XRayDistance.First:
-                    _xRayBarImage.fillAmount = 0.33f;
-                    break;
-                case XRayDistance.Second:
-                    _xRayBarImage.fillAmount = 0.66f;
-                    break;
-                case XRayDistance.Third:
-                    _xRayBarImage.gameObject.SetActive(true);
-                    _xRayBarImage.fillAmount = 1f;
-                    break;
-                case XRayDistance.None:
-                    _xRayBarImage.gameObject.SetActive(false);
-                    break;
-            }
+            xRayBarAnimation.gameObject.SetActive(true);
+            xRayBarAnimation.SetInteger("XRayDistance", (int)gameManager.CurrentDistance);
+
+
+            //switch (gameManager.CurrentDistance)
+            //{
+            //    case XRayDistance.First:
+
+            //        break;
+            //    case XRayDistance.Second:
+            //        _xRayBarImage.fillAmount = 0.66f;
+            //        break;
+            //    case XRayDistance.Third:
+            //        _xRayBarImage.gameObject.SetActive(true);
+            //        _xRayBarImage.fillAmount = 1f;
+            //        break;
+            //    case XRayDistance.None:
+            //        _xRayBarImage.gameObject.SetActive(false);
+            //        break;
+            //}
         }
 
         internal void OnCountdownXrayTimer(float timer, float initialTimer)
@@ -306,13 +314,18 @@ namespace Manager
             {
                 _xRayTimerImage.gameObject.SetActive(true);
                 _xRayCooldownImage.gameObject.SetActive(true);
+                _xRayBarImage.gameObject.SetActive(true);
+
                 _xRayTimerImage.fillAmount = timer / initialTimer;
             }
             else
             {
                 _xRayTimerImage.fillAmount = 0;
                 _xRayTimerImage.gameObject.SetActive(false);
+                _xRayBarImage.gameObject.SetActive(false);
             }
+
+
         }
 
         internal void OnCountdownCooldownXray(float timer, float initialTimer)

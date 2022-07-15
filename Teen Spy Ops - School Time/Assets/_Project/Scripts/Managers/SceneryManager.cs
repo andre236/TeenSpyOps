@@ -83,10 +83,12 @@ namespace Manager
             }
 
             DefinedActivedScenery?.Invoke(_xRayScene);
-
             _xRayAnimator.SetBool("OnXRay", true);
 
-            // Retirar essa parte
+        }
+
+        internal void OnUpgradeXRayVision()
+        {
             switch (_gameManager.CurrentDistance)
             {
                 case XRayDistance.First:
@@ -110,8 +112,6 @@ namespace Manager
                     _thirdDistance.SetActive(false);
                     break;
             }
-
-
         }
 
         internal void OnActivedFingerprint()

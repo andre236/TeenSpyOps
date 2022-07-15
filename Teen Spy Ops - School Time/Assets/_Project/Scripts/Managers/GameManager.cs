@@ -29,20 +29,9 @@ namespace Manager
             if (CurrentSkill != SkillState.XRay)
             {
                 CurrentSkill = SkillState.XRay;
+                CurrentDistance = XRayDistance.Third;
             }
 
-            if (CurrentSkill == SkillState.XRay)
-            {
-                if (CurrentDistance > XRayDistance.First)
-                {
-                    CurrentDistance--;
-                }
-                else
-                {
-                    CurrentDistance = XRayDistance.None;
-                    CurrentSkill = SkillState.Normal;
-                }
-            }
         }
 
         internal void OnActivedFingerprint()
@@ -113,6 +102,17 @@ namespace Manager
 
             CurrentDistance = XRayDistance.None;
             CurrentSkill = SkillState.Normal;
+        }
+
+        internal void OnUpgradeXRayVision()
+        {
+            if (CurrentSkill != SkillState.XRay)
+                return;
+
+            CurrentDistance--;
+
+            if (CurrentDistance < XRayDistance.First)
+                CurrentDistance = XRayDistance.Third;
         }
     }
 }
