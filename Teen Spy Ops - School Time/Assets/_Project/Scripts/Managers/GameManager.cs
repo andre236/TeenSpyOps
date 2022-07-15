@@ -45,16 +45,6 @@ namespace Manager
             }
         }
 
-        internal void OnCountdownXRayTimer()
-        {
-            if (CurrentGameState != GameState.Running)
-                return;
-
-            var skills = FindObjectOfType<Skills>();
-
-
-        }
-
         internal void OnActivedFingerprint()
         {
             if (CurrentGameState != GameState.Running)
@@ -114,6 +104,15 @@ namespace Manager
                 CurrentDistance = XRayDistance.None;
             }
 
+        }
+
+        internal void OnFinishedTimerSkill()
+        {
+            if (CurrentGameState != GameState.Running)
+                return;
+
+            CurrentDistance = XRayDistance.None;
+            CurrentSkill = SkillState.Normal;
         }
     }
 }

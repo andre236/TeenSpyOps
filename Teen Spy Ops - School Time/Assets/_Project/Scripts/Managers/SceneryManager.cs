@@ -86,6 +86,7 @@ namespace Manager
 
             _xRayAnimator.SetBool("OnXRay", true);
 
+            // Retirar essa parte
             switch (_gameManager.CurrentDistance)
             {
                 case XRayDistance.First:
@@ -136,6 +137,12 @@ namespace Manager
             DefinedActivedScenery?.Invoke(_nightVisionScene);
 
             _nightVisionAnimator.SetBool("OnNightVision", true);
+        }
+
+        internal void FinishedTimerSkill()
+        {
+            DefinedStandardActivedScenery?.Invoke();
+            _xRayAnimator.SetBool("OnXRay", false);
         }
 
         private IEnumerator ActiveDefaultSceneWithDelay()

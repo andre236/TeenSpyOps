@@ -46,6 +46,8 @@ namespace Player
         private GameObject _cursorMaskVision;
         private GameObject _laserMask;
 
+        public Action FinishedTimerSkill;
+
         public Action<float, float> CountdownNightVisionCooldown;
         public Action<float, float> CountdownXrayCooldown;
         public Action<float, float> CountdownFingerprintCooldown;
@@ -136,6 +138,13 @@ namespace Player
             _cursorMaskVision.SetActive(true);
         }
 
+        private void DeactiveAllMask()
+        {
+            _laserMask.SetActive(false);
+            _cursorMaskVision.SetActive(false);
+
+        }
+
         IEnumerator TimerForSkill(float timer, float initialTimer, float cooldown, float initialCooldown, bool alreadySkill, Action<float, float> countdownUsingSkill, Action<float,float> countdownSkillCooldown)
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
@@ -155,6 +164,9 @@ namespace Player
             if(timer <= 0)
             {
                 StartCoroutine(CooldownToUseSkill(cooldown, initialCooldown, alreadySkill, countdownSkillCooldown));
+                FinishedTimerSkill?.Invoke();
+                DeactiveAllMask();
+
             }
         }
 
@@ -179,6 +191,8 @@ namespace Player
                 alreadySkill = true;
             }
         }
+
+
 
         
 

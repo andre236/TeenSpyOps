@@ -121,12 +121,22 @@ namespace Manager
 
             WonGame += _levelManager.OnWonGame;
 
+
             _skills.CountdownXrayTimer += _uiManager.OnCountdownXrayTimer;
+
             _skills.CountdownFingerprintTimer += _uiManager.OnCountdownFingerprintTimer;
+            
             _skills.CountdownNightVisionTimer += _uiManager.OnCountdownNightVisionTimer;
 
+            _skills.FinishedTimerSkill += _gameManager.OnFinishedTimerSkill;
+            _skills.FinishedTimerSkill += _sceneryManager.FinishedTimerSkill;
+            _skills.FinishedTimerSkill += _uiManager.OnFinishedTimerSkill;
+
+
             _skills.CountdownXrayCooldown += _uiManager.OnCountdownCooldownXray;
+
             _skills.CountdownFingerprintCooldown += _uiManager.OnCountdownFingerprintCooldown;
+
             _skills.CountdownNightVisionCooldown += _uiManager.OnCountdownNightVisionCooldown;
 
             InitializedGame?.Invoke();

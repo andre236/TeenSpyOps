@@ -89,7 +89,11 @@ namespace Manager
             _xRayButton.onClick.AddListener(PlayHudAnimation);
 
             _fingerprintButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedFingerprint);
+            _fingerprintButton.onClick.AddListener(PlayHudAnimation);
+
             _nightVisionButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedNightVision);
+            _nightVisionButton.onClick.AddListener(PlayHudAnimation);
+
             _closeButton.onClick.AddListener(FindObjectOfType<EventManager>().OnUnPausedGame);
             _returnButton.onClick.AddListener(FindObjectOfType<EventManager>().OnUnPausedGame);
 
@@ -103,15 +107,38 @@ namespace Manager
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
 
-            _barsAnimation.enabled = true;
+            //_barsAnimation.enabled = true;
 
-            if (gameManager.CurrentSkill == SkillState.XRay)
-                _barsAnimation.SetBool("OnXray", true);
-            else
-                _barsAnimation.SetBool("OnXray", false);
+            switch (gameManager.CurrentSkill)
+            {
+                case SkillState.Normal:
+                    _barsAnimation.SetBool("OnXRay", false);
+                    _barsAnimation.SetBool("OnFingerprint", false);
+                    _barsAnimation.SetBool("OnNightVision", false);
+
+                    break;
+                case SkillState.XRay:
+                    _barsAnimation.SetBool("OnXRay", true);
+                    _barsAnimation.SetBool("OnFingerprint", false);
+                    _barsAnimation.SetBool("OnNightVision", false);
+                    break;
+                case SkillState.NightVision:
+                    _barsAnimation.SetBool("OnNightVision", true);
+                    _barsAnimation.SetBool("OnFingerprint", false);
+                    _barsAnimation.SetBool("OnXRay", false);
+                    break;
+                case SkillState.Fingerprint:
+                    _barsAnimation.SetBool("OnFingerprint", true);
+                    _barsAnimation.SetBool("OnXRay", false);
+                    _barsAnimation.SetBool("OnNightVision", false);
+
+                    break;
+            }
 
 
         }
+
+
 
         internal void ShowAmoutItemsLeft(int amountItemsLeft)
         {
@@ -174,11 +201,13 @@ namespace Manager
             _nightVisionTimerImage.gameObject.SetActive(false);
             _nightVisionCooldownImage.gameObject.SetActive(false);
             
-            _barsAnimation.enabled = false;
+            //_barsAnimation.enabled = false;
 
             _informationLevelText.text = string.Concat("Fase ", 3, ": ", "Sala de aula");
 
         }
+
+        internal void OnFinishedTimerSkill() => PlayHudAnimation();
 
         internal void OnPausedGame()
         {
