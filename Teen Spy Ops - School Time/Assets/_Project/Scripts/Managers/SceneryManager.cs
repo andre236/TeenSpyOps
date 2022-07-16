@@ -82,6 +82,7 @@ namespace Manager
                 return;
             }
 
+            OnUpgradeXRayVision();
             DefinedActivedScenery?.Invoke(_xRayScene);
             _xRayAnimator.SetBool("OnXRay", true);
 
@@ -148,6 +149,10 @@ namespace Manager
         private IEnumerator ActiveDefaultSceneWithDelay()
         {
             yield return new WaitForSeconds(2f);
+            GameManager gameManager = FindObjectOfType<GameManager>();
+
+            if (gameManager.CurrentSkill != SkillState.Normal)
+                yield break;
 
             _firstDistace.SetActive(false);
             _secondDistance.SetActive(false);
@@ -157,6 +162,8 @@ namespace Manager
             _fingerprintScene.SetActive(false);
 
             _normalScene.SetActive(true);
+            _xRayAnimator.SetBool("OnXRay", false);
+
         }
     }
 }

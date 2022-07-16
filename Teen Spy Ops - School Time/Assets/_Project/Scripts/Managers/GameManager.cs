@@ -29,7 +29,7 @@ namespace Manager
             if (CurrentSkill != SkillState.XRay)
             {
                 CurrentSkill = SkillState.XRay;
-                CurrentDistance = XRayDistance.First;
+                CurrentDistance = XRayDistance.Third;
             }
 
         }
@@ -43,13 +43,8 @@ namespace Manager
             if (CurrentSkill != SkillState.Fingerprint)
             {
                 CurrentSkill = SkillState.Fingerprint;
-
             }
-            else
-            {
-                CurrentDistance = XRayDistance.None;
-                CurrentSkill = SkillState.Normal;
-            }
+  
 
         }
 
@@ -86,11 +81,6 @@ namespace Manager
             if (CurrentSkill != SkillState.NightVision)
             {
                 CurrentSkill = SkillState.NightVision;
-            }
-            else
-            {
-                CurrentSkill = SkillState.Normal;
-                CurrentDistance = XRayDistance.None;
             }
 
         }

@@ -94,6 +94,7 @@ namespace Player
             _laserMask.SetActive(false);
             AlreadyXRayCast = false;
 
+            OnUpgradeXRayVision();
             StartCoroutine(TimerForSkill(CurrentTimerXray, TimerXray ,CurrentCooldownToXray, CooldownToXray, AlreadyXRayCast, CountdownXrayTimer,CountdownXrayCooldown));
 
 
@@ -144,6 +145,14 @@ namespace Player
 
         private void ActiveMaskCursor()
         {
+            GameManager gameManager = FindObjectOfType<GameManager>();
+
+            if (gameManager.CurrentSkill != SkillState.XRay)
+            {
+                _cursorMaskVision.SetActive(false);
+                return;
+            }
+
             _cursorMaskVision.SetActive(true);
         }
 
@@ -175,7 +184,6 @@ namespace Player
                 StartCoroutine(CooldownToUseSkill(cooldown, initialCooldown, alreadySkill, countdownSkillCooldown));
                 FinishedTimerSkill?.Invoke();
                 DeactiveAllMask();
-
             }
         }
 

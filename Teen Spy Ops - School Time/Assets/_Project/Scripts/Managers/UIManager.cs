@@ -287,23 +287,6 @@ namespace Manager
             xRayBarAnimation.gameObject.SetActive(true);
             xRayBarAnimation.SetInteger("XRayDistance", (int)gameManager.CurrentDistance);
 
-
-            //switch (gameManager.CurrentDistance)
-            //{
-            //    case XRayDistance.First:
-
-            //        break;
-            //    case XRayDistance.Second:
-            //        _xRayBarImage.fillAmount = 0.66f;
-            //        break;
-            //    case XRayDistance.Third:
-            //        _xRayBarImage.gameObject.SetActive(true);
-            //        _xRayBarImage.fillAmount = 1f;
-            //        break;
-            //    case XRayDistance.None:
-            //        _xRayBarImage.gameObject.SetActive(false);
-            //        break;
-            //}
         }
 
         internal void OnCountdownXrayTimer(float timer, float initialTimer)
@@ -388,6 +371,9 @@ namespace Manager
             {
                 _nightVisionTimerImage.fillAmount = 0;
                 _nightVisionTimerImage.gameObject.SetActive(false);
+
+
+
             }
         }
 
