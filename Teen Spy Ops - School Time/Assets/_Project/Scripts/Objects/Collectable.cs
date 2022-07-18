@@ -40,8 +40,6 @@ namespace Objects
 
             _clickOverAnimation = GetComponent<Animator>();
 
-            
-            
         }
 
         private void Start()
@@ -63,7 +61,6 @@ namespace Objects
 
 
         }
-
 
         private void OnMouseDown()
         {
@@ -92,6 +89,21 @@ namespace Objects
                 gameObject.SetActive(false);
         }
 
+        internal void OnUpgradeXRayVision()
+        {
+            if (this == null)
+                return;
+
+            var gameManager = FindObjectOfType<GameManager>();
+
+            if (gameManager.CurrentSkill == CurrentTypeObject && gameManager.CurrentDistance <= CurrentDistanceHidden)
+            {
+                GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+                gameObject.SetActive(true);
+            }
+            else
+                gameObject.SetActive(false);
+        }
 
         internal void OnActivedNightVision()
         {

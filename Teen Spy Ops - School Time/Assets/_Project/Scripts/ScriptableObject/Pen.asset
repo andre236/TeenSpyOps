@@ -16,6 +16,6 @@ MonoBehaviour:
   <FakeNames>k__BackingField:
   - Pencil
   - Eraser
-  <DefaultSpriteObject>k__BackingField: {fileID: 0}
+  <DefaultSpriteObject>k__BackingField: {fileID: 21300000, guid: 07f40ebdd1ff36847b4ff7fa006a974b, type: 3}
   <SpriteXRayObject>k__BackingField: {fileID: 21300000, guid: cc9530ff27ea40948978a99598d0d4b2, type: 3}
   <ModalScriptable>k__BackingField: {fileID: 11400000, guid: 1eda32ccc77b2dc43937cf03ef50fa50, type: 2}

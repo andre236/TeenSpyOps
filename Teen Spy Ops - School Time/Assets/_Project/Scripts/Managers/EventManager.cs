@@ -120,6 +120,8 @@ namespace Manager
                 ActivedXRay += coll.OnActivatedXray;
                 ActivedNightVision += coll.OnActivedNightVision;
                 ActivedFingerprint += coll.OnActivedFingerprint;
+
+                UpgradeXRayVision += coll.OnUpgradeXRayVision;
             }
 
             EarnedStars += _levelManager.OnEarnedStars;
