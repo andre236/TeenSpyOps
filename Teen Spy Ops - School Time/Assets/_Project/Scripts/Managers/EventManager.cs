@@ -13,7 +13,7 @@ namespace Manager
         private SceneryManager _sceneryManager;
         private UIManager _uiManager;
         private LevelManager _levelManager;
-
+        private AudioManager _audioManager;
         private GuessController _guessController;
         private Quest _questPlayer;
         private Skills _skills;
@@ -53,6 +53,7 @@ namespace Manager
             _uiManager = FindObjectOfType<UIManager>();
             _sceneryManager = FindObjectOfType<SceneryManager>();
             _levelManager = FindObjectOfType<LevelManager>();
+            _audioManager = FindObjectOfType<AudioManager>();
 
             // -- Controllers -- //
             _guessController = FindObjectOfType<GuessController>();
