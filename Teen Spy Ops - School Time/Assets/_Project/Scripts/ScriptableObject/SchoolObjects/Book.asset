@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28995715d2105124c897d841db669f4b, type: 3}
+  m_Name: Book
+  m_EditorClassIdentifier: 
+  <NameObject>k__BackingField: Book
+  <FakeNames>k__BackingField: []
+  <DefaultSpriteObject>k__BackingField: {fileID: 21300000, guid: b1ae5ae7bbf5b9c48af1f3bf9aa1f3cc, type: 3}
+  <SpriteXRayObject>k__BackingField: {fileID: 21300000, guid: 9111208ed77e76a4fa7dccd8b92350ad, type: 3}
+  <ModalScriptable>k__BackingField: {fileID: 11400000, guid: 1eda32ccc77b2dc43937cf03ef50fa50, type: 2}

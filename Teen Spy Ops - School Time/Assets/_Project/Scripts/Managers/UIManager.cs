@@ -37,7 +37,6 @@ namespace Manager
         private Button _xRayButton;
         private Button _fingerprintButton;
         private Button _nightVisionButton;
-        private Button _upgradeVisionButton;
         private Button _phasesButton;
         private Button _mainMenuButton;
 
@@ -72,7 +71,6 @@ namespace Manager
             _xRayButton = GameObject.Find("XRayButton").GetComponent<Button>();
             _fingerprintButton = GameObject.Find("FingerprintButton").GetComponent<Button>();
             _nightVisionButton = GameObject.Find("NightVisionButton").GetComponent<Button>();
-            _upgradeVisionButton = GameObject.Find("UpgradeVisionButton").GetComponent<Button>();
 
             _timerLevelText = GameObject.Find("TimerText").GetComponent<Text>();
             _informationLevelText = GameObject.Find("InformationLevelText").GetComponent<Text>();
@@ -89,7 +87,6 @@ namespace Manager
             _xRayButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedXRay);
             _xRayButton.onClick.AddListener(PlayHudAnimation);
 
-            _upgradeVisionButton.onClick.AddListener(FindObjectOfType<EventManager>().OnUpgradeVision);
 
             _fingerprintButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedFingerprint);
             _fingerprintButton.onClick.AddListener(PlayHudAnimation);
