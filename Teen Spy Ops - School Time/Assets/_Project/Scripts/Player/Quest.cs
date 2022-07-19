@@ -22,6 +22,8 @@ namespace Player
         {
             CurrentNumberStars = 5;
             CurrentErrorNumbers = 0;
+
+   
         }
 
         internal void OnLosedGame() => CurrentNumberStars = 0;

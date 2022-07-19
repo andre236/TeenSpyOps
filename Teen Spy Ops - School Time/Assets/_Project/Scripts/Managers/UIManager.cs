@@ -291,7 +291,9 @@ namespace Manager
 
         internal void OnCountdownXrayTimer(float timer, float initialTimer)
         {
-            _xRayButton.interactable = false;
+            //_xRayButton.interactable = false;
+            _xRayButton.onClick.RemoveAllListeners();
+            _xRayButton.onClick.AddListener(FindObjectOfType<EventManager>().OnUpgradeVision);
 
             if (timer > 0)
             {
@@ -313,6 +315,8 @@ namespace Manager
 
         internal void OnCountdownCooldownXray(float timer, float initialTimer)
         {
+            _xRayButton.onClick.RemoveAllListeners();
+            _xRayButton.interactable = false;
 
             if (timer > 0)
             {
@@ -322,6 +326,8 @@ namespace Manager
             {
                 _xRayCooldownImage.fillAmount = 0;
                 _xRayCooldownImage.gameObject.SetActive(false);
+                _xRayButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedXRay);
+                _xRayButton.onClick.AddListener(PlayHudAnimation);
                 _xRayButton.interactable = true;
             }
         }
