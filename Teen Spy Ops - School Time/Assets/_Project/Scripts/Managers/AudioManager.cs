@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Manager
@@ -5,17 +6,30 @@ namespace Manager
     public class AudioManager : MonoBehaviour
     {
 
-        public AudioController[] SFXArray;
-        
         private void Awake()
         {
             
         }
+
+        internal void OnActivedXRay()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void OnCountdownPerfomed()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void OnPausedGame()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void OnUnPausedGame()
+        {
+            throw new NotImplementedException();
+        }
     }
 
-    [System.Serializable]
-    public class AudioController
-    {
-        public AudioSource SoundEffect;
-    }
 }

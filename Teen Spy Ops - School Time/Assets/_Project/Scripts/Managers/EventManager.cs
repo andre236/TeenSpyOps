@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using Player;
 using Objects;
 using Controllers;
+using UnityEngine.UI;
 
 namespace Manager
 {
@@ -75,28 +76,35 @@ namespace Manager
 
             CountdownPerfomed += _levelManager.OnCountdownTimerLevel;
             CountdownPerfomed += _questPlayer.OnCountdownPerfomed;
+            CountdownPerfomed += _audioManager.OnCountdownPerfomed;
 
             PausedGame += _gameManager.OnPausedGame;
             PausedGame += _uiManager.OnPausedGame;
+            PausedGame += _audioManager.OnPausedGame;
 
             UnPausedGame += _gameManager.OnUnPausedGame;
             UnPausedGame += _uiManager.OnUnPausedGame;
+            UnPausedGame += _audioManager.OnUnPausedGame;
 
             WonGame += _gameManager.OnWonGame;
             WonGame += _uiManager.OnWonGame;
+            WonGame += _audioManager.OnWonGame;
 
             LosedGame += _gameManager.OnLosedGame;
             LosedGame += _questPlayer.OnLosedGame;
             LosedGame += _uiManager.OnLosedGame;
+            LosedGame += _audioManager.OnLosedGame;
 
             ActivedXRay += _gameManager.OnActivedXRay;
             ActivedXRay += _sceneryManager.OnActivedXRay;
             ActivedXRay += _skills.OnActivedXRay;
+            ActivedXRay += _audioManager.OnActivedXRay;
 
             UpgradeXRayVision += _gameManager.OnUpgradeXRayVision;
             UpgradeXRayVision += _sceneryManager.OnUpgradeXRayVision;
             UpgradeXRayVision += _skills.OnUpgradeXRayVision;
             UpgradeXRayVision += _uiManager.OnUpgradeXRayVision;
+            UpgradeXRayVision += _audioManager.OnUpgradeXRayVision;
 
             ActivedFingerprint += _gameManager.OnActivedFingerprint;
             ActivedFingerprint += _sceneryManager.OnActivedFingerprint;

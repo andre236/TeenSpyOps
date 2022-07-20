@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Events;
 using Manager;
@@ -8,7 +9,6 @@ namespace Objects
     public class Collectable : MonoBehaviour
     {
         private string _nameObject;
-        private string[] _fakeNames;
         [SerializeField] private string _hintObject;
         
         private Sprite _spriteObject;
@@ -25,14 +25,13 @@ namespace Objects
         [SerializeField] private ItemConfig _itemConfig;
         [SerializeField] private UnityAction CorrectChoosen;
 
-        public Action<string,string[], Sprite, Sprite, Sprite, Sprite> GotQuestion;
+        public Action<string, Sprite, Sprite, Sprite, Sprite> GotQuestion;
         public Action<GameObject> CheckedItemOnList;
 
 
         private void Awake()
         {
             _nameObject = _itemConfig.NameObject;
-            _fakeNames = _itemConfig.FakeNames;
 
             _normalModal = _itemConfig.ModalScriptable.DefaultCorrectModal;
             _correctModal = _itemConfig.ModalScriptable.DefaultCorrectModal;
@@ -68,7 +67,7 @@ namespace Objects
 
             if (gameManager.CurrentSkill == CurrentTypeObject)
             {
-                GotQuestion?.Invoke(_nameObject, _fakeNames, _spriteObject, _normalModal, _correctModal, _incorrectModal);
+                GotQuestion?.Invoke(_nameObject, _spriteObject, _normalModal, _correctModal, _incorrectModal);
                 CheckedItemOnList?.Invoke(gameObject);
             }
         }

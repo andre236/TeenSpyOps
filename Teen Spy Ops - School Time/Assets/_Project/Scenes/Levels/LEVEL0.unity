@@ -4096,10 +4096,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1027758540}
-        m_TargetAssemblyTypeName: Manager.EventManager, Assembly-CSharp
-        m_MethodName: OnChosenIncorrect
-        m_Mode: 1
+      - m_Target: {fileID: 834133676}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4523,6 +4523,7 @@ GameObject:
   - component: {fileID: 887654505}
   - component: {fileID: 887654508}
   - component: {fileID: 887654507}
+  - component: {fileID: 887654509}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -4593,6 +4594,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 887654504}
   m_CullTransparentMesh: 1
+--- !u!95 &887654509
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887654504}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4b2de2f3a2c81b34b947632e5657e8a9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &894078166
 GameObject:
   m_ObjectHideFlags: 0
@@ -4677,10 +4698,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1027758540}
-        m_TargetAssemblyTypeName: Manager.EventManager, Assembly-CSharp
-        m_MethodName: OnChosenIncorrect
-        m_Mode: 1
+      - m_Target: {fileID: 894078168}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5367,9 +5388,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'CARTOGRAPHY
-
-    NOTEBOOK'
+  m_Text: 
 --- !u!222 &1018696382
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8014,9 +8033,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'CARTOGRAPHY
-
-    NOTEBOOK'
+  m_Text: 
 --- !u!222 &1605560696
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8491,9 +8508,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'CARTOGRAPHY
-
-    NOTEBOOK'
+  m_Text: 
 --- !u!222 &1662152939
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9480,7 +9495,7 @@ MonoBehaviour:
   _alreadyXRayCast: 0
   _alreadyFingerprint: 0
   _alreadyNightVision: 0
-  <TimerXray>k__BackingField: 25
+  <TimerXray>k__BackingField: 60
   <CurrentTimerXray>k__BackingField: 0
   <CooldownToXray>k__BackingField: 40
   <CurrentCooldownToXray>k__BackingField: 0
@@ -9729,19 +9744,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1899389806}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1027758540}
-        m_TargetAssemblyTypeName: Manager.EventManager, Assembly-CSharp
-        m_MethodName: OnChosenCorrect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1899389806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10125,7 +10128,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SFXArray:
-  - SoundEffect: {fileID: 0}
+  - NameSoundEffect: ColetaObject
+    SoundEffect: {fileID: 0}
 --- !u!1 &1978445972
 GameObject:
   m_ObjectHideFlags: 0

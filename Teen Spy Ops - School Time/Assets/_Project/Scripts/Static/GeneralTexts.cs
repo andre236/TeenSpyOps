@@ -1,4 +1,5 @@
 using System.IO;
+using UnityEditor;
 using UnityEngine;
 
 namespace Statics
@@ -29,26 +30,22 @@ namespace Statics
         private void Start()
         {
             GetSchoolObjectsName();
-            
         }
 
         private void GetSchoolObjectsName()
         {
             DirectoryInfo dir = new DirectoryInfo("Assets/_Project/Scripts/ScriptableObject/SchoolObjects");
 
-            FileInfo[] info = dir.GetFiles("*.*") ;
+            FileInfo[] info = dir.GetFiles("*.asset");
 
             NameObjects = new string[info.Length];
 
             for (int i = 0; i < info.Length; i++)
             {
-                if(!info[i].Name.Contains(".meta"))
-                    NameObjects[i] = info[i].Name.Replace(".asset", "");
+                NameObjects[i] = info[i].Name.Replace(".asset", "");
             }
-            //foreach(FileInfo file in info)
-            //{
 
-            //}
+
         }
     }
 }

@@ -1,6 +1,10 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Statics;
+using System.Linq;
+using Random = System.Random;
 
 namespace Manager
 {
@@ -40,7 +44,6 @@ namespace Manager
         private Button _phasesButton;
         private Button _mainMenuButton;
 
-        
 
         private void Awake()
         {
@@ -97,11 +100,13 @@ namespace Manager
             _closeButton.onClick.AddListener(FindObjectOfType<EventManager>().OnUnPausedGame);
             _returnButton.onClick.AddListener(FindObjectOfType<EventManager>().OnUnPausedGame);
 
+            _answersButton[0].onClick.AddListener(FindObjectOfType<EventManager>().OnChosenCorrect);
+            _answersButton[1].onClick.AddListener(FindObjectOfType<EventManager>().OnChosenIncorrect);
+            _answersButton[2].onClick.AddListener(FindObjectOfType<EventManager>().OnChosenIncorrect);
+
 
             //_phasesButton.onClick.AddListener(FindObjectOfType<EventManager>().LoadLevelSelectScene);
         }
-
-
 
         internal void PlayHudAnimation()
         {
@@ -138,14 +143,10 @@ namespace Manager
 
         }
 
-
-
         internal void ShowAmoutItemsLeft(int amountItemsLeft)
         {
             _amountItemsLeftText.text = string.Concat("Objetos Restantes: ", amountItemsLeft.ToString());
         }
-
-
 
         internal void ShowCountdownPerfomedText(float currentTime)
         {
@@ -180,6 +181,7 @@ namespace Manager
             _guessingPage.SetActive(false);
         }
 
+
         // -------------------- OBSERVERS ------------
 
 
@@ -200,7 +202,7 @@ namespace Manager
             _fingerprintCooldownImage.gameObject.SetActive(false);
             _nightVisionTimerImage.gameObject.SetActive(false);
             _nightVisionCooldownImage.gameObject.SetActive(false);
-            
+
             //_barsAnimation.enabled = false;
 
             _informationLevelText.text = string.Concat("Fase ", 3, ": ", "Sala de aula");
@@ -227,14 +229,61 @@ namespace Manager
 
         internal void OnUnPausedGame() => _pausePage.SetActive(false);
 
-        internal void OnGotQuestion(string nameObject, string[] fakeNames, Sprite itemSprite, Sprite normalModal, Sprite correctModalName, Sprite incorrectModal)
+        internal void OnGotQuestion(string nameObject, Sprite itemSprite, Sprite normalModal, Sprite correctModalName, Sprite incorrectModal)
         {
+            string[] nameObjectsGeneral = GeneralTexts.Instance.NameObjects;
+
             Text nameObjectText = _answersButton[0].GetComponentInChildren<Text>();
             nameObjectText.text = nameObject.ToUpper();
             Text fakeNameA = _answersButton[1].GetComponentInChildren<Text>();
             Text fakeNameB = _answersButton[2].GetComponentInChildren<Text>();
-            fakeNameA.text = fakeNames[0].ToUpper();
-            fakeNameB.text = fakeNames[1].ToUpper();
+
+
+
+            Random rng = new Random();
+            var nameObjectsGeneralRandomOrder = nameObjectsGeneral.OrderBy(a => rng.Next()).ToList();
+
+            // Fill the names wich lack.
+
+            for (int i = 0; i < nameObjectsGeneral.Length; i++)
+            {
+                if (!string.Equals(nameObjectText.text, nameObjectsGeneralRandomOrder[i].ToUpper()))
+                {
+                    fakeNameA.text = nameObjectsGeneralRandomOrder[i].ToUpper();
+                    break;
+                }
+                else
+                {
+                    if (i == nameObjectsGeneral.Length - 1)
+                    {
+                        i = 0;
+                    }
+
+                }
+            }
+
+            nameObjectsGeneralRandomOrder = nameObjectsGeneral.OrderBy(a => rng.Next()).ToList();
+
+            for (int i = 0; i < nameObjectsGeneral.Length; i++)
+            {
+                if (!string.Equals(nameObjectText.text, nameObjectsGeneralRandomOrder[i].ToUpper()))
+                {
+                    if (!string.Equals(fakeNameA.text, nameObjectsGeneralRandomOrder[i].ToUpper()))
+                    {
+                        fakeNameB.text = nameObjectsGeneralRandomOrder[i].ToUpper();
+                        break;
+                    }
+                }
+                else
+                {
+                    if (i == nameObjectsGeneral.Length - 1)
+                    {
+                        i = 0;
+                    }
+
+                }
+            }
+
 
 
             int[] randomNumbers = new int[3] { UnityEngine.Random.Range(0, 2), UnityEngine.Random.Range(0, 2), UnityEngine.Random.Range(0, 2) };
@@ -258,7 +307,6 @@ namespace Manager
 
         internal void OnChosenIncorrect()
         {
-
             if (!_errorIcon.activeSelf)
             {
                 _errorIcon.SetActive(true);
