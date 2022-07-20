@@ -30,6 +30,21 @@ namespace Manager
         {
             throw new NotImplementedException();
         }
+
+        internal void OnWonGame()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void OnLosedGame()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void OnUpgradeXRayVision()
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }
