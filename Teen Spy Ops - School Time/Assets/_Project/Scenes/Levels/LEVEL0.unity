@@ -8607,17 +8607,11 @@ MonoBehaviour:
   _alreadyFingerprint: 0
   _alreadyNightVision: 0
   <TimerXray>k__BackingField: 60
-  <CurrentTimerXray>k__BackingField: 0
   <CooldownToXray>k__BackingField: 40
-  <CurrentCooldownToXray>k__BackingField: 0
   <TimerFingerprint>k__BackingField: 16
-  <CurrentTimerFingerprint>k__BackingField: 0
   <CooldownFingerprint>k__BackingField: 30
-  <CurrentCooldownFingerprint>k__BackingField: 0
   <TimerNightVision>k__BackingField: 20
-  <CurrentTimerNightVision>k__BackingField: 0
   <CooldownNightVision>k__BackingField: 35
-  <CurrentCooldownNightVision>k__BackingField: 0
   _firstDistanceRangeXray: 1
   _secondDistanceRangeXray: 2
   _thirdDistanceRangeXray: 3

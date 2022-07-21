@@ -76,54 +76,43 @@ namespace Manager
 
             CountdownPerfomed += _levelManager.OnCountdownTimerLevel;
             CountdownPerfomed += _questPlayer.OnCountdownPerfomed;
-            CountdownPerfomed += _audioManager.OnCountdownPerfomed;
 
             PausedGame += _gameManager.OnPausedGame;
             PausedGame += _uiManager.OnPausedGame;
-            PausedGame += _audioManager.OnPausedGame;
 
             UnPausedGame += _gameManager.OnUnPausedGame;
             UnPausedGame += _uiManager.OnUnPausedGame;
-            UnPausedGame += _audioManager.OnUnPausedGame;
 
             WonGame += _gameManager.OnWonGame;
             WonGame += _uiManager.OnWonGame;
-            WonGame += _audioManager.OnWonGame;
 
             LosedGame += _gameManager.OnLosedGame;
             LosedGame += _questPlayer.OnLosedGame;
             LosedGame += _uiManager.OnLosedGame;
-            LosedGame += _audioManager.OnLosedGame;
 
             ActivedXRay += _gameManager.OnActivedXRay;
             ActivedXRay += _sceneryManager.OnActivedXRay;
             ActivedXRay += _skills.OnActivedXRay;
-            ActivedXRay += _audioManager.OnActivedXRay;
 
             UpgradeXRayVision += _gameManager.OnUpgradeXRayVision;
             UpgradeXRayVision += _sceneryManager.OnUpgradeXRayVision;
             UpgradeXRayVision += _skills.OnUpgradeXRayVision;
             UpgradeXRayVision += _uiManager.OnUpgradeXRayVision;
-            UpgradeXRayVision += _audioManager.OnUpgradeXRayVision;
 
             ActivedFingerprint += _gameManager.OnActivedFingerprint;
             ActivedFingerprint += _sceneryManager.OnActivedFingerprint;
             ActivedFingerprint += _skills.OnActivedFingerprint;
-            ActivedFingerprint += _audioManager.OnActivedFingerprint;
 
             ActivedNightVision += _gameManager.OnActivedNightVision;
             ActivedNightVision += _sceneryManager.OnActivedNightVision;
             ActivedNightVision += _skills.OnActivedNightVision;
-            ActivedNightVision += _audioManager.OnActivedNightVision;
 
             ChosenIncorrect += _guessController.OnChosenIncorrect;
             ChosenIncorrect += _uiManager.OnChosenIncorrect;
             ChosenIncorrect += _questPlayer.OnChosenIncorrect;
-            ChosenIncorrect += _audioManager.OnChosenIncorrect;
 
             ItemCollected += _levelManager.OnCollected;
             ItemCollected += _uiManager.OnCollected;
-            ItemCollected += _audioManager.OnCollected;
 
             foreach (Collectable coll in _levelManager.ItemsCollectable)
             {
@@ -141,7 +130,6 @@ namespace Manager
             EarnedStars += _uiManager.OnEarnedStars;
 
             WonGame += _levelManager.OnWonGame;
-            WonGame += _audioManager.OnWonGame;
 
 
             _skills.CountdownXrayTimer += _uiManager.OnCountdownXrayTimer;
