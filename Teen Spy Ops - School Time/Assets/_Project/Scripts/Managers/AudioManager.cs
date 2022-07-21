@@ -1,4 +1,5 @@
 using System;
+using Sisus.Attributes;
 using UnityEngine;
 
 namespace Manager
@@ -45,6 +46,28 @@ namespace Manager
         {
             throw new NotImplementedException();
         }
+
+        internal void OnActivedFingerprint()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void OnActivedNightVision()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void OnChosenIncorrect()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void OnCollected()
+        {
+            throw new NotImplementedException();
+        }
+
+
     }
 
 }

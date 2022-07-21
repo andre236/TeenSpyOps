@@ -109,17 +109,21 @@ namespace Manager
             ActivedFingerprint += _gameManager.OnActivedFingerprint;
             ActivedFingerprint += _sceneryManager.OnActivedFingerprint;
             ActivedFingerprint += _skills.OnActivedFingerprint;
+            ActivedFingerprint += _audioManager.OnActivedFingerprint;
 
             ActivedNightVision += _gameManager.OnActivedNightVision;
             ActivedNightVision += _sceneryManager.OnActivedNightVision;
             ActivedNightVision += _skills.OnActivedNightVision;
+            ActivedNightVision += _audioManager.OnActivedNightVision;
 
             ChosenIncorrect += _guessController.OnChosenIncorrect;
             ChosenIncorrect += _uiManager.OnChosenIncorrect;
             ChosenIncorrect += _questPlayer.OnChosenIncorrect;
+            ChosenIncorrect += _audioManager.OnChosenIncorrect;
 
             ItemCollected += _levelManager.OnCollected;
             ItemCollected += _uiManager.OnCollected;
+            ItemCollected += _audioManager.OnCollected;
 
             foreach (Collectable coll in _levelManager.ItemsCollectable)
             {
@@ -137,6 +141,7 @@ namespace Manager
             EarnedStars += _uiManager.OnEarnedStars;
 
             WonGame += _levelManager.OnWonGame;
+            WonGame += _audioManager.OnWonGame;
 
 
             _skills.CountdownXrayTimer += _uiManager.OnCountdownXrayTimer;
@@ -188,11 +193,7 @@ namespace Manager
             }
         }
 
-        public void OnChosenIncorrect()
-        {
-            ChosenIncorrect?.Invoke();
-            
-        }
+        public void OnChosenIncorrect() => ChosenIncorrect?.Invoke();
 
         internal void OnPausedGame()
         {

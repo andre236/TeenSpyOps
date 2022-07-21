@@ -15,23 +15,23 @@ namespace Player
 
 
         [field: Range(0, 60)] [field: SerializeField] public float TimerXray { get; private set; }
-        [field: Range(0, 60)] [field: SerializeField] public float CurrentTimerXray { get; private set; }
+        public float CurrentTimerXray { get; private set; }
         [field: Range(0, 60)] [field: SerializeField] public float CooldownToXray { get; private set; }
-        [field: Range(0, 60)] [field: SerializeField] public float CurrentCooldownToXray { get; private set; }
+        public float CurrentCooldownToXray { get; private set; }
 
 
         [field: Space]
         [field: Range(0, 60)] [field: SerializeField] public float TimerFingerprint { get; private set; }
-        [field: Range(0, 60)] [field: SerializeField] public float CurrentTimerFingerprint { get; private set; }
+        public float CurrentTimerFingerprint { get; private set; }
         [field: Range(0, 60)] [field: SerializeField] public float CooldownFingerprint { get; private set; }
-        [field: Range(0, 60)] [field: SerializeField] public float CurrentCooldownFingerprint { get; private set; }
+        public float CurrentCooldownFingerprint { get; private set; }
 
 
         [field: Space]
         [field: Range(0, 60)] [field: SerializeField] public float TimerNightVision { get; private set; }
-        [field: Range(0, 60)] [field: SerializeField] public float CurrentTimerNightVision { get; private set; }
+        public float CurrentTimerNightVision { get; private set; }
         [field: Range(0, 60)] [field: SerializeField] public float CooldownNightVision { get; private set; }
-        [field: Range(0, 60)] [field: SerializeField] public float CurrentCooldownNightVision { get; private set; }
+        public float CurrentCooldownNightVision { get; private set; }
 
 
         public bool AlreadyXRayCast { get => _alreadyXRayCast; private set => _alreadyXRayCast = value; }
@@ -95,7 +95,7 @@ namespace Player
             AlreadyXRayCast = false;
 
             OnUpgradeXRayVision();
-            StartCoroutine(TimerForSkill(CurrentTimerXray, TimerXray ,CurrentCooldownToXray, CooldownToXray, AlreadyXRayCast, CountdownXrayTimer,CountdownXrayCooldown));
+            StartCoroutine(TimerForSkill(CurrentTimerXray, TimerXray, CurrentCooldownToXray, CooldownToXray, AlreadyXRayCast, CountdownXrayTimer, CountdownXrayCooldown));
 
 
 
@@ -126,7 +126,7 @@ namespace Player
 
             _laserMask.GetComponent<Animator>().speed = 1 / (TimerFingerprint / 2);
 
-            StartCoroutine(TimerForSkill(CurrentTimerFingerprint,TimerFingerprint,CurrentCooldownFingerprint, CurrentCooldownFingerprint, AlreadyFingerprint, CountdownFingerprintTimer,CountdownFingerprintCooldown));
+            StartCoroutine(TimerForSkill(CurrentTimerFingerprint, TimerFingerprint, CurrentCooldownFingerprint, CurrentCooldownFingerprint, AlreadyFingerprint, CountdownFingerprintTimer, CountdownFingerprintCooldown));
             AlreadyFingerprint = false;
 
             Debug.Log("Poder fingerprint ativado!");
@@ -137,7 +137,7 @@ namespace Player
             _laserMask.SetActive(false);
             _cursorMaskVision.SetActive(false);
 
-            StartCoroutine(TimerForSkill(CurrentTimerNightVision,TimerNightVision,CurrentCooldownNightVision, CooldownNightVision, AlreadyNightVision, CountdownNightVisionTimer,CountdownNightVisionCooldown));
+            StartCoroutine(TimerForSkill(CurrentTimerNightVision, TimerNightVision, CurrentCooldownNightVision, CooldownNightVision, AlreadyNightVision, CountdownNightVisionTimer, CountdownNightVisionCooldown));
             AlreadyNightVision = false;
 
             Debug.Log("Poder Visão Noturna ativado!");
@@ -163,13 +163,13 @@ namespace Player
 
         }
 
-        IEnumerator TimerForSkill(float timer, float initialTimer, float cooldown, float initialCooldown, bool alreadySkill, Action<float, float> countdownUsingSkill, Action<float,float> countdownSkillCooldown)
+        IEnumerator TimerForSkill(float timer, float initialTimer, float cooldown, float initialCooldown, bool alreadySkill, Action<float, float> countdownUsingSkill, Action<float, float> countdownSkillCooldown)
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
 
-            while(timer > 0)
+            while (timer > 0)
             {
-                if(gameManager.CurrentGameState == GameState.Running)
+                if (gameManager.CurrentGameState == GameState.Running)
                 {
                     timer -= Time.deltaTime;
                 }
@@ -179,7 +179,7 @@ namespace Player
                 yield return timer;
             }
 
-            if(timer <= 0)
+            if (timer <= 0)
             {
                 StartCoroutine(CooldownToUseSkill(cooldown, initialCooldown, alreadySkill, countdownSkillCooldown));
                 FinishedTimerSkill?.Invoke();
@@ -211,7 +211,7 @@ namespace Player
 
 
 
-        
+
 
 
     }
