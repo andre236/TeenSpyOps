@@ -7,6 +7,7 @@ namespace Manager
     public class AudioManager : MonoBehaviour
     {
 
+<<<<<<< Updated upstream
         private void Awake()
         {
             
@@ -68,6 +69,10 @@ namespace Manager
         }
 
 
+=======
+
+        
+>>>>>>> Stashed changes
     }
 
 }

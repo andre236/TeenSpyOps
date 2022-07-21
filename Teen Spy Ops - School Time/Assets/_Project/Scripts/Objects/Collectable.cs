@@ -68,6 +68,7 @@ namespace Objects
             if (gameManager.CurrentSkill == CurrentTypeObject)
             {
                 GotQuestion?.Invoke(_nameObject, _spriteObject, _normalModal, _correctModal, _incorrectModal);
+                GetComponent<AudioSource>().Play();
                 CheckedItemOnList?.Invoke(gameObject);
             }
         }

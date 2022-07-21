@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28995715d2105124c897d841db669f4b, type: 3}
+  m_Name: Calculator
+  m_EditorClassIdentifier: 
+  <NameObject>k__BackingField: Calculator
+  <FakeNames>k__BackingField: []
+  <DefaultSpriteObject>k__BackingField: {fileID: 21300000, guid: 5fd0508a6bd97914eb263797956af94d, type: 3}
+  <SpriteXRayObject>k__BackingField: {fileID: 21300000, guid: 95934260fb9fe274cb159aec9b27ec23, type: 3}
+  <ModalScriptable>k__BackingField: {fileID: 11400000, guid: 1eda32ccc77b2dc43937cf03ef50fa50, type: 2}

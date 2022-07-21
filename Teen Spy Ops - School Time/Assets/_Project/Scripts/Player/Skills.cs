@@ -14,9 +14,9 @@ namespace Player
         [SerializeField] private bool _alreadyNightVision;
 
 
-        [field: Range(0, 60)] [field: SerializeField] public float TimerXray { get; private set; }
+        [field: Range(0, 90)] [field: SerializeField] public float TimerXray { get; private set; }
         public float CurrentTimerXray { get; private set; }
-        [field: Range(0, 60)] [field: SerializeField] public float CooldownToXray { get; private set; }
+        [field: Range(0, 90)] [field: SerializeField] public float CooldownToXray { get; private set; }
         public float CurrentCooldownToXray { get; private set; }
 
 
