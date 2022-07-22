@@ -18,12 +18,13 @@ namespace Objects
 
         private Animator _clickOverAnimation;
 
+        
+        private ItemConfig _itemConfig;
+        [SerializeField] private UnityAction CorrectChoosen;
+        
         [field: Header("Where you going find")]
         [field: SerializeField] public SkillState CurrentTypeObject { get; private set; }
         [field: SerializeField] public XRayDistance CurrentDistanceHidden { get; private set; }
-        [Space]
-        [SerializeField] private ItemConfig _itemConfig;
-        [SerializeField] private UnityAction CorrectChoosen;
 
         public Action<string, Sprite, Sprite, Sprite, Sprite> GotQuestion;
         public Action<GameObject> CheckedItemOnList;
@@ -68,6 +69,7 @@ namespace Objects
             if (gameManager.CurrentSkill == CurrentTypeObject)
             {
                 GotQuestion?.Invoke(_nameObject, _spriteObject, _normalModal, _correctModal, _incorrectModal);
+                GetComponent<AudioSource>().Play();
                 CheckedItemOnList?.Invoke(gameObject);
             }
         }
@@ -128,6 +130,14 @@ namespace Objects
                 gameObject.SetActive(true);
             else
                 gameObject.SetActive(false);
+        }
+
+        private void GetRandomSchoolObject()
+        {
+            DirectoryInfo dir = new DirectoryInfo("Assets/_Project/Scripts/ScriptableObject/SchoolObjects");
+
+            FileInfo[] files = dir.GetFiles("*.asset");
+
         }
     }
 }

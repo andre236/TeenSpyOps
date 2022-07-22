@@ -8,6 +8,7 @@ TagManager:
   - NightVision
   - Normal
   - Fingerprint
+  - RespawnObject
   layers:
   - Default
   - TransparentFX

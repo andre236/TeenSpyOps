@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28995715d2105124c897d841db669f4b, type: 3}
-  m_Name: Eraser
+  m_Name: Glue Stick
   m_EditorClassIdentifier: 
-  <NameObject>k__BackingField: Eraser
+  <NameObject>k__BackingField: Glue Stick
   <FakeNames>k__BackingField: []
-  <DefaultSpriteObject>k__BackingField: {fileID: 21300000, guid: 8d644e20f31fbb140901c89788ec03cf, type: 3}
-  <SpriteXRayObject>k__BackingField: {fileID: 21300000, guid: 81971b34b0e36b2498a99c10ceedab16, type: 3}
+  <DefaultSpriteObject>k__BackingField: {fileID: 21300000, guid: b78abc8c50fc387498e0e9ada31b9206, type: 3}
+  <SpriteXRayObject>k__BackingField: {fileID: 21300000, guid: c39986ae104e63340983010c26944a5d, type: 3}
   <ModalScriptable>k__BackingField: {fileID: 11400000, guid: 1eda32ccc77b2dc43937cf03ef50fa50, type: 2}

@@ -10,15 +10,31 @@ namespace Manager
     public class LevelManager : MonoBehaviour
     {
         [SerializeField] private string _levelName;
+        [SerializeField] private GameObject _prefabSchoolObject;
+        [SerializeField] private GameObject[] _schoolObjects;
+
         [field: SerializeField] public float InitialTimerLevel { get; private set; }
         public float TimerLevel { get; private set; }
-        [SerializeField] public List<Collectable> ItemsCollectable = new List<Collectable>();
         public int ItemsLeft { get; private set; }
-        [field:SerializeField] public GameObject CurrentObject { get; private set; }
+        public List<Collectable> ItemsCollectable { get; private set; }
+        public GameObject CurrentObject { get; private set; }
+
 
         public Action StoppedTimer;
 
-        private void Awake() => ItemsCollectable.AddRange(FindObjectsOfType<Collectable>());
+        private void Awake()
+        {
+            _schoolObjects = GameObject.FindGameObjectsWithTag("RespawnObject");
+            
+            for(int i = 0; i < 3; i++)
+            {
+                Instantiate(_prefabSchoolObject, _schoolObjects[UnityEngine.Random.Range(0, _schoolObjects.Length - 1)].transform);
+            }
+
+            ItemsCollectable = new List<Collectable>();
+            ItemsCollectable.AddRange(FindObjectsOfType<Collectable>());
+            
+        }
 
         internal void OnInitializedLevel()
         {
@@ -58,17 +74,19 @@ namespace Manager
 
         internal void OnEarnedStars(int amountStars)
         {
-            if(PlayerPrefs.GetInt(string.Concat("STARS",SceneManager.GetActiveScene().name)) < amountStars)
+            if (PlayerPrefs.GetInt(string.Concat("STARS", SceneManager.GetActiveScene().name)) < amountStars)
                 PlayerPrefs.SetInt(string.Concat("STARS", SceneManager.GetActiveScene().name), amountStars);
+
+            
         }
 
         internal void OnWonGame()
         {
             string nameLevel = Regex.Match(SceneManager.GetActiveScene().name, @"\d+").Value;
             int numberNextLevel = int.Parse(nameLevel) + 1;
-           
-            PlayerPrefs.SetInt("LEVEL"+ numberNextLevel, 1);
-            
+
+            PlayerPrefs.SetInt("LEVEL" + numberNextLevel, 1);
+
         }
     }
 }
