@@ -1,5 +1,7 @@
 using System;
 using System.IO;
+using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Manager;
@@ -71,32 +73,14 @@ namespace Objects
 
             FileInfo[] filesInfo = directory.GetFiles("*.asset");
 
+            List<FileInfo> filesOnShuffled = filesInfo.OrderBy(a => Guid.NewGuid()).ToList();
+
             int randomNumber = UnityEngine.Random.Range(0, filesInfo.Length - 1);
 
+            _itemConfig = (ItemConfig)AssetDatabase.LoadAssetAtPath(directory + "/" + filesInfo[randomNumber].Name, typeof(ItemConfig));
 
-            for (int i = 0; i < filesInfo.Length; i++)
-            {
-                randomNumber = UnityEngine.Random.Range(0, filesInfo.Length - 1);
-
-                if (PlayerPrefs.GetInt(filesInfo[randomNumber].Name) == 0)
-                {
-                    _itemConfig = (ItemConfig)AssetDatabase.LoadAssetAtPath(directory + "/" + filesInfo[randomNumber].Name, typeof(ItemConfig));
-
-                    PlayerPrefs.SetInt(filesInfo[randomNumber].Name, 1);
-                    Debug.Log("Registrado o item: " + filesInfo[randomNumber].Name);
-                    break;
-                }
-                //else
-                //{
-                //    i--;
-                //}
-
-            }
-
-            Debug.Log("Finalizado a geração.");
-
-  
-
+            PlayerPrefs.SetInt(filesInfo[randomNumber].Name, 1);
+            Debug.Log("Registrado o item: " + filesInfo[randomNumber].Name);
         }
 
         private void OnMouseDown()
