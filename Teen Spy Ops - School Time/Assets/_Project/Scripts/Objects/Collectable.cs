@@ -3,6 +3,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.Events;
 using Manager;
+using UnityEditor;
 
 namespace Objects
 {
@@ -10,7 +11,7 @@ namespace Objects
     {
         private string _nameObject;
         [SerializeField] private string _hintObject;
-        
+
         private Sprite _spriteObject;
         private Sprite _normalModal;
         private Sprite _correctModal;
@@ -18,10 +19,10 @@ namespace Objects
 
         private Animator _clickOverAnimation;
 
-        
+
         private ItemConfig _itemConfig;
         [SerializeField] private UnityAction CorrectChoosen;
-        
+
         [field: Header("Where you going find")]
         [field: SerializeField] public SkillState CurrentTypeObject { get; private set; }
         [field: SerializeField] public XRayDistance CurrentDistanceHidden { get; private set; }
@@ -32,6 +33,7 @@ namespace Objects
 
         private void Awake()
         {
+            GetRandomSchoolObject();
             _nameObject = _itemConfig.NameObject;
 
             _normalModal = _itemConfig.ModalScriptable.DefaultCorrectModal;
@@ -59,6 +61,41 @@ namespace Objects
             else
                 gameObject.SetActive(false);
 
+
+        }
+
+
+        private void GetRandomSchoolObject()
+        {
+            DirectoryInfo directory = new DirectoryInfo("Assets/_Project/Scripts/ScriptableObject/SchoolObjects");
+
+            FileInfo[] filesInfo = directory.GetFiles("*.asset");
+
+            int randomNumber = UnityEngine.Random.Range(0, filesInfo.Length - 1);
+
+
+            for (int i = 0; i < filesInfo.Length; i++)
+            {
+                randomNumber = UnityEngine.Random.Range(0, filesInfo.Length - 1);
+
+                if (PlayerPrefs.GetInt(filesInfo[randomNumber].Name) == 0)
+                {
+                    _itemConfig = (ItemConfig)AssetDatabase.LoadAssetAtPath(directory + "/" + filesInfo[randomNumber].Name, typeof(ItemConfig));
+
+                    PlayerPrefs.SetInt(filesInfo[randomNumber].Name, 1);
+                    Debug.Log("Registrado o item: " + filesInfo[randomNumber].Name);
+                    break;
+                }
+                //else
+                //{
+                //    i--;
+                //}
+
+            }
+
+            Debug.Log("Finalizado a geração.");
+
+  
 
         }
 
@@ -132,12 +169,6 @@ namespace Objects
                 gameObject.SetActive(false);
         }
 
-        private void GetRandomSchoolObject()
-        {
-            DirectoryInfo dir = new DirectoryInfo("Assets/_Project/Scripts/ScriptableObject/SchoolObjects");
 
-            FileInfo[] files = dir.GetFiles("*.asset");
-
-        }
     }
 }

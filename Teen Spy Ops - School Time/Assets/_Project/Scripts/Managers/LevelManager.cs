@@ -11,7 +11,8 @@ namespace Manager
     {
         [SerializeField] private string _levelName;
         [SerializeField] private GameObject _prefabSchoolObject;
-        [SerializeField] private GameObject[] _schoolObjects;
+        [SerializeField] private GameObject[] _spawnSchoolObject;
+        [SerializeField] private string[] _allowedSchoolObjects;
 
         [field: SerializeField] public float InitialTimerLevel { get; private set; }
         public float TimerLevel { get; private set; }
@@ -19,17 +20,13 @@ namespace Manager
         public List<Collectable> ItemsCollectable { get; private set; }
         public GameObject CurrentObject { get; private set; }
 
-
         public Action StoppedTimer;
 
         private void Awake()
         {
-            _schoolObjects = GameObject.FindGameObjectsWithTag("RespawnObject");
-            
-            for(int i = 0; i < 3; i++)
-            {
-                Instantiate(_prefabSchoolObject, _schoolObjects[UnityEngine.Random.Range(0, _schoolObjects.Length - 1)].transform);
-            }
+            _spawnSchoolObject = GameObject.FindGameObjectsWithTag("RespawnObject");
+
+
 
             ItemsCollectable = new List<Collectable>();
             ItemsCollectable.AddRange(FindObjectsOfType<Collectable>());
@@ -38,6 +35,25 @@ namespace Manager
 
         internal void OnInitializedLevel()
         {
+            string nameLevel = Regex.Match(SceneManager.GetActiveScene().name, @"\d+").Value;
+            int numberCurrentLevel = int.Parse(nameLevel);
+
+            int randomIndexObject = UnityEngine.Random.Range(0, _spawnSchoolObject.Length - 1);
+
+            for (int i = 0; i < 3; i++)
+            {
+                Instantiate(_prefabSchoolObject, _spawnSchoolObject[randomIndexObject].transform);
+                
+            }
+
+            //for(int i = 0; i < 3; i++)
+            //{
+            //    if (PlayerPrefs.GetString("Item_"+i+"_LEVEL" + numberCurrentLevel) == null)
+            //        PlayerPrefs.SetString("Item_" + i + "_LEVEL" + numberCurrentLevel, _allowedSchoolObjects[i]);
+            //}
+
+
+
             TimerLevel = InitialTimerLevel;
             ItemsLeft = ItemsCollectable.Count;
         }
