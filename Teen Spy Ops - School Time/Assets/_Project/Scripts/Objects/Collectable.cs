@@ -73,14 +73,33 @@ namespace Objects
 
             FileInfo[] filesInfo = directory.GetFiles("*.asset");
 
-            List<FileInfo> filesOnShuffled = filesInfo.OrderBy(a => Guid.NewGuid()).ToList();
+            int[] numbersToShuffle = new int[filesInfo.Length];
 
-            int randomNumber = UnityEngine.Random.Range(0, filesInfo.Length - 1);
 
-            _itemConfig = (ItemConfig)AssetDatabase.LoadAssetAtPath(directory + "/" + filesInfo[randomNumber].Name, typeof(ItemConfig));
+            for (int i = 0; i < filesInfo.Length; i++)
+            {
+                numbersToShuffle[i] = i;
+            }
 
-            PlayerPrefs.SetInt(filesInfo[randomNumber].Name, 1);
-            Debug.Log("Registrado o item: " + filesInfo[randomNumber].Name);
+            var sortedNumbers = numbersToShuffle.OrderBy(a => Guid.NewGuid()).ToArray();
+            
+            for( int i = 0; i < sortedNumbers.Length; i++)
+            {
+                if(PlayerPrefs.GetInt(filesInfo[sortedNumbers[i]].Name) == 0)
+                {
+                    _itemConfig = (ItemConfig)AssetDatabase.LoadAssetAtPath(directory + "/" + filesInfo[sortedNumbers[i]].Name, typeof(ItemConfig));
+                    PlayerPrefs.SetInt(filesInfo[sortedNumbers[i]].Name, 1);
+                    Debug.Log("Registrado o item: " + filesInfo[sortedNumbers[i]].Name);
+                    break;
+                }
+                else if(i == sortedNumbers.Length - 1 && PlayerPrefs.GetInt(filesInfo[sortedNumbers[i]].Name) == 1)
+                {
+                    Debug.Log("Todos já foram gerados.");
+                }
+            }
+            
+
+          
         }
 
         private void OnMouseDown()
