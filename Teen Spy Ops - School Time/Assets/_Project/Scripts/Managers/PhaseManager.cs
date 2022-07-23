@@ -1,4 +1,8 @@
+using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,6 +22,7 @@ namespace Manager
             public int Stars;
             public GameObject PhaseButtonPrefab;
             public RawImage[] StarsImage;
+            public ItemConfig[] ItemsOnPhase;
         }
 
         public List<Phase> PhaseList;
@@ -28,6 +33,7 @@ namespace Manager
         {
             ActiveButtonStars();
             CheckHavePhaseSelected();
+            SetItemsEachPhase();
         }
 
         private void CheckHavePhaseSelected()
@@ -44,7 +50,6 @@ namespace Manager
 
             foreach (Phase phaseButton in PhaseList)
             {
-
                 // Verifying if Unlocked or not
                 if (PlayerPrefs.GetInt("LEVEL" + PhaseList.IndexOf(phaseButton)) > 0)
                     phaseButton.Unlocked = true;
@@ -76,6 +81,30 @@ namespace Manager
 
             }
 
+
+        }
+
+        private void SetItemsEachPhase()
+        {
+            DirectoryInfo directory = new DirectoryInfo("Assets/_Project/Scripts/ScriptableObject/SchoolObjects");
+            FileInfo[] filesInfo = directory.GetFiles("*.asset");
+
+            int[] numbersToShuffle = new int[filesInfo.Length];
+
+            for (int i = 0; i < filesInfo.Length; i++)
+            {
+                numbersToShuffle[i] = i;
+            }
+
+            var sortedNumbers = numbersToShuffle.OrderBy(a => Guid.NewGuid()).ToArray();
+
+            for(int numberPhase = 0; numberPhase < 8; numberPhase++)
+            {
+                for(int items = 0; items < 3; items++)
+                {
+                    PhaseList[numberPhase].ItemsOnPhase[items] = (ItemConfig)AssetDatabase.LoadAssetAtPath(directory + "/" + sortedNumbers[items], typeof(ItemConfig));
+                }
+            }
 
         }
 

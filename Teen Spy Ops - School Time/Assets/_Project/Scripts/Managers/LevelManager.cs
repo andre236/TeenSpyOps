@@ -1,9 +1,12 @@
+using System;
+using System.IO;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using Objects;
-using System;
+using UnityEditor;
 
 namespace Manager
 {
@@ -20,6 +23,8 @@ namespace Manager
         public float TimerLevel { get; private set; }
         public GameObject CurrentObject { get; private set; }
         public int ItemsLeft { get; private set; }
+        public string[] AllowedSchoolObjects { get => _allowedSchoolObjects; set => _allowedSchoolObjects = value; }
+
         public List<Collectable> ItemsCollectable = new List<Collectable>();
 
         public Action StoppedTimer;
@@ -27,8 +32,7 @@ namespace Manager
         private void Awake()
         {
             _spawnSchoolObject = GameObject.FindGameObjectsWithTag("RespawnObject");
-
-
+            CheckObjectsPermission();
             ItemsCollectable.AddRange(FindObjectsOfType<Collectable>());
         }
 
@@ -50,19 +54,49 @@ namespace Manager
                     break;
             }
 
-            //string nameLevel = Regex.Match(SceneManager.GetActiveScene().name, @"\d+").Value;
-            //int numberCurrentLevel = int.Parse(nameLevel);
-
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    if (PlayerPrefs.GetString("Item_" + i + "_LEVEL" + numberCurrentLevel) == null)
-            //        PlayerPrefs.SetString("Item_" + i + "_LEVEL" + numberCurrentLevel, _allowedSchoolObjects[i]);
-            //}
-
-
-
             TimerLevel = InitialTimerLevel;
             ItemsLeft = ItemsCollectable.Count;
+        }
+
+        private void CheckObjectsPermission()
+        {
+            DirectoryInfo directory = new DirectoryInfo("Assets/_Project/Scripts/ScriptableObject/SchoolObjects");
+
+            FileInfo[] filesInfo = directory.GetFiles("*.asset");
+
+            int[] numbersToShuffle = new int[filesInfo.Length];
+
+            for (int i = 0; i < filesInfo.Length; i++)
+            {
+                numbersToShuffle[i] = i;
+            }
+
+            var sortedNumbers = numbersToShuffle.OrderBy(a => Guid.NewGuid()).ToArray();
+
+            for (int i = 0; i < sortedNumbers.Length; i++)
+            {
+                if (i >= AllowedSchoolObjects.Length)
+                    break;
+
+                if (AllowedSchoolObjects[i] == null)
+                {
+                    AllowedSchoolObjects[i] = filesInfo[sortedNumbers[i]].Name;
+                    Debug.Log("Registrado o item: " + filesInfo[sortedNumbers[i]].Name + "na posição " + AllowedSchoolObjects[i]);
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            string nameLevel = Regex.Match(SceneManager.GetActiveScene().name, @"\d+").Value;
+            int numberCurrentLevel = int.Parse(nameLevel);
+
+            for (int i = 0; i < 3; i++)
+            {
+                if (PlayerPrefs.GetString("Item_" + i + "_LEVEL" + numberCurrentLevel) == null)
+                    PlayerPrefs.SetString("Item_" + i + "_LEVEL" + numberCurrentLevel, AllowedSchoolObjects[i]);
+            }
         }
 
         internal void OnCountdownTimerLevel()

@@ -21,23 +21,15 @@ namespace Objects
 
         private Animator _clickOverAnimation;
 
-<<<<<<< Updated upstream
-=======
         [SerializeField] private bool _isRandomValue;
         [SerializeField] private SkillState _customTypeObject;
         [SerializeField] private XRayDistance _customDistanceHidden;
         [Space]
->>>>>>> Stashed changes
 
         private ItemConfig _itemConfig;
         [SerializeField] private UnityAction CorrectChoosen;
 
-<<<<<<< Updated upstream
-        [field: Header("Where you going find")]
         [field: SerializeField] public SkillState CurrentTypeObject { get; private set; }
-=======
-        [field:SerializeField] public SkillState CurrentTypeObject { get; private set; }
->>>>>>> Stashed changes
         [field: SerializeField] public XRayDistance CurrentDistanceHidden { get; private set; }
 
         public Action<string, Sprite, Sprite, Sprite, Sprite> GotQuestion;
@@ -61,14 +53,7 @@ namespace Objects
         {
             var gameManager = FindObjectOfType<GameManager>();
 
-<<<<<<< Updated upstream
-=======
-            if (_isRandomValue)
-            {
-                CurrentTypeObject = (SkillState)UnityEngine.Random.Range(1, 3);
-                CurrentDistanceHidden = (XRayDistance)UnityEngine.Random.Range(0, 2);
-            }
->>>>>>> Stashed changes
+            GenerateSkillRandom();
 
             if (CurrentTypeObject == SkillState.XRay)
                 _spriteObject = _itemConfig.SpriteXRayObject;
@@ -85,44 +70,40 @@ namespace Objects
 
         }
 
-        //private void SetRandomSkill()
-        //{
-        //    _currentTypeObject = (SkillState)UnityEngine.Random.Range(1, 3);
-        //}
-
         private void GetRandomSchoolObject()
         {
             DirectoryInfo directory = new DirectoryInfo("Assets/_Project/Scripts/ScriptableObject/SchoolObjects");
 
             FileInfo[] filesInfo = directory.GetFiles("*.asset");
+            LevelManager levelManager = FindObjectOfType<LevelManager>();
+            ItemConfig[] itemsInScene = FindObjectsOfType<ItemConfig>();
 
-            int[] numbersToShuffle = new int[filesInfo.Length];
-
-
-            for (int i = 0; i < filesInfo.Length; i++)
+            for (int i = 0; i < levelManager.AllowedSchoolObjects.Length; i++)
             {
-                numbersToShuffle[i] = i;
-            }
-
-            var sortedNumbers = numbersToShuffle.OrderBy(a => Guid.NewGuid()).ToArray();
-            
-            for( int i = 0; i < sortedNumbers.Length; i++)
-            {
-                if(PlayerPrefs.GetInt(filesInfo[sortedNumbers[i]].Name) == 0)
+                if (filesInfo[i].Name == levelManager.AllowedSchoolObjects[i])
                 {
-                    _itemConfig = (ItemConfig)AssetDatabase.LoadAssetAtPath(directory + "/" + filesInfo[sortedNumbers[i]].Name, typeof(ItemConfig));
-                    PlayerPrefs.SetInt(filesInfo[sortedNumbers[i]].Name, 1);
-                    Debug.Log("Registrado o item: " + filesInfo[sortedNumbers[i]].Name);
-                    break;
-                }
-                else if(i == sortedNumbers.Length - 1 && PlayerPrefs.GetInt(filesInfo[sortedNumbers[i]].Name) == 1)
-                {
-                    Debug.Log("Todos já foram gerados.");
+                    if(itemsInScene[i].NameObject != filesInfo[i].Name.Replace(".asset", ""))
+                    {
+                        _itemConfig = (ItemConfig)AssetDatabase.LoadAssetAtPath(directory + "/" + filesInfo[i].Name, typeof(ItemConfig));
+                        Debug.Log("Registrado o item: " + filesInfo[i].Name);
+                        break;
+                    }
+                    else
+                    {
+                        Debug.Log("Já existe um objeto com o nome: " + filesInfo[i].Name);
+                    }
                 }
             }
-            
 
-          
+        }
+
+        private void GenerateSkillRandom()
+        {
+            if (!_isRandomValue)
+                return;
+
+            CurrentTypeObject = (SkillState)UnityEngine.Random.Range(1, 3);
+            CurrentDistanceHidden = (XRayDistance)UnityEngine.Random.Range(0, 2);
         }
 
         private void OnMouseDown()
