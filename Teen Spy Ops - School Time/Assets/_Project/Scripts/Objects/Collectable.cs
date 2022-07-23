@@ -21,23 +21,12 @@ namespace Objects
 
         private Animator _clickOverAnimation;
 
-<<<<<<< Updated upstream
-=======
-        [SerializeField] private bool _isRandomValue;
-        [SerializeField] private SkillState _customTypeObject;
-        [SerializeField] private XRayDistance _customDistanceHidden;
-        [Space]
->>>>>>> Stashed changes
 
         private ItemConfig _itemConfig;
         [SerializeField] private UnityAction CorrectChoosen;
 
-<<<<<<< Updated upstream
         [field: Header("Where you going find")]
         [field: SerializeField] public SkillState CurrentTypeObject { get; private set; }
-=======
-        [field:SerializeField] public SkillState CurrentTypeObject { get; private set; }
->>>>>>> Stashed changes
         [field: SerializeField] public XRayDistance CurrentDistanceHidden { get; private set; }
 
         public Action<string, Sprite, Sprite, Sprite, Sprite> GotQuestion;
@@ -61,14 +50,6 @@ namespace Objects
         {
             var gameManager = FindObjectOfType<GameManager>();
 
-<<<<<<< Updated upstream
-=======
-            if (_isRandomValue)
-            {
-                CurrentTypeObject = (SkillState)UnityEngine.Random.Range(1, 3);
-                CurrentDistanceHidden = (XRayDistance)UnityEngine.Random.Range(0, 2);
-            }
->>>>>>> Stashed changes
 
             if (CurrentTypeObject == SkillState.XRay)
                 _spriteObject = _itemConfig.SpriteXRayObject;
