@@ -14,10 +14,12 @@ namespace Manager
         [SerializeField] private GameObject[] _spawnSchoolObject;
         [SerializeField] private string[] _allowedSchoolObjects;
 
+        private int _amountInstantiatedSchoolObjects;
+
         [field: SerializeField] public float InitialTimerLevel { get; private set; }
         public float TimerLevel { get; private set; }
         public int ItemsLeft { get; private set; }
-        public List<Collectable> ItemsCollectable { get; private set; }
+        public List<Collectable> ItemsCollectable = new List<Collectable>();
         public GameObject CurrentObject { get; private set; }
 
         public Action StoppedTimer;
@@ -26,29 +28,34 @@ namespace Manager
         {
             _spawnSchoolObject = GameObject.FindGameObjectsWithTag("RespawnObject");
 
-
-
-            ItemsCollectable = new List<Collectable>();
-            ItemsCollectable.AddRange(FindObjectsOfType<Collectable>());
             
+            ItemsCollectable.AddRange(FindObjectsOfType<Collectable>());            
         }
 
         internal void OnInitializedLevel()
         {
-            string nameLevel = Regex.Match(SceneManager.GetActiveScene().name, @"\d+").Value;
-            int numberCurrentLevel = int.Parse(nameLevel);
-
             int randomIndexObject = UnityEngine.Random.Range(0, _spawnSchoolObject.Length - 1);
-
-            for (int i = 0; i < 3; i++)
+            
+            for (int i = 0; i < 100; i++)
             {
-                Instantiate(_prefabSchoolObject, _spawnSchoolObject[randomIndexObject].transform);
-                
+                if(_spawnSchoolObject[randomIndexObject].transform.childCount == 0 && _amountInstantiatedSchoolObjects < 3)
+                {
+                    Instantiate(_prefabSchoolObject, _spawnSchoolObject[randomIndexObject].transform);
+                    _amountInstantiatedSchoolObjects++;
+                }
+
+                randomIndexObject = UnityEngine.Random.Range(0, _spawnSchoolObject.Length - 1);
+
+                if (_amountInstantiatedSchoolObjects >= 3)
+                    break;
             }
 
-            //for(int i = 0; i < 3; i++)
+            //string nameLevel = Regex.Match(SceneManager.GetActiveScene().name, @"\d+").Value;
+            //int numberCurrentLevel = int.Parse(nameLevel);
+
+            //for (int i = 0; i < 3; i++)
             //{
-            //    if (PlayerPrefs.GetString("Item_"+i+"_LEVEL" + numberCurrentLevel) == null)
+            //    if (PlayerPrefs.GetString("Item_" + i + "_LEVEL" + numberCurrentLevel) == null)
             //        PlayerPrefs.SetString("Item_" + i + "_LEVEL" + numberCurrentLevel, _allowedSchoolObjects[i]);
             //}
 

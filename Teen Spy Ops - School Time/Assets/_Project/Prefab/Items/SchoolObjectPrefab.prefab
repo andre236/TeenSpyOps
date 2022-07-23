@@ -101,9 +101,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hintObject: 
-  <CurrentTypeObject>k__BackingField: 0
-  <CurrentDistanceHidden>k__BackingField: 0
-  _itemConfig: {fileID: 0}
+  _isRandomValue: 1
+  _currentTypeObject: 0
+  _currentDistanceHidden: 0
 --- !u!61 &7814311829239500285
 BoxCollider2D:
   m_ObjectHideFlags: 0
