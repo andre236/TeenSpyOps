@@ -282,8 +282,6 @@ namespace Manager
                 }
             }
 
-
-
             int[] randomNumbers = new int[3] { UnityEngine.Random.Range(0, 2), UnityEngine.Random.Range(0, 2), UnityEngine.Random.Range(0, 2) };
 
             for (int i = 0; i < 3; i++)
@@ -420,9 +418,6 @@ namespace Manager
             {
                 _nightVisionTimerImage.fillAmount = 0;
                 _nightVisionTimerImage.gameObject.SetActive(false);
-
-
-
             }
         }
 
