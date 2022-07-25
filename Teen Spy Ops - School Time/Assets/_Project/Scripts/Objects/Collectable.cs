@@ -102,11 +102,12 @@ namespace Objects
         private void OnMouseDown()
         {
             var gameManager = FindObjectOfType<GameManager>();
+            var levelManager = FindObjectOfType<LevelManager>();
 
             if (gameManager.CurrentSkill == CurrentTypeObject)
             {
-                GotQuestion?.Invoke(_nameObject, _spriteObject);
                 CheckedItemOnList?.Invoke(gameObject);
+                GotQuestion?.Invoke(levelManager.CurrentObject.name, levelManager.CurrentObject.GetComponent<SpriteRenderer>().sprite);
             }
         }
 
@@ -131,8 +132,6 @@ namespace Objects
             if (this == null)
                 return;
             
-           
-
             var gameManager = FindObjectOfType<GameManager>();
 
             GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;

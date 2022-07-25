@@ -164,8 +164,8 @@ namespace Manager
         {
             foreach (Collectable coll in _levelManager.ItemsCollectable)
             {
-                coll.CheckedItemOnList += _levelManager.OnCheckedItemOnList;
                 coll.GotQuestion += _uiManager.OnGotQuestion;
+                coll.CheckedItemOnList += _levelManager.OnCheckedItemOnList;
 
                 ActivedXRay += coll.OnActivatedXray;
                 ActivedNightVision += coll.OnActivedNightVision;
