@@ -34,6 +34,7 @@ namespace Manager
             ActiveButtonStars();
             CheckHavePhaseSelected();
             SetItemsEachPhase();
+            LoadItemEachPhase();
         }
 
         private void CheckHavePhaseSelected()
@@ -86,6 +87,9 @@ namespace Manager
 
         private void SetItemsEachPhase()
         {
+            if (PlayerPrefs.GetInt("ItemsGenerated") == 1)
+                return;
+
             DirectoryInfo directory = new DirectoryInfo("Assets/_Project/Scripts/ScriptableObject/SchoolObjects");
             FileInfo[] filesInfo = directory.GetFiles("*.asset");
 
@@ -98,14 +102,52 @@ namespace Manager
 
             var sortedNumbers = numbersToShuffle.OrderBy(a => Guid.NewGuid()).ToArray();
 
-            for(int numberPhase = 0; numberPhase < 8; numberPhase++)
+            int indexItem = 0;
+            for (int numberPhase = 0; numberPhase < 8; numberPhase++)
             {
                 for(int items = 0; items < 3; items++)
                 {
-                    PhaseList[numberPhase].ItemsOnPhase[items] = (ItemConfig)AssetDatabase.LoadAssetAtPath(directory + "/" + sortedNumbers[items], typeof(ItemConfig));
+                    PhaseList[numberPhase].ItemsOnPhase[items] = (ItemConfig)AssetDatabase.LoadAssetAtPath(directory + "/" + filesInfo[sortedNumbers[indexItem]].Name, typeof(ItemConfig));
+                    PlayerPrefs.SetString("LEVEL"+numberPhase+"_ITEMINDEX_"+ indexItem+"_ITEMPOSITION"+ items, filesInfo[sortedNumbers[indexItem]].Name);
+                    indexItem++;
+                    if (items == 2 && numberPhase == 7)
+                        PlayerPrefs.SetInt("ItemsGenerated", 1);
+                        
                 }
+
+
             }
 
+
+            //int indexVerification = 0;
+            //for (int numberPhase = 0; numberPhase < 8; numberPhase++)
+            //{
+            //    for (int items = 0; items < 3; items++)
+            //    {
+            //        Debug.Log(PlayerPrefs.GetString("LEVEL" + numberPhase + "_ITEMINDEX_" + indexVerification + "_ITEMPOSITION" + items));
+            //        indexVerification++;
+            //    }
+            //}
+
+        }
+
+        private void LoadItemEachPhase()
+        {
+            if (PlayerPrefs.GetInt("ItemsGenerated") == 0)
+                return;
+
+            DirectoryInfo directory = new DirectoryInfo("Assets/_Project/Scripts/ScriptableObject/SchoolObjects");
+            FileInfo[] filesInfo = directory.GetFiles("*.asset");
+
+            int indexItem = 0;
+            for (int numberPhase = 0; numberPhase < 8; numberPhase++)
+            {
+                for (int items = 0; items < 3; items++)
+                {
+                    PhaseList[numberPhase].ItemsOnPhase[items] = (ItemConfig)AssetDatabase.LoadAssetAtPath(directory + "/" + PlayerPrefs.GetString("LEVEL" + numberPhase + "_ITEMINDEX_" + indexItem + "_ITEMPOSITION" + items), typeof(ItemConfig));
+                    indexItem++;
+                }
+            }
         }
 
         public void EnterPhaseSelected()

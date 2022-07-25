@@ -2629,42 +2629,66 @@ MonoBehaviour:
     Stars: 0
     PhaseButtonPrefab: {fileID: 2087624074}
     StarsImage: []
-    ItemsOnPhase: []
+    ItemsOnPhase:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   - Unlocked: 0
     Stars: 0
     PhaseButtonPrefab: {fileID: 1670386859}
     StarsImage: []
-    ItemsOnPhase: []
+    ItemsOnPhase:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   - Unlocked: 0
     Stars: 0
     PhaseButtonPrefab: {fileID: 1566008907}
     StarsImage: []
-    ItemsOnPhase: []
+    ItemsOnPhase:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   - Unlocked: 0
     Stars: 0
     PhaseButtonPrefab: {fileID: 458614100}
     StarsImage: []
-    ItemsOnPhase: []
+    ItemsOnPhase:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   - Unlocked: 0
     Stars: 0
     PhaseButtonPrefab: {fileID: 1053682474}
     StarsImage: []
-    ItemsOnPhase: []
+    ItemsOnPhase:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   - Unlocked: 0
     Stars: 0
     PhaseButtonPrefab: {fileID: 2042802786}
     StarsImage: []
-    ItemsOnPhase: []
+    ItemsOnPhase:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   - Unlocked: 0
     Stars: 0
     PhaseButtonPrefab: {fileID: 174822094}
     StarsImage: []
-    ItemsOnPhase: []
+    ItemsOnPhase:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
   - Unlocked: 0
     Stars: 0
     PhaseButtonPrefab: {fileID: 164823527}
     StarsImage: []
-    ItemsOnPhase: []
+    ItemsOnPhase:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
 --- !u!1 &1139488512
 GameObject:
   m_ObjectHideFlags: 0
