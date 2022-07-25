@@ -42,6 +42,8 @@ namespace Manager
         public int AmountItems { get; private set; }
         public Action ItemCollected;
 
+        public Action InstantiatedCollectables;
+
         public Action ChosenCorrect;
         public Action ChosenIncorrect;
         public Action DecreasedStars;
@@ -73,6 +75,7 @@ namespace Manager
             InitializedGame += _skills.OnInitializedLevel;
             InitializedGame += _levelManager.OnInitializedLevel;
             InitializedGame += _sceneryManager.OnInitializedLevel;
+            InitializedGame += OnInitialized;
 
             CountdownPerfomed += _levelManager.OnCountdownTimerLevel;
             CountdownPerfomed += _questPlayer.OnCountdownPerfomed;
@@ -114,17 +117,7 @@ namespace Manager
             ItemCollected += _levelManager.OnCollected;
             ItemCollected += _uiManager.OnCollected;
 
-            foreach (Collectable coll in _levelManager.ItemsCollectable)
-            {
-                coll.GotQuestion += _uiManager.OnGotQuestion;
-                coll.CheckedItemOnList += _levelManager.OnCheckedItemOnList;
 
-                ActivedXRay += coll.OnActivatedXray;
-                ActivedNightVision += coll.OnActivedNightVision;
-                ActivedFingerprint += coll.OnActivedFingerprint;
-
-                UpgradeXRayVision += coll.OnUpgradeXRayVision;
-            }
 
             EarnedStars += _levelManager.OnEarnedStars;
             EarnedStars += _uiManager.OnEarnedStars;
@@ -167,6 +160,20 @@ namespace Manager
         }
 
         // -- Reference in buttons -- //
+        internal void OnInitialized()
+        {
+            foreach (Collectable coll in _levelManager.ItemsCollectable)
+            {
+                coll.CheckedItemOnList += _levelManager.OnCheckedItemOnList;
+                coll.GotQuestion += _uiManager.OnGotQuestion;
+
+                ActivedXRay += coll.OnActivatedXray;
+                ActivedNightVision += coll.OnActivedNightVision;
+                ActivedFingerprint += coll.OnActivedFingerprint;
+
+                UpgradeXRayVision += coll.OnUpgradeXRayVision;
+            }
+        }
         internal void OnActivedXRay() => ActivedXRay?.Invoke();
         internal void OnUpgradeVision() => UpgradeXRayVision?.Invoke();
         internal void OnActivedNightVision() => ActivedNightVision?.Invoke();

@@ -26,24 +26,25 @@ namespace Objects
         [SerializeField] private XRayDistance _customDistanceHidden;
         [Space]
 
-        private ItemConfig _itemConfig;
+        [SerializeField] private ItemConfig _itemConfig;
         [SerializeField] private UnityAction CorrectChoosen;
 
         [field: SerializeField] public SkillState CurrentTypeObject { get; private set; }
         [field: SerializeField] public XRayDistance CurrentDistanceHidden { get; private set; }
+        public ItemConfig ItemConfig { get => _itemConfig; set => _itemConfig = value; }
 
-        public Action<string, Sprite, Sprite, Sprite, Sprite> GotQuestion;
+        public Action<string, Sprite> GotQuestion;
         public Action<GameObject> CheckedItemOnList;
 
 
         private void Awake()
         {
             GetRandomSchoolObject();
-            _nameObject = _itemConfig.NameObject;
+            _nameObject = ItemConfig.NameObject;
 
-            _normalModal = _itemConfig.ModalScriptable.DefaultCorrectModal;
-            _correctModal = _itemConfig.ModalScriptable.DefaultCorrectModal;
-            _incorrectModal = _itemConfig.ModalScriptable.DefaultIncorrectModal;
+            _normalModal = ItemConfig.ModalScriptable.DefaultCorrectModal;
+            _correctModal = ItemConfig.ModalScriptable.DefaultCorrectModal;
+            _incorrectModal = ItemConfig.ModalScriptable.DefaultIncorrectModal;
 
             _clickOverAnimation = GetComponent<Animator>();
 
@@ -56,9 +57,9 @@ namespace Objects
             GenerateSkillRandom();
 
             if (CurrentTypeObject == SkillState.XRay)
-                _spriteObject = _itemConfig.SpriteXRayObject;
+                _spriteObject = ItemConfig.SpriteXRayObject;
             else
-                _spriteObject = _itemConfig.DefaultSpriteObject;
+                _spriteObject = ItemConfig.DefaultSpriteObject;
 
             GetComponent<SpriteRenderer>().sprite = _spriteObject;
 
@@ -74,33 +75,25 @@ namespace Objects
         {
             DirectoryInfo directory = new DirectoryInfo("Assets/_Project/Scripts/ScriptableObject/SchoolObjects");
 
-            FileInfo[] filesInfo = directory.GetFiles("*.asset");
             LevelManager levelManager = FindObjectOfType<LevelManager>();
-            ItemConfig[] itemsInScene = FindObjectsOfType<ItemConfig>();
+            Collectable[] itemsCollectables = FindObjectsOfType<Collectable>();
 
-            for (int i = 0; i < levelManager.AllowedSchoolObjects.Length; i++)
+            for (int i = 0; i < itemsCollectables.Length; i++)
             {
-                if (filesInfo[i].Name == levelManager.AllowedSchoolObjects[i])
-                {
-                    if(itemsInScene[i].NameObject != filesInfo[i].Name.Replace(".asset", ""))
-                    {
-                        _itemConfig = (ItemConfig)AssetDatabase.LoadAssetAtPath(directory + "/" + filesInfo[i].Name, typeof(ItemConfig));
-                        Debug.Log("Registrado o item: " + filesInfo[i].Name);
-                        break;
-                    }
-                    else
-                    {
-                        Debug.Log("Já existe um objeto com o nome: " + filesInfo[i].Name);
-                    }
-                }
+                ItemConfig = (ItemConfig)AssetDatabase.LoadAssetAtPath(directory + "/" + levelManager.AllowedSchoolObjects[i], typeof(ItemConfig));
             }
 
+            gameObject.name = ItemConfig.NameObject;
         }
 
         private void GenerateSkillRandom()
         {
             if (!_isRandomValue)
+            {
+                CurrentTypeObject = _customTypeObject;
+                CurrentDistanceHidden = _customDistanceHidden;
                 return;
+            }
 
             CurrentTypeObject = (SkillState)UnityEngine.Random.Range(1, 3);
             CurrentDistanceHidden = (XRayDistance)UnityEngine.Random.Range(0, 2);
@@ -112,8 +105,7 @@ namespace Objects
 
             if (gameManager.CurrentSkill == CurrentTypeObject)
             {
-                GotQuestion?.Invoke(_nameObject, _spriteObject, _normalModal, _correctModal, _incorrectModal);
-                GetComponent<AudioSource>().Play();
+                GotQuestion?.Invoke(_nameObject, _spriteObject);
                 CheckedItemOnList?.Invoke(gameObject);
             }
         }
@@ -138,8 +130,13 @@ namespace Objects
         {
             if (this == null)
                 return;
+            
+           
 
             var gameManager = FindObjectOfType<GameManager>();
+
+            GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
+            gameObject.SetActive(true);
 
             if (gameManager.CurrentSkill == CurrentTypeObject && gameManager.CurrentDistance <= CurrentDistanceHidden)
             {
@@ -154,6 +151,8 @@ namespace Objects
         {
             if (this == null)
                 return;
+
+      
 
             var gameManager = FindObjectOfType<GameManager>();
 

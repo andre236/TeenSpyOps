@@ -229,7 +229,7 @@ namespace Manager
 
         internal void OnUnPausedGame() => _pausePage.SetActive(false);
 
-        internal void OnGotQuestion(string nameObject, Sprite itemSprite, Sprite normalModal, Sprite correctModalName, Sprite incorrectModal)
+        internal void OnGotQuestion(string nameObject, Sprite itemSprite)
         {
             string[] nameObjectsGeneral = GeneralTexts.Instance.NameObjects;
 
@@ -237,8 +237,6 @@ namespace Manager
             nameObjectText.text = nameObject.ToUpper();
             Text fakeNameA = _answersButton[1].GetComponentInChildren<Text>();
             Text fakeNameB = _answersButton[2].GetComponentInChildren<Text>();
-
-
 
             Random rng = new Random();
             var nameObjectsGeneralRandomOrder = nameObjectsGeneral.OrderBy(a => rng.Next()).ToList();
