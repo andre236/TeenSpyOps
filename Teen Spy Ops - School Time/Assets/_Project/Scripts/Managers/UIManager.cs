@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Statics;
-using System.Linq;
 using Random = System.Random;
 
 namespace Manager
@@ -111,8 +111,6 @@ namespace Manager
         internal void PlayHudAnimation()
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
-
-            //_barsAnimation.enabled = true;
 
             switch (gameManager.CurrentSkill)
             {

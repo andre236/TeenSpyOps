@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Manager;
 using UnityEditor;
+using Mechanic;
 
 namespace Objects
 {
@@ -54,7 +55,7 @@ namespace Objects
         {
             var gameManager = FindObjectOfType<GameManager>();
 
-            GenerateSkillRandom();
+            GenerateSkill();
 
             if (CurrentTypeObject == SkillState.XRay)
                 _spriteObject = ItemConfig.SpriteXRayObject;
@@ -86,8 +87,10 @@ namespace Objects
             gameObject.name = ItemConfig.NameObject;
         }
 
-        private void GenerateSkillRandom()
+        private void GenerateSkill()
         {
+            var typeSkillGenerate = transform.GetComponentInParent<TypeSkill>();
+
             if (!_isRandomValue)
             {
                 CurrentTypeObject = _customTypeObject;
@@ -95,8 +98,8 @@ namespace Objects
                 return;
             }
 
-            CurrentTypeObject = (SkillState)UnityEngine.Random.Range(1, 3);
-            CurrentDistanceHidden = (XRayDistance)UnityEngine.Random.Range(0, 2);
+            CurrentTypeObject = typeSkillGenerate.FinalSkillState;
+            CurrentDistanceHidden = typeSkillGenerate.FinalDistance;
         }
 
         private void OnMouseDown()

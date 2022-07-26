@@ -266,6 +266,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 49810955}
+  - component: {fileID: 49810956}
   m_Layer: 0
   m_Name: RespawnObject (3)
   m_TagString: RespawnObject
@@ -288,6 +289,21 @@ Transform:
   m_Father: {fileID: 1396192495}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &49810956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 49810954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b9bed49d3d0dc44bfdf9ce77693ccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <GetPossibleSkillState>k__BackingField: 02000000
+  <FinalSkillState>k__BackingField: 0
+  <FinalDistance>k__BackingField: 0
 --- !u!1 &56034227
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,6 +1342,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 292741269}
+  - component: {fileID: 292741270}
   m_Layer: 0
   m_Name: RespawnObject
   m_TagString: RespawnObject
@@ -1348,6 +1365,21 @@ Transform:
   m_Father: {fileID: 1396192495}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &292741270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 292741268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b9bed49d3d0dc44bfdf9ce77693ccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <GetPossibleSkillState>k__BackingField: 01000000
+  <FinalSkillState>k__BackingField: 0
+  <FinalDistance>k__BackingField: 0
 --- !u!1 &302946654
 GameObject:
   m_ObjectHideFlags: 0
@@ -3347,6 +3379,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 722687518}
+  - component: {fileID: 722687519}
   m_Layer: 0
   m_Name: RespawnObject (1)
   m_TagString: RespawnObject
@@ -3369,6 +3402,21 @@ Transform:
   m_Father: {fileID: 1396192495}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &722687519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722687517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b9bed49d3d0dc44bfdf9ce77693ccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <GetPossibleSkillState>k__BackingField: 02000000
+  <FinalSkillState>k__BackingField: 0
+  <FinalDistance>k__BackingField: 0
 --- !u!1 &745064648
 GameObject:
   m_ObjectHideFlags: 0
@@ -9040,6 +9088,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1708912644}
+  - component: {fileID: 1708912645}
   m_Layer: 0
   m_Name: RespawnObject (4)
   m_TagString: RespawnObject
@@ -9062,6 +9111,21 @@ Transform:
   m_Father: {fileID: 1396192495}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1708912645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708912643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b9bed49d3d0dc44bfdf9ce77693ccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <GetPossibleSkillState>k__BackingField: 01000000
+  <FinalSkillState>k__BackingField: 0
+  <FinalDistance>k__BackingField: 0
 --- !u!1 &1727839941
 GameObject:
   m_ObjectHideFlags: 0
@@ -9957,6 +10021,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1939668821}
+  - component: {fileID: 1939668822}
   m_Layer: 0
   m_Name: RespawnObject (2)
   m_TagString: RespawnObject
@@ -9979,6 +10044,21 @@ Transform:
   m_Father: {fileID: 1396192495}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1939668822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939668820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b9bed49d3d0dc44bfdf9ce77693ccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <GetPossibleSkillState>k__BackingField: 0100000002000000
+  <FinalSkillState>k__BackingField: 0
+  <FinalDistance>k__BackingField: 0
 --- !u!1 &1946969239
 GameObject:
   m_ObjectHideFlags: 0
