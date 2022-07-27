@@ -16,6 +16,7 @@ namespace Controllers
         public int AmountHint { get => _amountHint; set => _amountHint = value; }
         public string CurrentHint { get => _currentHint; set => _currentHint = value; }
 
+
         private void GetAvailableHint()
         {
             _respawnsObject = GameObject.FindGameObjectsWithTag("RespawnObject");

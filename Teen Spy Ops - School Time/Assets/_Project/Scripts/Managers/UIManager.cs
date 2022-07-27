@@ -324,6 +324,8 @@ namespace Manager
 
         internal void OnGotHint(string hintText, int amountHints)
         {
+            var animationHintPage = _hintPage.GetComponent<Animator>();
+            
             _currentHintText.text = hintText;
             _amountTinaHintText.text = amountHints.ToString();
 
