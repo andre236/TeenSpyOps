@@ -2,12 +2,14 @@ using UnityEngine;
 
 namespace Mechanic
 {
-    public class TypeSkill : MonoBehaviour
+    public class RespawnMechanic : MonoBehaviour
     {
         [field: SerializeField] public SkillState[] GetPossibleSkillState { get; set; }
         [field: SerializeField] public SkillState FinalSkillState { get; set; }
         [field: SerializeField] public XRayDistance FinalDistance { get; set; }
 
+        [field:TextArea(4,8)]
+        [field: SerializeField] public string[] HintsThisPlace { get; set;}
         private void Awake() => GeneratePossibleSkill();
 
         private void GeneratePossibleSkill()

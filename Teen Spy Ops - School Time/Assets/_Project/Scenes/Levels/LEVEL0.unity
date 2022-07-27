@@ -268,7 +268,7 @@ GameObject:
   - component: {fileID: 49810955}
   - component: {fileID: 49810956}
   m_Layer: 0
-  m_Name: RespawnObject (3)
+  m_Name: RespawnObject4
   m_TagString: RespawnObject
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -282,7 +282,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49810954}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.53, y: -0.05, z: 0}
+  m_LocalPosition: {x: -1.434, y: -0.828, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -304,6 +304,11 @@ MonoBehaviour:
   <GetPossibleSkillState>k__BackingField: 02000000
   <FinalSkillState>k__BackingField: 0
   <FinalDistance>k__BackingField: 0
+  <HintsThisPlace>k__BackingField:
+  - "Eu n\xE3o sei qual, mas acho que tem algo embaixo de uma das mesas. Talvez na
+    parte da frente da sala...?"
+  - "Tem uma sombra muito escura na mesa da professora. Voc\xEA pode dar uma olhada
+    ali embaixo."
 --- !u!1 &56034227
 GameObject:
   m_ObjectHideFlags: 0
@@ -1344,7 +1349,7 @@ GameObject:
   - component: {fileID: 292741269}
   - component: {fileID: 292741270}
   m_Layer: 0
-  m_Name: RespawnObject
+  m_Name: RespawnObject1
   m_TagString: RespawnObject
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1358,7 +1363,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 292741268}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.55, y: -1.23, z: 0}
+  m_LocalPosition: {x: -3.538, y: -1.931, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1379,7 +1384,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <GetPossibleSkillState>k__BackingField: 01000000
   <FinalSkillState>k__BackingField: 0
-  <FinalDistance>k__BackingField: 0
+  <FinalDistance>k__BackingField: 2
+  <HintsThisPlace>k__BackingField:
+  - "Acho que n\xE3o tiveram muito tempo para esconder esse daqui. Eu lembro de ver
+    algo em uma das cadeiras da fileira do canto."
+  - "Essas mochilas s\xE3o grandes e espa\xE7osas. Tente ver atr\xE1s de alguma delas."
 --- !u!1 &302946654
 GameObject:
   m_ObjectHideFlags: 0
@@ -2898,6 +2907,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1885949415}
+  - {fileID: 843198227}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3381,7 +3391,7 @@ GameObject:
   - component: {fileID: 722687518}
   - component: {fileID: 722687519}
   m_Layer: 0
-  m_Name: RespawnObject (1)
+  m_Name: RespawnObject2
   m_TagString: RespawnObject
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -3395,7 +3405,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722687517}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.55, y: -0.83, z: 0}
+  m_LocalPosition: {x: 1.803, y: -2.027, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3414,9 +3424,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b9bed49d3d0dc44bfdf9ce77693ccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <GetPossibleSkillState>k__BackingField: 02000000
+  <GetPossibleSkillState>k__BackingField: 01000000
   <FinalSkillState>k__BackingField: 0
-  <FinalDistance>k__BackingField: 0
+  <FinalDistance>k__BackingField: 2
+  <HintsThisPlace>k__BackingField:
+  - "As carteiras do fundo parecem suspeitas. D\xEA uma olhada nessa regi\xE3o."
+  - "E se voc\xEA puxasse a cadeira s\xF3 um pouquinho...? N\xE3o? Bem, ver atrav\xE9s
+    dela tamb\xE9m resolve."
 --- !u!1 &745064648
 GameObject:
   m_ObjectHideFlags: 0
@@ -3963,6 +3977,55 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &843198226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 843198227}
+  - component: {fileID: 843198228}
+  m_Layer: 0
+  m_Name: HintController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &843198227
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843198226}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 575914187}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &843198228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843198226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e6f6c41fda7d340908a1ce1d3e14d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _amountHint: 0
+  _respawnsObject: []
+  _avaliableHints: []
+  _currentHint: 
+  AvaliableHints: []
 --- !u!1 &868033123
 GameObject:
   m_ObjectHideFlags: 0
@@ -7099,7 +7162,7 @@ GameObject:
   - component: {fileID: 1428326634}
   - component: {fileID: 1428326633}
   m_Layer: 5
-  m_Name: Image
+  m_Name: HintPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9090,7 +9153,7 @@ GameObject:
   - component: {fileID: 1708912644}
   - component: {fileID: 1708912645}
   m_Layer: 0
-  m_Name: RespawnObject (4)
+  m_Name: RespawnObject5
   m_TagString: RespawnObject
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -9104,7 +9167,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708912643}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.11, y: -1.39, z: 0}
+  m_LocalPosition: {x: 2.744, y: -1.128, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9126,6 +9189,10 @@ MonoBehaviour:
   <GetPossibleSkillState>k__BackingField: 01000000
   <FinalSkillState>k__BackingField: 0
   <FinalDistance>k__BackingField: 0
+  <HintsThisPlace>k__BackingField:
+  - "Talvez as mochilas sejam um bom esconderijo para os mais distra\xEDdos.... Que
+    bom que voc\xEA est\xE1 preparado, n\xE3o?"
+  - "Acho que vi algu\xE9m deixando algo escondido perto da porta antes de sair...."
 --- !u!1 &1727839941
 GameObject:
   m_ObjectHideFlags: 0
@@ -10023,7 +10090,7 @@ GameObject:
   - component: {fileID: 1939668821}
   - component: {fileID: 1939668822}
   m_Layer: 0
-  m_Name: RespawnObject (2)
+  m_Name: RespawnObject3
   m_TagString: RespawnObject
   m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -10037,7 +10104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939668820}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.93, y: -0.59, z: 0}
+  m_LocalPosition: {x: 1.452, y: -0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10056,9 +10123,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b9bed49d3d0dc44bfdf9ce77693ccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <GetPossibleSkillState>k__BackingField: 0100000002000000
+  <GetPossibleSkillState>k__BackingField: 0200000001000000
   <FinalSkillState>k__BackingField: 0
-  <FinalDistance>k__BackingField: 0
+  <FinalDistance>k__BackingField: 2
+  <HintsThisPlace>k__BackingField:
+  - "Eu vi algu\xE9m colocando algo perto da lousa, tente procurar na parte da frente
+    da sala."
+  - "Tem uma sombra muito escura naquele arm\xE1rio. Talvez voc\xEA ache algo se
+    procurar ali."
 --- !u!1 &1946969239
 GameObject:
   m_ObjectHideFlags: 0

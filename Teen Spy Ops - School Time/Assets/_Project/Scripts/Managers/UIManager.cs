@@ -14,6 +14,7 @@ namespace Manager
         private Text _informationLevelText;
         private Text _amountTinaHintText;
         private Text _amountItemsLeftText;
+        private Text _currentHintText;
 
         private Animator _barsAnimation;
 
@@ -35,6 +36,7 @@ namespace Manager
         private Image _nightVisionCooldownImage;
 
         [SerializeField] private Button[] _answersButton;
+        private Button _hintButton;
         private Button _pauseMenuButton;
         private Button _closeButton;
         private Button _returnButton;
@@ -74,11 +76,14 @@ namespace Manager
             _xRayButton = GameObject.Find("XRayButton").GetComponent<Button>();
             _fingerprintButton = GameObject.Find("FingerprintButton").GetComponent<Button>();
             _nightVisionButton = GameObject.Find("NightVisionButton").GetComponent<Button>();
+            _hintButton = GameObject.Find("HintButton").GetComponent<Button>();
 
             _timerLevelText = GameObject.Find("TimerText").GetComponent<Text>();
             _informationLevelText = GameObject.Find("InformationLevelText").GetComponent<Text>();
             _amountTinaHintText = GameObject.Find("AmoutTinaHintText").GetComponent<Text>();
             _amountItemsLeftText = GameObject.Find("AmountItemsLeft").GetComponent<Text>();
+            _currentHintText = GameObject.Find("HintText").GetComponent<Text>();
+
 
         }
 
@@ -89,7 +94,6 @@ namespace Manager
             _pauseMenuButton.onClick.AddListener(FindObjectOfType<EventManager>().OnPausedGame);
             _xRayButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedXRay);
             _xRayButton.onClick.AddListener(PlayHudAnimation);
-
 
             _fingerprintButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedFingerprint);
             _fingerprintButton.onClick.AddListener(PlayHudAnimation);
@@ -104,7 +108,7 @@ namespace Manager
             _answersButton[1].onClick.AddListener(FindObjectOfType<EventManager>().OnChosenIncorrect);
             _answersButton[2].onClick.AddListener(FindObjectOfType<EventManager>().OnChosenIncorrect);
 
-
+            _hintButton.onClick.AddListener(FindObjectOfType<EventManager>().OnGotHint);
             //_phasesButton.onClick.AddListener(FindObjectOfType<EventManager>().LoadLevelSelectScene);
         }
 
@@ -316,6 +320,14 @@ namespace Manager
         internal void OnCollected()
         {
             _guessingPage.SetActive(false);
+        }
+
+        internal void OnGotHint(string hintText, int amountHints)
+        {
+            _currentHintText.text = hintText;
+            _amountTinaHintText.text = amountHints.ToString();
+
+            _hintPage.SetActive(true);
         }
 
         internal void OnUpgradeXRayVision()

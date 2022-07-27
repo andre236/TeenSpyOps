@@ -15,7 +15,9 @@ namespace Manager
         private UIManager _uiManager;
         private LevelManager _levelManager;
         private AudioManager _audioManager;
+
         private GuessController _guessController;
+        private HintController _hintController;
         private Quest _questPlayer;
         private Skills _skills;
 
@@ -48,6 +50,9 @@ namespace Manager
         public Action ChosenIncorrect;
         public Action DecreasedStars;
 
+        // -- Hint -- //
+        public Action<string, int> GotHint;
+
 
         private void Awake()
         {
@@ -60,6 +65,7 @@ namespace Manager
 
             // -- Controllers -- //
             _guessController = FindObjectOfType<GuessController>();
+            _hintController = FindObjectOfType<HintController>();
 
             // -- Player -- //
             _questPlayer = FindObjectOfType<Quest>();
@@ -79,6 +85,9 @@ namespace Manager
 
             CountdownPerfomed += _levelManager.OnCountdownTimerLevel;
             CountdownPerfomed += _questPlayer.OnCountdownPerfomed;
+
+            GotHint += _hintController.OnGotHint;
+            GotHint += _uiManager.OnGotHint;
 
             PausedGame += _gameManager.OnPausedGame;
             PausedGame += _uiManager.OnPausedGame;
@@ -173,6 +182,15 @@ namespace Manager
 
                 UpgradeXRayVision += coll.OnUpgradeXRayVision;
             }
+        }
+
+        internal void OnGotHint()
+        {
+            if (_hintController.AmountHint <= 0)
+                return;
+
+            _hintController.AmountHint--;
+            GotHint?.Invoke(_hintController.CurrentHint, _hintController.AmountHint);
         }
         internal void OnActivedXRay() => ActivedXRay?.Invoke();
         internal void OnUpgradeVision() => UpgradeXRayVision?.Invoke();

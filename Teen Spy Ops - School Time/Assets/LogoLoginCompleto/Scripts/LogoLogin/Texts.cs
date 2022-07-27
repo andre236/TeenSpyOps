@@ -6,15 +6,15 @@ using UnityEngine.UI;
 
 public class Texts : MonoBehaviour
 {
-    public static string[,,] TexTurials;
+    public static string[,,] TexTutorials;
     public static string[,,] InfTextsTable;
     public static string[,,] PedagogicText;
-    public static string[,,] achievementNames;
-    public static string[,,] achievementInfos;
+    public static string[,,] AchievementNames;
+    public static string[,,] AchievementInfos;
     public static int TutorialOrder = 0;
     public static Text TutorialInstructions;
 
-    public static void setTexTutorials(string[,,] jsonLoaded)
+    public static void SetTexTutorials(string[,,] jsonLoaded)
     {
         //TexTurials = new string[1, 10, 1];
         
@@ -30,23 +30,23 @@ public class Texts : MonoBehaviour
         TexTurials[8] = "Quando um cliente estiver com todas as barras cheias, toque em sua mesa para fechar a conta! Feche a conta de todos os clientes para passar de fase!";
     */
         //JsonString jsonVar = jsonLoaded;
-        TexTurials = jsonLoaded;
+        TexTutorials = jsonLoaded;
 
     }
 
-    public static void setPedagogicText(string[,,] jsonLoaded)
+    public static void SetPedagogicText(string[,,] jsonLoaded)
     {
         PedagogicText = jsonLoaded;
     }
 
-    public static void setAchievementNames(string[,,] jsonLoaded)
+    public static void SetAchievementNames(string[,,] jsonLoaded)
     {
-        achievementNames = jsonLoaded;
+        AchievementNames = jsonLoaded;
     }
 
-    public static void setAchievementInfos(string[,,] jsonLoaded)
+    public static void SetAchievementInfos(string[,,] jsonLoaded)
     {
-        achievementInfos = jsonLoaded;
+        AchievementInfos = jsonLoaded;
     }
 
     public static void VerifyMyTutorialPhaseToUpdate(int phase)
@@ -67,6 +67,6 @@ public class Texts : MonoBehaviour
     {
         TutorialOrder++;
         if(VariaveisGlobais.InTutorial)
-            TutorialInstructions.text = TexTurials[0,TutorialOrder,0];
+            TutorialInstructions.text = TexTutorials[0,TutorialOrder,0];
     }
 }

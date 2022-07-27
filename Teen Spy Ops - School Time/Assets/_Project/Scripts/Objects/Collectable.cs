@@ -89,7 +89,7 @@ namespace Objects
 
         private void GenerateSkill()
         {
-            var typeSkillGenerate = transform.GetComponentInParent<TypeSkill>();
+            var typeSkillGenerate = transform.GetComponentInParent<RespawnMechanic>();
 
             if (!_isRandomValue)
             {

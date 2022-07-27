@@ -23,7 +23,7 @@ public class LoadJsonsModel : MonoBehaviour
 
     public void SetObjetosFaseJson()
     {
-        Texts.TexTurials = JsonParserWeb.instance.JStringReturnValue().data; //apos fazer a conexão aplica o valor do json pra variavel statoca da classe Texts
+        Texts.TexTutorials = JsonParserWeb.instance.JStringReturnValue().data; //apos fazer a conexão aplica o valor do json pra variavel statoca da classe Texts
         Debug.Log("tutorial loaded");
     }
 
@@ -36,14 +36,14 @@ public class LoadJsonsModel : MonoBehaviour
 
     public void SetAchievementsNamesJson()
     {
-        Texts.achievementNames = JsonParserWeb.instance.JStringReturnValue().data;
+        Texts.AchievementNames = JsonParserWeb.instance.JStringReturnValue().data;
         //Texts.setPedagogicText(JsonParserWeb.instance.JStringReturnValue().data); //apos fazer a conexão aplica o valor do json pra variavel statoca da classe Texts
         Debug.Log("Achievements Names loaded");
     }
 
     public void SetAchievementsInfoJson()
     {
-        Texts.achievementInfos = JsonParserWeb.instance.JStringReturnValue().data;
+        Texts.AchievementInfos = JsonParserWeb.instance.JStringReturnValue().data;
         //Texts.setPedagogicText(JsonParserWeb.instance.JStringReturnValue().data); //apos fazer a conexão aplica o valor do json pra variavel statoca da classe Texts
         Debug.Log("Achievements Infos loaded");
     }
