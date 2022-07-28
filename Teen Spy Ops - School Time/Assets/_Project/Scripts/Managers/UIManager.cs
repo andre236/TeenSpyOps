@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Statics;
 using Random = System.Random;
+using System.Collections;
 
 namespace Manager
 {
@@ -45,7 +46,7 @@ namespace Manager
         private Button _nightVisionButton;
         private Button _phasesButton;
         private Button _mainMenuButton;
-
+        private Button _closeHintButton;
 
         private void Awake()
         {
@@ -77,6 +78,7 @@ namespace Manager
             _fingerprintButton = GameObject.Find("FingerprintButton").GetComponent<Button>();
             _nightVisionButton = GameObject.Find("NightVisionButton").GetComponent<Button>();
             _hintButton = GameObject.Find("HintButton").GetComponent<Button>();
+            _closeHintButton = GameObject.Find("ClosingHintButton").GetComponent<Button>();
 
             _timerLevelText = GameObject.Find("TimerText").GetComponent<Text>();
             _informationLevelText = GameObject.Find("InformationLevelText").GetComponent<Text>();
@@ -109,6 +111,7 @@ namespace Manager
             _answersButton[2].onClick.AddListener(FindObjectOfType<EventManager>().OnChosenIncorrect);
 
             _hintButton.onClick.AddListener(FindObjectOfType<EventManager>().OnGotHint);
+            _closeHintButton.onClick.AddListener(CloseHintPage);
             //_phasesButton.onClick.AddListener(FindObjectOfType<EventManager>().LoadLevelSelectScene);
         }
 
@@ -142,6 +145,22 @@ namespace Manager
                     break;
             }
 
+
+        }
+
+        private void CloseHintPage() => StartCoroutine(nameof(WaitToCloseHintPage));
+
+        private IEnumerator WaitToCloseHintPage()
+        {
+            if (!_hintPage.activeSelf)
+                yield return null;
+
+            var animationHintPage = _hintPage.GetComponent<Animator>();
+
+            animationHintPage.SetTrigger("Closing");
+
+            yield return new WaitForSeconds(1f);
+            _hintPage.SetActive(false);
 
         }
 
@@ -324,13 +343,25 @@ namespace Manager
 
         internal void OnGotHint(string hintText, int amountHints)
         {
-            var animationHintPage = _hintPage.GetComponent<Animator>();
+           
             
             _currentHintText.text = hintText;
             _amountTinaHintText.text = amountHints.ToString();
 
             _hintPage.SetActive(true);
+
+            //if (animationHintPage.GetCurrentAnimatorStateInfo(1).normalizedTime > 1)
+            //{
+            //    _hintPage.SetActive(false);
+            //}
+            //else
+            //{
+            //    _hintPage.SetActive(true);
+            //}
+
         }
+
+
 
         internal void OnUpgradeXRayVision()
         {

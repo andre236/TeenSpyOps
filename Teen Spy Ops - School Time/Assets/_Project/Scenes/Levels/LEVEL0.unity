@@ -2616,7 +2616,7 @@ GameObject:
   - component: {fileID: 525209920}
   - component: {fileID: 525209919}
   m_Layer: 5
-  m_Name: ClosingHint
+  m_Name: ClosingHintButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
