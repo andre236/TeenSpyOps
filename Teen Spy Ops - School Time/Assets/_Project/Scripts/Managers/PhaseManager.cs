@@ -118,17 +118,6 @@ namespace Manager
 
             }
 
-
-            //int indexVerification = 0;
-            //for (int numberPhase = 0; numberPhase < 8; numberPhase++)
-            //{
-            //    for (int items = 0; items < 3; items++)
-            //    {
-            //        Debug.Log(PlayerPrefs.GetString("LEVEL" + numberPhase + "_ITEMINDEX_" + indexVerification + "_ITEMPOSITION" + items));
-            //        indexVerification++;
-            //    }
-            //}
-
         }
 
         private void LoadItemEachPhase()
@@ -137,7 +126,6 @@ namespace Manager
                 return;
 
             DirectoryInfo directory = new DirectoryInfo("Assets/_Project/Scripts/ScriptableObject/SchoolObjects");
-            FileInfo[] filesInfo = directory.GetFiles("*.asset");
 
             int indexItem = 0;
             for (int numberPhase = 0; numberPhase < 8; numberPhase++)

@@ -1,17 +1,15 @@
 using System;
 using UnityEngine;
-using System.Collections.Generic;
 using System.Collections;
 using Manager;
-using UnityEngine.UI;
 
 namespace Player
 {
     public class Skills : MonoBehaviour
     {
-        [SerializeField] private bool _alreadyXRayCast;
-        [SerializeField] private bool _alreadyFingerprint;
-        [SerializeField] private bool _alreadyNightVision;
+        private bool _alreadyXRayCast;
+        private bool _alreadyFingerprint;
+        private bool _alreadyNightVision;
 
 
         [field: Range(0, 90)] [field: SerializeField] public float TimerXray { get; private set; }
@@ -76,8 +74,6 @@ namespace Player
 
         }
 
-
-
         internal void OnActivedXRay()
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
@@ -129,7 +125,6 @@ namespace Player
             StartCoroutine(TimerForSkill(CurrentTimerFingerprint, TimerFingerprint, CurrentCooldownFingerprint, CurrentCooldownFingerprint, AlreadyFingerprint, CountdownFingerprintTimer, CountdownFingerprintCooldown));
             AlreadyFingerprint = false;
 
-            Debug.Log("Poder fingerprint ativado!");
         }
 
         internal void OnActivedNightVision()
@@ -140,7 +135,6 @@ namespace Player
             StartCoroutine(TimerForSkill(CurrentTimerNightVision, TimerNightVision, CurrentCooldownNightVision, CooldownNightVision, AlreadyNightVision, CountdownNightVisionTimer, CountdownNightVisionCooldown));
             AlreadyNightVision = false;
 
-            Debug.Log("Poder Visão Noturna ativado!");
         }
 
         private void ActiveMaskCursor()

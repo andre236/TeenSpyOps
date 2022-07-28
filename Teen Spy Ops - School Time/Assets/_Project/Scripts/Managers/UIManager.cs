@@ -36,7 +36,7 @@ namespace Manager
         private Image _nightVisionTimerImage;
         private Image _nightVisionCooldownImage;
 
-        [SerializeField] private Button[] _answersButton;
+        private Button[] _answersButton;
         private Button _hintButton;
         private Button _pauseMenuButton;
         private Button _closeButton;
@@ -164,10 +164,7 @@ namespace Manager
 
         }
 
-        internal void ShowAmoutItemsLeft(int amountItemsLeft)
-        {
-            _amountItemsLeftText.text = string.Concat("Objetos Restantes: ", amountItemsLeft.ToString());
-        }
+        internal void ShowAmoutItemsLeft(int amountItemsLeft) => _amountItemsLeftText.text = string.Concat("Objetos Restantes: ", amountItemsLeft.ToString());
 
         internal void ShowCountdownPerfomedText(float currentTime)
         {
@@ -314,6 +311,7 @@ namespace Manager
             Image itemImage = _guessingPage.transform.Find("Panel").transform.Find("ItemImage").GetComponent<Image>();
 
             itemImage.sprite = itemSprite;
+            itemImage.SetNativeSize();
 
             _errorIcon.SetActive(false);
             _errorIcon2.SetActive(false);
@@ -343,22 +341,10 @@ namespace Manager
 
         internal void OnGotHint(string hintText, int amountHints)
         {
-           
-            
             _currentHintText.text = hintText;
             _amountTinaHintText.text = amountHints.ToString();
 
             _hintPage.SetActive(true);
-
-            //if (animationHintPage.GetCurrentAnimatorStateInfo(1).normalizedTime > 1)
-            //{
-            //    _hintPage.SetActive(false);
-            //}
-            //else
-            //{
-            //    _hintPage.SetActive(true);
-            //}
-
         }
 
 

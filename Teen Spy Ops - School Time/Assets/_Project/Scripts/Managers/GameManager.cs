@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using Player;
 
 namespace Manager
 {
@@ -41,10 +39,9 @@ namespace Manager
 
 
             if (CurrentSkill != SkillState.Fingerprint)
-            {
                 CurrentSkill = SkillState.Fingerprint;
-            }
-  
+
+
 
         }
 
@@ -79,9 +76,8 @@ namespace Manager
                 return;
 
             if (CurrentSkill != SkillState.NightVision)
-            {
                 CurrentSkill = SkillState.NightVision;
-            }
+
 
         }
 

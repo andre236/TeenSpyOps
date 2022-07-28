@@ -1,30 +1,27 @@
 using UnityEngine;
 using Manager;
-using System.Collections.Generic;
-using UnityEngine.UI;
 
 namespace Player
 {
     public class Quest : MonoBehaviour
     {
-        [field: SerializeField] public bool OverTimeA { get; private set; }
-        [field: SerializeField] public bool OverTimeB { get; private set; }
-        [field: SerializeField] public bool OverThreeAttempts { get; private set; }
-        [field: SerializeField] public bool OverOneAttempt { get; private set; }
+        public bool OverTimeA { get; private set; }
+        public bool OverTimeB { get; private set; }
+        public bool OverThreeAttempts { get; private set; }
+        public bool OverOneAttempt { get; private set; }
 
         [field: SerializeField] public int TimeLimitA { get; private set; }
         [field: SerializeField] public int TimeLimitB { get; private set; }
-        
-        [field: SerializeField] public int CurrentErrorNumbers { get; private set; }
-        [field: SerializeField] public int CurrentNumberStars { get; private set; }
-        [field: SerializeField] public float CurrentQuestTime { get; private set; }
+
+        public int CurrentErrorNumbers { get; private set; }
+        public int CurrentNumberStars { get; private set; }
 
         private void Start()
         {
             CurrentNumberStars = 5;
             CurrentErrorNumbers = 0;
 
-   
+
         }
 
         internal void OnLosedGame() => CurrentNumberStars = 0;
@@ -57,7 +54,7 @@ namespace Player
                 CurrentNumberStars--;
             }
 
-            if(CurrentErrorNumbers > 0 && !OverOneAttempt)
+            if (CurrentErrorNumbers > 0 && !OverOneAttempt)
             {
                 OverOneAttempt = true;
                 CurrentNumberStars--;

@@ -168,7 +168,7 @@ namespace Manager
             _uiManager.ShowAmoutItemsLeft(_levelManager.ItemsLeft);
         }
 
-        // -- Reference in buttons -- //
+
         internal void OnInitialized()
         {
             foreach (Collectable coll in _levelManager.ItemsCollectable)
@@ -189,7 +189,7 @@ namespace Manager
             if (_hintController.AmountHint <= 0)
                 return;
 
-            //_hintController.AmountHint--;
+            _hintController.AmountHint--;
             GotHint?.Invoke(_hintController.CurrentHint, _hintController.AmountHint);
         }
         internal void OnActivedXRay() => ActivedXRay?.Invoke();

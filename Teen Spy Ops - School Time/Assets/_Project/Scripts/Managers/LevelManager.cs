@@ -19,9 +19,10 @@ namespace Manager
 
         private int _amountInstantiatedSchoolObjects;
 
+        [field:Header("Timer level in seconds.")]
         [field: SerializeField] public float InitialTimerLevel { get; private set; }
         public float TimerLevel { get; private set; }
-        [field:SerializeField] public GameObject CurrentObject { get; private set; }
+        public GameObject CurrentObject { get; private set; }
         public int ItemsLeft { get; private set; }
         public string[] AllowedSchoolObjects { get => _allowedSchoolObjects; set => _allowedSchoolObjects = value; }
 
@@ -33,7 +34,6 @@ namespace Manager
         {
             _spawnSchoolObject = GameObject.FindGameObjectsWithTag("RespawnObject");
             CheckObjectsPermission();
-           
         }
 
         internal void OnInitializedLevel()
@@ -113,8 +113,6 @@ namespace Manager
         {
             if (PlayerPrefs.GetInt(string.Concat("STARS", SceneManager.GetActiveScene().name)) < amountStars)
                 PlayerPrefs.SetInt(string.Concat("STARS", SceneManager.GetActiveScene().name), amountStars);
-
-
         }
 
         internal void OnWonGame()
@@ -123,7 +121,6 @@ namespace Manager
             int numberNextLevel = int.Parse(nameLevel) + 1;
 
             PlayerPrefs.SetInt("LEVEL" + numberNextLevel, 1);
-
         }
     }
 }
