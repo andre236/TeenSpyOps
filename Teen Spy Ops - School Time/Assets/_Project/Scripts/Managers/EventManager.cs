@@ -47,7 +47,7 @@ namespace Manager
         public Action InstantiatedCollectables;
 
         public Action ChosenCorrect;
-        public Action<int,int> ChosenIncorrect;
+        public Action ChosenIncorrect;
         public Action DecreasedStars;
 
         // -- Hint -- //
@@ -120,13 +120,11 @@ namespace Manager
             ActivedNightVision += _skills.OnActivedNightVision;
 
             ChosenIncorrect += _guessController.OnChosenIncorrect;
-            ChosenIncorrect += _uiManager.OnChosenIncorrect;
             ChosenIncorrect += _questPlayer.OnChosenIncorrect;
+            ChosenIncorrect += _uiManager.OnChosenIncorrect;
 
             ItemCollected += _levelManager.OnCollected;
             ItemCollected += _uiManager.OnCollected;
-
-
 
             EarnedStars += _levelManager.OnEarnedStars;
             EarnedStars += _uiManager.OnEarnedStars;
@@ -206,7 +204,11 @@ namespace Manager
             }
         }
 
-        public void OnChosenIncorrect() => ChosenIncorrect?.Invoke(_guessController.CurrentNumberAttempts, _guessController.NumberAttempts);
+        public void OnChosenIncorrect()
+        {
+            ChosenIncorrect?.Invoke();
+        }
+
 
         internal void OnPausedGame()
         {

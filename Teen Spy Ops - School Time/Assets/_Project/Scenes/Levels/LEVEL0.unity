@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 34813558}
   - component: {fileID: 34813557}
   - component: {fileID: 34813556}
+  - component: {fileID: 34813559}
   m_Layer: 5
   m_Name: AnswerBButton
   m_TagString: Untagged
@@ -206,19 +207,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 34813557}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2098724150}
-        m_TargetAssemblyTypeName: Manager.EventManager, Assembly-CSharp
-        m_MethodName: OnChosenIncorrect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &34813557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,6 +246,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34813554}
   m_CullTransparentMesh: 1
+--- !u!95 &34813559
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34813554}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 14e4617e8ffca10469d07f079c9b619e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &49810954
 GameObject:
   m_ObjectHideFlags: 0
@@ -842,6 +851,44 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
+--- !u!1 &145923264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 145923265}
+  m_Layer: 5
+  m_Name: ErrorIcons
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &145923265
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145923264}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 302946655}
+  - {fileID: 2125555038}
+  m_Father: {fileID: 794164105}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 233.5, y: 47}
+  m_SizeDelta: {x: 40, y: 16}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &162587982
 GameObject:
   m_ObjectHideFlags: 0
@@ -1490,17 +1537,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 302946654}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 794164105}
-  m_RootOrder: 2
+  m_Father: {fileID: 145923265}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 222, y: 47}
+  m_AnchoredPosition: {x: -11.5, y: 0}
   m_SizeDelta: {x: 17, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &302946656
@@ -3132,6 +3179,7 @@ GameObject:
   - component: {fileID: 630944430}
   - component: {fileID: 630944429}
   - component: {fileID: 630944428}
+  - component: {fileID: 630944431}
   m_Layer: 5
   m_Name: AnswerAButton
   m_TagString: Untagged
@@ -3203,19 +3251,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 630944429}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2098724150}
-        m_TargetAssemblyTypeName: Manager.EventManager, Assembly-CSharp
-        m_MethodName: OnChosenCorrect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &630944429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3254,6 +3290,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 630944426}
   m_CullTransparentMesh: 1
+--- !u!95 &630944431
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630944426}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5dd45a6fe7776484587579ab463636f0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &641055867
 GameObject:
   m_ObjectHideFlags: 0
@@ -4015,8 +4071,7 @@ RectTransform:
   m_Children:
   - {fileID: 1513874976}
   - {fileID: 1820243864}
-  - {fileID: 302946655}
-  - {fileID: 2125555038}
+  - {fileID: 145923265}
   - {fileID: 1695182633}
   m_Father: {fileID: 1240941398}
   m_RootOrder: 0
@@ -4867,6 +4922,7 @@ GameObject:
   - component: {fileID: 1080132339}
   - component: {fileID: 1080132338}
   - component: {fileID: 1080132337}
+  - component: {fileID: 1080132340}
   m_Layer: 5
   m_Name: AnswerCButton
   m_TagString: Untagged
@@ -4938,19 +4994,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1080132338}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2098724150}
-        m_TargetAssemblyTypeName: Manager.EventManager, Assembly-CSharp
-        m_MethodName: OnChosenIncorrect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1080132338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4989,6 +5033,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080132335}
   m_CullTransparentMesh: 1
+--- !u!95 &1080132340
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080132335}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d784205ca23c5a748b6a099987c0f093, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1090915834
 GameObject:
   m_ObjectHideFlags: 0
@@ -5756,6 +5820,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e385de87558ecd6438fc53e1ad29bafd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _errorIcons: []
 --- !u!1 &1217693941
 GameObject:
   m_ObjectHideFlags: 0
@@ -9347,7 +9412,7 @@ RectTransform:
   - {fileID: 34813555}
   - {fileID: 1080132336}
   m_Father: {fileID: 794164105}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11063,17 +11128,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2125555037}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 794164105}
-  m_RootOrder: 3
+  m_Father: {fileID: 145923265}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 245, y: 47}
+  m_AnchoredPosition: {x: 11.5, y: 0}
   m_SizeDelta: {x: 17, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2125555039

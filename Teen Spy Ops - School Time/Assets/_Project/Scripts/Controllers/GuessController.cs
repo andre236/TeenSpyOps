@@ -10,10 +10,10 @@ namespace Controllers
 
         public void OnGotQuestion()
         {
-            CurrentNumberAttempts = NumberAttempts;
+            CurrentNumberAttempts = 0;
         }
 
-        public void OnChosenIncorrect(int currentAttempts, int totalAttempts)
+        public void OnChosenIncorrect()
         {
             if (CurrentNumberAttempts < NumberAttempts)
                 CurrentNumberAttempts++;

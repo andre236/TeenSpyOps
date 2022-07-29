@@ -27,7 +27,9 @@ namespace Manager
         private GameObject _guessingPage;
 
 
-        private Image[] _errorIcons;
+        [SerializeField] private Image[] _errorIcons;
+        private Image _redImage;
+        private Image _greenImage;
         private Image _xRayBarImage;
         private Image _xRayCooldownImage;
         private Image _xRayTimerImage;
@@ -60,7 +62,9 @@ namespace Manager
 
             _barsAnimation = GameObject.Find("Canvas").GetComponent<Animator>();
 
-            _errorIcons = _guessingPage.transform.Find("Panel").transform.Find("").GetComponents<Image>();
+            _errorIcons = _guessingPage.transform.Find("Panel").transform.Find("ErrorIcons").GetComponentsInChildren<Image>();
+            _redImage = _guessingPage.transform.Find("RedImage").GetComponent<Image>();
+            _greenImage = _guessingPage.transform.Find("GreenImage").GetComponent<Image>();
             _xRayBarImage = GameObject.Find("XRayBar").GetComponent<Image>();
             _xRayCooldownImage = GameObject.Find("XRayCooldownImage").GetComponent<Image>();
             _xRayTimerImage = GameObject.Find("XRayTimerImage").GetComponent<Image>();
@@ -108,7 +112,7 @@ namespace Manager
             _answersButton[0].onClick.AddListener(FindObjectOfType<EventManager>().OnChosenCorrect);
             _answersButton[1].onClick.AddListener(FindObjectOfType<EventManager>().OnChosenIncorrect);
             _answersButton[2].onClick.AddListener(FindObjectOfType<EventManager>().OnChosenIncorrect);
-
+            
             _hintButton.onClick.AddListener(FindObjectOfType<EventManager>().OnGotHint);
             _closeHintButton.onClick.AddListener(CloseHintPage);
             //_phasesButton.onClick.AddListener(FindObjectOfType<EventManager>().LoadLevelSelectScene);
@@ -149,20 +153,6 @@ namespace Manager
 
         private void CloseHintPage() => StartCoroutine(nameof(WaitToCloseHintPage));
 
-        private IEnumerator WaitToCloseHintPage()
-        {
-            if (!_hintPage.activeSelf)
-                yield return null;
-
-            var animationHintPage = _hintPage.GetComponent<Animator>();
-
-            animationHintPage.SetTrigger("Closing");
-
-            yield return new WaitForSeconds(1f);
-            _hintPage.SetActive(false);
-
-        }
-
         internal void ShowAmoutItemsLeft(int amountItemsLeft) => _amountItemsLeftText.text = string.Concat("Objetos Restantes: ", amountItemsLeft.ToString());
 
         internal void ShowCountdownPerfomedText(float currentTime)
@@ -190,9 +180,6 @@ namespace Manager
             nextLevelButton.onClick.AddListener(eventManager.LoadNextLevelScene);
 
         }
-
-
-
 
         // -------------------- OBSERVERS ------------
 
@@ -298,6 +285,7 @@ namespace Manager
 
             for (int i = 0; i < 3; i++)
             {
+                _answersButton[i].GetComponent<Animator>().Play("Normal");
                 _answersButton[i].gameObject.transform.SetSiblingIndex(randomNumbers[i]);
                 _answersButton[i].interactable = true;
             }
@@ -310,23 +298,30 @@ namespace Manager
 
             for (int i = 0; i < _errorIcons.Length; i++)
                 _errorIcons[i].gameObject.SetActive(false);
- 
+
+            _redImage.gameObject.SetActive(false);
+            _greenImage.gameObject.SetActive(false);
             _guessingPage.SetActive(true);
 
         }
 
-        internal void OnChosenIncorrect(int currentAttempts, int totalAttempts)
+        internal void OnChosenIncorrect()
         {
-            if(currentAttempts > 0)
-                _errorIcons[currentAttempts - 1].gameObject.SetActive(true);
+            _redImage.gameObject.SetActive(true);
+            StartCoroutine(TimerForOpenOrClose(1f, _redImage.gameObject, false));
 
-            if (currentAttempts >= totalAttempts)
-                StartCoroutine(OverChancesChose());
+            if (_errorIcons[0].gameObject.activeSelf)
+                _errorIcons[1].gameObject.SetActive(true);
+
+            _errorIcons[0].gameObject.SetActive(true);
+
+            if (_errorIcons[^1].gameObject.activeSelf)
+                StartCoroutine(TimerForOpenOrClose(1f, _guessingPage, false));
         }
 
         internal void OnCollected()
         {
-            _guessingPage.SetActive(false);
+            StartCoroutine(TimerForOpenOrClose(1f, _guessingPage, false));
         }
 
         internal void OnGotHint(string hintText, int amountHints)
@@ -506,10 +501,24 @@ namespace Manager
 
         // --------- COROUTINES --------
 
-        IEnumerator OverChancesChose()
+        private IEnumerator TimerForOpenOrClose(float time, GameObject page, bool open)
         {
+            yield return new WaitForSeconds(time);
+            page.SetActive(open);
+        }
+
+        private IEnumerator WaitToCloseHintPage()
+        {
+            if (!_hintPage.activeSelf)
+                yield return null;
+
+            var animationHintPage = _hintPage.GetComponent<Animator>();
+
+            animationHintPage.SetTrigger("Closing");
+
             yield return new WaitForSeconds(1f);
-            _guessingPage.SetActive(false);
+            _hintPage.SetActive(false);
+
         }
     }
 }
