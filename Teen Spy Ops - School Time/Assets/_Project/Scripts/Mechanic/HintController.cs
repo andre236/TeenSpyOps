@@ -13,6 +13,7 @@ namespace Controllers
         [SerializeField] private List<GameObject> _respawnsObject;
         [SerializeField] private List<string> _avaliableHints;
         [SerializeField] private string _currentHint;
+        [SerializeField] private string _previousHint;
 
         public int AmountHint { get => _amountHint; set => _amountHint = value; }
         public string CurrentHint { get => _currentHint; set => _currentHint = value; }
@@ -21,11 +22,10 @@ namespace Controllers
 
         private void GetAvailableHint()
         {
-            if (_avaliableHints.Count > 0)
-            {
-                _avaliableHints.Clear();
-                _respawnsObject.Clear();
-            }
+
+            _avaliableHints.Clear();
+            _respawnsObject.Clear();
+            Debug.Log("Limpado.");
 
             _respawnsObject.AddRange(GameObject.FindGameObjectsWithTag("RespawnObject"));
 
@@ -46,6 +46,7 @@ namespace Controllers
 
 
             _currentHint = _avaliableHints[UnityEngine.Random.Range(0, _avaliableHints.Count - 1)];
+            //_previousHint = _currentHint;
             _avaliableHints.Remove(_currentHint);
 
         }
