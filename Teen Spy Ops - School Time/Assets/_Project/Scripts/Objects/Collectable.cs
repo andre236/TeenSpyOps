@@ -185,6 +185,19 @@ namespace Objects
                 gameObject.SetActive(false);
         }
 
+        internal void OnFinishedTimerSkill()
+        {
+            if (this == null)
+                return;
+
+            var gameManager = FindObjectOfType<GameManager>();
+
+            if (gameManager.CurrentSkill == CurrentTypeObject)
+                gameObject.SetActive(true);
+            else
+                gameObject.SetActive(false);
+        }
+
 
     }
 }

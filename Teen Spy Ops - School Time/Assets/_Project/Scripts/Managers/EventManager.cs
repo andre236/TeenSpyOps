@@ -178,6 +178,9 @@ namespace Manager
                 ActivedFingerprint += coll.OnActivedFingerprint;
 
                 UpgradeXRayVision += coll.OnUpgradeXRayVision;
+                _skills.FinishedTimerSkill += coll.OnFinishedTimerSkill;
+
+
             }
         }
 
