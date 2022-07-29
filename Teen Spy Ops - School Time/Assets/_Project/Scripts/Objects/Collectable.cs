@@ -107,10 +107,14 @@ namespace Objects
             var gameManager = FindObjectOfType<GameManager>();
             var levelManager = FindObjectOfType<LevelManager>();
 
+
             if (gameManager.CurrentSkill == CurrentTypeObject)
             {
-                CheckedItemOnList?.Invoke(gameObject);
-                GotQuestion?.Invoke(levelManager.CurrentObject.name, levelManager.CurrentObject.GetComponent<SpriteRenderer>().sprite);
+                if (GameObject.Find("GuessingPage") == null)
+                {
+                    CheckedItemOnList?.Invoke(gameObject);
+                    GotQuestion?.Invoke(levelManager.CurrentObject.name, levelManager.CurrentObject.GetComponent<SpriteRenderer>().sprite);
+                }
             }
         }
 
@@ -127,14 +131,17 @@ namespace Objects
                 gameObject.SetActive(true);
             }
             else
+            {
+                GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.None;
                 gameObject.SetActive(false);
+            }
         }
 
         internal void OnUpgradeXRayVision()
         {
             if (this == null)
                 return;
-            
+
             var gameManager = FindObjectOfType<GameManager>();
 
             GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
@@ -146,15 +153,16 @@ namespace Objects
                 gameObject.SetActive(true);
             }
             else
+            {
+                GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.None;
                 gameObject.SetActive(false);
+            }
         }
 
         internal void OnActivedNightVision()
         {
             if (this == null)
                 return;
-
-      
 
             var gameManager = FindObjectOfType<GameManager>();
 

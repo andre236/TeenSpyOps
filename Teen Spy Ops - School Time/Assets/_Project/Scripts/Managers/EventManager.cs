@@ -131,7 +131,6 @@ namespace Manager
 
             WonGame += _levelManager.OnWonGame;
 
-
             _skills.CountdownXrayTimer += _uiManager.OnCountdownXrayTimer;
 
             _skills.CountdownFingerprintTimer += _uiManager.OnCountdownFingerprintTimer;

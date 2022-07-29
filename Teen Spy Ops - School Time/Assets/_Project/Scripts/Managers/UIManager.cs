@@ -230,6 +230,9 @@ namespace Manager
 
         internal void OnGotQuestion(string nameObject, Sprite itemSprite)
         {
+            if (_guessingPage.activeSelf)
+                return;
+
             string[] nameObjectsGeneral = GeneralTexts.Instance.NameObjects;
 
             Text nameObjectText = _answersButton[0].GetComponentInChildren<Text>();
@@ -295,7 +298,6 @@ namespace Manager
             itemImage.sprite = itemSprite;
             itemImage.SetNativeSize();
 
-
             for (int i = 0; i < _errorIcons.Length; i++)
                 _errorIcons[i].gameObject.SetActive(false);
 
@@ -356,7 +358,9 @@ namespace Manager
                 _xRayCooldownImage.gameObject.SetActive(true);
                 _xRayBarImage.gameObject.SetActive(true);
 
+                
                 _xRayTimerImage.fillAmount = timer / initialTimer;
+                _xRayCooldownImage.fillAmount = 1f;
             }
             else
             {
@@ -379,7 +383,7 @@ namespace Manager
             }
             else
             {
-                _xRayCooldownImage.fillAmount = 0;
+                _xRayCooldownImage.fillAmount = 0f;
                 _xRayCooldownImage.gameObject.SetActive(false);
                 _xRayButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedXRay);
                 _xRayButton.onClick.AddListener(PlayHudAnimation);
@@ -396,6 +400,7 @@ namespace Manager
                 _fingerprintTimerImage.gameObject.SetActive(true);
                 _fingerprintCooldownImage.gameObject.SetActive(true);
                 _fingerprintTimerImage.fillAmount = timer / initialTimer;
+                _fingerprintCooldownImage.fillAmount = 1f;
             }
             else
             {
@@ -427,6 +432,7 @@ namespace Manager
                 _nightVisionTimerImage.gameObject.SetActive(true);
                 _nightVisionCooldownImage.gameObject.SetActive(true);
                 _nightVisionTimerImage.fillAmount = timer / initialTimer;
+                _nightVisionCooldownImage.fillAmount = 1f;
             }
             else
             {
@@ -447,16 +453,6 @@ namespace Manager
                 _nightVisionCooldownImage.gameObject.SetActive(false);
                 _nightVisionButton.interactable = true;
             }
-        }
-
-        internal void OnActivedFingerprint()
-        {
-            _fingerprintButton.interactable = false;
-        }
-
-        internal void OnActivedNightVision()
-        {
-            _nightVisionButton.interactable = false;
         }
 
         internal void OnWonGame()
@@ -488,8 +484,6 @@ namespace Manager
             _winPage.SetActive(false);
             _bellAnimation.SetActive(true);
             Invoke(nameof(ShowGameOverPage), 2f);
-
-
         }
 
         internal void OnEarnedStars(int amountStars)
