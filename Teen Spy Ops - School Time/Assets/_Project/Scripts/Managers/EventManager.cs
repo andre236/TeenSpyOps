@@ -47,7 +47,7 @@ namespace Manager
         public Action InstantiatedCollectables;
 
         public Action ChosenCorrect;
-        public Action ChosenIncorrect;
+        public Action<int,int> ChosenIncorrect;
         public Action DecreasedStars;
 
         // -- Hint -- //
@@ -206,7 +206,7 @@ namespace Manager
             }
         }
 
-        public void OnChosenIncorrect() => ChosenIncorrect?.Invoke();
+        public void OnChosenIncorrect() => ChosenIncorrect?.Invoke(_guessController.CurrentNumberAttempts, _guessController.NumberAttempts);
 
         internal void OnPausedGame()
         {

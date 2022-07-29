@@ -13,12 +13,12 @@ namespace Controllers
             CurrentNumberAttempts = NumberAttempts;
         }
 
-        public void OnChosenIncorrect()
+        public void OnChosenIncorrect(int currentAttempts, int totalAttempts)
         {
-            if (CurrentNumberAttempts > 0)
-                CurrentNumberAttempts--;
+            if (CurrentNumberAttempts < NumberAttempts)
+                CurrentNumberAttempts++;
             else
-                CurrentNumberAttempts = 0;
+                CurrentNumberAttempts = NumberAttempts;
         }
     }
 }

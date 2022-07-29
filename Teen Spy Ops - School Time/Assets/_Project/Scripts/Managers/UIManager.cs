@@ -25,9 +25,9 @@ namespace Manager
         private GameObject _hintPage;
         private GameObject _bellAnimation;
         private GameObject _guessingPage;
-        private GameObject _errorIcon;
-        private GameObject _errorIcon2;
 
+
+        private Image[] _errorIcons;
         private Image _xRayBarImage;
         private Image _xRayCooldownImage;
         private Image _xRayTimerImage;
@@ -57,11 +57,10 @@ namespace Manager
             _bellAnimation = GameObject.Find("Bell");
             _guessingPage = GameObject.Find("GuessingPage");
 
-            _errorIcon = _guessingPage.transform.Find("Panel").transform.Find("ErrorIcon").gameObject;
-            _errorIcon2 = _guessingPage.transform.Find("Panel").transform.Find("ErrorIcon2").gameObject;
 
             _barsAnimation = GameObject.Find("Canvas").GetComponent<Animator>();
 
+            _errorIcons = _guessingPage.transform.Find("Panel").transform.Find("").GetComponents<Image>();
             _xRayBarImage = GameObject.Find("XRayBar").GetComponent<Image>();
             _xRayCooldownImage = GameObject.Find("XRayCooldownImage").GetComponent<Image>();
             _xRayTimerImage = GameObject.Find("XRayTimerImage").GetComponent<Image>();
@@ -192,12 +191,7 @@ namespace Manager
 
         }
 
-        internal void OverChancesChose()
-        {
-            _errorIcon.gameObject.SetActive(false);
-            _errorIcon2.gameObject.SetActive(false);
-            _guessingPage.SetActive(false);
-        }
+
 
 
         // -------------------- OBSERVERS ------------
@@ -313,25 +307,21 @@ namespace Manager
             itemImage.sprite = itemSprite;
             itemImage.SetNativeSize();
 
-            _errorIcon.SetActive(false);
-            _errorIcon2.SetActive(false);
 
+            for (int i = 0; i < _errorIcons.Length; i++)
+                _errorIcons[i].gameObject.SetActive(false);
+ 
             _guessingPage.SetActive(true);
 
         }
 
-        internal void OnChosenIncorrect()
+        internal void OnChosenIncorrect(int currentAttempts, int totalAttempts)
         {
-            if (!_errorIcon.activeSelf)
-            {
-                _errorIcon.SetActive(true);
-                _errorIcon2.SetActive(false);
-            }
-            else
-            {
-                _errorIcon2.SetActive(true);
-                Invoke(nameof(OverChancesChose), 0.5f);
-            }
+            if(currentAttempts > 0)
+                _errorIcons[currentAttempts - 1].gameObject.SetActive(true);
+
+            if (currentAttempts >= totalAttempts)
+                StartCoroutine(OverChancesChose());
         }
 
         internal void OnCollected()
@@ -514,5 +504,12 @@ namespace Manager
             winPageStars.SetInteger("NumberStars", amountStars);
         }
 
+        // --------- COROUTINES --------
+
+        IEnumerator OverChancesChose()
+        {
+            yield return new WaitForSeconds(1f);
+            _guessingPage.SetActive(false);
+        }
     }
 }

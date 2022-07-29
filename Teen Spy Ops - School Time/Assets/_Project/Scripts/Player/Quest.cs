@@ -44,7 +44,7 @@ namespace Player
 
         }
 
-        internal void OnChosenIncorrect()
+        internal void OnChosenIncorrect(int currentAttempts, int totalAttempts)
         {
             CurrentErrorNumbers++;
 
