@@ -317,8 +317,12 @@ namespace Manager
 
             _errorIcons[0].gameObject.SetActive(true);
 
+            
             if (_errorIcons[^1].gameObject.activeSelf)
+            {
+                _guessingPage.GetComponent<Animator>().SetTrigger("Closing");
                 StartCoroutine(TimerForOpenOrClose(1f, _guessingPage, false));
+            }
         }
 
         internal void OnCollected()
@@ -333,8 +337,6 @@ namespace Manager
 
             _hintPage.SetActive(true);
         }
-
-
 
         internal void OnUpgradeXRayVision()
         {
