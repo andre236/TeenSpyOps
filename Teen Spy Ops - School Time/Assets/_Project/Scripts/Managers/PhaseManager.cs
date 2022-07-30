@@ -141,9 +141,17 @@ namespace Manager
         public void EnterPhaseSelected()
         {
             if (_currentLevelSelected > -1)
-                SceneManager.LoadScene("LEVEL" + _currentLevelSelected);
+            {
+                if(PlayerPrefs.GetInt("TUTORIAL_ISDONE") >= 1)
+                    SceneManager.LoadScene("LEVEL" + _currentLevelSelected);
+                else
+                    SceneManager.LoadScene("TUTORIAL");
+            }
             else
+            {
                 _playButton.interactable = false;
+
+            }
         }
 
         public void SendIndexPhase(int phaseIndex)
