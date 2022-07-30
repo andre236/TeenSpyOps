@@ -317,7 +317,6 @@ namespace Manager
 
             _errorIcons[0].gameObject.SetActive(true);
 
-            
             if (_errorIcons[^1].gameObject.activeSelf)
             {
                 _guessingPage.GetComponent<Animator>().SetTrigger("Closing");
@@ -327,6 +326,9 @@ namespace Manager
 
         internal void OnCollected()
         {
+            _greenImage.gameObject.SetActive(true);
+            StartCoroutine(TimerForOpenOrClose(1f, _greenImage.gameObject, false));
+
             StartCoroutine(TimerForOpenOrClose(1f, _guessingPage, false));
         }
 

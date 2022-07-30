@@ -1,7 +1,5 @@
 using System;
 using System.IO;
-using System.Linq;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Manager;
@@ -20,7 +18,8 @@ namespace Objects
         private Sprite _correctModal;
         private Sprite _incorrectModal;
 
-        private Animator _clickOverAnimation;
+        private Animator _itemAnimation;
+        private ParticleSystem _particle;
 
         [SerializeField] private bool _isRandomValue;
         [SerializeField] private SkillState _customTypeObject;
@@ -47,7 +46,8 @@ namespace Objects
             _correctModal = ItemConfig.ModalScriptable.DefaultCorrectModal;
             _incorrectModal = ItemConfig.ModalScriptable.DefaultIncorrectModal;
 
-            _clickOverAnimation = GetComponent<Animator>();
+            _itemAnimation = GetComponent<Animator>();
+            _particle = transform.GetChild(0).GetComponent<ParticleSystem>();
 
         }
 
@@ -106,14 +106,17 @@ namespace Objects
         {
             var gameManager = FindObjectOfType<GameManager>();
             var levelManager = FindObjectOfType<LevelManager>();
-
+            
 
             if (gameManager.CurrentSkill == CurrentTypeObject)
             {
                 if (GameObject.Find("GuessingPage") == null)
                 {
+                    _particle.Play();
                     CheckedItemOnList?.Invoke(gameObject);
                     GotQuestion?.Invoke(levelManager.CurrentObject.name, levelManager.CurrentObject.GetComponent<SpriteRenderer>().sprite);
+                    _itemAnimation.SetTrigger("Clicked");
+                    
                 }
             }
         }
