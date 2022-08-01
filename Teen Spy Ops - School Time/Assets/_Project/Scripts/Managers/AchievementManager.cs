@@ -6,12 +6,12 @@ namespace Manager
     public class AchievementManager : MonoBehaviour
     {
 
-        public Action UnlockedSpyRookie;
-        public Action UnlockedHackerman;
-        public Action UnlockedInTime;
-        public Action UnlockedTacticalEspionageAction;
-        public Action UnlockedSoloAgent;
-        public Action UnlockedCodecMaster;
+        protected internal Action UnlockedSpyRookie;
+        protected internal Action UnlockedHackerman;
+        protected internal Action UnlockedInTime;
+        protected internal Action UnlockedTacticalEspionageAction;
+        protected internal Action UnlockedSoloAgent;
+        protected internal Action UnlockedCodecMaster;
 
         private void Awake()
         {
@@ -30,7 +30,11 @@ namespace Manager
             if (PlayerPrefs.GetInt("HACKERMAN") == 1)
                 return;
 
-            PlayerPrefs.SetInt("HACKERMAN", 1);
+            if (PlayerPrefs.GetInt("AMOUNT_HINTS_USED") >= 10)
+            {
+                PlayerPrefs.SetInt("HACKERMAN", 1);
+                Debug.Log("Conquista HACKERMAN desbloqueada!");
+            }
         }
 
         private void OnUnlockedCodecMaster()
@@ -40,6 +44,8 @@ namespace Manager
                 return;
 
             PlayerPrefs.SetInt("CODEC_MASTER", 1);
+            Debug.Log("Conquista CODEC_MASTER desbloqueada!");
+
         }
 
         private void OnUnlockedSpyRookie()
@@ -49,7 +55,11 @@ namespace Manager
                 return;
 
             if (PlayerPrefs.GetInt("LEVEL1") == 1)
+            {
                 PlayerPrefs.SetInt("SPY_ROOKIE", 1);
+                Debug.Log("Conquista SPY_ROOKIE desbloqueada!");
+
+            }
         }
 
         private void OnUnlockedTacticalEspionageAction()
@@ -59,7 +69,11 @@ namespace Manager
                 return;
 
             if (PlayerPrefs.GetInt("LEVEL8") == 1)
+            {
                 PlayerPrefs.SetInt("TACTICAL_ESPIONAGE_ACTION", 1);
+                Debug.Log("Conquista TACTICAL_ESPIONAGE_ACTION desbloqueada!");
+
+            }
 
         }
 
@@ -70,6 +84,8 @@ namespace Manager
                 return;
 
             PlayerPrefs.SetInt("IN_TIME", 1);
+            Debug.Log("Conquista IN_TIME desbloqueada!");
+
         }
 
         private void OnUnlockedSoloAgent()
@@ -79,6 +95,8 @@ namespace Manager
                 return;
 
             PlayerPrefs.SetInt("SOLO_AGENT", 1);
+            Debug.Log("Conquista SOLO_AGENT desbloqueada!");
+
         }
 
 

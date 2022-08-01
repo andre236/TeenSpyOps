@@ -133,12 +133,12 @@ namespace Manager
             WonGame += _gameManager.OnWonGame;
             WonGame += _uiManager.OnWonGame;
             WonGame += _levelManager.OnWonGame;
-            
+
 
             _skills.CountdownXrayTimer += _uiManager.OnCountdownXrayTimer;
 
             _skills.CountdownFingerprintTimer += _uiManager.OnCountdownFingerprintTimer;
-            
+
             _skills.CountdownNightVisionTimer += _uiManager.OnCountdownNightVisionTimer;
 
             _skills.FinishedTimerSkill += _gameManager.OnFinishedTimerSkill;
@@ -191,7 +191,12 @@ namespace Manager
             if (_hintController.AmountHint <= 0)
                 return;
 
-            _hintController.AmountHint--;
+            //_hintController.AmountHint--;
+            
+            if (PlayerPrefs.GetInt("AMOUNT_HINTS_USED") < 10)
+                PlayerPrefs.SetInt("AMOUNT_HINTS_USED", PlayerPrefs.GetInt("AMOUNT_HINTS_USED")+1);
+
+            _achievementManager.UnlockedHackerman?.Invoke();
             GotHint?.Invoke(_hintController.CurrentHint, _hintController.AmountHint);
         }
         internal void OnActivedXRay() => ActivedXRay?.Invoke();
@@ -204,9 +209,14 @@ namespace Manager
             if (_levelManager.ItemsCollectable.Count <= 0)
             {
                 WonGame?.Invoke();
+
                 if (_levelManager.TimerLevel <= 30)
                     _achievementManager.UnlockedInTime?.Invoke();
+
                 EarnedStars?.Invoke(_questPlayer.CurrentNumberStars);
+
+                if (SceneManager.GetActiveScene().name == "LEVEL7" && _questPlayer.CurrentNumberStars >= 5 && _hintController.AmountHint >= 2)
+                    _achievementManager.UnlockedSoloAgent?.Invoke();
             }
         }
 

@@ -12,8 +12,8 @@ namespace Manager
     public class PhaseManager : MonoBehaviour
     {
         private int _currentLevelSelected = -1;
-
         private Button _playButton;
+        private AchievementManager _achievementManager;
 
         [System.Serializable]
         public class Phase
@@ -27,14 +27,36 @@ namespace Manager
 
         public List<Phase> PhaseList;
 
-        private void Awake() => _playButton = GameObject.Find("PlayButton").GetComponent<Button>();
+        private void Awake()
+        {
+            _achievementManager = FindObjectOfType<AchievementManager>();
+            _playButton = GameObject.Find("PlayButton").GetComponent<Button>();
+        }
 
         private void Start()
         {
+            PlayerPrefs.SetInt("TUTORIAL_ISDONE", 1);
+            //PlayerPrefs.SetInt("AMOUNT_HINTS_USED", 0);
             ActiveButtonStars();
             CheckHavePhaseSelected();
+            CheckHaveAllStars();
             SetItemsEachPhase();
             LoadItemEachPhase();
+        }
+
+        internal void CheckHaveAllStars()
+        {
+            int allStars = 0;
+            foreach (Phase phaseButton in PhaseList)
+            {
+                if (phaseButton.Stars == 4)
+                    allStars ++;
+                else
+                    allStars = 0;
+            }
+
+            if (allStars >= 32)
+                _achievementManager.UnlockedCodecMaster?.Invoke();
         }
 
         private void CheckHavePhaseSelected()
@@ -105,14 +127,14 @@ namespace Manager
             int indexItem = 0;
             for (int numberPhase = 0; numberPhase < 8; numberPhase++)
             {
-                for(int items = 0; items < 3; items++)
+                for (int items = 0; items < 3; items++)
                 {
                     PhaseList[numberPhase].ItemsOnPhase[items] = (ItemConfig)AssetDatabase.LoadAssetAtPath(directory + "/" + filesInfo[sortedNumbers[indexItem]].Name, typeof(ItemConfig));
-                    PlayerPrefs.SetString("LEVEL"+numberPhase+"_ITEMINDEX_"+ indexItem+"_ITEMPOSITION"+ items, filesInfo[sortedNumbers[indexItem]].Name);
+                    PlayerPrefs.SetString("LEVEL" + numberPhase + "_ITEMINDEX_" + indexItem + "_ITEMPOSITION" + items, filesInfo[sortedNumbers[indexItem]].Name);
                     indexItem++;
                     if (items == 2 && numberPhase == 7)
                         PlayerPrefs.SetInt("ITEMS_GENERATED", 1);
-                        
+
                 }
 
 
@@ -142,7 +164,7 @@ namespace Manager
         {
             if (_currentLevelSelected > -1)
             {
-                if(PlayerPrefs.GetInt("TUTORIAL_ISDONE") >= 1)
+                if (PlayerPrefs.GetInt("TUTORIAL_ISDONE") >= 1)
                     SceneManager.LoadScene("LEVEL" + _currentLevelSelected);
                 else
                     SceneManager.LoadScene("TUTORIAL");
