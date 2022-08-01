@@ -118,7 +118,7 @@ namespace Manager
             //_phasesButton.onClick.AddListener(FindObjectOfType<EventManager>().LoadLevelSelectScene);
         }
 
-        internal void PlayHudAnimation()
+        private void PlayHudAnimation()
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
 
@@ -181,7 +181,7 @@ namespace Manager
 
         }
 
-        // -------------------- OBSERVERS ------------
+        // -------------------- OBSERVERS ------------------------
 
 
         public void OnInitializedLevel()

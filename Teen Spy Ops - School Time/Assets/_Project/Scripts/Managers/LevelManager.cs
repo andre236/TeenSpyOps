@@ -30,13 +30,13 @@ namespace Manager
 
         public Action StoppedTimer;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _spawnSchoolObject = GameObject.FindGameObjectsWithTag("RespawnObject");
             CheckObjectsPermission();
         }
 
-        internal void OnInitializedLevel()
+        internal virtual void OnInitializedLevel()
         {
             int randomIndexObject = UnityEngine.Random.Range(0, _spawnSchoolObject.Length - 1);
 
@@ -59,7 +59,7 @@ namespace Manager
             ItemsLeft = ItemsCollectable.Count;
         }
 
-        private void CheckObjectsPermission()
+        protected virtual void CheckObjectsPermission()
         {
             string nameLevel = Regex.Match(SceneManager.GetActiveScene().name, @"\d+").Value;
             int numberCurrentLevel = int.Parse(nameLevel);
@@ -117,6 +117,9 @@ namespace Manager
 
         internal void OnWonGame()
         {
+            if (SceneManager.GetActiveScene().name == "TUTORIAL")
+                return;
+            
             string nameLevel = Regex.Match(SceneManager.GetActiveScene().name, @"\d+").Value;
             int numberNextLevel = int.Parse(nameLevel) + 1;
 

@@ -15,6 +15,7 @@ namespace Manager
         private UIManager _uiManager;
         private LevelManager _levelManager;
         private AudioManager _audioManager;
+        private AchievementManager _achievementManager;
 
         private GuessController _guessController;
         private HintController _hintController;
@@ -54,7 +55,7 @@ namespace Manager
         public Action<string, int> GotHint;
 
 
-        private void Awake()
+        protected virtual void Awake()
         {
             // -- Managers -- //
             _gameManager = FindObjectOfType<GameManager>();
@@ -62,6 +63,7 @@ namespace Manager
             _sceneryManager = FindObjectOfType<SceneryManager>();
             _levelManager = FindObjectOfType<LevelManager>();
             _audioManager = FindObjectOfType<AudioManager>();
+            _achievementManager = FindObjectOfType<AchievementManager>();
 
             // -- Controllers -- //
             _guessController = FindObjectOfType<GuessController>();
@@ -73,7 +75,7 @@ namespace Manager
 
         }
 
-        private void Start()
+        protected virtual void Start()
         {
             // -- Events -- //
             InitializedGame += _gameManager.OnInitializedLevel;
@@ -95,8 +97,7 @@ namespace Manager
             UnPausedGame += _gameManager.OnUnPausedGame;
             UnPausedGame += _uiManager.OnUnPausedGame;
 
-            WonGame += _gameManager.OnWonGame;
-            WonGame += _uiManager.OnWonGame;
+
 
             LosedGame += _gameManager.OnLosedGame;
             LosedGame += _questPlayer.OnLosedGame;
@@ -129,7 +130,10 @@ namespace Manager
             EarnedStars += _levelManager.OnEarnedStars;
             EarnedStars += _uiManager.OnEarnedStars;
 
+            WonGame += _gameManager.OnWonGame;
+            WonGame += _uiManager.OnWonGame;
             WonGame += _levelManager.OnWonGame;
+            
 
             _skills.CountdownXrayTimer += _uiManager.OnCountdownXrayTimer;
 
@@ -141,7 +145,6 @@ namespace Manager
             _skills.FinishedTimerSkill += _sceneryManager.FinishedTimerSkill;
             _skills.FinishedTimerSkill += _uiManager.OnFinishedTimerSkill;
 
-
             _skills.CountdownXrayCooldown += _uiManager.OnCountdownCooldownXray;
 
             _skills.CountdownFingerprintCooldown += _uiManager.OnCountdownFingerprintCooldown;
@@ -151,7 +154,7 @@ namespace Manager
             InitializedGame?.Invoke();
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             if (_levelManager.TimerLevel > 0)
                 CountdownPerfomed?.Invoke();
@@ -164,7 +167,6 @@ namespace Manager
             _uiManager.ShowCountdownPerfomedText(_levelManager.TimerLevel);
             _uiManager.ShowAmoutItemsLeft(_levelManager.ItemsLeft);
         }
-
 
         internal void OnInitialized()
         {
@@ -202,6 +204,8 @@ namespace Manager
             if (_levelManager.ItemsCollectable.Count <= 0)
             {
                 WonGame?.Invoke();
+                if (_levelManager.TimerLevel <= 30)
+                    _achievementManager.UnlockedInTime?.Invoke();
                 EarnedStars?.Invoke(_questPlayer.CurrentNumberStars);
             }
         }

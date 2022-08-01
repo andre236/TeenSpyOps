@@ -87,7 +87,7 @@ namespace Manager
 
         private void SetItemsEachPhase()
         {
-            if (PlayerPrefs.GetInt("ItemsGenerated") == 1)
+            if (PlayerPrefs.GetInt("ITEMS_GENERATED") == 1)
                 return;
 
             DirectoryInfo directory = new DirectoryInfo("Assets/_Project/Scripts/ScriptableObject/SchoolObjects");
@@ -111,7 +111,7 @@ namespace Manager
                     PlayerPrefs.SetString("LEVEL"+numberPhase+"_ITEMINDEX_"+ indexItem+"_ITEMPOSITION"+ items, filesInfo[sortedNumbers[indexItem]].Name);
                     indexItem++;
                     if (items == 2 && numberPhase == 7)
-                        PlayerPrefs.SetInt("ItemsGenerated", 1);
+                        PlayerPrefs.SetInt("ITEMS_GENERATED", 1);
                         
                 }
 
@@ -122,7 +122,7 @@ namespace Manager
 
         private void LoadItemEachPhase()
         {
-            if (PlayerPrefs.GetInt("ItemsGenerated") == 0)
+            if (PlayerPrefs.GetInt("ITEMS_GENERATED") == 0)
                 return;
 
             DirectoryInfo directory = new DirectoryInfo("Assets/_Project/Scripts/ScriptableObject/SchoolObjects");
