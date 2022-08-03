@@ -65,17 +65,14 @@ namespace Manager
             int numberCurrentLevel = int.Parse(nameLevel);
             AllowedSchoolObjects = new string[3];
 
-            int indexItem = 0;
             for (int numberPhase = 0; numberPhase < 8; numberPhase++)
             {
                 if (numberPhase == numberCurrentLevel)
                     for (int items = 0; items < 3; items++)
                     {
-                        AllowedSchoolObjects[items] = PlayerPrefs.GetString("LEVEL" + numberCurrentLevel + "_ITEMINDEX_" + indexItem + "_ITEMPOSITION" + items);
-                        indexItem++;
+                        AllowedSchoolObjects[items] = PlayerPrefs.GetString("LEVEL" + numberCurrentLevel + "_ITEMINDEX_" + (items + (numberPhase * 3)) + "_ITEMPOSITION" + items);
                     }
             }
-
 
         }
 
@@ -125,5 +122,7 @@ namespace Manager
 
             PlayerPrefs.SetInt("LEVEL" + numberNextLevel, 1);
         }
+
+     
     }
 }

@@ -35,6 +35,7 @@ namespace Manager
 
         private void Start()
         {
+            _playButton.onClick.AddListener(EnterPhaseSelected);
             PlayerPrefs.SetInt("TUTORIAL_ISDONE", 1);
             //PlayerPrefs.SetInt("AMOUNT_HINTS_USED", 0);
             ActiveButtonStars();
@@ -50,12 +51,12 @@ namespace Manager
             foreach (Phase phaseButton in PhaseList)
             {
                 if (phaseButton.Stars == 4)
-                    allStars ++;
+                    allStars++;
                 else
                     allStars = 0;
             }
 
-            if (allStars >= 32)
+            if (allStars >= 8)
                 _achievementManager.UnlockedCodecMaster?.Invoke();
         }
 

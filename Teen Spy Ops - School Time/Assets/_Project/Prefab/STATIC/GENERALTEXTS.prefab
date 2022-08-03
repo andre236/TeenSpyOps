@@ -45,3 +45,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nameObjects: []
+  HintsPerPhaseList:
+  - RespawnHint:
+    - Hint:
+      - "Acho que n\xE3o tiveram muito tempo para esconder esse daqui. Eu lembro
+        de ver algo em uma das cadeiras da fileira do canto."
+      - "Essas mochilas s\xE3o grandes e espa\xE7osas. Tente ver atr\xE1s de alguma
+        delas."
+    - Hint:
+      - "As carteiras do fundo parecem suspeitas. D\xEA uma olhada nessa regi\xE3o."
+      - "E se voc\xEA puxasse a cadeira s\xF3 um pouquinho...? N\xE3o? Bem, ver atrav\xE9s
+        dela tamb\xE9m resolve."
+    - Hint:
+      - "Eu vi algu\xE9m colocando algo perto da lousa, tente procurar na parte da
+        frente da sala."
+      - "Tem uma sombra muito escura naquele arm\xE1rio. Talvez voc\xEA ache algo
+        se procurar ali."
+    - Hint:
+      - "Eu n\xE3o sei qual, mas acho que tem algo embaixo de uma das mesas. Talvez
+        na parte da frente da sala...?"
+      - "Tem uma sombra muito escura na mesa da professora. Voc\xEA pode dar uma
+        olhada ali embaixo."
+    - Hint:
+      - "Talvez as mochilas sejam um bom esconderijo para os mais distra\xEDdos....
+        Que bom que voc\xEA est\xE1 preparado, n\xE3o?"
+      - "Acho que vi algu\xE9m deixando algo escondido perto da porta antes de sair...."
+  - RespawnHint:
+    - Hint:
+      - Dica 1 do respawn 1 da fase 2
+      - Dica 2 do respawn 1 da fase 2
+    - Hint:
+      - Dica 1 do respawn 2 da fase 2
+      - Dica 2  do respawn 2 da fase 2
+    - Hint:
+      - Dica 1 do respawn 3 da fase 2
+      - Dica 2 do respawn 3 da fase 2
+    - Hint:
+      - Dica 1 do respawn 4 da fase 2
+      - Dica 2 do respawn 4 da fase 2
+    - Hint:
+      - Dica 1 do respawn 5 da fase 2
+      - Dica 2 do respawn 5 da fase 2
+  - RespawnHint: []
+  - RespawnHint: []
+  - RespawnHint: []
+  - RespawnHint: []
+  - RespawnHint: []
+  - RespawnHint: []
