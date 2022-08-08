@@ -9,8 +9,11 @@ namespace Statics
     {
         [SerializeField] private string[] _nameObjects;
         [SerializeField] private string[] _hintsTutorial;
+        [SerializeField] private string[] _tinaLinesTutorial;
 
         public string[] NameObjects { get => _nameObjects; set => _nameObjects = value; }
+        public string[] TinaLinesTutorial { get => _tinaLinesTutorial; set => _tinaLinesTutorial = value; }
+        public string[] HintsTutorial { get => _hintsTutorial; set => _hintsTutorial = value; }
 
         [System.Serializable]
         public class HintsPhase
@@ -27,6 +30,7 @@ namespace Statics
         public List<HintsPhase> HintsPerPhaseList;
         
         public static GeneralTexts Instance { get; set; }
+
 
         private void Awake()
         {
