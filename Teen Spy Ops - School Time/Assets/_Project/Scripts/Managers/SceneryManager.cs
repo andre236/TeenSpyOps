@@ -144,6 +144,7 @@ namespace Manager
         {
             DefinedStandardActivedScenery?.Invoke();
             _xRayAnimator.SetBool("OnXRay", false);
+            _nightVisionAnimator.SetBool("OnNightVision", false);
         }
 
         private IEnumerator ActiveDefaultSceneWithDelay()

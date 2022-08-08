@@ -112,7 +112,6 @@ namespace Objects
             {
                 if (GameObject.Find("GuessingPage") == null)
                 {
-                    _particle.Play();
                     CheckedItemOnList?.Invoke(gameObject);
                     GotQuestion?.Invoke(levelManager.CurrentObject.name, levelManager.CurrentObject.GetComponent<SpriteRenderer>().sprite);
                     _itemAnimation.SetTrigger("Clicked");
