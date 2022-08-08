@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine.SceneManagement;
 using UnityEngine;
-using Objects;
 using UnityEditor;
+using Objects;
+using Tutorial;
 
 namespace Manager
 {
@@ -14,14 +15,15 @@ namespace Manager
     {
         [SerializeField] private string _levelName;
         [SerializeField] private GameObject _prefabSchoolObject;
-        [SerializeField] private GameObject[] _spawnSchoolObject;
         [SerializeField] private string[] _allowedSchoolObjects;
+
+        [SerializeField] protected GameObject[] _spawnSchoolObject;
 
         private int _amountInstantiatedSchoolObjects;
 
         [field:Header("Timer level in seconds.")]
         [field: SerializeField] public float InitialTimerLevel { get; private set; }
-        public float TimerLevel { get; private set; }
+        public float TimerLevel { get; protected set; }
         public GameObject CurrentObject { get; private set; }
         public int ItemsLeft { get; private set; }
         public string[] AllowedSchoolObjects { get => _allowedSchoolObjects; set => _allowedSchoolObjects = value; }
@@ -38,6 +40,9 @@ namespace Manager
 
         internal virtual void OnInitializedLevel()
         {
+            if (FindObjectOfType<TutorialLevelManager>() != null)
+                return;
+
             int randomIndexObject = UnityEngine.Random.Range(0, _spawnSchoolObject.Length - 1);
 
             for (int i = 0; i < 100; i++)
@@ -61,6 +66,9 @@ namespace Manager
 
         protected virtual void CheckObjectsPermission()
         {
+            if (FindObjectOfType<TutorialLevelManager>() != null)
+                return;
+
             string nameLevel = Regex.Match(SceneManager.GetActiveScene().name, @"\d+").Value;
             int numberCurrentLevel = int.Parse(nameLevel);
             AllowedSchoolObjects = new string[3];
@@ -76,7 +84,7 @@ namespace Manager
 
         }
 
-        internal void OnCountdownTimerLevel()
+        internal virtual void OnCountdownTimerLevel()
         {
             var gameManager = FindObjectOfType<GameManager>();
 

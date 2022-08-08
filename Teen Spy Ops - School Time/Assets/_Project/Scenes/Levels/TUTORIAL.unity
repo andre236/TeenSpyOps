@@ -164,17 +164,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 49810954}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51b9bed49d3d0dc44bfdf9ce77693ccf, type: 3}
+  m_Script: {fileID: 11500000, guid: 946f9ad4226b09641b3c41ff51b6b621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <GetPossibleSkillState>k__BackingField: 02000000
   <FinalSkillState>k__BackingField: 0
   <FinalDistance>k__BackingField: 0
   <HintsThisPlace>k__BackingField:
-  - "Eu n\xE3o sei qual, mas acho que tem algo embaixo de uma das mesas. Talvez na
-    parte da frente da sala...?"
-  - "Tem uma sombra muito escura na mesa da professora. Voc\xEA pode dar uma olhada
-    ali embaixo."
+  - 
+  - 
 --- !u!1 &58430298
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,7 +566,6 @@ Transform:
   m_Children:
   - {fileID: 360626681}
   - {fileID: 1723889667}
-  - {fileID: 1446953210}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -697,16 +694,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 292741268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51b9bed49d3d0dc44bfdf9ce77693ccf, type: 3}
+  m_Script: {fileID: 11500000, guid: 946f9ad4226b09641b3c41ff51b6b621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <GetPossibleSkillState>k__BackingField: 01000000
   <FinalSkillState>k__BackingField: 0
-  <FinalDistance>k__BackingField: 2
+  <FinalDistance>k__BackingField: 0
   <HintsThisPlace>k__BackingField:
-  - "Acho que n\xE3o tiveram muito tempo para esconder esse daqui. Eu lembro de ver
-    algo em uma das cadeiras da fileira do canto."
-  - "Essas mochilas s\xE3o grandes e espa\xE7osas. Tente ver atr\xE1s de alguma delas."
+  - 
+  - 
 --- !u!1 &303215681
 GameObject:
   m_ObjectHideFlags: 0
@@ -2148,16 +2144,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 722687517}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51b9bed49d3d0dc44bfdf9ce77693ccf, type: 3}
+  m_Script: {fileID: 11500000, guid: 946f9ad4226b09641b3c41ff51b6b621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <GetPossibleSkillState>k__BackingField: 01000000
   <FinalSkillState>k__BackingField: 0
-  <FinalDistance>k__BackingField: 2
+  <FinalDistance>k__BackingField: 0
   <HintsThisPlace>k__BackingField:
-  - "As carteiras do fundo parecem suspeitas. D\xEA uma olhada nessa regi\xE3o."
-  - "E se voc\xEA puxasse a cadeira s\xF3 um pouquinho...? N\xE3o? Bem, ver atrav\xE9s
-    dela tamb\xE9m resolve."
+  - 
+  - 
 --- !u!1 &745064648
 GameObject:
   m_ObjectHideFlags: 0
@@ -2908,6 +2903,68 @@ MonoBehaviour:
   _firstDistanceRangeXray: 1
   _secondDistanceRangeXray: 2
   _thirdDistanceRangeXray: 3
+--- !u!1001 &1097811449
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1307013498}
+    m_Modifications:
+    - target: {fileID: 2134023914987053088, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: m_Name
+      value: GENERALTEXTS
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053090, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053090, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 383.99997
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053090, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 185.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053090, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053090, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053090, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053090, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053090, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053090, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053090, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053090, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+--- !u!4 &1097811450 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2134023914987053090, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+  m_PrefabInstance: {fileID: 1097811449}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1102219845
 GameObject:
   m_ObjectHideFlags: 0
@@ -3120,7 +3177,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1162081533
 Transform:
   m_ObjectHideFlags: 0
@@ -3150,8 +3207,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelName: 
   _prefabSchoolObject: {fileID: 7577296197177340029, guid: bc418877e38b6e54d96f068ee69b0a0c, type: 3}
-  _spawnSchoolObject: []
   _allowedSchoolObjects: []
+  _spawnSchoolObject: []
   <InitialTimerLevel>k__BackingField: 360
   ItemsCollectable: []
 --- !u!1 &1212388527
@@ -3586,7 +3643,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1307013498}
-  - component: {fileID: 1307013497}
   m_Layer: 0
   m_Name: STATIC
   m_TagString: Untagged
@@ -3594,24 +3650,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1307013497
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1307013496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77a25c399174e914ba0a9d76b1369494, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _nameObjects: []
-  _hintsTutorial:
-  - Dica 1 do tutorial
-  - Dica 2 do tutorial
-  - Dica 3 do tutorial
-  HintsPerPhaseList: []
 --- !u!4 &1307013498
 Transform:
   m_ObjectHideFlags: 0
@@ -3623,7 +3661,8 @@ Transform:
   m_LocalPosition: {x: 383.99997, y: 185.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1097811450}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4143,37 +4182,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3223493760778734066, guid: 3ab8272f4203c5340bc3f7f9e7a7d968, type: 3}
   m_PrefabInstance: {fileID: 3223493762194614659}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1446953209
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1446953210}
-  m_Layer: 0
-  m_Name: TutorialRespawnMechanic
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1446953210
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1446953209}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 220432041}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1464437110
 GameObject:
   m_ObjectHideFlags: 0
@@ -4875,16 +4883,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1708912643}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51b9bed49d3d0dc44bfdf9ce77693ccf, type: 3}
+  m_Script: {fileID: 11500000, guid: 946f9ad4226b09641b3c41ff51b6b621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <GetPossibleSkillState>k__BackingField: 01000000
   <FinalSkillState>k__BackingField: 0
   <FinalDistance>k__BackingField: 0
   <HintsThisPlace>k__BackingField:
-  - "Talvez as mochilas sejam um bom esconderijo para os mais distra\xEDdos.... Que
-    bom que voc\xEA est\xE1 preparado, n\xE3o?"
-  - "Acho que vi algu\xE9m deixando algo escondido perto da porta antes de sair...."
+  - 
+  - 
 --- !u!1 &1723889666
 GameObject:
   m_ObjectHideFlags: 0
@@ -4931,9 +4938,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelName: 
   _prefabSchoolObject: {fileID: 7577296197177340029, guid: bc418877e38b6e54d96f068ee69b0a0c, type: 3}
-  _spawnSchoolObject: []
   _allowedSchoolObjects: []
-  <InitialTimerLevel>k__BackingField: 720
+  _spawnSchoolObject: []
+  <InitialTimerLevel>k__BackingField: 780
   ItemsCollectable: []
   _itemTutorial:
   - {fileID: 11400000, guid: fbb4f0ebb6a62a34a9eb005df81b810e, type: 2}
@@ -5390,17 +5397,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1939668820}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51b9bed49d3d0dc44bfdf9ce77693ccf, type: 3}
+  m_Script: {fileID: 11500000, guid: 946f9ad4226b09641b3c41ff51b6b621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <GetPossibleSkillState>k__BackingField: 0200000001000000
   <FinalSkillState>k__BackingField: 0
-  <FinalDistance>k__BackingField: 2
+  <FinalDistance>k__BackingField: 0
   <HintsThisPlace>k__BackingField:
-  - "Eu vi algu\xE9m colocando algo perto da lousa, tente procurar na parte da frente
-    da sala."
-  - "Tem uma sombra muito escura naquele arm\xE1rio. Talvez voc\xEA ache algo se
-    procurar ali."
+  - 
+  - 
 --- !u!1 &1956960647
 GameObject:
   m_ObjectHideFlags: 0

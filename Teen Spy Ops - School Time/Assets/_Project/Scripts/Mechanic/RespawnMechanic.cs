@@ -2,6 +2,7 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Statics;
+using Tutorial;
 
 namespace Mechanic
 {
@@ -18,6 +19,7 @@ namespace Mechanic
 
         protected virtual void GetAllHintsFromGeneral()
         {
+
             string nameCurrentLevel = Regex.Match(SceneManager.GetActiveScene().name, @"\d+").Value;
             int levelNumber = int.Parse(nameCurrentLevel);
 
@@ -35,8 +37,6 @@ namespace Mechanic
                             {
                                 HintsThisPlace[hintNumber] = GeneralTexts.Instance.HintsPerPhaseList[levelNumber].RespawnHint[respawnNumber].Hint[hintNumber];
                             }
-
-
 
                     }
             }
