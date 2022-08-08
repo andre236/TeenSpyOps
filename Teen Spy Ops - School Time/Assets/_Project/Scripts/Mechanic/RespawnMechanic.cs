@@ -13,13 +13,10 @@ namespace Mechanic
 
         [field: TextArea(4, 8)]
         [field: SerializeField] public string[] HintsThisPlace { get; set; }
-        private void Awake() => GeneratePossibleSkill();
-        private void Start()
-        {
-            GetAllHintsFromGeneral();
-        }
+        protected virtual void Awake() => GeneratePossibleSkill();
+        protected virtual void Start() => GetAllHintsFromGeneral();
 
-        private void GetAllHintsFromGeneral()
+        protected virtual void GetAllHintsFromGeneral()
         {
             string nameCurrentLevel = Regex.Match(SceneManager.GetActiveScene().name, @"\d+").Value;
             int levelNumber = int.Parse(nameCurrentLevel);
@@ -42,9 +39,6 @@ namespace Mechanic
 
 
                     }
-
-
-
             }
 
         }

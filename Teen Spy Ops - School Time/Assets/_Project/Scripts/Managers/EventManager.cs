@@ -97,8 +97,6 @@ namespace Manager
             UnPausedGame += _gameManager.OnUnPausedGame;
             UnPausedGame += _uiManager.OnUnPausedGame;
 
-
-
             LosedGame += _gameManager.OnLosedGame;
             LosedGame += _questPlayer.OnLosedGame;
             LosedGame += _uiManager.OnLosedGame;
@@ -177,7 +175,7 @@ namespace Manager
 
                 ActivedXRay += coll.OnActivatedXray;
                 ActivedNightVision += coll.OnActivedNightVision;
-                ActivedFingerprint += coll.OnActivedFingerprint;
+                //ActivedFingerprint += coll.OnActivedFingerprint;
 
                 UpgradeXRayVision += coll.OnUpgradeXRayVision;
                 _skills.FinishedTimerSkill += coll.OnFinishedTimerSkill;

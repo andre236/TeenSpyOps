@@ -8,7 +8,8 @@ namespace Statics
     public class GeneralTexts : MonoBehaviour
     {
         [SerializeField] private string[] _nameObjects;
-        
+        [SerializeField] private string[] _hintsTutorial;
+
         public string[] NameObjects { get => _nameObjects; set => _nameObjects = value; }
 
         [System.Serializable]
