@@ -35,8 +35,14 @@ namespace Controllers
                 {
                     if (respawn.transform.GetChild(0).transform.childCount > 0)
                     {
-                        _avaliableHints.Add(respawn.GetComponent<RespawnMechanic>().HintsThisPlace[0]);
-                        _avaliableHints.Add(respawn.GetComponent<RespawnMechanic>().HintsThisPlace[1]);
+                        if (FindObjectOfType<RespawnMechanic>() != null)
+                        {
+                            _avaliableHints.Add(respawn.GetComponent<RespawnMechanic>().HintsThisPlace[0]);
+                            _avaliableHints.Add(respawn.GetComponent<RespawnMechanic>().HintsThisPlace[1]);
+
+                        }
+
+
 
                     }
 

@@ -37,11 +37,8 @@ namespace Manager
             if (CurrentGameState != GameState.Running)
                 return;
 
-
             if (CurrentSkill != SkillState.Fingerprint)
                 CurrentSkill = SkillState.Fingerprint;
-
-
 
         }
 

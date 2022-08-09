@@ -40,7 +40,7 @@ namespace Manager
 
         private Button[] _answersButton;
         private Button _hintButton;
-        private Button _pauseMenuButton;
+        protected Button _pauseMenuButton;
         private Button _closeButton;
         private Button _returnButton;
         private Button _xRayButton;
@@ -50,7 +50,7 @@ namespace Manager
         private Button _mainMenuButton;
         private Button _closeHintButton;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _pausePage = GameObject.Find("PausePage");
             _winPage = GameObject.Find("WinPage");
@@ -94,7 +94,7 @@ namespace Manager
 
 
 
-        private void Start()
+        protected virtual void Start()
         {
             _pauseMenuButton.onClick.AddListener(FindObjectOfType<EventManager>().OnPausedGame);
             _xRayButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedXRay);
