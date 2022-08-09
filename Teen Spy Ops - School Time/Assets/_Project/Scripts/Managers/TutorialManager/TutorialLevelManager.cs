@@ -1,5 +1,3 @@
-using System.IO;
-using System.Text.RegularExpressions;
 using UnityEngine;
 using Manager;
 
@@ -13,8 +11,7 @@ namespace Tutorial
 
         protected override void Awake()
         {
-            _spawnSchoolObject = GameObject.FindGameObjectsWithTag("RespawnObject");
-            CheckObjectsPermission();
+            base.Awake();
         }
 
         internal override void OnInitializedLevel()
@@ -24,7 +21,6 @@ namespace Tutorial
 
         protected override void CheckObjectsPermission()
         {
-            
             AllowedSchoolObjects = new string[3];
 
             for(int i = 0; i < AllowedSchoolObjects.Length; i++)

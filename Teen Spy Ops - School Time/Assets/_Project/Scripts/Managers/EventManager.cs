@@ -4,23 +4,22 @@ using UnityEngine.SceneManagement;
 using Player;
 using Objects;
 using Controllers;
-using UnityEngine.UI;
 
 namespace Manager
 {
     public class EventManager : MonoBehaviour
     {
-        private GameManager _gameManager;
-        private SceneryManager _sceneryManager;
-        private UIManager _uiManager;
-        private LevelManager _levelManager;
-        private AudioManager _audioManager;
-        private AchievementManager _achievementManager;
+        protected GameManager _gameManager;
+        protected SceneryManager _sceneryManager;
+        protected UIManager _uiManager;
+        protected LevelManager _levelManager;
+        protected AudioManager _audioManager;
+        protected AchievementManager _achievementManager;
 
-        private GuessController _guessController;
-        private HintController _hintController;
-        private Quest _questPlayer;
-        private Skills _skills;
+        protected GuessController _guessController;
+        protected HintController _hintController;
+        protected Quest _questPlayer;
+        protected Skills _skills;
 
         // -- System -- //
         public Action InitializedGame;
@@ -149,6 +148,7 @@ namespace Manager
 
             _skills.CountdownNightVisionCooldown += _uiManager.OnCountdownNightVisionCooldown;
 
+            
             InitializedGame?.Invoke();
         }
 
