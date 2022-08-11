@@ -14,18 +14,18 @@ namespace Manager
     public class LevelManager : MonoBehaviour
     {
         [SerializeField] private string _levelName;
-        [SerializeField] private GameObject _prefabSchoolObject;
+        [SerializeField] protected GameObject _prefabSchoolObject;
         [SerializeField] private string[] _allowedSchoolObjects;
 
         [SerializeField] protected GameObject[] _spawnSchoolObject;
 
-        private int _amountInstantiatedSchoolObjects;
+        protected int _amountInstantiatedSchoolObjects;
 
         [field:Header("Timer level in seconds.")]
         [field: SerializeField] public float InitialTimerLevel { get; private set; }
         public float TimerLevel { get; protected set; }
         public GameObject CurrentObject { get; private set; }
-        public int ItemsLeft { get; private set; }
+        public int ItemsLeft { get; protected set; }
         public string[] AllowedSchoolObjects { get => _allowedSchoolObjects; set => _allowedSchoolObjects = value; }
 
         public List<Collectable> ItemsCollectable = new List<Collectable>();
@@ -40,8 +40,6 @@ namespace Manager
 
         internal virtual void OnInitializedLevel()
         {
-            if (FindObjectOfType<TutorialLevelManager>() != null)
-                return;
 
             int randomIndexObject = UnityEngine.Random.Range(0, _spawnSchoolObject.Length - 1);
 

@@ -15,36 +15,7 @@ namespace Tutorial
 
         protected override void Start()
         {
-            CountdownPerfomed += _levelManager.OnCountdownTimerLevel;
-
-            PausedGame += _gameManager.OnPausedGame;
-            PausedGame += _uiManager.OnPausedGame;
-
-            UnPausedGame += _gameManager.OnUnPausedGame;
-            UnPausedGame += _uiManager.OnUnPausedGame;
-
-            ItemCollected += _levelManager.OnCollected;
-            ItemCollected += _uiManager.OnCollected;
-
-            WonGame += _gameManager.OnWonGame;
-            WonGame += _uiManager.OnWonGame;
-            WonGame += _levelManager.OnWonGame;
-
-            _skills.CountdownXrayTimer += _uiManager.OnCountdownXrayTimer;
-
-            _skills.CountdownFingerprintTimer += _uiManager.OnCountdownFingerprintTimer;
-
-            _skills.CountdownNightVisionTimer += _uiManager.OnCountdownNightVisionTimer;
-
-            _skills.FinishedTimerSkill += _gameManager.OnFinishedTimerSkill;
-            _skills.FinishedTimerSkill += _sceneryManager.FinishedTimerSkill;
-            _skills.FinishedTimerSkill += _uiManager.OnFinishedTimerSkill;
-
-            _skills.CountdownXrayCooldown += _uiManager.OnCountdownCooldownXray;
-
-            _skills.CountdownFingerprintCooldown += _uiManager.OnCountdownFingerprintCooldown;
-
-            _skills.CountdownNightVisionCooldown += _uiManager.OnCountdownNightVisionCooldown;
+            base.Start();
         }
 
         protected override void Update()

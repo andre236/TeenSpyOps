@@ -193,7 +193,7 @@ namespace Manager
         // -------------------- OBSERVERS ------------------------
 
 
-        public void OnInitializedLevel()
+        internal void OnInitializedLevel()
         {
             _pausePage.SetActive(false);
             _winPage.SetActive(false);

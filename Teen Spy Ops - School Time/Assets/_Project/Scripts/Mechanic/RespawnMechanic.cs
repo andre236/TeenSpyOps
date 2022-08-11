@@ -2,7 +2,6 @@ using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Statics;
-using Tutorial;
 
 namespace Mechanic
 {
