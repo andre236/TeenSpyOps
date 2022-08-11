@@ -53,7 +53,7 @@ namespace Manager
         // -- Hint -- //
         public Action<string, int> GotHint;
 
-
+        
         protected virtual void Awake()
         {
             // -- Managers -- //
