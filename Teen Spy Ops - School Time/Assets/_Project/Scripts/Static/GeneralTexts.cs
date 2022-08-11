@@ -31,7 +31,6 @@ namespace Statics
         
         public static GeneralTexts Instance { get; set; }
 
-
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -63,7 +62,6 @@ namespace Statics
             {
                 NameObjects[i] = info[i].Name.Replace(".asset", "");
             }
-
 
         }
 

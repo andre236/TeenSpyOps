@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mechanic;
 using System.Collections;
+using Tutorial;
 
 namespace Controllers
 {
@@ -39,10 +40,13 @@ namespace Controllers
                         {
                             _avaliableHints.Add(respawn.GetComponent<RespawnMechanic>().HintsThisPlace[0]);
                             _avaliableHints.Add(respawn.GetComponent<RespawnMechanic>().HintsThisPlace[1]);
-
                         }
-
-
+                        
+                        if(FindObjectOfType<TutorialRespawnMechanic>() != null)
+                        {
+                            _avaliableHints.Add(respawn.GetComponent<TutorialRespawnMechanic>().HintsThisPlace[0]);
+                            _avaliableHints.Add(respawn.GetComponent<TutorialRespawnMechanic>().HintsThisPlace[1]);
+                        }
 
                     }
 

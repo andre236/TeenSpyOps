@@ -5,6 +5,8 @@ using UnityEngine.Events;
 using Manager;
 using UnityEditor;
 using Mechanic;
+using UnityEngine.SceneManagement;
+using Tutorial;
 
 namespace Objects
 {
@@ -81,7 +83,11 @@ namespace Objects
 
             for (int i = 0; i < itemsCollectables.Length; i++)
             {
-                ItemConfig = (ItemConfig)AssetDatabase.LoadAssetAtPath(directory + "/" + levelManager.AllowedSchoolObjects[i], typeof(ItemConfig));
+                if (SceneManager.GetActiveScene().name != "TUTORIAL")
+                    ItemConfig = (ItemConfig)AssetDatabase.LoadAssetAtPath(directory + "/" + levelManager.AllowedSchoolObjects[i], typeof(ItemConfig));
+                //else
+                //    if (FindObjectOfType<TutorialLevelManager>().ItemTutorial[i] == null)
+                //    ItemConfig = FindObjectOfType<TutorialLevelManager>().ItemTutorial[i];
             }
 
             gameObject.name = ItemConfig.NameObject;
@@ -106,7 +112,7 @@ namespace Objects
         {
             var gameManager = FindObjectOfType<GameManager>();
             var levelManager = FindObjectOfType<LevelManager>();
-            
+
 
             if (gameManager.CurrentSkill == CurrentTypeObject)
             {
@@ -115,7 +121,7 @@ namespace Objects
                     CheckedItemOnList?.Invoke(gameObject);
                     GotQuestion?.Invoke(levelManager.CurrentObject.name, levelManager.CurrentObject.GetComponent<SpriteRenderer>().sprite);
                     _itemAnimation.SetTrigger("Clicked");
-                    
+
                 }
             }
         }

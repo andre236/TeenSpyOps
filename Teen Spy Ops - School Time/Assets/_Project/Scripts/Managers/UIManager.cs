@@ -92,7 +92,16 @@ namespace Manager
 
         }
 
+        internal void OnActivedXRay()
+        {
+            GameManager gameManager = FindObjectOfType<GameManager>();
+            Animator xRayBarAnimation = _xRayBarImage.GetComponent<Animator>();
 
+            Debug.Log("Distancia atual: " + (int)gameManager.CurrentDistance);
+
+            xRayBarAnimation.gameObject.SetActive(true);
+            xRayBarAnimation.SetInteger("XRayDistance", (int)gameManager.CurrentDistance);
+        }
 
         protected virtual void Start()
         {
@@ -184,7 +193,7 @@ namespace Manager
         // -------------------- OBSERVERS ------------------------
 
 
-        public void OnInitializedLevel()
+        internal void OnInitializedLevel()
         {
             _pausePage.SetActive(false);
             _winPage.SetActive(false);
@@ -344,6 +353,8 @@ namespace Manager
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
             Animator xRayBarAnimation = _xRayBarImage.GetComponent<Animator>();
+
+            Debug.Log("Distancia atual: " + (int)gameManager.CurrentDistance);
 
             xRayBarAnimation.gameObject.SetActive(true);
             xRayBarAnimation.SetInteger("XRayDistance", (int)gameManager.CurrentDistance);

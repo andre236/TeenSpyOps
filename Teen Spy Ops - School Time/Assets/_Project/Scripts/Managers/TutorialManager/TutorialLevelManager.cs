@@ -1,5 +1,6 @@
 using UnityEngine;
 using Manager;
+using Objects;
 
 namespace Tutorial
 {
@@ -16,7 +17,8 @@ namespace Tutorial
 
         internal override void OnInitializedLevel()
         {
-            Debug.Log("Override ");
+
+            base.OnInitializedLevel();
         }
 
         protected override void CheckObjectsPermission()

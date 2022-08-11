@@ -53,7 +53,7 @@ namespace Manager
         // -- Hint -- //
         public Action<string, int> GotHint;
 
-
+        
         protected virtual void Awake()
         {
             // -- Managers -- //
@@ -103,6 +103,7 @@ namespace Manager
             ActivedXRay += _gameManager.OnActivedXRay;
             ActivedXRay += _sceneryManager.OnActivedXRay;
             ActivedXRay += _skills.OnActivedXRay;
+            ActivedXRay += _uiManager.OnActivedXRay;
 
             UpgradeXRayVision += _gameManager.OnUpgradeXRayVision;
             UpgradeXRayVision += _sceneryManager.OnUpgradeXRayVision;

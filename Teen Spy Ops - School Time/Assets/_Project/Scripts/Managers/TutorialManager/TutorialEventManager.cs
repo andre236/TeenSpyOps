@@ -5,7 +5,7 @@ namespace Tutorial
 {
     public class TutorialEventManager : EventManager
     {
-
+        
         protected internal Action SkippedTutorialLine;
 
         protected override void Awake()
@@ -20,8 +20,24 @@ namespace Tutorial
 
         protected override void Update()
         {
-            base.Update();
+            if (_levelManager.TimerLevel > 0)
+                CountdownPerfomed?.Invoke();
+
+            _uiManager.ShowCountdownPerfomedText(_levelManager.TimerLevel);
+            _uiManager.ShowAmoutItemsLeft(_levelManager.ItemsLeft);
         }
 
+
+        private void ExecuteTutorial()
+        {
+            /*
+             TINA_FALA()
+             
+             FOCAR_RAIO-X()
+
+              TINA_FALA()
+
+             */
+        }
     }
 }
