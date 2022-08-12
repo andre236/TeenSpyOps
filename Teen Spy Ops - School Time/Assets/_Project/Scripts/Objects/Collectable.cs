@@ -67,7 +67,7 @@ namespace Objects
 
             GetComponent<SpriteRenderer>().sprite = _spriteObject;
 
-            StartCoroutine(nameof(ApplyDelay));
+            StartCoroutine(nameof(ApplyDelayToDeActiveGameObject));
 
 
         }
@@ -204,7 +204,7 @@ namespace Objects
                 gameObject.SetActive(false);
         }
 
-        IEnumerator ApplyDelay()
+        IEnumerator ApplyDelayToDeActiveGameObject()
         {
             yield return new WaitForSeconds(0.1f);
             var gameManager = FindObjectOfType<GameManager>();

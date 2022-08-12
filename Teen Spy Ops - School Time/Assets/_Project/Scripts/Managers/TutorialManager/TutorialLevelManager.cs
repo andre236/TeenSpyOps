@@ -23,7 +23,6 @@ namespace Tutorial
 
             TimerLevel = InitialTimerLevel;
             ItemsLeft = ItemsCollectable.Count;
-            Debug.Log("Estou sendo chamado. " + ItemsCollectable.Count);
 
         }
 

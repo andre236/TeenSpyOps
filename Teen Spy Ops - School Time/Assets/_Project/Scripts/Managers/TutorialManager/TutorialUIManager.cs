@@ -27,10 +27,13 @@ namespace Tutorial
 
         }
 
-        internal void OnCalledTinaLine(string line)
+        internal void OnCalledTinaLine(string[] line)
         {
-            _tinaText.text = line;
+            int numberLines = line.Length;
+            int currentLine = 0;
+
             _tinaPageTutorial.SetActive(true);
+            _tinaText.text = line[currentLine];
         }
 
 
