@@ -2624,7 +2624,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1213223846}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e385de87558ecd6438fc53e1ad29bafd, type: 3}
   m_Name: 
@@ -3570,8 +3570,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "As crian\xE7as acham que podem ser mais espertas que a gente mas\r\nmal
-    sabem elas da nossa perspic\xE1cia!"
+  m_Text: "pode falar comigo pra que eu te d\xEA uma dica de onde\r\num dos objetos
+    est\xE1."
 --- !u!222 &1596378929
 CanvasRenderer:
   m_ObjectHideFlags: 0
