@@ -1,4 +1,5 @@
 using Manager;
+using Statics;
 using System;
 
 namespace Tutorial
@@ -11,7 +12,8 @@ namespace Tutorial
         private TutorialUIManager _tutorialUIManager;
 
         protected internal Action SkippedTutorialLine;
-        internal Action<string> CalledTinaLine;
+        internal Action<bool> CalledTinaTutorialPage;
+        internal Action<string[]> CalledTinaLine;
 
         protected override void Awake()
         {
@@ -23,7 +25,13 @@ namespace Tutorial
         protected override void Start()
         {
             base.Start();
+
+            SkippedTutorialLine += _tutorialUIManager.OnSkippedTutorialLine;
+
+            //CalledTinaTutorialPage += _tutorialUIManager.OnCalledTinaTutorialPage;
+
             CalledTinaLine += _tutorialUIManager.OnCalledTinaLine;
+            
             Invoke(nameof(ExecuteTutorial), 2f);
         }
 
@@ -39,7 +47,7 @@ namespace Tutorial
 
         private void ExecuteTutorial()
         {
-            CalledTinaLine?.Invoke("Teste");
+            CalledTinaLine?.Invoke(GeneralTexts.Instance.TinaSectionLinesTutorialsList[0].TinaLines);
             /*
              * Surge o balão de fala da Tina()
             
@@ -53,6 +61,11 @@ namespace Tutorial
              */
         }
 
-        
+        public void OnSkippedTutorialLine()
+        {
+            CalledTinaLine?.Invoke(GeneralTexts.Instance.TinaSectionLinesTutorialsList[0].TinaLines);
+        }
+
+
     }
 }
