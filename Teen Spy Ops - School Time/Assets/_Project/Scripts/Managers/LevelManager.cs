@@ -22,10 +22,10 @@ namespace Manager
         protected int _amountInstantiatedSchoolObjects;
 
         [field:Header("Timer level in seconds.")]
-        [field: SerializeField] public float InitialTimerLevel { get; private set; }
-        public float TimerLevel { get; protected set; }
+        [field: SerializeField] public virtual float InitialTimerLevel { get; private set; }
+        public virtual float TimerLevel { get; protected set; }
         public GameObject CurrentObject { get; private set; }
-        public int ItemsLeft { get; protected set; }
+        public virtual int ItemsLeft { get; protected set; }
         public string[] AllowedSchoolObjects { get => _allowedSchoolObjects; set => _allowedSchoolObjects = value; }
 
         public List<Collectable> ItemsCollectable = new List<Collectable>();

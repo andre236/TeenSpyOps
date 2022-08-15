@@ -1,6 +1,7 @@
 using UnityEngine;
 using Manager;
 using Objects;
+using System.Collections.Generic;
 
 namespace Tutorial
 {
@@ -10,6 +11,7 @@ namespace Tutorial
 
         public ItemConfig[] ItemTutorial { get => _itemTutorial; set => _itemTutorial = value; }
 
+
         protected override void Awake()
         {
             base.Awake();
@@ -17,8 +19,11 @@ namespace Tutorial
 
         internal override void OnInitializedLevel()
         {
+            ItemsCollectable.AddRange(FindObjectsOfType<Collectable>());
 
-            base.OnInitializedLevel();
+            TimerLevel = InitialTimerLevel;
+            ItemsLeft = ItemsCollectable.Count;
+
         }
 
         protected override void CheckObjectsPermission()

@@ -1,11 +1,12 @@
 using System;
 using System.IO;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using Manager;
 using UnityEditor;
 using Mechanic;
-using UnityEngine.SceneManagement;
 using Tutorial;
 
 namespace Objects
@@ -66,10 +67,7 @@ namespace Objects
 
             GetComponent<SpriteRenderer>().sprite = _spriteObject;
 
-            if (gameManager.CurrentSkill == CurrentTypeObject && gameManager.CurrentDistance == CurrentDistanceHidden)
-                gameObject.SetActive(true);
-            else
-                gameObject.SetActive(false);
+            StartCoroutine(nameof(ApplyDelayToDeActiveGameObject));
 
 
         }
@@ -85,9 +83,9 @@ namespace Objects
             {
                 if (SceneManager.GetActiveScene().name != "TUTORIAL")
                     ItemConfig = (ItemConfig)AssetDatabase.LoadAssetAtPath(directory + "/" + levelManager.AllowedSchoolObjects[i], typeof(ItemConfig));
-                //else
-                //    if (FindObjectOfType<TutorialLevelManager>().ItemTutorial[i] == null)
-                //    ItemConfig = FindObjectOfType<TutorialLevelManager>().ItemTutorial[i];
+                else
+                    if (GameObject.Find(FindObjectOfType<TutorialLevelManager>().ItemTutorial[i].NameObject) == null)
+                        ItemConfig = FindObjectOfType<TutorialLevelManager>().ItemTutorial[i];
             }
 
             gameObject.name = ItemConfig.NameObject;
@@ -206,6 +204,15 @@ namespace Objects
                 gameObject.SetActive(false);
         }
 
+        IEnumerator ApplyDelayToDeActiveGameObject()
+        {
+            yield return new WaitForSeconds(0.1f);
+            var gameManager = FindObjectOfType<GameManager>();
 
+            if (gameManager.CurrentSkill == CurrentTypeObject && gameManager.CurrentDistance == CurrentDistanceHidden)
+                gameObject.SetActive(true);
+            else
+                gameObject.SetActive(false);
+        }
     }
 }
