@@ -8,8 +8,8 @@ namespace Tutorial
 {
     public class TutorialUIManager : UIManager
     {
-        private int _numberLines;
-        private int _currentLine;
+        [SerializeField] private int _numberLines;
+        [SerializeField] private int _currentLine;
         private Text _tinaText;
 
         private GameObject _tinaPageTutorial;
@@ -26,8 +26,9 @@ namespace Tutorial
             _pauseMenuButton.onClick.AddListener(FindObjectOfType<EventManager>().OnPausedGame);
 
             // For late, reference skill buttons.
+            _tinaPageTutorial.GetComponent<Button>().onClick.AddListener(FindObjectOfType<TutorialEventManager>().SkippedTutorialLine);
             _tinaPageTutorial.SetActive(false);
-
+            
         }
 
 
@@ -40,8 +41,6 @@ namespace Tutorial
                 _tinaText.text = lines[_currentLine];
             else
                 _tinaText.text = lines[^1];
-            
-            Debug.Log("Fuichamado");
             
             if (_tinaPageTutorial.activeSelf)
             {
@@ -62,15 +61,6 @@ namespace Tutorial
 
         }
 
-        internal void OnSkippedTutorialLine()
-        {
-
-        }
-
-        internal void OnCalledTinaTutorialPage(bool active)
-        {
-            _tinaPageTutorial.SetActive(active);
-        }
 
         IEnumerator DelayToDeactiveGameObject(GameObject gameObject, float timer)
         {

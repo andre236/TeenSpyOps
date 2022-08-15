@@ -11,7 +11,6 @@ namespace Tutorial
         private TutorialLevelManager _tutorialLevelManager;
         private TutorialUIManager _tutorialUIManager;
 
-        protected internal Action SkippedTutorialLine;
         internal Action<bool> CalledTinaTutorialPage;
         internal Action<string[]> CalledTinaLine;
 
@@ -25,8 +24,6 @@ namespace Tutorial
         protected override void Start()
         {
             base.Start();
-
-            SkippedTutorialLine += _tutorialUIManager.OnSkippedTutorialLine;
 
             //CalledTinaTutorialPage += _tutorialUIManager.OnCalledTinaTutorialPage;
 
@@ -61,10 +58,7 @@ namespace Tutorial
              */
         }
 
-        public void OnSkippedTutorialLine()
-        {
-            CalledTinaLine?.Invoke(GeneralTexts.Instance.TinaSectionLinesTutorialsList[0].TinaLines);
-        }
+        public void SkippedTutorialLine() => CalledTinaLine?.Invoke(GeneralTexts.Instance.TinaSectionLinesTutorialsList[0].TinaLines);
 
 
     }
