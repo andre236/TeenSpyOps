@@ -12,7 +12,6 @@ namespace Tutorial
         private TutorialLevelManager _tutorialLevelManager;
         private TutorialUIManager _tutorialUIManager;
 
-        internal Action<bool> CalledTinaTutorialPage;
         internal Action<string[]> CalledTinaLine;
         internal Action<float, float> FocusedObject;
 
@@ -31,8 +30,6 @@ namespace Tutorial
         {
             base.Start();
 
-            //CalledTinaTutorialPage += _tutorialUIManager.OnCalledTinaTutorialPage;
-
             CalledTinaLine += _tutorialUIManager.OnCalledTinaLine;
             FocusedObject += _tutorialUIManager.OnFocusedObject;
 
@@ -46,7 +43,7 @@ namespace Tutorial
                 CountdownPerfomed?.Invoke();
 
             _uiManager.ShowCountdownPerfomedText(_tutorialLevelManager.TimerLevel);
-            _uiManager.ShowAmoutItemsLeft(_tutorialLevelManager.ItemsLeft);
+            _uiManager.ShowAmountItemsLeft(_tutorialLevelManager.ItemsLeft);
         }
 
         private void ExecuteTutorial()

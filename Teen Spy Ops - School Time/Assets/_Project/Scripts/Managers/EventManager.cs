@@ -164,7 +164,7 @@ namespace Manager
             }
 
             _uiManager.ShowCountdownPerfomedText(_levelManager.TimerLevel);
-            _uiManager.ShowAmoutItemsLeft(_levelManager.ItemsLeft);
+            _uiManager.ShowAmountItemsLeft(_levelManager.ItemsLeft);
         }
 
         internal void OnInitialized()

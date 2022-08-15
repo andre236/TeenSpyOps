@@ -162,7 +162,7 @@ namespace Manager
 
         private void CloseHintPage() => StartCoroutine(nameof(WaitToCloseHintPage));
 
-        internal void ShowAmoutItemsLeft(int amountItemsLeft) => _amountItemsLeftText.text = string.Concat("Objetos Restantes: ", amountItemsLeft.ToString());
+        internal void ShowAmountItemsLeft(int amountItemsLeft) => _amountItemsLeftText.text = string.Concat("Objetos Restantes: ", amountItemsLeft.ToString());
 
         internal void ShowCountdownPerfomedText(float currentTime)
         {
