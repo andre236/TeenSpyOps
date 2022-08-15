@@ -7,12 +7,18 @@ namespace Tutorial
     public class TutorialEventManager : EventManager
     {
         private int _currentTinaLineTutorial;
+        private int _currentSectionLine;
 
         private TutorialLevelManager _tutorialLevelManager;
         private TutorialUIManager _tutorialUIManager;
 
         internal Action<bool> CalledTinaTutorialPage;
         internal Action<string[]> CalledTinaLine;
+        internal Action<float, float> FocusedObject;
+
+        private TutorialStage _currentStage;
+
+        public int CurrentSectionLine { get => _currentSectionLine; set => _currentSectionLine = value; }
 
         protected override void Awake()
         {
@@ -28,7 +34,9 @@ namespace Tutorial
             //CalledTinaTutorialPage += _tutorialUIManager.OnCalledTinaTutorialPage;
 
             CalledTinaLine += _tutorialUIManager.OnCalledTinaLine;
-            
+            FocusedObject += _tutorialUIManager.OnFocusedObject;
+
+            CurrentSectionLine = 0;
             Invoke(nameof(ExecuteTutorial), 2f);
         }
 
@@ -41,10 +49,11 @@ namespace Tutorial
             _uiManager.ShowAmoutItemsLeft(_tutorialLevelManager.ItemsLeft);
         }
 
-
         private void ExecuteTutorial()
         {
-            CalledTinaLine?.Invoke(GeneralTexts.Instance.TinaSectionLinesTutorialsList[0].TinaLines);
+            CalledTinaLine?.Invoke(GeneralTexts.Instance.TinaSectionLinesTutorialsList[CurrentSectionLine].TinaLines);
+
+            FocusedObject?.Invoke(240.7f, -188.2f);
             /*
              * Surge o balão de fala da Tina()
             
@@ -58,8 +67,9 @@ namespace Tutorial
              */
         }
 
-        public void SkippedTutorialLine() => CalledTinaLine?.Invoke(GeneralTexts.Instance.TinaSectionLinesTutorialsList[0].TinaLines);
-
-
+        public void SkippedTutorialLine()
+        {
+            CalledTinaLine?.Invoke(GeneralTexts.Instance.TinaSectionLinesTutorialsList[CurrentSectionLine].TinaLines);
+        }
     }
 }
