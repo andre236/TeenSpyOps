@@ -82,7 +82,9 @@ namespace Objects
             for (int i = 0; i < itemsCollectables.Length; i++)
             {
                 if (SceneManager.GetActiveScene().name != "TUTORIAL")
-                    ItemConfig = (ItemConfig)AssetDatabase.LoadAssetAtPath(directory + "/" + levelManager.AllowedSchoolObjects[i], typeof(ItemConfig));
+                    ItemConfig = (ItemConfig)Resources.Load(directory + "/" + levelManager.AllowedSchoolObjects[i]);
+
+                //ItemConfig = (ItemConfig)AssetDatabase.LoadAssetAtPath(directory + "/" + levelManager.AllowedSchoolObjects[i], typeof(ItemConfig));
                 else
                     if (GameObject.Find(FindObjectOfType<TutorialLevelManager>().ItemTutorial[i].NameObject) == null)
                         ItemConfig = FindObjectOfType<TutorialLevelManager>().ItemTutorial[i];

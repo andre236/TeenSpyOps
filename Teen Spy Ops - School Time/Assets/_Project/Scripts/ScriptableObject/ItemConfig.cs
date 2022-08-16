@@ -2,6 +2,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
+
 [CreateAssetMenu(fileName = "School Object", menuName = "Create new School Object")]
 public class ItemConfig : ScriptableObject
 {
@@ -12,8 +13,6 @@ public class ItemConfig : ScriptableObject
 
     private void OnValidate()
     {
-        string assetPath = AssetDatabase.GetAssetPath(this.GetInstanceID());
-        string displayName = Path.GetFileNameWithoutExtension(assetPath);
-        NameObject = displayName;
+        NameObject = this.name;
     }
 }
