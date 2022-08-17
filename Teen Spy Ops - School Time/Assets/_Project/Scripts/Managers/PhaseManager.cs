@@ -130,7 +130,7 @@ namespace Manager
             {
                 for (int items = 0; items < 3; items++)
                 {
-                    PhaseList[numberPhase].ItemsOnPhase[items] = (ItemConfig)AssetDatabase.LoadAssetAtPath(directory + "/" + filesInfo[sortedNumbers[indexItem]].Name, typeof(ItemConfig));
+                    PhaseList[numberPhase].ItemsOnPhase[items] = (ItemConfig)Resources.Load((directory + "/" + filesInfo[sortedNumbers[indexItem]]), typeof(ItemConfig));
                     PlayerPrefs.SetString("LEVEL" + numberPhase + "_ITEMINDEX_" + indexItem + "_ITEMPOSITION" + items, filesInfo[sortedNumbers[indexItem]].Name);
                     indexItem++;
                     if (items == 2 && numberPhase == 7)
@@ -155,7 +155,7 @@ namespace Manager
             {
                 for (int items = 0; items < 3; items++)
                 {
-                    PhaseList[numberPhase].ItemsOnPhase[items] = (ItemConfig)AssetDatabase.LoadAssetAtPath(directory + "/" + PlayerPrefs.GetString("LEVEL" + numberPhase + "_ITEMINDEX_" + indexItem + "_ITEMPOSITION" + items), typeof(ItemConfig));
+                    PhaseList[numberPhase].ItemsOnPhase[items] = (ItemConfig)Resources.Load((directory + "/" + PlayerPrefs.GetString("LEVEL" + numberPhase + "_ITEMINDEX_" + indexItem + "_ITEMPOSITION" + items)), typeof(ItemConfig));
                     indexItem++;
                 }
             }

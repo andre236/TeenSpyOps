@@ -76,7 +76,7 @@ namespace Manager
                 if (numberPhase == numberCurrentLevel)
                     for (int items = 0; items < 3; items++)
                     {
-                        AllowedSchoolObjects[items] = PlayerPrefs.GetString("LEVEL" + numberCurrentLevel + "_ITEMINDEX_" + (items + (numberPhase * 3)) + "_ITEMPOSITION" + items);
+                        AllowedSchoolObjects[items] = PlayerPrefs.GetString("LEVEL" + numberCurrentLevel + "_ITEMINDEX_" + (items + (numberPhase * 3)) + "_ITEMPOSITION" + items).Replace(".asset", "");
                     }
             }
 
