@@ -26,7 +26,6 @@ namespace Controllers
 
             _avaliableHints.Clear();
             _respawnsObject.Clear();
-            Debug.Log("Limpado.");
 
             _respawnsObject.AddRange(GameObject.FindGameObjectsWithTag("RespawnObject"));
 

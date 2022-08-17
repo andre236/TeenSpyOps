@@ -59,7 +59,7 @@ namespace Statics
 
         private void GetSchoolObjectsName()
         {
-            DirectoryInfo dir = new DirectoryInfo("Assets/_Project/Scripts/ScriptableObject/SchoolObjects");
+            DirectoryInfo dir = new DirectoryInfo("Assets/_Project/Resources/Scripts/ScriptableObject/SchoolObjects");
 
             FileInfo[] info = dir.GetFiles("*.asset");
 

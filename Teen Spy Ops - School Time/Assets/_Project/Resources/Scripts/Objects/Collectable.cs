@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using Manager;
-using UnityEditor;
 using Mechanic;
 using Tutorial;
 
@@ -39,7 +38,6 @@ namespace Objects
         public Action<string, Sprite> GotQuestion;
         public Action<GameObject> CheckedItemOnList;
 
-
         private void Awake()
         {
             GetRandomSchoolObject();
@@ -69,12 +67,11 @@ namespace Objects
 
             StartCoroutine(nameof(ApplyDelayToDeActiveGameObject));
 
-
         }
 
         private void GetRandomSchoolObject()
         {
-            DirectoryInfo directory = new DirectoryInfo("Assets/_Project/Scripts/ScriptableObject/SchoolObjects");
+            DirectoryInfo directory = new DirectoryInfo("Assets/_Project/Resources/Scripts/ScriptableObject/SchoolObjects");
 
             LevelManager levelManager = FindObjectOfType<LevelManager>();
             Collectable[] itemsCollectables = FindObjectsOfType<Collectable>();
@@ -82,13 +79,14 @@ namespace Objects
             for (int i = 0; i < itemsCollectables.Length; i++)
             {
                 if (SceneManager.GetActiveScene().name != "TUTORIAL")
-                    ItemConfig = (ItemConfig)Resources.Load(directory + "/" + levelManager.AllowedSchoolObjects[i]);
+                    ItemConfig = Resources.Load<ItemConfig>("Scripts/ScriptableObject/SchoolObjects/" + levelManager.AllowedSchoolObjects[i]);
+                //ItemConfig = (ItemConfig)Resources.Load(directory + "/" + levelManager.AllowedSchoolObjects[i], typeof(ItemConfig));
                 //ItemConfig = (ItemConfig)AssetDatabase.LoadAssetAtPath(directory + "/" + levelManager.AllowedSchoolObjects[i], typeof(ItemConfig));
                 else
                     if (GameObject.Find(FindObjectOfType<TutorialLevelManager>().ItemTutorial[i].NameObject) == null)
                         ItemConfig = FindObjectOfType<TutorialLevelManager>().ItemTutorial[i];
             }
-
+            
             gameObject.name = ItemConfig.NameObject;
         }
 

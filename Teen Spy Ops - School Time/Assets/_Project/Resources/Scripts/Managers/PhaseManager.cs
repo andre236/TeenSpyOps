@@ -43,6 +43,7 @@ namespace Manager
             CheckHaveAllStars();
             SetItemsEachPhase();
             LoadItemEachPhase();
+            //PhaseList[0].ItemsOnPhase[0] = Resources.Load<ItemConfig>("Scripts/ScriptableObject/SchoolObjects/" + "Book");
         }
 
         internal void CheckHaveAllStars()
@@ -113,12 +114,14 @@ namespace Manager
             if (PlayerPrefs.GetInt("ITEMS_GENERATED") == 1)
                 return;
 
-            DirectoryInfo directory = new DirectoryInfo("Assets/_Project/Scripts/ScriptableObject/SchoolObjects");
-            FileInfo[] filesInfo = directory.GetFiles("*.asset");
+            ItemConfig[] allSchoolObjects = Resources.LoadAll<ItemConfig>("Scripts/ScriptableObject/SchoolObjects");
 
-            int[] numbersToShuffle = new int[filesInfo.Length];
+            //DirectoryInfo directory = new DirectoryInfo("Scripts/ScriptableObject/SchoolObjects");
+            //FileInfo[] filesInfo = directory.GetFiles("*.asset");
 
-            for (int i = 0; i < filesInfo.Length; i++)
+            int[] numbersToShuffle = new int[allSchoolObjects.Length];
+
+            for (int i = 0; i < allSchoolObjects.Length; i++)
             {
                 numbersToShuffle[i] = i;
             }
@@ -126,14 +129,15 @@ namespace Manager
             var sortedNumbers = numbersToShuffle.OrderBy(a => Guid.NewGuid()).ToArray();
 
             int indexItem = 0;
+
             for (int numberPhase = 0; numberPhase < 8; numberPhase++)
             {
                 for (int items = 0; items < 3; items++)
                 {
-                    PhaseList[numberPhase].ItemsOnPhase[items] = (ItemConfig)Resources.Load((directory + "/" + filesInfo[sortedNumbers[indexItem]]), typeof(ItemConfig));
-                    PlayerPrefs.SetString("LEVEL" + numberPhase + "_ITEMINDEX_" + indexItem + "_ITEMPOSITION" + items, filesInfo[sortedNumbers[indexItem]].Name);
+                    PhaseList[numberPhase].ItemsOnPhase[items] = Resources.Load<ItemConfig>("Scripts/ScriptableObject/SchoolObjects/" + allSchoolObjects[sortedNumbers[indexItem]].name) ;
+                    PlayerPrefs.SetString("LEVEL" + numberPhase + "_ITEMINDEX_" + indexItem + "_ITEMPOSITION" + items, allSchoolObjects[sortedNumbers[indexItem]].name);
                     indexItem++;
-                    if (items == 2 && numberPhase == 7)
+                    if (items == 2 && numberPhase == 7 && PhaseList[0].ItemsOnPhase[0] != null)
                         PlayerPrefs.SetInt("ITEMS_GENERATED", 1);
 
                 }
@@ -155,7 +159,7 @@ namespace Manager
             {
                 for (int items = 0; items < 3; items++)
                 {
-                    PhaseList[numberPhase].ItemsOnPhase[items] = (ItemConfig)Resources.Load((directory + "/" + PlayerPrefs.GetString("LEVEL" + numberPhase + "_ITEMINDEX_" + indexItem + "_ITEMPOSITION" + items)), typeof(ItemConfig));
+                    PhaseList[numberPhase].ItemsOnPhase[items] = Resources.Load<ItemConfig>("Scripts/ScriptableObject/SchoolObjects/" + PlayerPrefs.GetString("LEVEL" + numberPhase + "_ITEMINDEX_" + indexItem + "_ITEMPOSITION" + items));
                     indexItem++;
                 }
             }
