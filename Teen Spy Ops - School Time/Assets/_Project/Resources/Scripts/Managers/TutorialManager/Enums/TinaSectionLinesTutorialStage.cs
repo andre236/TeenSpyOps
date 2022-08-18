@@ -1,13 +1,7 @@
 namespace Tutorial
 {
-    public enum TutorialStage
+    public enum TinaSectionLinesTutorialStage
     {
-        //FocusOnXRayButton,
-        //UsingXRaySkill,
-        //FocusOnXRayBar,
-        //ChangeVisionRange,
-        //ShowOneItemToCollect,
-        //ShowGuessingPage,
         ATO_1,
         ATO_2,
         ATO_3,
@@ -23,7 +17,5 @@ namespace Tutorial
         ATO_13,
         ATO_14,
         ATO_15,
-
     }
-
 }

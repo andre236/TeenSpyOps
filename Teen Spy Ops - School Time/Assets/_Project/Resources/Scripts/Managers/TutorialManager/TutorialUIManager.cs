@@ -28,14 +28,14 @@ namespace Tutorial
             _pauseMenuButton.onClick.AddListener(FindObjectOfType<EventManager>().OnPausedGame);
 
             // For late, reference skill buttons.
-            _tinaPageTutorial.GetComponent<Button>().onClick.AddListener(FindObjectOfType<TutorialEventManager>().SkippedTutorialLine);
+            _tinaPageTutorial.GetComponent<Button>().onClick.AddListener(FindObjectOfType<TutorialEventManager>().SkipTutorialLine);
             _tinaPageTutorial.SetActive(false);
             _canvasForFocus.gameObject.SetActive(false);
         }
 
-        internal void OnCalledTinaLine(string[] lines)
+        internal void OnCalledTinaLine(string[] lines, bool canNextStep)
         {
-            var tutorialEventManager = FindObjectOfType<TutorialEventManager>();
+            var eventManagerTutorial = FindObjectOfType<TutorialEventManager>();
 
             _numberLines = lines.Length;
 
@@ -48,9 +48,9 @@ namespace Tutorial
             {
                 if (_currentLine >= _numberLines)
                 {
-                    tutorialEventManager.CurrentSectionLine++;
                     _tinaPageTutorial.GetComponent<Animator>().SetTrigger("Closing");
-                    StartCoroutine(DelayToDeactiveGameObject(_tinaPageTutorial, 1f));
+                    StartCoroutine(DelayToDeactiveGameObject(_tinaPageTutorial, 2f, canNextStep));
+                    eventManagerTutorial.CanGoNextStage();
                 }
                 else
                     _currentLine++;
@@ -59,26 +59,32 @@ namespace Tutorial
             {
                 _currentLine = 0;
                 _tinaPageTutorial.SetActive(true);
+                canNextStep = false;
             }
 
-
         }
 
-        internal void OnFocusedObject(float xPosition, float yPosition)
+        internal void OnFocusedObject(string triggerAnimation)
         {
-            if (!_canvasForFocus.gameObject.activeSelf)
-                return;
-            
-            GameObject circle = _canvasForFocus.gameObject.transform.Find("Circle").gameObject;
+            var eventManagerTutorial = FindObjectOfType<TutorialEventManager>();
 
-            circle.transform.position = new Vector3(xPosition, yPosition);
-            
-
+            _canvasForFocus.gameObject.SetActive(true);
+            _canvasForFocus.GetComponent<Animator>().SetTrigger(triggerAnimation);
+            StartCoroutine(eventManagerTutorial.SkipTutorialStage(2f));
         }
 
-        IEnumerator DelayToDeactiveGameObject(GameObject gameObject, float timer)
+        internal void HighlightOneGameObject(GameObject gameObject)
+        {
+
+            var highlightObject = GameObject.Find("HighlightObject");
+
+            gameObject.transform.SetParent(highlightObject.transform);
+        }
+
+        IEnumerator DelayToDeactiveGameObject(GameObject gameObject, float timer, bool canNextStep)
         {
             yield return new WaitForSeconds(timer);
+            canNextStep = true;
             gameObject.SetActive(false);
         }
     }

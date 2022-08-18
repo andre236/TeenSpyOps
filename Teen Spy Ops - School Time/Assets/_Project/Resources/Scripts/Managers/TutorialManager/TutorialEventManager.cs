@@ -1,6 +1,8 @@
 using Manager;
 using Statics;
 using System;
+using System.Collections;
+using UnityEngine;
 
 namespace Tutorial
 {
@@ -8,16 +10,17 @@ namespace Tutorial
     {
         private int _currentTinaLineTutorial;
         private int _currentSectionLine;
+        private bool _canNextStep;
 
         private TutorialLevelManager _tutorialLevelManager;
         private TutorialUIManager _tutorialUIManager;
 
         internal Action<string[]> CalledTinaLine;
-        internal Action<float, float> FocusedObject;
+        internal Action<string> FocusedObject;
+        internal Action CalledNextAction;
+        [SerializeField] private TutorialStage _currentTutorialStage;
+        [SerializeField] private TinaSectionLinesTutorialStage _currentTutorialSection;
 
-        private TutorialStage _currentStage;
-
-        public int CurrentSectionLine { get => _currentSectionLine; set => _currentSectionLine = value; }
 
         protected override void Awake()
         {
@@ -30,10 +33,7 @@ namespace Tutorial
         {
             base.Start();
 
-            CalledTinaLine += _tutorialUIManager.OnCalledTinaLine;
-            FocusedObject += _tutorialUIManager.OnFocusedObject;
 
-            CurrentSectionLine = 0;
             Invoke(nameof(ExecuteTutorial), 2f);
         }
 
@@ -46,27 +46,86 @@ namespace Tutorial
             _uiManager.ShowAmountItemsLeft(_tutorialLevelManager.ItemsLeft);
         }
 
-        private void ExecuteTutorial()
+        internal void ExecuteTutorial()
         {
-            CalledTinaLine?.Invoke(GeneralTexts.Instance.TinaSectionLinesTutorialsList[CurrentSectionLine].TinaLines);
+            _canNextStep = false;
+            StartCoroutine(ExecutingInCube());
+            //switch (_currentTutorialStage)
+            //{
+            //    case TutorialStage.ATO_1:
+            //        _tutorialUIManager.OnCalledTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
+            //        _tutorialUIManager.OnFocusedObject("OnXRayButton");
+            //        break;
+            //    case TutorialStage.ATO_2:
+            //        _tutorialUIManager.OnCalledTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
+            //        _tutorialUIManager.HighlightOneGameObject(GameObject.Find("XRayButton"));
+                    
+            //        break;
+            //    case TutorialStage.ATO_3:
+                    
+            //        break;
+            //    case TutorialStage.ATO_4:
+            //        break;
+            //    case TutorialStage.ATO_5:
+            //        break;
+            //    case TutorialStage.ATO_6:
+            //        break;
+            //    case TutorialStage.ATO_7:
+            //        break;
+            //    case TutorialStage.ATO_8:
+            //        break;
+            //    case TutorialStage.ATO_9:
+            //        break;
+            //    case TutorialStage.ATO_10:
+            //        break;
+            //    case TutorialStage.ATO_11:
+            //        break;
+            //    case TutorialStage.ATO_12:
+            //        break;
+            //    case TutorialStage.ATO_13:
+            //        break;
+            //    case TutorialStage.ATO_14:
+            //        break;
+            //    case TutorialStage.ATO_15:
+            //        break;
+            //}
 
-            FocusedObject?.Invoke(240.7f, -188.2f);
-            /*
-             * Surge o balão de fala da Tina()
-            
-             * A tela é focada ao botão de raio-x e o restante se escurece ao fundo()
-
-             * Surge o balão de fala da Tina()
-
-             * Ainda em foco, o raio-x se ativa fazendo o círculo de visão surgir.
-              
-             * Nesse momento, o Emílio(jogador) não poderá ainda coletar ou clicar em quaisquer objeto.
-             */
         }
 
-        public void SkippedTutorialLine()
+        internal IEnumerator ExecutingInCube()
         {
-            CalledTinaLine?.Invoke(GeneralTexts.Instance.TinaSectionLinesTutorialsList[CurrentSectionLine].TinaLines);
+            _tutorialUIManager.OnCalledTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines, _canNextStep);
+            yield return new WaitUntil(() => _canNextStep == true);
+            _tutorialUIManager.OnFocusedObject("OnXRayButton");
+            
+            yield return new WaitUntil(() => _canNextStep == true);
+
+        }
+
+        internal IEnumerator SkipTutorialStage(float timer)
+        {
+            yield return new WaitForSeconds(timer);
+            _canNextStep = true;
+            _currentTutorialStage++;
+            _currentTutorialSection++;
+        }
+
+        internal IEnumerator SkipTutorialStage(float timer, GameObject deactive)
+        {
+            yield return new WaitForSeconds(timer);
+            deactive.SetActive(false);
+            _currentTutorialStage++;
+            ExecuteTutorial();
+        }
+
+        internal void CanGoNextStage()
+        {
+            _canNextStep = true;
+        }
+
+        public void SkipTutorialLine()
+        {
+            _tutorialUIManager.OnCalledTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialStage].TinaLines, _canNextStep);
         }
     }
 }

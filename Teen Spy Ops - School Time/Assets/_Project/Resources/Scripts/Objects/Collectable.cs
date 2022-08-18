@@ -71,8 +71,6 @@ namespace Objects
 
         private void GetRandomSchoolObject()
         {
-            DirectoryInfo directory = new DirectoryInfo("Assets/_Project/Resources/Scripts/ScriptableObject/SchoolObjects");
-
             LevelManager levelManager = FindObjectOfType<LevelManager>();
             Collectable[] itemsCollectables = FindObjectsOfType<Collectable>();
 
@@ -80,8 +78,6 @@ namespace Objects
             {
                 if (SceneManager.GetActiveScene().name != "TUTORIAL")
                     ItemConfig = Resources.Load<ItemConfig>("Scripts/ScriptableObject/SchoolObjects/" + levelManager.AllowedSchoolObjects[i]);
-                //ItemConfig = (ItemConfig)Resources.Load(directory + "/" + levelManager.AllowedSchoolObjects[i], typeof(ItemConfig));
-                //ItemConfig = (ItemConfig)AssetDatabase.LoadAssetAtPath(directory + "/" + levelManager.AllowedSchoolObjects[i], typeof(ItemConfig));
                 else
                     if (GameObject.Find(FindObjectOfType<TutorialLevelManager>().ItemTutorial[i].NameObject) == null)
                         ItemConfig = FindObjectOfType<TutorialLevelManager>().ItemTutorial[i];
