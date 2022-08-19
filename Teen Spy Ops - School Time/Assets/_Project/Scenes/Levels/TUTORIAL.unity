@@ -5158,7 +5158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 946f9ad4226b09641b3c41ff51b6b621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <GetPossibleSkillState>k__BackingField: 0100000002000000
+  <GetPossibleSkillState>k__BackingField: 02000000
   <FinalSkillState>k__BackingField: 0
   <FinalDistance>k__BackingField: 1
   <HintsThisPlace>k__BackingField:

@@ -123,7 +123,7 @@ namespace Tutorial
             yield return new WaitUntil(() => _canNextStep == true);
             yield return new WaitUntil(() => OnGuessingPage == true);
             yield return new WaitForSeconds(2f);
-            _currentTutorialSection = (TinaSectionLinesTutorialStage)4;
+            _currentTutorialSection = (TinaSectionLinesTutorialStage)3;
             _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
             yield return new WaitUntil(() => _canNextStep == true);
             yield return new WaitForSeconds(2f);
@@ -132,9 +132,9 @@ namespace Tutorial
             yield return new WaitUntil(() => _canNextStep == true);
             yield return new WaitUntil(() => OnCollectedFirstObject == true);
             yield return new WaitForSeconds(2f);
-            _currentTutorialSection = (TinaSectionLinesTutorialStage)6;
+            _currentTutorialSection = (TinaSectionLinesTutorialStage)5;
             _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
-
+            yield return new WaitUntil(() => _canNextStep == true);
 
         }
 
@@ -149,8 +149,8 @@ namespace Tutorial
         {
             yield return new WaitUntil(() => OnFirstFailed);
             yield return new WaitForSeconds(1f);
-            _currentTutorialSection = (TinaSectionLinesTutorialStage)5;
-            _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[5].TinaLines);
+            _currentTutorialSection = (TinaSectionLinesTutorialStage)4;
+            _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
         }
 
         internal void CanGoNextStage() => _canNextStep = true;
