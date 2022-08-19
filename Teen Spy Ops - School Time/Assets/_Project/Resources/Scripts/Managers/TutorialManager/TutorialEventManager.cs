@@ -1,4 +1,5 @@
 using Manager;
+using Objects;
 using Statics;
 using System;
 using System.Collections;
@@ -11,6 +12,9 @@ namespace Tutorial
         private int _currentTinaLineTutorial;
         private int _currentSectionLine;
         private bool _canNextStep;
+        private bool _onGuessingPage;
+        private bool _onCollectedFirstObject;
+        private bool _onFirstFailed;
 
         private TutorialLevelManager _tutorialLevelManager;
         private TutorialUIManager _tutorialUIManager;
@@ -18,9 +22,14 @@ namespace Tutorial
         internal Action<string[]> CalledTinaLine;
         internal Action<string> FocusedObject;
         internal Action CalledNextAction;
+
         [SerializeField] private TutorialStage _currentTutorialStage;
+
         [SerializeField] private TinaSectionLinesTutorialStage _currentTutorialSection;
 
+        public bool OnGuessingPage { get => _onGuessingPage; set => _onGuessingPage = value; }
+        public bool OnFirstFailed { get => _onFirstFailed; set => _onFirstFailed = value; }
+        public bool OnCollectedFirstObject { get => _onCollectedFirstObject; set => _onCollectedFirstObject = value; }
 
         protected override void Awake()
         {
@@ -33,8 +42,8 @@ namespace Tutorial
         {
             base.Start();
 
-
-            Invoke(nameof(ExecuteTutorial), 2f);
+            _canNextStep = false;
+            StartCoroutine(ExecutingInCube());
         }
 
         protected override void Update()
@@ -46,59 +55,86 @@ namespace Tutorial
             _uiManager.ShowAmountItemsLeft(_tutorialLevelManager.ItemsLeft);
         }
 
-        internal void ExecuteTutorial()
+        internal override void OnInitialized()
         {
-            _canNextStep = false;
-            StartCoroutine(ExecutingInCube());
-            //switch (_currentTutorialStage)
-            //{
-            //    case TutorialStage.ATO_1:
-            //        _tutorialUIManager.OnCalledTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
-            //        _tutorialUIManager.OnFocusedObject("OnXRayButton");
-            //        break;
-            //    case TutorialStage.ATO_2:
-            //        _tutorialUIManager.OnCalledTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
-            //        _tutorialUIManager.HighlightOneGameObject(GameObject.Find("XRayButton"));
-                    
-            //        break;
-            //    case TutorialStage.ATO_3:
-                    
-            //        break;
-            //    case TutorialStage.ATO_4:
-            //        break;
-            //    case TutorialStage.ATO_5:
-            //        break;
-            //    case TutorialStage.ATO_6:
-            //        break;
-            //    case TutorialStage.ATO_7:
-            //        break;
-            //    case TutorialStage.ATO_8:
-            //        break;
-            //    case TutorialStage.ATO_9:
-            //        break;
-            //    case TutorialStage.ATO_10:
-            //        break;
-            //    case TutorialStage.ATO_11:
-            //        break;
-            //    case TutorialStage.ATO_12:
-            //        break;
-            //    case TutorialStage.ATO_13:
-            //        break;
-            //    case TutorialStage.ATO_14:
-            //        break;
-            //    case TutorialStage.ATO_15:
-            //        break;
-            //}
+            foreach (Collectable coll in _levelManager.ItemsCollectable)
+            {
+                ActivedXRay += coll.OnActivatedXray;
+                ActivedNightVision += coll.OnActivedNightVision;
 
+                UpgradeXRayVision += coll.OnUpgradeXRayVision;
+                _skills.FinishedTimerSkill += coll.OnFinishedTimerSkill;
+            }
+
+        }
+
+        internal void AllowClickingSchoolObject()
+        {
+            foreach (Collectable coll in _levelManager.ItemsCollectable)
+            {
+                coll.GotQuestion += _uiManager.OnGotQuestion;
+                coll.CheckedItemOnList += _levelManager.OnCheckedItemOnList;
+
+            }
         }
 
         internal IEnumerator ExecutingInCube()
         {
-            _tutorialUIManager.OnCalledTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines, _canNextStep);
+            yield return new WaitForSeconds(2f);
+            // ATO 1
+            _currentTutorialSection = 0;
+            _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
+
             yield return new WaitUntil(() => _canNextStep == true);
-            _tutorialUIManager.OnFocusedObject("OnXRayButton");
-            
+            yield return new WaitForSeconds(2f);
+
+            _tutorialUIManager.FocusedObject("OnXRayButton");
+
             yield return new WaitUntil(() => _canNextStep == true);
+            yield return new WaitForSeconds(2f);
+
+            // ATO 2
+            _currentTutorialSection = (TinaSectionLinesTutorialStage)1;
+            _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
+            _canNextStep = false;
+            yield return new WaitUntil(() => _canNextStep == true);
+
+            _tutorialUIManager.HighlightOneGameObject(GameObject.Find("XRayButton"));
+            _tutorialUIManager.RayButtonReceiveSkill(); // Aqui ta dando true no nextStage apenas no click
+            _canNextStep = false;
+            yield return new WaitUntil(() => _canNextStep == true);
+            yield return new WaitForSeconds(2f);
+
+
+            // ATO 3
+            _tutorialUIManager.FocusedObject("OnXRayBar");
+            yield return new WaitUntil(() => _canNextStep == true);
+            yield return new WaitForSeconds(2f);
+            _currentTutorialSection = (TinaSectionLinesTutorialStage)2;
+            _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
+            _canNextStep = false;
+
+            yield return new WaitUntil(() => _canNextStep == true);
+            yield return new WaitForSeconds(2f);
+
+            _tutorialUIManager.SetOnOffFocus(false);
+            AllowClickingSchoolObject();
+
+            yield return new WaitUntil(() => _canNextStep == true);
+            yield return new WaitUntil(() => OnGuessingPage == true);
+            yield return new WaitForSeconds(2f);
+            _currentTutorialSection = (TinaSectionLinesTutorialStage)4;
+            _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
+            yield return new WaitUntil(() => _canNextStep == true);
+            yield return new WaitForSeconds(2f);
+            _tutorialUIManager.AllowToGuessObject();
+            StartCoroutine(FirstFailed());
+            yield return new WaitUntil(() => _canNextStep == true);
+            yield return new WaitUntil(() => OnCollectedFirstObject == true);
+            yield return new WaitForSeconds(2f);
+            _currentTutorialSection = (TinaSectionLinesTutorialStage)6;
+            _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
+
 
         }
 
@@ -106,26 +142,38 @@ namespace Tutorial
         {
             yield return new WaitForSeconds(timer);
             _canNextStep = true;
-            _currentTutorialStage++;
-            _currentTutorialSection++;
+
         }
 
-        internal IEnumerator SkipTutorialStage(float timer, GameObject deactive)
+        internal IEnumerator FirstFailed()
         {
-            yield return new WaitForSeconds(timer);
-            deactive.SetActive(false);
-            _currentTutorialStage++;
-            ExecuteTutorial();
+            yield return new WaitUntil(() => OnFirstFailed);
+            yield return new WaitForSeconds(1f);
+            _currentTutorialSection = (TinaSectionLinesTutorialStage)5;
+            _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[5].TinaLines);
         }
 
-        internal void CanGoNextStage()
+        internal void CanGoNextStage() => _canNextStep = true;
+
+        internal void ExplainGuessingPage()
         {
-            _canNextStep = true;
+            OnGuessingPage = true;
+        }
+
+        internal void CanGoNextTinaSectionLine()
+        {
+            _currentTutorialStage++;
         }
 
         public void SkipTutorialLine()
         {
-            _tutorialUIManager.OnCalledTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialStage].TinaLines, _canNextStep);
+            Debug.Log("A section está em: " + (int)_currentTutorialStage);
+            _tutorialUIManager.NextTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
+        }
+
+        public void CloseTutorialLine()
+        {
+            _tutorialUIManager.CloseTinaPageTutorial();
         }
     }
 }

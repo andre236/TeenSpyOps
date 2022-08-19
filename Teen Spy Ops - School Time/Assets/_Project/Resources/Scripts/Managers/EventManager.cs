@@ -167,7 +167,7 @@ namespace Manager
             _uiManager.ShowAmountItemsLeft(_levelManager.ItemsLeft);
         }
 
-        internal void OnInitialized()
+        internal virtual void OnInitialized()
         {
             foreach (Collectable coll in _levelManager.ItemsCollectable)
             {

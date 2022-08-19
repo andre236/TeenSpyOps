@@ -27,7 +27,7 @@ namespace Manager
         private GameObject _guessingPage;
 
 
-        [SerializeField] private Image[] _errorIcons;
+        [SerializeField] protected Image[] _errorIcons;
         private Image _redImage;
         private Image _greenImage;
         private Image _xRayBarImage;
@@ -38,14 +38,14 @@ namespace Manager
         private Image _nightVisionTimerImage;
         private Image _nightVisionCooldownImage;
 
-        private Button[] _answersButton;
+        protected Button[] _answersButton;
         private Button _hintButton;
         protected Button _pauseMenuButton;
         private Button _closeButton;
         private Button _returnButton;
-        private Button _xRayButton;
-        private Button _fingerprintButton;
-        private Button _nightVisionButton;
+        protected Button _xRayButton;
+        protected Button _fingerprintButton;
+        protected Button _nightVisionButton;
         private Button _phasesButton;
         private Button _mainMenuButton;
         private Button _closeHintButton;
@@ -127,7 +127,7 @@ namespace Manager
             //_phasesButton.onClick.AddListener(FindObjectOfType<EventManager>().LoadLevelSelectScene);
         }
 
-        private void PlayHudAnimation()
+        protected virtual void PlayHudAnimation()
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
 
@@ -237,7 +237,7 @@ namespace Manager
 
         internal void OnUnPausedGame() => _pausePage.SetActive(false);
 
-        internal void OnGotQuestion(string nameObject, Sprite itemSprite)
+        internal virtual void OnGotQuestion(string nameObject, Sprite itemSprite)
         {
             if (_guessingPage.activeSelf)
                 return;
@@ -316,7 +316,7 @@ namespace Manager
 
         }
 
-        internal void OnChosenIncorrect()
+        internal virtual void OnChosenIncorrect()
         {
             _redImage.gameObject.SetActive(true);
             StartCoroutine(TimerForOpenOrClose(1f, _redImage.gameObject, false));
@@ -333,7 +333,7 @@ namespace Manager
             }
         }
 
-        internal void OnCollected()
+        internal virtual void OnCollected()
         {
             _greenImage.gameObject.SetActive(true);
             StartCoroutine(TimerForOpenOrClose(1f, _greenImage.gameObject, false));
