@@ -152,22 +152,25 @@ namespace Tutorial
             yield return new WaitForSeconds(2f);
             _skills.Reset = true;
             _tutorialUIManager.RemoveSkillOnButton(GameObject.Find("XRayButton"));
-             //StartCoroutine(_skills.TimerForSkill(true, _skills.CurrentTimerXray, _skills.TimerXray, _skills.CurrentCooldownToXray, _skills.CooldownToXray, _skills.AlreadyXRayCast, _skills.CountdownXrayTimer, _skills.CountdownXrayCooldown));
+            
              _currentTutorialSection = (TinaSectionLinesTutorialStage)6;
             _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
             yield return new WaitUntil(() => _canNextStep == true);
             yield return new WaitForSeconds(2f);
             _skills.Reset = false;
-            // Foco no botão de fingerprint
-            _tutorialUIManager.FocusedObject("OnFingerprint");
+            
+            // -- Foco no botão de fingerprint
+            
             yield return new WaitUntil(() => _canNextStep == true);
             yield return new WaitForSeconds(2f);
              _currentTutorialSection = (TinaSectionLinesTutorialStage)7;
             _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
-            _tutorialUIManager.HighlightOneGameObject(GameObject.Find("FingerprintButton"), false);
-            yield return new WaitUntil(() => OnUsedFingerprintFirstTime == true);
+            //_tutorialUIManager.HighlightOneGameObject(GameObject.Find("FingerprintButton"), false);
+            //_tutorialUIManager.FingerprintButtonReceiveSkill();
+            //yield return new WaitUntil(() => OnUsedFingerprintFirstTime == true);
             yield return new WaitUntil(() => _canNextStep == true);
             yield return new WaitForSeconds(2f);
+            _tutorialUIManager.FocusedObject("OnFingerprint");
         }
 
         internal IEnumerator SkipTutorialStage(float timer)
