@@ -11,6 +11,8 @@ namespace Player
         private bool _alreadyFingerprint;
         private bool _alreadyNightVision;
 
+        private bool _reset;
+
 
         [field: Range(0, 90)] [field: SerializeField] public float TimerXray { get; private set; }
         public float CurrentTimerXray { get; private set; }
@@ -32,17 +34,18 @@ namespace Player
         public float CurrentCooldownNightVision { get; private set; }
 
 
-        public bool AlreadyXRayCast { get => _alreadyXRayCast; private set => _alreadyXRayCast = value; }
-        public bool AlreadyFingerprint { get => _alreadyFingerprint; private set => _alreadyFingerprint = value; }
-        public bool AlreadyNightVision { get => _alreadyNightVision; private set => _alreadyNightVision = value; }
+        public bool AlreadyXRayCast { get => _alreadyXRayCast; protected set => _alreadyXRayCast = value; }
+        public bool AlreadyFingerprint { get => _alreadyFingerprint; protected set => _alreadyFingerprint = value; }
+        public bool AlreadyNightVision { get => _alreadyNightVision; protected set => _alreadyNightVision = value; }
+        public bool Reset { get => _reset; set => _reset = value; }
 
         [Space]
         [Range(0, 99)] [SerializeField] private float _firstDistanceRangeXray;
         [Range(0, 99)] [SerializeField] private float _secondDistanceRangeXray;
         [Range(0, 99)] [SerializeField] private float _thirdDistanceRangeXray;
 
-        private GameObject _cursorMaskVision;
-        private GameObject _laserMask;
+        protected GameObject _cursorMaskVision;
+        protected GameObject _laserMask;
 
         public Action FinishedTimerSkill;
 
@@ -53,6 +56,7 @@ namespace Player
         public Action<float, float> CountdownXrayTimer;
         public Action<float, float> CountdownFingerprintTimer;
         public Action<float, float> CountdownNightVisionTimer;
+ 
 
         private void Awake()
         {
@@ -74,7 +78,7 @@ namespace Player
 
         }
 
-        internal void OnActivedXRay()
+        internal virtual void OnActivedXRay()
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
 
@@ -137,7 +141,7 @@ namespace Player
 
         }
 
-        private void ActiveMaskCursor()
+        protected void ActiveMaskCursor()
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
 
@@ -150,14 +154,14 @@ namespace Player
             _cursorMaskVision.SetActive(true);
         }
 
-        private void DeactiveAllMask()
+        protected void DeactiveAllMask()
         {
             _laserMask.SetActive(false);
             _cursorMaskVision.SetActive(false);
 
         }
 
-        IEnumerator TimerForSkill(float timer, float initialTimer, float cooldown, float initialCooldown, bool alreadySkill, Action<float, float> countdownUsingSkill, Action<float, float> countdownSkillCooldown)
+        internal virtual IEnumerator TimerForSkill(float timer, float initialTimer, float cooldown, float initialCooldown, bool alreadySkill, Action<float, float> countdownUsingSkill, Action<float, float> countdownSkillCooldown)
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
 
@@ -165,7 +169,10 @@ namespace Player
             {
                 if (gameManager.CurrentGameState == GameState.Running)
                 {
-                    timer -= Time.deltaTime;
+                    if (!Reset)
+                        timer -= Time.deltaTime;
+                    else
+                        timer = 0;
                 }
 
                 countdownUsingSkill?.Invoke(timer, initialTimer);
@@ -181,7 +188,8 @@ namespace Player
             }
         }
 
-        IEnumerator CooldownToUseSkill(float cooldown, float initialCooldown, bool alreadySkill, Action<float, float> countdownSkill)
+
+        protected IEnumerator CooldownToUseSkill(float cooldown, float initialCooldown, bool alreadySkill, Action<float, float> countdownSkill)
         {
             GameManager gameManager = FindObjectOfType<GameManager>();
 

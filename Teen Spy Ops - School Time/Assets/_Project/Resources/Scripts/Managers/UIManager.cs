@@ -39,7 +39,7 @@ namespace Manager
         private Image _nightVisionCooldownImage;
 
         protected Button[] _answersButton;
-        private Button _hintButton;
+        protected Button _hintButton;
         protected Button _pauseMenuButton;
         private Button _closeButton;
         private Button _returnButton;

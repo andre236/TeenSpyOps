@@ -54,5 +54,11 @@ namespace Tutorial
 
         }
 
+        internal override void OnCollected()
+        {
+            base.OnCollected();
+
+        }
+
     }
 }

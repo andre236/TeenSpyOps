@@ -1,9 +1,10 @@
 using Manager;
-using Objects;
-using Statics;
 using System;
 using System.Collections;
 using UnityEngine;
+using Objects;
+using Statics;
+using Player;
 
 namespace Tutorial
 {
@@ -11,13 +12,18 @@ namespace Tutorial
     {
         private int _currentTinaLineTutorial;
         private int _currentSectionLine;
+        private int _amountSchoolObjectsCollected;
+
         private bool _canNextStep;
         private bool _onGuessingPage;
         private bool _onCollectedFirstObject;
         private bool _onFirstFailed;
+        private bool _onUsedFingerprintFirstTime;
 
         private TutorialLevelManager _tutorialLevelManager;
         private TutorialUIManager _tutorialUIManager;
+        
+        private Skills _tutorialSkills;
 
         internal Action<string[]> CalledTinaLine;
         internal Action<string> FocusedObject;
@@ -30,12 +36,15 @@ namespace Tutorial
         public bool OnGuessingPage { get => _onGuessingPage; set => _onGuessingPage = value; }
         public bool OnFirstFailed { get => _onFirstFailed; set => _onFirstFailed = value; }
         public bool OnCollectedFirstObject { get => _onCollectedFirstObject; set => _onCollectedFirstObject = value; }
+        public int AmountSchoolObjectsCollected { get => _amountSchoolObjectsCollected; set => _amountSchoolObjectsCollected = value; }
+        public bool OnUsedFingerprintFirstTime { get => _onUsedFingerprintFirstTime; set => _onUsedFingerprintFirstTime = value; }
 
         protected override void Awake()
         {
             base.Awake();
             _tutorialUIManager = FindObjectOfType<TutorialUIManager>();
             _tutorialLevelManager = FindObjectOfType<TutorialLevelManager>();
+            _tutorialSkills = FindObjectOfType<TutorialSkills>();
         }
 
         protected override void Start()
@@ -63,7 +72,7 @@ namespace Tutorial
                 ActivedNightVision += coll.OnActivedNightVision;
 
                 UpgradeXRayVision += coll.OnUpgradeXRayVision;
-                _skills.FinishedTimerSkill += coll.OnFinishedTimerSkill;
+                base._skills.FinishedTimerSkill += coll.OnFinishedTimerSkill;
             }
 
         }
@@ -99,7 +108,7 @@ namespace Tutorial
             _canNextStep = false;
             yield return new WaitUntil(() => _canNextStep == true);
 
-            _tutorialUIManager.HighlightOneGameObject(GameObject.Find("XRayButton"));
+            _tutorialUIManager.HighlightOneGameObject(GameObject.Find("XRayButton"), false);
             _tutorialUIManager.RayButtonReceiveSkill(); // Aqui ta dando true no nextStage apenas no click
             _canNextStep = false;
             yield return new WaitUntil(() => _canNextStep == true);
@@ -108,6 +117,8 @@ namespace Tutorial
 
             // ATO 3
             _tutorialUIManager.FocusedObject("OnXRayBar");
+            _tutorialUIManager.HighlightOneGameObject(GameObject.Find("XRayButton"), true);
+
             yield return new WaitUntil(() => _canNextStep == true);
             yield return new WaitForSeconds(2f);
             _currentTutorialSection = (TinaSectionLinesTutorialStage)2;
@@ -135,7 +146,28 @@ namespace Tutorial
             _currentTutorialSection = (TinaSectionLinesTutorialStage)5;
             _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
             yield return new WaitUntil(() => _canNextStep == true);
-
+            _tutorialUIManager.ShowHintButton();
+            yield return new WaitUntil(() => AmountSchoolObjectsCollected >= 2);
+            yield return new WaitUntil(() => _canNextStep == true);
+            yield return new WaitForSeconds(2f);
+            _skills.Reset = true;
+            _tutorialUIManager.RemoveSkillOnButton(GameObject.Find("XRayButton"));
+             //StartCoroutine(_skills.TimerForSkill(true, _skills.CurrentTimerXray, _skills.TimerXray, _skills.CurrentCooldownToXray, _skills.CooldownToXray, _skills.AlreadyXRayCast, _skills.CountdownXrayTimer, _skills.CountdownXrayCooldown));
+             _currentTutorialSection = (TinaSectionLinesTutorialStage)6;
+            _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
+            yield return new WaitUntil(() => _canNextStep == true);
+            yield return new WaitForSeconds(2f);
+            _skills.Reset = false;
+            // Foco no botão de fingerprint
+            _tutorialUIManager.FocusedObject("OnFingerprint");
+            yield return new WaitUntil(() => _canNextStep == true);
+            yield return new WaitForSeconds(2f);
+             _currentTutorialSection = (TinaSectionLinesTutorialStage)7;
+            _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
+            _tutorialUIManager.HighlightOneGameObject(GameObject.Find("FingerprintButton"), false);
+            yield return new WaitUntil(() => OnUsedFingerprintFirstTime == true);
+            yield return new WaitUntil(() => _canNextStep == true);
+            yield return new WaitForSeconds(2f);
         }
 
         internal IEnumerator SkipTutorialStage(float timer)

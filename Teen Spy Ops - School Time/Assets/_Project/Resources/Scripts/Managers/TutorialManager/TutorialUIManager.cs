@@ -13,6 +13,10 @@ namespace Tutorial
         private Text _tinaText;
 
         private GameObject _tinaPageTutorial;
+        private GameObject _highlightObject;
+
+
+        private Transform _previousGameObjectParent;
         private Canvas _canvasForFocus;
 
         protected override void Awake()
@@ -21,6 +25,7 @@ namespace Tutorial
             _tinaPageTutorial = GameObject.Find("TinaPageTutorial");
             _tinaText = GameObject.Find("TinaText").GetComponent<Text>();
             _canvasForFocus = GameObject.Find("CanvasForFocus").GetComponent<Canvas>();
+            _highlightObject = GameObject.Find("HighlightObject");
         }
 
         protected override void Start()
@@ -28,6 +33,7 @@ namespace Tutorial
             _pauseMenuButton.onClick.AddListener(FindObjectOfType<EventManager>().OnPausedGame);
 
             // For late, reference skill buttons.
+            _hintButton.gameObject.SetActive(false);
             _tinaPageTutorial.SetActive(false);
             _canvasForFocus.gameObject.SetActive(false);
         }
@@ -93,35 +99,65 @@ namespace Tutorial
             eventManagerTutorial.CanGoNextStage();
         }
 
-        internal void HighlightOneGameObject(GameObject gameObject)
+        internal void HighlightOneGameObject(GameObject gameObject, bool backGameObject)
         {
+            _previousGameObjectParent = GameObject.Find("LayoutButtons").transform;
 
-            var highlightObject = GameObject.Find("HighlightObject");
+            gameObject.transform.SetParent(_highlightObject.transform);
 
-            gameObject.transform.SetParent(highlightObject.transform);
+            if (backGameObject)
+            {
+                gameObject.transform.SetParent(_previousGameObjectParent);
+                if (gameObject.name == "XRayButton")
+                    gameObject.transform.SetSiblingIndex(0);
+                else if (gameObject.name == "FingerprintButton")
+                    gameObject.transform.SetSiblingIndex(1);
+                else
+                    gameObject.transform.SetSiblingIndex(2);
+            }
+
         }
+
 
         internal void RayButtonReceiveSkill()
         {
-            var highlightObject = GameObject.Find("HighlightObject");
-
             _xRayButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedXRay);
             _xRayButton.onClick.AddListener(PlayHudAnimation);
+        }
 
+        internal void FingerprintButtonReceiveSkill()
+        {
+            _fingerprintButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedFingerprint);
+            _fingerprintButton.onClick.AddListener(PlayHudAnimation);
+
+        }
+
+        internal void NightVisionButtonReceiveSkill()
+        {
+            _nightVisionButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedNightVision);
+            _nightVisionButton.onClick.AddListener(PlayHudAnimation);
+        }
+
+        internal void RemoveSkillOnButton(GameObject skillButton)
+        {
+            if (skillButton.GetComponent<Button>() == null)
+                return;
+
+            skillButton.GetComponent<Button>().onClick.RemoveAllListeners();
         }
 
         internal override void OnGotQuestion(string nameObject, Sprite itemSprite)
         {
             base.OnGotQuestion(nameObject, itemSprite);
             var eventManagerTutorial = FindObjectOfType<TutorialEventManager>();
-            
+
             if (eventManagerTutorial.OnGuessingPage)
                 return;
 
 
             if (!eventManagerTutorial.OnGuessingPage)
                 AllowToGuessObject();
-            
+
 
             eventManagerTutorial.ExplainGuessingPage();
 
@@ -161,22 +197,27 @@ namespace Tutorial
 
         }
 
+        internal void ShowHintButton()
+        {
+            _hintButton.gameObject.SetActive(true);
+        }
+
         internal override void OnCollected()
         {
             base.OnCollected();
             var eventManagerTutorial = FindObjectOfType<TutorialEventManager>();
 
             eventManagerTutorial.OnCollectedFirstObject = true;
+            eventManagerTutorial.AmountSchoolObjectsCollected++;
         }
 
         protected override void PlayHudAnimation()
         {
             base.PlayHudAnimation();
 
-            var canvasForFocus = GameObject.Find("CanvasForFocus");
             var eventManagerTutorial = FindObjectOfType<TutorialEventManager>();
 
-            canvasForFocus.SetActive(false);
+            _canvasForFocus.gameObject.SetActive(false);
             StartCoroutine(eventManagerTutorial.SkipTutorialStage(0f));
 
         }

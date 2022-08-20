@@ -101,7 +101,7 @@ namespace Manager
 
         }
 
-        internal void OnCollected()
+        internal virtual void OnCollected()
         {
             CurrentObject.GetComponent<Collectable>().GotQuestion = null;
 
