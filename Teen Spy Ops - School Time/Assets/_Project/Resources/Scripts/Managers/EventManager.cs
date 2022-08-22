@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using Player;
 using Objects;
 using Controllers;
+using System.Collections;
 
 namespace Manager
 {
@@ -31,6 +32,8 @@ namespace Manager
         public Action WonGame;
         public Action LosedGame;
 
+        public Action LoadedNextScene { get; private set; }
+
         public Action<int> EarnedStars;
 
         // -- Player Skills -- //
@@ -43,6 +46,7 @@ namespace Manager
         // -- Items -- //
         public int AmountItems { get; private set; }
 
+
         public Action ItemCollected;
 
         public Action InstantiatedCollectables;
@@ -54,7 +58,7 @@ namespace Manager
         // -- Hint -- //
         public Action<string, int> GotHint;
 
-        
+
         protected virtual void Awake()
         {
             // -- Managers -- //
@@ -93,6 +97,8 @@ namespace Manager
 
             PausedGame += _gameManager.OnPausedGame;
             PausedGame += _uiManager.OnPausedGame;
+
+            LoadedNextScene += _uiManager.OnLoadedNextScene;
 
             UnPausedGame += _gameManager.OnUnPausedGame;
             UnPausedGame += _uiManager.OnUnPausedGame;
@@ -150,7 +156,7 @@ namespace Manager
 
             _skills.CountdownNightVisionCooldown += _uiManager.OnCountdownNightVisionCooldown;
 
-            
+
             InitializedGame?.Invoke();
         }
 
@@ -189,9 +195,9 @@ namespace Manager
                 return;
 
             _hintController.AmountHint--;
-            
+
             if (PlayerPrefs.GetInt("AMOUNT_HINTS_USED") < 10)
-                PlayerPrefs.SetInt("AMOUNT_HINTS_USED", PlayerPrefs.GetInt("AMOUNT_HINTS_USED")+1);
+                PlayerPrefs.SetInt("AMOUNT_HINTS_USED", PlayerPrefs.GetInt("AMOUNT_HINTS_USED") + 1);
 
             _achievementManager.UnlockedHackerman?.Invoke();
             GotHint?.Invoke(_hintController.CurrentHint, _hintController.AmountHint);
@@ -238,6 +244,17 @@ namespace Manager
         internal void RestartScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         internal void LoadLevelSelectScene() => SceneManager.LoadScene("LEVELSELECT");
         internal void LoadMainMenuScene() => SceneManager.LoadScene("MAINMENU");
-        internal void LoadNextLevelScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        internal void LoadNextLevelScene()
+        {
+            LoadedNextScene?.Invoke();
+            StartCoroutine(LoadingNextScene());
+        }
+
+        internal IEnumerator LoadingNextScene()
+        {
+            yield return new WaitForSeconds(1.5f);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+        }
     }
 }

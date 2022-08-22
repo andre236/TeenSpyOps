@@ -92,6 +92,14 @@ namespace Manager
 
         }
 
+        internal void OnLoadedNextScene()
+        {
+            var transitionGameObject = GameObject.Find("Transition").GetComponent<Animator>();
+
+            transitionGameObject.gameObject.SetActive(true);
+            transitionGameObject.SetTrigger("FadeIn");
+        }
+
         internal void OnActivedXRay()
         {
             GameManager gameManager = FindObjectOfType<GameManager>();

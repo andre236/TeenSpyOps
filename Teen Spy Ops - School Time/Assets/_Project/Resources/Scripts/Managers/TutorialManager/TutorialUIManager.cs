@@ -67,7 +67,7 @@ namespace Tutorial
             _tinaPageTutorial.GetComponent<Animator>().SetTrigger("Closing");
             StartCoroutine(DelayToDeactiveGameObject(_tinaPageTutorial, 2f));
             _tinaPageTutorial.GetComponent<Button>().onClick.RemoveAllListeners();
-            eventManagerTutorial.CanGoNextStage();
+            eventManagerTutorial.CanGoNextStep();
         }
 
         internal void NextTinaLine(string[] lines)
@@ -84,7 +84,7 @@ namespace Tutorial
                 _tinaPageTutorial.GetComponent<Animator>().SetTrigger("Closing");
                 StartCoroutine(DelayToDeactiveGameObject(_tinaPageTutorial, 2f));
                 _tinaPageTutorial.GetComponent<Button>().onClick.RemoveAllListeners();
-                eventManagerTutorial.CanGoNextStage();
+                eventManagerTutorial.CanGoNextStep();
             }
 
             if (_currentLine <= lines.Length - 1)
@@ -100,7 +100,7 @@ namespace Tutorial
 
             _canvasForFocus.gameObject.SetActive(true);
             _canvasForFocus.GetComponent<Animator>().SetTrigger(triggerAnimation);
-            eventManagerTutorial.CanGoNextStage();
+            eventManagerTutorial.CanGoNextStep();
         }
 
         internal void TurnOffFocus()
@@ -240,6 +240,9 @@ namespace Tutorial
 
         internal void ShowHintButton()
         {
+            var eventManagerTutorial = FindObjectOfType<TutorialEventManager>();
+
+            eventManagerTutorial.OnNeededHint = false;
             _hintButton.gameObject.SetActive(true);
         }
 
@@ -276,7 +279,10 @@ namespace Tutorial
             yield return new WaitForSeconds(timer);
             gameObject.SetActive(false);
             if (gameObject == _tinaPageTutorial)
+            {
                 eventManagerTutorial.IsTinaExplaining = false;
+                eventManagerTutorial.OnNeededHint = false;
+            }
         }
 
 

@@ -55,6 +55,7 @@ namespace Statics
         private void Start()
         {
             GetSchoolObjectsName();
+            
         }
 
         private void GetSchoolObjectsName()
@@ -69,6 +70,7 @@ namespace Statics
             {
                 NameObjects[i] = info[i].Name.Replace(".asset", "");
             }
+
 
         }
 

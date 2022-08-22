@@ -1001,6 +1001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a60ead0d23958844ea9269e36e33c8e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isTinaExplaining: 0
   _currentTutorialStage: 0
   _currentTutorialSection: 0
 --- !u!1 &392984255
@@ -2068,8 +2069,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.3999939, y: 0.5}
+  m_SizeDelta: {x: 6.8464, y: 6.8465}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &801000633
 MonoBehaviour:

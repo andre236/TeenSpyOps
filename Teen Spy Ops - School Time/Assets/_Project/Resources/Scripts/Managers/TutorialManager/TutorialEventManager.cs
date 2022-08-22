@@ -26,8 +26,6 @@ namespace Tutorial
         private TutorialLevelManager _tutorialLevelManager;
         private TutorialUIManager _tutorialUIManager;
 
-        private Skills _tutorialSkills;
-
         internal Action<string[]> CalledTinaLine;
         internal Action<string> FocusedObject;
         internal Action CalledNextAction;
@@ -51,7 +49,6 @@ namespace Tutorial
             base.Awake();
             _tutorialUIManager = FindObjectOfType<TutorialUIManager>();
             _tutorialLevelManager = FindObjectOfType<TutorialLevelManager>();
-            _tutorialSkills = FindObjectOfType<TutorialSkills>();
         }
 
         protected override void Start()
@@ -105,7 +102,7 @@ namespace Tutorial
         }
 
 
-        internal void CanGoNextStage()
+        internal void CanGoNextStep()
         {
             _canNextStep = true;
         }
@@ -146,6 +143,7 @@ namespace Tutorial
             _tutorialUIManager.FocusedObject("OnXRayButton");
 
             yield return new WaitUntil(() => _canNextStep == true);
+            yield return new WaitUntil(() => _isTinaExplaining == false);
             yield return new WaitForSeconds(2f);
 
             // ATO 2
@@ -166,6 +164,7 @@ namespace Tutorial
             _tutorialUIManager.HighlightOneGameObject(GameObject.Find("XRayButton"), true);
 
             yield return new WaitUntil(() => _canNextStep == true);
+            yield return new WaitUntil(() => _isTinaExplaining == false);
             yield return new WaitForSeconds(2f);
             _currentTutorialSection = (TinaSectionLinesTutorialStage)2;
             _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
@@ -178,6 +177,7 @@ namespace Tutorial
             AllowClickingSchoolObject();
 
             yield return new WaitUntil(() => _canNextStep == true);
+            yield return new WaitUntil(() => _isTinaExplaining == false);
             yield return new WaitUntil(() => OnGuessingPage == true);
             yield return new WaitForSeconds(2f);
             _currentTutorialSection = (TinaSectionLinesTutorialStage)3;
@@ -188,6 +188,7 @@ namespace Tutorial
             StartCoroutine(FirstFailed());
             yield return new WaitUntil(() => _canNextStep == true);
             yield return new WaitUntil(() => OnCollectedFirstObject == true);
+            yield return new WaitUntil(() => _isTinaExplaining == false);
             yield return new WaitForSeconds(2f);
             _currentTutorialSection = (TinaSectionLinesTutorialStage)5;
             _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
@@ -195,17 +196,21 @@ namespace Tutorial
             _tutorialUIManager.ShowHintButton();
             _tutorialUIManager.AllowRequestHint();
             yield return new WaitUntil(() => AmountSchoolObjectsCollected >= 2);
+            StartCoroutine(NeededHintShowMessage());
             yield return new WaitUntil(() => _canNextStep == true);
             yield return new WaitForSeconds(2f);
-            StartCoroutine(NeededHintShowMessage());
+
             _skills.Reset = true;
             _tutorialUIManager.TurnOffFocus();
             _tutorialUIManager.RemoveXRaySkill();
 
+            yield return new WaitUntil(() => OnNeededHint == false);
+            yield return new WaitUntil(() => _isTinaExplaining == false);
+            yield return new WaitForSeconds(2f);
             _currentTutorialSection = (TinaSectionLinesTutorialStage)6;
             _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
             yield return new WaitUntil(() => _canNextStep == true);
-            yield return new WaitUntil(() => IsTinaExplaining == false);
+            yield return new WaitUntil(() => _isTinaExplaining == false);
             yield return new WaitForSeconds(2f);
             _skills.Reset = false;
 
@@ -214,10 +219,11 @@ namespace Tutorial
             _tutorialUIManager.FocusedObject("OnFingerprint");
 
             yield return new WaitUntil(() => _canNextStep == true);
+            yield return new WaitUntil(() => _isTinaExplaining == false);
             yield return new WaitForSeconds(2f);
-
             _currentTutorialSection = (TinaSectionLinesTutorialStage)7;
             _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
+            
             yield return new WaitUntil(() => _canNextStep == true);
             yield return new WaitForSeconds(2f);
             _tutorialUIManager.HighlightOneGameObject(GameObject.Find("FingerprintButton"), false);
@@ -229,6 +235,9 @@ namespace Tutorial
 
             _tutorialUIManager.RemoveFingerprintSkill();
             _tutorialUIManager.HighlightOneGameObject(GameObject.Find("FingerprintButton"), true);
+
+
+            yield return new WaitUntil(() => _isTinaExplaining == false);
             _currentTutorialSection = (TinaSectionLinesTutorialStage)8;
             _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
             yield return new WaitUntil(() => _canNextStep == true);
@@ -238,16 +247,18 @@ namespace Tutorial
 
             yield return new WaitUntil(() => _canNextStep == true);
             yield return new WaitForSeconds(2f);
+            yield return new WaitUntil(() => _isTinaExplaining == false);
             _currentTutorialSection = (TinaSectionLinesTutorialStage)9;
             _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
             yield return new WaitUntil(() => _canNextStep == true);
-            yield return new WaitUntil(() => IsTinaExplaining == false);
+            yield return new WaitUntil(() => _isTinaExplaining == false);
             yield return new WaitForSeconds(2f);
             _tutorialUIManager.HighlightOneGameObject(GameObject.Find("NightVisionButton"), false);
             _tutorialUIManager.NightVisionButtonReceiveSkill();
             yield return new WaitUntil(() => _canNextStep == true);
             yield return new WaitUntil(() => OnUsedNightVisionFirstTime == true);
             yield return new WaitForSeconds(2f);
+            yield return new WaitUntil(() => _isTinaExplaining == false);
             _currentTutorialSection = (TinaSectionLinesTutorialStage)10;
             _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
             yield return new WaitUntil(() => AmountSchoolObjectsCollected >= 3);
@@ -279,7 +290,11 @@ namespace Tutorial
         internal IEnumerator NeededHintShowMessage()
         {
             yield return new WaitUntil(() => OnNeededHint == true);
+            yield return new WaitForSeconds(1f);
+            yield return new WaitUntil(() => _isTinaExplaining == false);
+
             _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[13].TinaLines);
+            
 
         }
 
