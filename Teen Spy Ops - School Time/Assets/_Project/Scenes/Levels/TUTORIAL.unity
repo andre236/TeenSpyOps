@@ -2669,6 +2669,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: GENERALTEXTS
       objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: TinaSectionLinesTutorialsList.Array.size
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: TinaSectionLinesTutorialsList.Array.data[13].TinaLines.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: TinaSectionLinesTutorialsList.Array.data[13].TinaLines.Array.data[0]
+      value: "Viu s\xF3? Eu falei que estava l\xE1!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: TinaSectionLinesTutorialsList.Array.data[13].TinaLines.Array.data[1]
+      value: Agora vamos procurar pelas suas coisas antes que o sinal toque!
+      objectReference: {fileID: 0}
     - target: {fileID: 2134023914987053090, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -42,6 +42,7 @@ namespace Manager
 
         // -- Items -- //
         public int AmountItems { get; private set; }
+
         public Action ItemCollected;
 
         public Action InstantiatedCollectables;
@@ -182,12 +183,12 @@ namespace Manager
             }
         }
 
-        internal void OnGotHint()
+        internal virtual void OnGotHint()
         {
             if (_hintController.AmountHint <= 0)
                 return;
 
-            //_hintController.AmountHint--;
+            _hintController.AmountHint--;
             
             if (PlayerPrefs.GetInt("AMOUNT_HINTS_USED") < 10)
                 PlayerPrefs.SetInt("AMOUNT_HINTS_USED", PlayerPrefs.GetInt("AMOUNT_HINTS_USED")+1);

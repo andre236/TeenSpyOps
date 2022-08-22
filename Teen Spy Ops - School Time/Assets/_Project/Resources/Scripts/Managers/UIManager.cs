@@ -48,7 +48,7 @@ namespace Manager
         protected Button _nightVisionButton;
         private Button _phasesButton;
         private Button _mainMenuButton;
-        private Button _closeHintButton;
+        protected Button _closeHintButton;
 
         protected virtual void Awake()
         {
@@ -160,7 +160,7 @@ namespace Manager
 
         }
 
-        private void CloseHintPage() => StartCoroutine(nameof(WaitToCloseHintPage));
+        protected void CloseHintPage() => StartCoroutine(nameof(WaitToCloseHintPage));
 
         internal void ShowAmountItemsLeft(int amountItemsLeft) => _amountItemsLeftText.text = string.Concat("Objetos Restantes: ", amountItemsLeft.ToString());
 

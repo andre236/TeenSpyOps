@@ -31,6 +31,7 @@ namespace Tutorial
         protected override void Start()
         {
             _pauseMenuButton.onClick.AddListener(FindObjectOfType<EventManager>().OnPausedGame);
+            _closeHintButton.onClick.AddListener(CloseHintPage);
 
             // For late, reference skill buttons.
             _hintButton.gameObject.SetActive(false);
@@ -41,6 +42,8 @@ namespace Tutorial
         internal void CallTinaLine(string[] lines)
         {
             var eventManagerTutorial = FindObjectOfType<TutorialEventManager>();
+            
+
 
             _numberLines = lines.Length;
 
@@ -48,6 +51,7 @@ namespace Tutorial
             _tinaText.text = lines[_currentLine];
 
             _tinaPageTutorial.SetActive(true);
+            eventManagerTutorial.IsTinaExplaining = _tinaPageTutorial.activeSelf;
 
             if (lines.Length > 1)
                 _tinaPageTutorial.GetComponent<Button>().onClick.AddListener(FindObjectOfType<TutorialEventManager>().SkipTutorialLine);
@@ -99,6 +103,11 @@ namespace Tutorial
             eventManagerTutorial.CanGoNextStage();
         }
 
+        internal void TurnOffFocus()
+        {
+            _canvasForFocus.gameObject.SetActive(false);
+        }
+
         internal void HighlightOneGameObject(GameObject gameObject, bool backGameObject)
         {
             _previousGameObjectParent = GameObject.Find("LayoutButtons").transform;
@@ -127,23 +136,42 @@ namespace Tutorial
 
         internal void FingerprintButtonReceiveSkill()
         {
+            var eventManagerTutorial = FindObjectOfType<TutorialEventManager>();
+
             _fingerprintButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedFingerprint);
             _fingerprintButton.onClick.AddListener(PlayHudAnimation);
+            _fingerprintButton.onClick.AddListener(WaitingForFingerprint);
 
+        }
+
+        internal void NightVisionReceiveSkill()
+        {
+
+        }
+
+        internal void WaitingForFingerprint()
+        {
+            var eventManagerTutorial = FindObjectOfType<TutorialEventManager>();
+
+            StartCoroutine(eventManagerTutorial.OnWaitingUsedFingerprintFirstTime());
         }
 
         internal void NightVisionButtonReceiveSkill()
         {
             _nightVisionButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedNightVision);
             _nightVisionButton.onClick.AddListener(PlayHudAnimation);
+            _nightVisionButton.onClick.AddListener(FindObjectOfType<TutorialEventManager>().UsedNightVisionFirstTime);
+
         }
 
-        internal void RemoveSkillOnButton(GameObject skillButton)
+        internal void RemoveXRaySkill()
         {
-            if (skillButton.GetComponent<Button>() == null)
-                return;
+            _xRayButton.onClick.RemoveAllListeners();
+        }
 
-            skillButton.GetComponent<Button>().onClick.RemoveAllListeners();
+        internal void RemoveFingerprintSkill()
+        {
+            _fingerprintButton.onClick.RemoveAllListeners();
         }
 
         internal override void OnGotQuestion(string nameObject, Sprite itemSprite)
@@ -187,6 +215,19 @@ namespace Tutorial
             }
         }
 
+        internal void AllowRequestHint()
+        {
+            _hintButton.onClick.AddListener(FindObjectOfType<TutorialEventManager>().OnGotHint);
+            _hintButton.onClick.AddListener(ShowNeededHintMessage);
+
+        }
+
+        internal void ShowNeededHintMessage()
+        {
+            var eventManagerTutorial = FindObjectOfType<TutorialEventManager>();
+            eventManagerTutorial.OnNeededHint = true;
+        }
+
         internal override void OnChosenIncorrect()
         {
             base.OnChosenIncorrect();
@@ -201,6 +242,8 @@ namespace Tutorial
         {
             _hintButton.gameObject.SetActive(true);
         }
+
+
 
         internal override void OnCollected()
         {
@@ -229,8 +272,11 @@ namespace Tutorial
 
         IEnumerator DelayToDeactiveGameObject(GameObject gameObject, float timer)
         {
+            var eventManagerTutorial = FindObjectOfType<TutorialEventManager>();
             yield return new WaitForSeconds(timer);
             gameObject.SetActive(false);
+            if (gameObject == _tinaPageTutorial)
+                eventManagerTutorial.IsTinaExplaining = false;
         }
 
 

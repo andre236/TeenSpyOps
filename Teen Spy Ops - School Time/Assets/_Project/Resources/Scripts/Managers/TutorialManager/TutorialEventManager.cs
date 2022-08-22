@@ -19,10 +19,13 @@ namespace Tutorial
         private bool _onCollectedFirstObject;
         private bool _onFirstFailed;
         private bool _onUsedFingerprintFirstTime;
+        private bool _onUsedNightVisionFirstTime;
+        private bool _onNeededHint;
+        [SerializeField] private bool _isTinaExplaining;
 
         private TutorialLevelManager _tutorialLevelManager;
         private TutorialUIManager _tutorialUIManager;
-        
+
         private Skills _tutorialSkills;
 
         internal Action<string[]> CalledTinaLine;
@@ -38,6 +41,10 @@ namespace Tutorial
         public bool OnCollectedFirstObject { get => _onCollectedFirstObject; set => _onCollectedFirstObject = value; }
         public int AmountSchoolObjectsCollected { get => _amountSchoolObjectsCollected; set => _amountSchoolObjectsCollected = value; }
         public bool OnUsedFingerprintFirstTime { get => _onUsedFingerprintFirstTime; set => _onUsedFingerprintFirstTime = value; }
+        public bool OnNeededHint { get => _onNeededHint; internal set => _onNeededHint = value; }
+
+        public bool IsTinaExplaining { get => _isTinaExplaining; set => _isTinaExplaining = value; }
+        public bool OnUsedNightVisionFirstTime { get => _onUsedNightVisionFirstTime; set => _onUsedNightVisionFirstTime = value; }
 
         protected override void Awake()
         {
@@ -72,9 +79,19 @@ namespace Tutorial
                 ActivedNightVision += coll.OnActivedNightVision;
 
                 UpgradeXRayVision += coll.OnUpgradeXRayVision;
-                base._skills.FinishedTimerSkill += coll.OnFinishedTimerSkill;
+                _skills.FinishedTimerSkill += coll.OnFinishedTimerSkill;
             }
 
+        }
+
+        internal override void OnGotHint()
+        {
+            if (_hintController.AmountHint <= 0)
+                return;
+
+            _hintController.AmountHint--;
+
+            GotHint?.Invoke(_hintController.CurrentHint, _hintController.AmountHint);
         }
 
         internal void AllowClickingSchoolObject()
@@ -86,6 +103,35 @@ namespace Tutorial
 
             }
         }
+
+
+        internal void CanGoNextStage()
+        {
+            _canNextStep = true;
+        }
+
+        internal void ExplainGuessingPage()
+        {
+            OnGuessingPage = true;
+        }
+
+        internal void CanGoNextTinaSectionLine()
+        {
+            _currentTutorialStage++;
+        }
+
+        public void SkipTutorialLine()
+        {
+            Debug.Log("A section está em: " + (int)_currentTutorialStage);
+            _tutorialUIManager.NextTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
+
+        }
+
+        public void CloseTutorialLine()
+        {
+            _tutorialUIManager.CloseTinaPageTutorial();
+        }
+
 
         internal IEnumerator ExecutingInCube()
         {
@@ -147,36 +193,93 @@ namespace Tutorial
             _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
             yield return new WaitUntil(() => _canNextStep == true);
             _tutorialUIManager.ShowHintButton();
+            _tutorialUIManager.AllowRequestHint();
             yield return new WaitUntil(() => AmountSchoolObjectsCollected >= 2);
             yield return new WaitUntil(() => _canNextStep == true);
             yield return new WaitForSeconds(2f);
+            StartCoroutine(NeededHintShowMessage());
             _skills.Reset = true;
-            _tutorialUIManager.RemoveSkillOnButton(GameObject.Find("XRayButton"));
-            
-             _currentTutorialSection = (TinaSectionLinesTutorialStage)6;
+            _tutorialUIManager.TurnOffFocus();
+            _tutorialUIManager.RemoveXRaySkill();
+
+            _currentTutorialSection = (TinaSectionLinesTutorialStage)6;
             _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
             yield return new WaitUntil(() => _canNextStep == true);
+            yield return new WaitUntil(() => IsTinaExplaining == false);
             yield return new WaitForSeconds(2f);
             _skills.Reset = false;
-            
+
             // -- Foco no botão de fingerprint
-            
-            yield return new WaitUntil(() => _canNextStep == true);
-            yield return new WaitForSeconds(2f);
-             _currentTutorialSection = (TinaSectionLinesTutorialStage)7;
-            _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
-            //_tutorialUIManager.HighlightOneGameObject(GameObject.Find("FingerprintButton"), false);
-            //_tutorialUIManager.FingerprintButtonReceiveSkill();
-            //yield return new WaitUntil(() => OnUsedFingerprintFirstTime == true);
-            yield return new WaitUntil(() => _canNextStep == true);
-            yield return new WaitForSeconds(2f);
+
             _tutorialUIManager.FocusedObject("OnFingerprint");
+
+            yield return new WaitUntil(() => _canNextStep == true);
+            yield return new WaitForSeconds(2f);
+
+            _currentTutorialSection = (TinaSectionLinesTutorialStage)7;
+            _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
+            yield return new WaitUntil(() => _canNextStep == true);
+            yield return new WaitForSeconds(2f);
+            _tutorialUIManager.HighlightOneGameObject(GameObject.Find("FingerprintButton"), false);
+            _tutorialUIManager.FingerprintButtonReceiveSkill();
+
+            yield return new WaitUntil(() => OnUsedFingerprintFirstTime == true);
+            yield return new WaitUntil(() => _canNextStep == true);
+            yield return new WaitForSeconds(2f);
+
+            _tutorialUIManager.RemoveFingerprintSkill();
+            _tutorialUIManager.HighlightOneGameObject(GameObject.Find("FingerprintButton"), true);
+            _currentTutorialSection = (TinaSectionLinesTutorialStage)8;
+            _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
+            yield return new WaitUntil(() => _canNextStep == true);
+            yield return new WaitUntil(() => IsTinaExplaining == false);
+            yield return new WaitForSeconds(2f);
+            _tutorialUIManager.FocusedObject("OnNightVision");
+
+            yield return new WaitUntil(() => _canNextStep == true);
+            yield return new WaitForSeconds(2f);
+            _currentTutorialSection = (TinaSectionLinesTutorialStage)9;
+            _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
+            yield return new WaitUntil(() => _canNextStep == true);
+            yield return new WaitUntil(() => IsTinaExplaining == false);
+            yield return new WaitForSeconds(2f);
+            _tutorialUIManager.HighlightOneGameObject(GameObject.Find("NightVisionButton"), false);
+            _tutorialUIManager.NightVisionButtonReceiveSkill();
+            yield return new WaitUntil(() => _canNextStep == true);
+            yield return new WaitUntil(() => OnUsedNightVisionFirstTime == true);
+            yield return new WaitForSeconds(2f);
+            _currentTutorialSection = (TinaSectionLinesTutorialStage)10;
+            _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
+            yield return new WaitUntil(() => AmountSchoolObjectsCollected >= 3);
+            yield return new WaitUntil(() => _canNextStep == true);
+            yield return new WaitForSeconds(2f);
+            _currentTutorialSection = (TinaSectionLinesTutorialStage)12;
+            _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
+
+        }
+
+        internal void UsedNightVisionFirstTime()
+        {
+            OnUsedNightVisionFirstTime = true;
+        }
+
+        internal IEnumerator OnWaitingUsedFingerprintFirstTime()
+        {
+            yield return new WaitForSeconds(15f);
+            OnUsedFingerprintFirstTime = true;
         }
 
         internal IEnumerator SkipTutorialStage(float timer)
         {
             yield return new WaitForSeconds(timer);
             _canNextStep = true;
+
+        }
+
+        internal IEnumerator NeededHintShowMessage()
+        {
+            yield return new WaitUntil(() => OnNeededHint == true);
+            _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[13].TinaLines);
 
         }
 
@@ -188,27 +291,6 @@ namespace Tutorial
             _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
         }
 
-        internal void CanGoNextStage() => _canNextStep = true;
 
-        internal void ExplainGuessingPage()
-        {
-            OnGuessingPage = true;
-        }
-
-        internal void CanGoNextTinaSectionLine()
-        {
-            _currentTutorialStage++;
-        }
-
-        public void SkipTutorialLine()
-        {
-            Debug.Log("A section está em: " + (int)_currentTutorialStage);
-            _tutorialUIManager.NextTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
-        }
-
-        public void CloseTutorialLine()
-        {
-            _tutorialUIManager.CloseTinaPageTutorial();
-        }
     }
 }
