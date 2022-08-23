@@ -211,7 +211,7 @@ namespace Tutorial
             _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
             yield return new WaitUntil(() => _canNextStep == true);
             yield return new WaitUntil(() => _isTinaExplaining == false);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
             _skills.Reset = false;
 
             // -- Foco no botão de fingerprint
@@ -258,6 +258,7 @@ namespace Tutorial
             yield return new WaitUntil(() => _canNextStep == true);
             yield return new WaitUntil(() => OnUsedNightVisionFirstTime == true);
             yield return new WaitForSeconds(2f);
+            _tutorialUIManager.HighlightOneGameObject(GameObject.Find("NightVisionButton"), true);
             yield return new WaitUntil(() => _isTinaExplaining == false);
             _currentTutorialSection = (TinaSectionLinesTutorialStage)10;
             _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);

@@ -129,7 +129,7 @@ namespace Manager
             _answersButton[0].onClick.AddListener(FindObjectOfType<EventManager>().OnChosenCorrect);
             _answersButton[1].onClick.AddListener(FindObjectOfType<EventManager>().OnChosenIncorrect);
             _answersButton[2].onClick.AddListener(FindObjectOfType<EventManager>().OnChosenIncorrect);
-            
+
             _hintButton.onClick.AddListener(FindObjectOfType<EventManager>().OnGotHint);
             _closeHintButton.onClick.AddListener(CloseHintPage);
             //_phasesButton.onClick.AddListener(FindObjectOfType<EventManager>().LoadLevelSelectScene);
@@ -193,8 +193,11 @@ namespace Manager
             Button mainMenuButton = GameObject.Find("MainMenuButton").GetComponent<Button>();
             mainMenuButton.onClick.AddListener(eventManager.LoadMainMenuScene);
 
-            Button nextLevelButton = GameObject.Find("NextLevelButton").GetComponent<Button>();
-            nextLevelButton.onClick.AddListener(eventManager.LoadNextLevelScene);
+            if (!eventManager.CheckLastLevel())
+            {
+                Button nextLevelButton = GameObject.Find("NextLevelButton").GetComponent<Button>();
+                nextLevelButton.onClick.AddListener(eventManager.LoadNextLevelScene);
+            }
 
         }
 
@@ -218,6 +221,7 @@ namespace Manager
             _fingerprintCooldownImage.gameObject.SetActive(false);
             _nightVisionTimerImage.gameObject.SetActive(false);
             _nightVisionCooldownImage.gameObject.SetActive(false);
+
 
             //_barsAnimation.enabled = false;
 
@@ -381,7 +385,7 @@ namespace Manager
                 _xRayCooldownImage.gameObject.SetActive(true);
                 _xRayBarImage.gameObject.SetActive(true);
 
-                
+
                 _xRayTimerImage.fillAmount = timer / initialTimer;
                 _xRayCooldownImage.fillAmount = 1f;
             }
@@ -496,8 +500,12 @@ namespace Manager
             Button mainMenuButton = GameObject.Find("MainMenuButton").GetComponent<Button>();
             mainMenuButton.onClick.AddListener(eventManager.LoadMainMenuScene);
 
-            Button nextLevelButton = GameObject.Find("NextLevelButton").GetComponent<Button>();
-            nextLevelButton.onClick.AddListener(eventManager.LoadNextLevelScene);
+            if (!eventManager.CheckLastLevel())
+            {
+                Button nextLevelButton = GameObject.Find("NextLevelButton").GetComponent<Button>();
+                nextLevelButton.onClick.AddListener(eventManager.LoadNextLevelScene);
+
+            }
         }
 
         internal void OnLosedGame()

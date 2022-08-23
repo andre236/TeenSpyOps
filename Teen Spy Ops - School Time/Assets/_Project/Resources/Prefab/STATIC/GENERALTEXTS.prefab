@@ -109,26 +109,164 @@ MonoBehaviour:
       - "Acho que vi algu\xE9m deixando algo escondido perto da porta antes de sair...."
   - RespawnHint:
     - Hint:
-      - Dica 1 do respawn 1 da fase 2
-      - Dica 2 do respawn 1 da fase 2
+      - "Parece que algu\xE9m estava com fome quando escondeu esse. D\xEA uma olhada
+        nas mesas e cadeiras da cantina."
+      - "Talvez a vis\xE3o de raio-x consiga te ajudar \xE0 encontrar este objeto."
     - Hint:
-      - Dica 1 do respawn 2 da fase 2
-      - Dica 2  do respawn 2 da fase 2
+      - "Hahaha parece at\xE9 pique esconde, mas ao inv\xE9s de crian\xE7as embaixo
+        da mesa voc\xEA vai achar material escolar."
+      - "Eu vi!! Eu vi onde colocaram, mas t\xE1 muito escuro..."
     - Hint:
-      - Dica 1 do respawn 3 da fase 2
-      - Dica 2 do respawn 3 da fase 2
+      - "Nossa esse objeto t\xE1 t\xE3o longe... Perto do banheiro, quem p\xF4s ele
+        ali devia estar apertado."
+      - "Tem muitos bancos nesse p\xE1tio, talvez embaixo de um deles tenha alguma
+        coisa..."
     - Hint:
-      - Dica 1 do respawn 4 da fase 2
-      - Dica 2 do respawn 4 da fase 2
+      - "AHH! QUE FEDIDO! N\xE3o acredito que colocaram suas coisas perto de uma
+        lixeira..."
+      - Essa coisa brilha?? Porque tem um solzinho legal batendo nela.
     - Hint:
-      - Dica 1 do respawn 5 da fase 2
-      - Dica 2 do respawn 5 da fase 2
-  - RespawnHint: []
-  - RespawnHint: []
-  - RespawnHint: []
-  - RespawnHint: []
-  - RespawnHint: []
-  - RespawnHint: []
+      - "Que pregui\xE7oso... Deixaram num lugar t\xE3o exposto assim... O que? Voc\xEA
+        n\xE3o consegue ver?? \xC9 tudo quest\xE3o de perspectiva."
+      - "Talvez se voc\xEA virar um pouco a cabe\xE7a... Ou pudesse ver atr\xE1s
+        das coisas..."
+  - RespawnHint:
+    - Hint:
+      - "Vai um refresco a\xED? Voc\xEA pode aproveitar e pegar seu material."
+      - "Talvez a vis\xE3o de raio-x consiga te ajudar \xE0 encontrar este objeto."
+    - Hint:
+      - "Hahaha parece at\xE9 pique esconde, mas ao inv\xE9s de crian\xE7as embaixo
+        da mesa voc\xEA vai achar material escolar."
+      - "N\xE3o d\xE1 pra ver direito, tem algo na frente..."
+    - Hint:
+      - "\xC9 bom tomar cuidado pra n\xE3o esquentar suas coisas! At\xE9 onde eu
+        lembro elas n\xE3o s\xE3o comida!!"
+      - "Ser\xE1 que d\xE1 tempo de fazer um lanchinho?? Os salgadinhos t\xE3o bem
+        em cima..."
+    - Hint:
+      - "Eita! Ser\xE1 que confundiram suas coisas com um salgado?? Ou talvez um
+        refri?"
+      - "Esses vidros t\xE3o muito escuros... Acho que ver no escuro pode ajudar
+        bastante."
+    - Hint:
+      - "AAAAAAA QUE FEDIDO QUE FEDIDO QUE FEDIDO!!! Eu vi onde colocaram esse material
+        mas talvez voc\xEA n\xE3o queira saber..."
+      - "Ser\xE1 que eles acharam que seu material escolar \xE9 recicl\xE1vel??"
+  - RespawnHint:
+    - Hint:
+      - Se eu tivesse no lugar do seu material, ia estar girando e girando e girando
+        nessa cadeira de rodinha.
+      - Tem muita coisa na frente! A gente precisava dar uma espiadinha...
+    - Hint:
+      - "T\xE1 meio escuro, fica dif\xEDcil de ver... Se ao menos eu tivesse um \xF3culos
+        super tecnol\xF3gico que enxerga no escuro... Ai, ai..."
+      - "Eu n\xE3o entendo esses seus colegas... Tantos arm\xE1rios pra esconder
+        suas coisas e escolhem um sem tranca. E ainda deixam a porta aberta?! Francamente..."
+    - Hint:
+      - "Eu n\xE3o alcan\xE7o! Esse aqui t\xE1 muito alto."
+      - "N\xE3o t\xE1 conseguindo ver? N\xE3o fique triste! Tente ver \u201Catrav\xE9s\u201D
+        das dificuldades, hehe."
+    - Hint:
+      - "Vai um cafezinho? A cafeteira t\xE1 do lado do seu material, \xE9 rapidinho."
+      - "Eu juro que n\xE3o entendo seus colegas deixando suas coisas perto do lixo
+        o tempo todo... "
+    - Hint:
+      - "Nossa, mas esse daqui t\xE1 t\xE3o longe... Voc\xEA precisa ficar atento
+        com o fundo da sala."
+      - "Todas essas prateleiras fazem uma sombra danada, n\xE3o d\xE1 pra ver quase
+        nada."
+  - RespawnHint:
+    - Hint:
+      - "Acho que n\xE3o tiveram muito tempo para esconder esse daqui. Eu lembro
+        de ver algo em uma das cadeiras da fileira do canto."
+      - "Essas mochilas s\xE3o grandes e espa\xE7osas. Tente ver atr\xE1s de alguma
+        delas."
+    - Hint:
+      - "As carteiras do fundo parecem suspeitas. D\xEA uma olhada nessa regi\xE3o."
+      - "E se voc\xEA puxasse a cadeira s\xF3 um pouquinho...? N\xE3o? Bem, ver atrav\xE9s
+        dela tamb\xE9m resolve."
+    - Hint:
+      - "Eu vi algu\xE9m colocando algo perto da lousa, tente procurar na parte da
+        frente da sala."
+      - "Tem uma sombra muito escura naquele arm\xE1rio. Talvez voc\xEA ache algo
+        se procurar ali."
+    - Hint:
+      - "Eu n\xE3o sei qual, mas acho que tem algo embaixo de uma das mesas. Talvez
+        na parte da frente da sala...?"
+      - "Tem uma sombra muito escura na mesa da professora. Voc\xEA pode dar uma
+        olhada ali embaixo."
+    - Hint:
+      - "Talvez as mochilas sejam um bom esconderijo para os mais distra\xEDdos....
+        Que bom que voc\xEA est\xE1 preparado, n\xE3o?"
+      - "Acho que vi algu\xE9m deixando algo escondido perto da porta antes de sair...."
+  - RespawnHint:
+    - Hint:
+      - "Parece que algu\xE9m estava com fome quando escondeu esse. D\xEA uma olhada
+        nas mesas e cadeiras da cantina."
+      - "Talvez a vis\xE3o de raio-x consiga te ajudar \xE0 encontrar este objeto."
+    - Hint:
+      - "Hahaha parece at\xE9 pique esconde, mas ao inv\xE9s de crian\xE7as embaixo
+        da mesa voc\xEA vai achar material escolar."
+      - "Eu vi!! Eu vi onde colocaram, mas t\xE1 muito escuro..."
+    - Hint:
+      - "Nossa esse objeto t\xE1 t\xE3o longe... Perto do banheiro, quem p\xF4s ele
+        ali devia estar apertado."
+      - "Tem muitos bancos nesse p\xE1tio, talvez embaixo de um deles tenha alguma
+        coisa..."
+    - Hint:
+      - "AHH! QUE FEDIDO! N\xE3o acredito que colocaram suas coisas perto de uma
+        lixeira..."
+      - Essa coisa brilha?? Porque tem um solzinho legal batendo nela.
+    - Hint:
+      - "Que pregui\xE7oso... Deixaram num lugar t\xE3o exposto assim... O que? Voc\xEA
+        n\xE3o consegue ver?? \xC9 tudo quest\xE3o de perspectiva."
+      - "Talvez se voc\xEA virar um pouco a cabe\xE7a... Ou pudesse ver atr\xE1s
+        das coisas..."
+  - RespawnHint:
+    - Hint:
+      - "Vai um refresco a\xED? Voc\xEA pode aproveitar e pegar seu material."
+      - "Talvez a vis\xE3o de raio-x consiga te ajudar \xE0 encontrar este objeto."
+    - Hint:
+      - "Hahaha parece at\xE9 pique esconde, mas ao inv\xE9s de crian\xE7as embaixo
+        da mesa voc\xEA vai achar material escolar."
+      - "N\xE3o d\xE1 pra ver direito, tem algo na frente..."
+    - Hint:
+      - "\xC9 bom tomar cuidado pra n\xE3o esquentar suas coisas! At\xE9 onde eu
+        lembro elas n\xE3o s\xE3o comida!!"
+      - "Ser\xE1 que d\xE1 tempo de fazer um lanchinho?? Os salgadinhos t\xE3o bem
+        em cima..."
+    - Hint:
+      - "Eita! Ser\xE1 que confundiram suas coisas com um salgado?? Ou talvez um
+        refri?"
+      - "Esses vidros t\xE3o muito escuros... Acho que ver no escuro pode ajudar
+        bastante."
+    - Hint:
+      - "AAAAAAA QUE FEDIDO QUE FEDIDO QUE FEDIDO!!! Eu vi onde colocaram esse material
+        mas talvez voc\xEA n\xE3o queira saber..."
+      - "Ser\xE1 que eles acharam que seu material escolar \xE9 recicl\xE1vel??"
+  - RespawnHint:
+    - Hint:
+      - Se eu tivesse no lugar do seu material, ia estar girando e girando e girando
+        nessa cadeira de rodinha.
+      - Tem muita coisa na frente! A gente precisava dar uma espiadinha...
+    - Hint:
+      - "T\xE1 meio escuro, fica dif\xEDcil de ver... Se ao menos eu tivesse um \xF3culos
+        super tecnol\xF3gico que enxerga no escuro... Ai, ai..."
+      - "Eu n\xE3o entendo esses seus colegas... Tantos arm\xE1rios pra esconder
+        suas coisas e escolhem um sem tranca. E ainda deixam a porta aberta?! Francamente..."
+    - Hint:
+      - "Eu n\xE3o alcan\xE7o! Esse aqui t\xE1 muito alto."
+      - "N\xE3o t\xE1 conseguindo ver? N\xE3o fique triste! Tente ver \u201Catrav\xE9s\u201D
+        das dificuldades, hehe."
+    - Hint:
+      - "Vai um cafezinho? A cafeteira t\xE1 do lado do seu material, \xE9 rapidinho."
+      - "Eu juro que n\xE3o entendo seus colegas deixando suas coisas perto do lixo
+        o tempo todo... "
+    - Hint:
+      - "Nossa, mas esse daqui t\xE1 t\xE3o longe... Voc\xEA precisa ficar atento
+        com o fundo da sala."
+      - "Todas essas prateleiras fazem uma sombra danada, n\xE3o d\xE1 pra ver quase
+        nada."
   TinaSectionLinesTutorialsList:
   - TinaLines:
     - "Vamos l\xE1, Chefinho!"

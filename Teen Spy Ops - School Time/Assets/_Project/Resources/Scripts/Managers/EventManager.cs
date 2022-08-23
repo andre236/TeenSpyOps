@@ -215,8 +215,11 @@ namespace Manager
 
                 if (_levelManager.TimerLevel <= 30)
                     _achievementManager.UnlockedInTime?.Invoke();
-
-                EarnedStars?.Invoke(_questPlayer.CurrentNumberStars);
+                
+                if(SceneManager.GetActiveScene().name != "TUTORIAL")
+                    EarnedStars?.Invoke(_questPlayer.CurrentNumberStars);
+                else
+                    EarnedStars?.Invoke(5);
 
                 if (SceneManager.GetActiveScene().name == "LEVEL7" && _questPlayer.CurrentNumberStars >= 5 && _hintController.AmountHint >= 2)
                     _achievementManager.UnlockedSoloAgent?.Invoke();
@@ -255,6 +258,14 @@ namespace Manager
             yield return new WaitForSeconds(1.5f);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
+        }
+
+        internal bool CheckLastLevel()
+        {
+            if (SceneManager.GetActiveScene().name == "LEVEL7")
+                return true;
+            else
+                return false;
         }
     }
 }
