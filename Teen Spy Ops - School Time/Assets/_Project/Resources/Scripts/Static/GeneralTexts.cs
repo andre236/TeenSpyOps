@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.IO;
-using UnityEditor;
 using UnityEngine;
 
 namespace Statics
@@ -8,12 +7,9 @@ namespace Statics
     public class GeneralTexts : MonoBehaviour
     {
         [SerializeField] private string[] _nameObjects;
-        [SerializeField] private string[] _hintsTutorial;
         [SerializeField] private string[] _tinaLinesTutorial;
 
         public string[] NameObjects { get => _nameObjects; set => _nameObjects = value; }
-        //public string[] TinaLinesTutorial { get => _tinaLinesTutorial; set => _tinaLinesTutorial = value; }
-        public string[] HintsTutorial { get => _hintsTutorial; set => _hintsTutorial = value; }
 
         [System.Serializable]
         public class TinaSectionLinesTutorial
@@ -35,6 +31,7 @@ namespace Statics
 
         public List<HintsPhase> HintsPerPhaseList;
         public List<TinaSectionLinesTutorial> TinaSectionLinesTutorialsList;
+        public List<TinaSectionLinesTutorial> TestSaveData;
         
         public static GeneralTexts Instance { get; set; }
 

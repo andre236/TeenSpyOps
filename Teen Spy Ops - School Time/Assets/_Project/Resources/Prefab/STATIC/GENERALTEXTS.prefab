@@ -45,10 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _nameObjects: []
-  _hintsTutorial:
-  - Dica 1 da Tina
-  - Dica 2 da Tina
-  - Dica 3 da Tina
   _tinaLinesTutorial:
   - "Vamos l\xE1, Em\xEDlio! "
   - "As crian\xE7as acham que podem ser mais espertas que a gente mas mal sabem elas
@@ -268,6 +264,63 @@ MonoBehaviour:
       - "Todas essas prateleiras fazem uma sombra danada, n\xE3o d\xE1 pra ver quase
         nada."
   TinaSectionLinesTutorialsList:
+  - TinaLines:
+    - "Vamos l\xE1, Chefinho!"
+    - "As crian\xE7as acham que podem ser mais espertas que a gente mas mal sabem
+      elas da nossa perspic\xE1cia!"
+    - "Hoje temos tr\xEAs ferramentas que ir\xE1 nos ajudar a encontrar os materiais
+      escondidos."
+    - "Todos eles est\xE3o imbutidos nos seus \xF3culos, na forma de lentes especiais."
+    - "A primeira ferramenta, inclusive a minha preferida, \xE9 a lente de raio-x! "
+  - TinaLines:
+    - "Com ele, voc\xEA ir\xE1 visualizar objetos que n\xE3o est\xE3o em seu campo
+      de vis\xE3o. Atr\xE1s de objetos e m\xF3veis."
+  - TinaLines:
+    - "E, falando em campo de vis\xE3o, sua utiliza\xE7\xE3o ter\xE1 tr\xEAs dist\xE2ncias."
+    - "Com ela, voc\xEA consegue saber sua atual dist\xE2ncia. "
+    - "Quanto mais forte est\xE1 o raio-x, menor ser\xE1 seu campo de vis\xE3o."
+    - Utilize a seu favor quando for buscar algum material nos fundos da sala.
+    - "Clicando novamente no bot\xE3o de raio-x! "
+  - TinaLines:
+    - "Boa Em\xEDlio! Agora precisamos saber qual o nome desse material em ingl\xEAs,
+      para podermos colet\xE1-lo."
+    - "Voc\xEA ter\xE1 duas tentativas para acertar o nome do material."
+    - "Caso voc\xEA erre as duas, n\xE3o se preocupe!"
+    - "Poder\xE1 encontrar o material no mesmo lugar utilizando a mesma ferramenta
+      que usou para encontr\xE1-lo."
+  - TinaLines:
+    - "T\xE1 tudo bem, tenta de novo!"
+  - TinaLines:
+    - "Muito bem, Chefinho! Caso voc\xEA precise de uma forcinha..."
+    - "Pode falar comigo pra que eu te d\xEA uma dica de onde um dos objetos est\xE1."
+  - TinaLines:
+    - "Eu posso acessar as c\xE2meras do c\xF4modo pra te direcionar pra um dos objetos
+      que voc\xEA ainda n\xE3o achou. "
+    - "Mas n\xE3o posso abusar, era pra gente estar de folga! "
+    - Se o pessoal da Teen Spy Ops ver alguma atividade estranha nossa a gente vai
+      ouvir bronca.
+    - "Que tal... duas vezes? N\xE3o \xE9 como se voc\xEA n\xE3o fosse incr\xEDvel
+      sozinho."
+    - Agora iremos conhecer o detector de digitais!
+  - TinaLines:
+    - "Com ele, iremos ter uma dica de onde pode estar o pr\xF3ximo objeto."
+  - TinaLines:
+    - "Viu? Nunca erra! Atrav\xE9s das digitais podemos saber onde est\xE3o os objetos. "
+    - "Mas cuidado! Apenas uma das digitais \xE9 a dica correta! As outras duas s\xE3o
+      falsas."
+    - "Agora podemos procurar os materiais com o nosso \xF3culos de Vis\xE3o Noturna!"
+  - TinaLines:
+    - Fique atento aos lugares escuros do lugar!
+    - "Com a vis\xE3o noturna, poderemos achar os objetos que n\xE3o conseguimos
+      com a vis\xE3o de raio-x."
+  - TinaLines:
+    - Estou vendo!
+  - TinaLines:
+    - "T\xE1 tudo bem, tenta de novo!"
+  - TinaLines:
+    - "Isso! Voc\xEA arrasa! Sabia que voc\xEA ia tirar de letra."
+    - Agora vamos procurar pelas suas coisas antes que o sinal toque!
+  TestSaveData:
   - TinaLines:
     - "Vamos l\xE1, Chefinho!"
     - "As crian\xE7as acham que podem ser mais espertas que a gente mas mal sabem
