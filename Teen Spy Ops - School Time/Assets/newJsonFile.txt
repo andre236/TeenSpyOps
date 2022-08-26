@@ -1,0 +1,1 @@
+{"c2Array":true,"size":[3,2,4]}
