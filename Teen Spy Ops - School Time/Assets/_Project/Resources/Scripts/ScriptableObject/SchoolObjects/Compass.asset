@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Compass
   m_EditorClassIdentifier: 
   <NameObject>k__BackingField: Compass
-  <FakeNames>k__BackingField: []
   <DefaultSpriteObject>k__BackingField: {fileID: 21300000, guid: 3060d0825f166f74da6262d64b170bd5, type: 3}
   <SpriteXRayObject>k__BackingField: {fileID: 21300000, guid: c2f3355b541c9244ea8db8cb2de96c4d, type: 3}
   <ModalScriptable>k__BackingField: {fileID: 11400000, guid: 1eda32ccc77b2dc43937cf03ef50fa50, type: 2}

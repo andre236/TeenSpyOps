@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Notebook
   m_EditorClassIdentifier: 
   <NameObject>k__BackingField: Notebook
-  <FakeNames>k__BackingField: []
   <DefaultSpriteObject>k__BackingField: {fileID: 21300000, guid: 87407c542817d8047b45dd4efbf0d852, type: 3}
   <SpriteXRayObject>k__BackingField: {fileID: 21300000, guid: 7e2f681166750944ca9cdd330d9ef88b, type: 3}
   <ModalScriptable>k__BackingField: {fileID: 11400000, guid: 1eda32ccc77b2dc43937cf03ef50fa50, type: 2}

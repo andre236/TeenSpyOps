@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Case
   m_EditorClassIdentifier: 
   <NameObject>k__BackingField: Case
-  <FakeNames>k__BackingField: []
   <DefaultSpriteObject>k__BackingField: {fileID: 21300000, guid: 9190e314bc7138f44843fba44b84d86e, type: 3}
   <SpriteXRayObject>k__BackingField: {fileID: 21300000, guid: bdfe5553145744842842d07969fbe98a, type: 3}
   <ModalScriptable>k__BackingField: {fileID: 11400000, guid: 1eda32ccc77b2dc43937cf03ef50fa50, type: 2}

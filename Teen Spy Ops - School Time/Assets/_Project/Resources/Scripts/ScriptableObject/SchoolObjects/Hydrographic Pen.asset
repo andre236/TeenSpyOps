@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Hydrographic Pen
   m_EditorClassIdentifier: 
   <NameObject>k__BackingField: Hydrographic Pen
-  <FakeNames>k__BackingField: []
   <DefaultSpriteObject>k__BackingField: {fileID: 21300000, guid: 37595c12d0a4f694ab3bab0400b4da77, type: 3}
   <SpriteXRayObject>k__BackingField: {fileID: 21300000, guid: 795e2fb3d02d1244baeaf592074b976f, type: 3}
   <ModalScriptable>k__BackingField: {fileID: 11400000, guid: 1eda32ccc77b2dc43937cf03ef50fa50, type: 2}

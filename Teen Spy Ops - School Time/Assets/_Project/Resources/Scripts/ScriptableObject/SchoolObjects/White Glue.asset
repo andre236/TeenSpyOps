@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: White Glue
   m_EditorClassIdentifier: 
   <NameObject>k__BackingField: White Glue
-  <FakeNames>k__BackingField: []
   <DefaultSpriteObject>k__BackingField: {fileID: 21300000, guid: 6b48926b9d4395041a14351e73c89d23, type: 3}
   <SpriteXRayObject>k__BackingField: {fileID: 21300000, guid: 4d74758bb82ea614ea1ef97de9238d70, type: 3}
   <ModalScriptable>k__BackingField: {fileID: 11400000, guid: 1eda32ccc77b2dc43937cf03ef50fa50, type: 2}

@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28995715d2105124c897d841db669f4b, type: 3}
   m_Name: Brush
   m_EditorClassIdentifier: 
-  <NameObject>k__BackingField: Brush Tool
-  <FakeNames>k__BackingField: []
+  <NameObject>k__BackingField: Brush
   <DefaultSpriteObject>k__BackingField: {fileID: 21300000, guid: a9bcb7dcbee6b0f49ad74ec1428d6ea0, type: 3}
   <SpriteXRayObject>k__BackingField: {fileID: 21300000, guid: 95f16a82b7f86b94ca49585d14daabc2, type: 3}
   <ModalScriptable>k__BackingField: {fileID: 11400000, guid: 1eda32ccc77b2dc43937cf03ef50fa50, type: 2}

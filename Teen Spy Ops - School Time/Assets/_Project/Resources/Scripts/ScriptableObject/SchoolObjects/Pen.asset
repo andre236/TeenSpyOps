@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Pen
   m_EditorClassIdentifier: 
   <NameObject>k__BackingField: Pen
-  <FakeNames>k__BackingField: []
   <DefaultSpriteObject>k__BackingField: {fileID: 21300000, guid: 07f40ebdd1ff36847b4ff7fa006a974b, type: 3}
   <SpriteXRayObject>k__BackingField: {fileID: 21300000, guid: cc9530ff27ea40948978a99598d0d4b2, type: 3}
   <ModalScriptable>k__BackingField: {fileID: 11400000, guid: 1eda32ccc77b2dc43937cf03ef50fa50, type: 2}

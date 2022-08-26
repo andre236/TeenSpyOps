@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using UnityEngine;
 using Statics;
 
 namespace JsonsUnip
@@ -15,13 +16,9 @@ namespace JsonsUnip
             Urls = new string[9];
             Urls[0] = CurrentUrl + "/AchievementsInfo.json";
             Urls[1] = CurrentUrl + "/AchievementsName.json";
-            Urls[2] = CurrentUrl + "/HintsLevel0.json";
-            Urls[3] = CurrentUrl + "/HintsLevel1.json";
-            Urls[4] = CurrentUrl + "/HintsLevel2.json";
-            Urls[5] = CurrentUrl + "/HintsLevel3.json";
-            Urls[6] = CurrentUrl + "/HintsPerPhase.json";
-            Urls[7] = CurrentUrl + "/SchoolObjects.json";
-            Urls[8] = CurrentUrl + "/TinaLinesTutorial.json";
+            Urls[2] = CurrentUrl + "/HintsPerPhase.json";
+            Urls[3] = CurrentUrl + "/SchoolObjects.json";
+            Urls[4] = CurrentUrl + "/TinaLinesTutorial.json";
 
         }
         private void Start()
@@ -29,13 +26,9 @@ namespace JsonsUnip
             //Aqui você vai chamar a função para pegar todos os jsons que serão utilizados no jogo
             JsonParserWeb.instance.JsonStringReturn(Urls[0], nameof(SetAchievementsInfoJson));
             JsonParserWeb.instance.JsonStringReturn(Urls[1], nameof(SetAchievementsNameJson));
-            JsonParserWeb.instance.JsonStringReturn(Urls[2], nameof(SetHintsLevel0Json));
-            JsonParserWeb.instance.JsonStringReturn(Urls[3], nameof(SetHintsLevel1Json));
-            JsonParserWeb.instance.JsonStringReturn(Urls[4], nameof(SetHintsLevel2Json));
-            JsonParserWeb.instance.JsonStringReturn(Urls[5], nameof(SetHintsLevel3Json));
-            JsonParserWeb.instance.JsonStringReturn(Urls[6], nameof(SetHintsPerPhaseJson));
-            JsonParserWeb.instance.JsonStringReturn(Urls[7], nameof(SetSchoolObjectsJson));
-            JsonParserWeb.instance.JsonStringReturn(Urls[8], nameof(SetTinaLinesTutorialJson));
+            JsonParserWeb.instance.JsonStringReturn(Urls[2], nameof(SetHintsPerPhaseJson));
+            JsonParserWeb.instance.JsonStringReturn(Urls[3], nameof(SetSchoolObjectsJson));
+            JsonParserWeb.instance.JsonStringReturn(Urls[4], nameof(SetTinaLinesTutorialJson));
 
 
         }
@@ -49,7 +42,7 @@ namespace JsonsUnip
 
         public void SetHintsPerPhaseJson()
         {
-            Texts.HintsPerPhase = JsonParserWeb.instance.JStringReturnValue().data;
+            GeneralTexts.HintsFromJSON = JsonParserWeb.instance.JStringReturnValue().data;
             Debug.Log("HintsPerPhase Loaded");
         }
 
@@ -92,7 +85,7 @@ namespace JsonsUnip
 
         public void SetSchoolObjectsJson()
         {
-            Texts.SchoolObjectsJsons = JsonParserWeb.instance.JStringReturnValue().data; //apos fazer a conexão aplica o valor do json pra variavel statoca da classe Texts
+            GeneralTexts.SchoolObjectsNameFromJSON = JsonParserWeb.instance.JStringReturnValue().data; //apos fazer a conexão aplica o valor do json pra variavel statoca da classe Texts
             Debug.Log("SchoolObjects Loaded");
         }
 
@@ -129,5 +122,7 @@ namespace JsonsUnip
 
             return newToken;
         }
+
+
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using Manager;
 using Mechanic;
 using Tutorial;
+using Statics;
 
 namespace Objects
 {
@@ -69,6 +70,7 @@ namespace Objects
 
         }
 
+  
         private void GetRandomSchoolObject()
         {
             LevelManager levelManager = FindObjectOfType<LevelManager>();
@@ -117,6 +119,11 @@ namespace Objects
 
                 }
             }
+        }
+
+        private void OnEnable()
+        {
+            gameObject.name = ItemConfig.NameObject;
         }
 
         internal void OnActivatedXray()

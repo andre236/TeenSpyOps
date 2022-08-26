@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Scissor
   m_EditorClassIdentifier: 
   <NameObject>k__BackingField: Scissor
-  <FakeNames>k__BackingField: []
   <DefaultSpriteObject>k__BackingField: {fileID: 21300000, guid: 244c6cf9490b82940895fe2810b3f98d, type: 3}
   <SpriteXRayObject>k__BackingField: {fileID: 21300000, guid: 9cb04c96596815a40a2d20324cb4a96f, type: 3}
   <ModalScriptable>k__BackingField: {fileID: 11400000, guid: 1eda32ccc77b2dc43937cf03ef50fa50, type: 2}

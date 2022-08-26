@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Sharpener
   m_EditorClassIdentifier: 
   <NameObject>k__BackingField: Sharpener
-  <FakeNames>k__BackingField: []
   <DefaultSpriteObject>k__BackingField: {fileID: 21300000, guid: df69c8d0f40efae49b20219bcf7720fe, type: 3}
   <SpriteXRayObject>k__BackingField: {fileID: 21300000, guid: 88b606dfcaa6cdf40bf892141c5144e0, type: 3}
   <ModalScriptable>k__BackingField: {fileID: 11400000, guid: 1eda32ccc77b2dc43937cf03ef50fa50, type: 2}

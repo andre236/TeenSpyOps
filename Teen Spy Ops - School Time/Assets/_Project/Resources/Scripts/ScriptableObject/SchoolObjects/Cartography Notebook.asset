@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Cartography Notebook
   m_EditorClassIdentifier: 
   <NameObject>k__BackingField: Cartography Notebook
-  <FakeNames>k__BackingField: []
   <DefaultSpriteObject>k__BackingField: {fileID: 21300000, guid: 6b56c6ba91b918b43a559b0396235b8d, type: 3}
   <SpriteXRayObject>k__BackingField: {fileID: 21300000, guid: 0d779d63cc6a693478cbf7b991f726a2, type: 3}
   <ModalScriptable>k__BackingField: {fileID: 11400000, guid: 1eda32ccc77b2dc43937cf03ef50fa50, type: 2}

@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
-using JsonsUnip;
 using System.Collections;
 
 namespace Statics
@@ -9,9 +7,8 @@ namespace Statics
     public class GeneralTexts : MonoBehaviour
     {
         [SerializeField] private string[] _nameObjects;
-        [SerializeField] private string _schoolObjectsName;
 
-        
+
         public string[] NameObjects { get => _nameObjects; set => _nameObjects = value; }
 
         [System.Serializable]
@@ -34,12 +31,12 @@ namespace Statics
 
         public List<HintsPhase> HintsPerPhaseList;
         public List<TinaSectionLinesTutorial> TinaSectionLinesTutorialsList;
-        public List<TinaSectionLinesTutorial> TestSaveData;
-        
+
         public static GeneralTexts Instance { get; set; }
 
-        public string SchoolObjectsName { get => _schoolObjectsName; set => _schoolObjectsName = value; }
+        public static string[,,] SchoolObjectsNameFromJSON { get; internal set; }
         public static string[,,] TinaLinesTutorial { get; internal set; }
+        public static string[,,] HintsFromJSON { get; internal set; }
 
         private void Awake()
         {
@@ -57,11 +54,33 @@ namespace Statics
 
         private void Start()
         {
-            GetSchoolObjectsName();
-           
             StartCoroutine(TesteDelay());
         }
 
+        private void GetHints()
+        {
+            int limitNumberHints = 2;
+            int currentNumberHint = 0;
+
+            for(int phase = 0; phase < HintsFromJSON.GetLength(0); phase++)
+            {
+                for(int respawn = 0; respawn < 5; respawn++)
+                {
+                    for(int numberHint =0; numberHint < limitNumberHints; numberHint++)
+                    {
+                        HintsPerPhaseList[phase].RespawnHint[respawn].Hint[numberHint] = HintsFromJSON[phase, currentNumberHint, 0];
+                        //HintsPerPhaseList[phase + 3].RespawnHint[respawn].Hint[numberHint] = HintsFromJSON[phase, currentNumberHint, 0];
+                        if (currentNumberHint < HintsFromJSON.GetLength(1) - 1)
+                            currentNumberHint++;
+                        else
+                            currentNumberHint = 0;
+
+                    }
+
+                }
+            }
+
+        }
 
         private void GetTinaLinesTutorial()
         {
@@ -72,41 +91,39 @@ namespace Statics
 
                 for (int indexTinaLine = 0; indexTinaLine < TinaLinesTutorial.GetLength(1); indexTinaLine++)
                 {
-                    if(TinaLinesTutorial[sectionLines, indexTinaLine, 0] != "" && TinaLinesTutorial[sectionLines, indexTinaLine, 0] != null)
-                    {
+                    if (TinaLinesTutorial[sectionLines, indexTinaLine, 0] != "" && TinaLinesTutorial[sectionLines, indexTinaLine, 0] != null)
                         TinaSectionLinesTutorialsList[sectionLines].TinaLines[indexTinaLine] = TinaLinesTutorial[sectionLines, indexTinaLine, 0];
-                    }
+
                 }
             }
-            
+
 
         }
 
         private void GetSchoolObjectsName()
         {
-            DirectoryInfo dir = new DirectoryInfo("Assets/_Project/Resources/Scripts/ScriptableObject/SchoolObjects");
+            ItemConfig[] allSchoolObjects = Resources.LoadAll<ItemConfig>("Scripts/ScriptableObject/SchoolObjects");
 
-            FileInfo[] info = dir.GetFiles("*.asset");
 
-            NameObjects = new string[info.Length];
 
-            for (int i = 0; i < info.Length; i++)
+            for (int indexSchoolObject = 0; indexSchoolObject < SchoolObjectsNameFromJSON.Length; indexSchoolObject++)
             {
-                NameObjects[i] = info[i].Name.Replace(".asset", "");
+                NameObjects[indexSchoolObject] = SchoolObjectsNameFromJSON[0, indexSchoolObject, 0];
             }
 
-
+            for (int i = 0; i < allSchoolObjects.Length; i++)
+            {
+                allSchoolObjects[i].NameObject = NameObjects[i];
+            }
         }
+
         IEnumerator TesteDelay()
         {
             yield return new WaitForSeconds(0.5f);
-            //TinaSectionLinesTutorialsList[0].TinaLines[0] = TinaLinesTutorial[0, 0, 0];
-            //Debug.Log(TinaSectionLinesTutorialsList[0].TinaLines[0]);
+            GetSchoolObjectsName(); 
             GetTinaLinesTutorial();
+            GetHints();
         }
-        private void SetHintsEachPhase()
-        {
 
-        }
     }
 }

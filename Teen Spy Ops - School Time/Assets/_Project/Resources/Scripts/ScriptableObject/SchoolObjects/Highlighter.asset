@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Highlighter
   m_EditorClassIdentifier: 
   <NameObject>k__BackingField: Highlighter
-  <FakeNames>k__BackingField: []
   <DefaultSpriteObject>k__BackingField: {fileID: 21300000, guid: 52b47752b9952874cb84d44bad457bca, type: 3}
   <SpriteXRayObject>k__BackingField: {fileID: 21300000, guid: 699dc4e453a25f54b9c5d2fc9b4233f1, type: 3}
   <ModalScriptable>k__BackingField: {fileID: 11400000, guid: 1eda32ccc77b2dc43937cf03ef50fa50, type: 2}

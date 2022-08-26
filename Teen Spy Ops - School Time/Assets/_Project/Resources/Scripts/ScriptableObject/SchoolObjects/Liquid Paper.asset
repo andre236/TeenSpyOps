@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Liquid Paper
   m_EditorClassIdentifier: 
   <NameObject>k__BackingField: Liquid Paper
-  <FakeNames>k__BackingField: []
   <DefaultSpriteObject>k__BackingField: {fileID: 21300000, guid: d1b53e89d2968834489438d574c95e9c, type: 3}
   <SpriteXRayObject>k__BackingField: {fileID: 21300000, guid: 499e78537f782984883ffecc4c4d6204, type: 3}
   <ModalScriptable>k__BackingField: {fileID: 11400000, guid: 1eda32ccc77b2dc43937cf03ef50fa50, type: 2}
