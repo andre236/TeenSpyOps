@@ -42,13 +42,12 @@ namespace Tutorial
         internal void CallTinaLine(string[] lines)
         {
             var eventManagerTutorial = FindObjectOfType<TutorialEventManager>();
-            
-
 
             _numberLines = lines.Length;
 
             _currentLine = 0;
-            _tinaText.text = lines[_currentLine];
+            if (lines[_currentLine+1] != "" || lines[_currentLine+1] != null)
+                _tinaText.text = lines[_currentLine];
 
             _tinaPageTutorial.SetActive(true);
             eventManagerTutorial.IsTinaExplaining = _tinaPageTutorial.activeSelf;

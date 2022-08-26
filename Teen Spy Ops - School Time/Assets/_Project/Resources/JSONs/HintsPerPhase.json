@@ -1,0 +1,266 @@
+{
+    "c2array": true,
+    "size": [
+        8,
+        10,
+        1
+    ],
+    "data": [
+        [
+            [
+                "Acho que não tiveram muito tempo pra esconder esse daqui. Eu lembro de ver algo em uma das cadeiras da fileira do canto."
+            ],
+            [
+                "Essas mochilas são grandes e espaçosas. Tente ver atrás de alguma delas."
+            ],
+            [
+                "As carteiras do fundo parecem suspeitas. Dê uma olhada nessa região."
+            ],
+            [
+                "E se você puxasse a cadeira só um pouquinho...? Não? Bem, ver através dela também resolve."
+            ],
+            [
+                "Eu vi alguém colocando algo perto da lousa, tente procurar na parte da frente da sala."
+            ],
+            [
+                "Tem uma sombra muito escura naquele armário. Talvez você ache algo se procurar ali."
+            ],
+            [
+                "Eu não sei qual, mas acho que tem algo embaixo de uma das mesas. Talvez na parte da frente da sala...?"
+            ],
+            [
+                "Tem uma sombra muito escura na mesa da professora. Você pode dar uma olhada ali embaixo."
+            ],
+            [
+                "Talvez as mochilas sejam um bom esconderijo para os mais distraídos... Que bom que você está preparado, não?"
+            ],
+            [
+                "Acho que vi alguém deixando algo escondido perto da porta antes de sair..."
+            ]
+        ],
+        [
+            [
+                "Parece que alguém estava com fome quando escondeu esse. Dê uma olhada nas mesas e cadeiras da cantina."
+            ],
+            [
+                "Talvez a visão de raio-x consiga te ajudar à encontrar este objeto."
+            ],
+            [
+                "Hahaha parece até pique esconde, mas ao invés de crianças embaixo da mesa você vai achar material escolar."
+            ],
+            [
+                "Eu vi!! Eu vi onde colocaram, mas tá muito escuro..."
+            ],
+            [
+                "Nossa esse objeto tá tão longe... Perto do banheiro, quem pôs ele ali devia estar apertado."
+            ],
+            [
+                "Tem muitos bancos nesse pátio, talvez embaixo de um deles tenha alguma coisa..."
+            ],
+            [
+                "AHH! QUE FEDIDO! Não acredito que colocaram suas coisas perto de uma lixeira..."
+            ],
+            [
+                "Essa coisa brilha?? Porque tem um solzinho legal batendo nela."
+            ],
+            [
+                "Que preguiçoso... Deixaram num lugar tão exposto assim... O que? Você não consegue ver?? É tudo questão de perspectiva."
+            ],
+            [
+                "Talvez se você virar um pouco a cabeça... Ou pudesse ver atrás das coisas..."
+            ]
+        ],
+        [
+            [
+                "Vai um refresco aí? Você pode aproveitar e pegar seu material."
+            ],
+            [
+                "Talvez a visão de raio-x consiga te ajudar à encontrar este objeto."
+            ],
+            [
+                "Hahaha parece até pique esconde, mas ao invés de crianças embaixo da mesa você vai achar material escolar."
+            ],
+            [
+                "Não dá pra ver direito, tem algo na frente..."
+            ],
+            [
+                "É bom tomar cuidado pra não esquentar suas coisas! Até onde eu lembro elas não são comida!!"
+            ],
+            [
+                "Será que dá tempo de fazer um lanchinho?? Os salgadinhos tão bem em cima..."
+            ],
+            [
+                "Eita! Será que confundiram suas coisas com um salgado?? Ou talvez um refri?"
+            ],
+            [
+                "Esses vidros tão muito escuros... Acho que ver no escuro pode ajudar bastante."
+            ],
+            [
+                "AAAAAAA QUE FEDIDO QUE FEDIDO QUE FEDIDO!!! Eu vi onde colocaram esse material mas talvez você não queira saber..."
+            ],
+            [
+                "Será que eles acharam que seu material escolar é reciclável??"
+            ]
+        ],
+        [
+            [
+                "Se eu tivesse no lugar do seu material, ia estar girando e girando e girando nessa cadeira de rodinha."
+            ],
+            [
+                "Tem muita coisa na frente! A gente precisava dar uma espiadinha..."
+            ],
+            [
+                "Tá meio escuro, fica difícil de ver... Se ao menos eu tivesse um óculos super tecnológico que enxerga no escuro... Ai, ai..."
+            ],
+            [
+                "Eu não entendo esses seus colegas... Tantos armários pra esconder suas coisas e escolhem um sem tranca. E ainda deixam a porta aberta?! Francamente..."
+            ],
+            [
+                "Eu não alcanço! Esse aqui tá muito alto."
+            ],
+            [
+                "Não tá conseguindo ver? Não fique triste! Tente ver “através” das dificuldades, hehe."
+            ],
+            [
+                "Vai um cafezinho? A cafeteira tá do lado do seu material, é rapidinho."
+            ],
+            [
+                "Eu juro que não entendo seus colegas deixando suas coisas perto do lixo o tempo todo..."
+            ],
+            [
+                "Nossa, mas esse daqui tá tão longe... Você precisa ficar atento com o fundo da sala."
+            ],
+            [
+                "Todas essas prateleiras fazem uma sombra danada, não dá pra ver quase nada."
+            ]
+        ],
+        [
+            [
+                "Acho que não tiveram muito tempo pra esconder esse daqui. Eu lembro de ver algo em uma das cadeiras da fileira do canto."
+            ],
+            [
+                "Essas mochilas são grandes e espaçosas. Tente ver atrás de alguma delas."
+            ],
+            [
+                "As carteiras do fundo parecem suspeitas. Dê uma olhada nessa região."
+            ],
+            [
+                "E se você puxasse a cadeira só um pouquinho...? Não? Bem, ver através dela também resolve."
+            ],
+            [
+                "Eu vi alguém colocando algo perto da lousa, tente procurar na parte da frente da sala."
+            ],
+            [
+                "Tem uma sombra muito escura naquele armário. Talvez você ache algo se procurar ali."
+            ],
+            [
+                "Eu não sei qual, mas acho que tem algo embaixo de uma das mesas. Talvez na parte da frente da sala...?"
+            ],
+            [
+                "Tem uma sombra muito escura na mesa da professora. Você pode dar uma olhada ali embaixo."
+            ],
+            [
+                "Talvez as mochilas sejam um bom esconderijo para os mais distraídos... Que bom que você está preparado, não?"
+            ],
+            [
+                "Acho que vi alguém deixando algo escondido perto da porta antes de sair..."
+            ]
+        ],
+        [
+            [
+                "Parece que alguém estava com fome quando escondeu esse. Dê uma olhada nas mesas e cadeiras da cantina."
+            ],
+            [
+                "Talvez a visão de raio-x consiga te ajudar à encontrar este objeto."
+            ],
+            [
+                "Hahaha parece até pique esconde, mas ao invés de crianças embaixo da mesa você vai achar material escolar."
+            ],
+            [
+                "Eu vi!! Eu vi onde colocaram, mas tá muito escuro..."
+            ],
+            [
+                "Nossa esse objeto tá tão longe... Perto do banheiro, quem pôs ele ali devia estar apertado."
+            ],
+            [
+                "Tem muitos bancos nesse pátio, talvez embaixo de um deles tenha alguma coisa..."
+            ],
+            [
+                "AHH! QUE FEDIDO! Não acredito que colocaram suas coisas perto de uma lixeira..."
+            ],
+            [
+                "Essa coisa brilha?? Porque tem um solzinho legal batendo nela."
+            ],
+            [
+                "Que preguiçoso... Deixaram num lugar tão exposto assim... O que? Você não consegue ver?? É tudo questão de perspectiva."
+            ],
+            [
+                "Talvez se você virar um pouco a cabeça... Ou pudesse ver atrás das coisas..."
+            ]
+        ],
+        [
+            [
+                "Vai um refresco aí? Você pode aproveitar e pegar seu material."
+            ],
+            [
+                "Talvez a visão de raio-x consiga te ajudar à encontrar este objeto."
+            ],
+            [
+                "Hahaha parece até pique esconde, mas ao invés de crianças embaixo da mesa você vai achar material escolar."
+            ],
+            [
+                "Não dá pra ver direito, tem algo na frente..."
+            ],
+            [
+                "É bom tomar cuidado pra não esquentar suas coisas! Até onde eu lembro elas não são comida!!"
+            ],
+            [
+                "Será que dá tempo de fazer um lanchinho?? Os salgadinhos tão bem em cima..."
+            ],
+            [
+                "Eita! Será que confundiram suas coisas com um salgado?? Ou talvez um refri?"
+            ],
+            [
+                "Esses vidros tão muito escuros... Acho que ver no escuro pode ajudar bastante."
+            ],
+            [
+                "AAAAAAA QUE FEDIDO QUE FEDIDO QUE FEDIDO!!! Eu vi onde colocaram esse material mas talvez você não queira saber..."
+            ],
+            [
+                "Será que eles acharam que seu material escolar é reciclável??"
+            ]
+        ],
+        [
+            [
+                "Se eu tivesse no lugar do seu material, ia estar girando e girando e girando nessa cadeira de rodinha."
+            ],
+            [
+                "Tem muita coisa na frente! A gente precisava dar uma espiadinha..."
+            ],
+            [
+                "Tá meio escuro, fica difícil de ver... Se ao menos eu tivesse um óculos super tecnológico que enxerga no escuro... Ai, ai..."
+            ],
+            [
+                "Eu não entendo esses seus colegas... Tantos armários pra esconder suas coisas e escolhem um sem tranca. E ainda deixam a porta aberta?! Francamente..."
+            ],
+            [
+                "Eu não alcanço! Esse aqui tá muito alto."
+            ],
+            [
+                "Não tá conseguindo ver? Não fique triste! Tente ver “através” das dificuldades, hehe."
+            ],
+            [
+                "Vai um cafezinho? A cafeteira tá do lado do seu material, é rapidinho."
+            ],
+            [
+                "Eu juro que não entendo seus colegas deixando suas coisas perto do lixo o tempo todo..."
+            ],
+            [
+                "Nossa, mas esse daqui tá tão longe... Você precisa ficar atento com o fundo da sala."
+            ],
+            [
+                "Todas essas prateleiras fazem uma sombra danada, não dá pra ver quase nada."
+            ]
+        ]
+    ]
+}

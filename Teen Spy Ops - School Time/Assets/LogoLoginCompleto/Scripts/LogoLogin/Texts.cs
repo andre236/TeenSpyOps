@@ -1,23 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-
+using JsonsUnip;
 
 public class Texts : MonoBehaviour
 {
-    public static string[,,] TexTutorials;
-    public static string[,,] InfTextsTable;
-    public static string[,,] PedagogicText;
-    public static string[,,] AchievementNames;
-    public static string[,,] AchievementInfos;
     public static int TutorialOrder = 0;
     public static Text TutorialInstructions;
 
-    public static void SetTexTutorials(string[,,] jsonLoaded)
+    public static string[,,] TinaLinesTutorial { get;  set; }
+    public static string[,,] PedagogicText { get;  set; }
+    public static string[,,] AchievementNames { get;  set; }
+    public static string[,,] AchievementInfos { get;  set; }
+    public static string[,,] SchoolObjectsJsons { get;  set; }
+    public static string[,,] HintsPerPhase { get; set; }
+    public static string[,,] HintsLevel3 { get;  set; }
+    public static string[,,] HintsLevel2 { get;  set; }
+    public static string[,,] HintsLevel1 { get;  set; }
+    public static string[,,] HintsLevel0 { get;  set; }
+
+    public static void SetTinaLinesTutorial(string[,,] jsonLoaded)
     {
         //TexTurials = new string[1, 10, 1];
-        
+
         /*
         TexTurials[0] = "Os clientes estão chegando! Ganhe bastante dinheiro para modificar seu restaurante!";
         TexTurials[1] = "Toque no rostinho em cima da mesa para visualizar quais nutrientes os clientes da mesa precisão!";
@@ -28,10 +32,16 @@ public class Texts : MonoBehaviour
         TexTurials[6] = "NUNCA deixe pratos com comida mal preparada chegar a mesa do cliente, se não é fim de jogo!";
         TexTurials[7] = "Lembre-se: se algum cliente receber mais nutrientes do que ele precisa, ele vai começar a ficar cheio. Se ele ficar muito cheio é fim de jogo!";
         TexTurials[8] = "Quando um cliente estiver com todas as barras cheias, toque em sua mesa para fechar a conta! Feche a conta de todos os clientes para passar de fase!";
-    */
-        //JsonString jsonVar = jsonLoaded;
-        TexTutorials = jsonLoaded;
+        */
 
+        //JsonString jsonVar = jsonLoaded;
+        TinaLinesTutorial = jsonLoaded;
+
+    }
+
+    public static void SetSchoolObjects(string[,,] jsonLoaded)
+    {
+        SchoolObjectsJsons = jsonLoaded;
     }
 
     public static void SetPedagogicText(string[,,] jsonLoaded)
@@ -49,24 +59,7 @@ public class Texts : MonoBehaviour
         AchievementInfos = jsonLoaded;
     }
 
-    public static void VerifyMyTutorialPhaseToUpdate(int phase)
-    {
-        if (phase == TutorialOrder)
-            UpdateTutorialPhase();
-    }
 
-    public static bool VerifyMyTutorialPhase(int phase)
-    {
-        if (phase == TutorialOrder)
-            return true;
-        else
-            return false;
-    }
 
-    public static void UpdateTutorialPhase()
-    {
-        TutorialOrder++;
-        if(VariaveisGlobais.InTutorial)
-            TutorialInstructions.text = TexTutorials[0,TutorialOrder,0];
-    }
+
 }

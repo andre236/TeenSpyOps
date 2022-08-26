@@ -1,0 +1,84 @@
+{
+    "c2array": true,
+    "size": [
+        1,
+        24,
+        1
+    ],
+    "data": [
+        [
+            [
+                "Automatic Pencil"
+            ],
+            [
+                "Book"
+            ],
+            [
+                "Brush"
+            ],
+            [
+                "Calculator"
+            ],
+            [
+                "Cartography Notebook"
+            ],
+            [
+                "Case"
+            ],
+            [
+                "Colored Pencils"
+            ],
+            [
+                "Compass"
+            ],
+            [
+                "Crayons"
+            ],
+            [
+                "Folder"
+            ],
+            [
+                "Glue Stick"
+            ],
+            [
+                "Gouache paint"
+            ],
+            [
+                "Highlighter"
+            ],
+            [
+                "Hydrographic Pen"
+            ],
+            [
+                "Liquid Paper"
+            ],
+            [
+                "Notebook"
+            ],
+            [
+                "Pen"
+            ],
+            [
+                "Pencil"
+            ],
+            [
+                "Protractor"
+            ],
+            [
+                "Rubber"
+            ],
+            [
+                "Ruler"
+            ],
+            [
+                "Scissor"
+            ],
+            [
+                "Sharpener"
+            ],
+            [
+                "White Glue"
+            ]
+        ]
+    ]
+}

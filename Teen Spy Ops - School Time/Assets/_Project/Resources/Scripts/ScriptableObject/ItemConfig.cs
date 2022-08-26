@@ -1,7 +1,7 @@
-using System.IO;
-using UnityEditor;
 using UnityEngine;
-
+using Statics;
+using System.Linq;
+using System;
 
 [CreateAssetMenu(fileName = "School Object", menuName = "Create new School Object")]
 public class ItemConfig : ScriptableObject
@@ -13,6 +13,17 @@ public class ItemConfig : ScriptableObject
 
     private void OnValidate()
     {
-        NameObject = this.name;
+        ItemConfig[] allSchoolObjects = Resources.LoadAll<ItemConfig>("Scripts/ScriptableObject/SchoolObjects");
+
+        for (int i = 0; i < allSchoolObjects.Length; i++)
+        {
+            if (allSchoolObjects[i].name == this.name)
+            {
+                NameObject = allSchoolObjects[i].name;
+                //NameObject = GeneralTexts.SchoolObjects[0, i, 0];
+                break;
+            }
+        }
+
     }
 }

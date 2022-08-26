@@ -1,14 +1,17 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using JsonsUnip;
+using System.Collections;
 
 namespace Statics
 {
     public class GeneralTexts : MonoBehaviour
     {
         [SerializeField] private string[] _nameObjects;
-        [SerializeField] private string[] _tinaLinesTutorial;
+        [SerializeField] private string _schoolObjectsName;
 
+        
         public string[] NameObjects { get => _nameObjects; set => _nameObjects = value; }
 
         [System.Serializable]
@@ -35,6 +38,9 @@ namespace Statics
         
         public static GeneralTexts Instance { get; set; }
 
+        public string SchoolObjectsName { get => _schoolObjectsName; set => _schoolObjectsName = value; }
+        public static string[,,] TinaLinesTutorial { get; internal set; }
+
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -52,7 +58,28 @@ namespace Statics
         private void Start()
         {
             GetSchoolObjectsName();
+           
+            StartCoroutine(TesteDelay());
+        }
+
+
+        private void GetTinaLinesTutorial()
+        {
+
+
+            for (int sectionLines = 0; sectionLines < TinaLinesTutorial.GetLength(0); sectionLines++)
+            {
+
+                for (int indexTinaLine = 0; indexTinaLine < TinaLinesTutorial.GetLength(1); indexTinaLine++)
+                {
+                    if(TinaLinesTutorial[sectionLines, indexTinaLine, 0] != "" && TinaLinesTutorial[sectionLines, indexTinaLine, 0] != null)
+                    {
+                        TinaSectionLinesTutorialsList[sectionLines].TinaLines[indexTinaLine] = TinaLinesTutorial[sectionLines, indexTinaLine, 0];
+                    }
+                }
+            }
             
+
         }
 
         private void GetSchoolObjectsName()
@@ -70,7 +97,13 @@ namespace Statics
 
 
         }
-
+        IEnumerator TesteDelay()
+        {
+            yield return new WaitForSeconds(0.5f);
+            //TinaSectionLinesTutorialsList[0].TinaLines[0] = TinaLinesTutorial[0, 0, 0];
+            //Debug.Log(TinaSectionLinesTutorialsList[0].TinaLines[0]);
+            GetTinaLinesTutorial();
+        }
         private void SetHintsEachPhase()
         {
 
