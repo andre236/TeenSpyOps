@@ -1,8 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -36,14 +35,11 @@ namespace Manager
         private void Start()
         {
             _playButton.onClick.AddListener(EnterPhaseSelected);
-            PlayerPrefs.SetInt("TUTORIAL_ISDONE", 1);
-            //PlayerPrefs.SetInt("AMOUNT_HINTS_USED", 0);
             ActiveButtonStars();
             CheckHavePhaseSelected();
             CheckHaveAllStars();
             SetItemsEachPhase();
             LoadItemEachPhase();
-            //PhaseList[0].ItemsOnPhase[0] = Resources.Load<ItemConfig>("Scripts/ScriptableObject/SchoolObjects/" + "Book");
         }
 
         internal void CheckHaveAllStars()
@@ -152,8 +148,6 @@ namespace Manager
             if (PlayerPrefs.GetInt("ITEMS_GENERATED") == 0)
                 return;
 
-            DirectoryInfo directory = new DirectoryInfo("Assets/_Project/Scripts/ScriptableObject/SchoolObjects");
-
             int indexItem = 0;
             for (int numberPhase = 0; numberPhase < 8; numberPhase++)
             {
@@ -169,10 +163,7 @@ namespace Manager
         {
             if (_currentLevelSelected > -1)
             {
-                if (PlayerPrefs.GetInt("TUTORIAL_ISDONE") >= 1)
-                    SceneManager.LoadScene("LEVEL" + _currentLevelSelected);
-                else
-                    SceneManager.LoadScene("TUTORIAL");
+                StartCoroutine(StartEnterPhase());
             }
             else
             {
@@ -185,6 +176,25 @@ namespace Manager
         {
             _currentLevelSelected = phaseIndex;
             CheckHavePhaseSelected();
+        }
+
+        private IEnumerator StartEnterPhase()
+        {
+            var transition = GameObject.Find("Transition").GetComponent<Animator>();
+            transition.SetTrigger("FadeIn");
+
+            yield return new WaitForSeconds(1.5f);
+            Debug.Log("TUTORIAL_ISDONE: 1");
+            if (PlayerPrefs.GetInt("TUTORIAL_ISDONE") >= 1)
+            {
+                Debug.Log("TUTORIAL_ISDONE: 1");
+                SceneManager.LoadScene("LEVEL" + _currentLevelSelected);
+            }
+            else
+            {
+                Debug.Log("TUTORIAL_ISDONE: 0");
+                SceneManager.LoadScene("TUTORIAL");
+            }
         }
 
     }

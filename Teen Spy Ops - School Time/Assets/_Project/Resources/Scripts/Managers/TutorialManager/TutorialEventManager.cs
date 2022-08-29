@@ -119,7 +119,6 @@ namespace Tutorial
 
         public void SkipTutorialLine()
         {
-            Debug.Log("A section está em: " + (int)_currentTutorialStage);
             _tutorialUIManager.NextTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
 
         }

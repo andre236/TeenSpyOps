@@ -32,7 +32,7 @@ namespace Manager
         public Action WonGame;
         public Action LosedGame;
 
-        public Action LoadedNextScene { get; private set; }
+        public Action LoadedNextScene { get; protected set; }
 
         public Action<int> EarnedStars;
 
@@ -247,13 +247,13 @@ namespace Manager
         internal void RestartScene() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         internal void LoadLevelSelectScene() => SceneManager.LoadScene("LEVELSELECT");
         internal void LoadMainMenuScene() => SceneManager.LoadScene("MAINMENU");
-        internal void LoadNextLevelScene()
+        internal virtual void LoadNextLevelScene()
         {
             LoadedNextScene?.Invoke();
-            StartCoroutine(LoadingNextScene());
+            StartCoroutine(GetLoadingNextScene());
         }
 
-        internal IEnumerator LoadingNextScene()
+        internal virtual IEnumerator GetLoadingNextScene()
         {
             yield return new WaitForSeconds(1.5f);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

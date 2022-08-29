@@ -104,7 +104,7 @@ namespace Statics
         {
             ItemConfig[] allSchoolObjects = Resources.LoadAll<ItemConfig>("Scripts/ScriptableObject/SchoolObjects");
 
-
+            _nameObjects = new string[allSchoolObjects.Length];
 
             for (int indexSchoolObject = 0; indexSchoolObject < SchoolObjectsNameFromJSON.Length; indexSchoolObject++)
             {

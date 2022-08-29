@@ -92,7 +92,7 @@ namespace Manager
 
         }
 
-        internal void OnLoadedNextScene()
+        internal virtual void OnLoadedNextScene()
         {
             var transitionGameObject = GameObject.Find("Transition").GetComponent<Animator>();
 
@@ -526,7 +526,7 @@ namespace Manager
 
         // --------- COROUTINES --------
 
-        private IEnumerator TimerForOpenOrClose(float time, GameObject page, bool open)
+        protected IEnumerator TimerForOpenOrClose(float time, GameObject page, bool open)
         {
             yield return new WaitForSeconds(time);
             page.SetActive(open);
