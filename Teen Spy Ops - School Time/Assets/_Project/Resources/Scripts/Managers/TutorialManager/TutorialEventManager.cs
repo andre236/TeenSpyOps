@@ -6,6 +6,7 @@ using Objects;
 using Statics;
 using Player;
 
+
 namespace Tutorial
 {
     public class TutorialEventManager : EventManager
@@ -222,7 +223,7 @@ namespace Tutorial
             yield return new WaitForSeconds(2f);
             _currentTutorialSection = (TinaSectionLinesTutorialStage)7;
             _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
-            
+
             yield return new WaitUntil(() => _canNextStep == true);
             yield return new WaitForSeconds(2f);
             _tutorialUIManager.HighlightOneGameObject(GameObject.Find("FingerprintButton"), false);
@@ -294,7 +295,7 @@ namespace Tutorial
             yield return new WaitUntil(() => _isTinaExplaining == false);
 
             _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[13].TinaLines);
-            
+
 
         }
 

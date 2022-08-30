@@ -92,24 +92,9 @@ namespace Manager
 
         }
 
-        internal virtual void OnLoadedNextScene()
-        {
-            var transitionGameObject = GameObject.Find("Transition").GetComponent<Animator>();
 
-            transitionGameObject.gameObject.SetActive(true);
-            transitionGameObject.SetTrigger("FadeIn");
-        }
 
-        internal void OnActivedXRay()
-        {
-            GameManager gameManager = FindObjectOfType<GameManager>();
-            Animator xRayBarAnimation = _xRayBarImage.GetComponent<Animator>();
 
-            Debug.Log("Distancia atual: " + (int)gameManager.CurrentDistance);
-
-            xRayBarAnimation.gameObject.SetActive(true);
-            xRayBarAnimation.SetInteger("XRayDistance", (int)gameManager.CurrentDistance);
-        }
 
         protected virtual void Start()
         {
@@ -201,7 +186,7 @@ namespace Manager
 
         }
 
-        // -------------------- OBSERVERS ------------------------
+        #region OBSERVERS
 
 
         internal void OnInitializedLevel()
@@ -229,6 +214,14 @@ namespace Manager
 
         }
 
+        internal virtual void OnLoadedNextScene()
+        {
+            var transitionGameObject = GameObject.Find("Transition").GetComponent<Animator>();
+
+            transitionGameObject.gameObject.SetActive(true);
+            transitionGameObject.SetTrigger("FadeIn");
+        }
+
         internal void OnFinishedTimerSkill() => PlayHudAnimation();
 
         internal void OnPausedGame()
@@ -248,6 +241,17 @@ namespace Manager
         }
 
         internal void OnUnPausedGame() => _pausePage.SetActive(false);
+
+        internal void OnActivedXRay()
+        {
+            GameManager gameManager = FindObjectOfType<GameManager>();
+            Animator xRayBarAnimation = _xRayBarImage.GetComponent<Animator>();
+
+            Debug.Log("Distancia atual: " + (int)gameManager.CurrentDistance);
+
+            xRayBarAnimation.gameObject.SetActive(true);
+            xRayBarAnimation.SetInteger("XRayDistance", (int)gameManager.CurrentDistance);
+        }
 
         internal virtual void OnGotQuestion(string nameObject, Sprite itemSprite)
         {
@@ -524,7 +528,10 @@ namespace Manager
             winPageStars.SetInteger("NumberStars", amountStars);
         }
 
-        // --------- COROUTINES --------
+        #endregion
+
+
+        #region COROUTINES
 
         protected IEnumerator TimerForOpenOrClose(float time, GameObject page, bool open)
         {
@@ -545,5 +552,7 @@ namespace Manager
             _hintPage.SetActive(false);
 
         }
+
+        #endregion
     }
 }

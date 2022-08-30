@@ -144,11 +144,6 @@ namespace Tutorial
 
         }
 
-        internal void NightVisionReceiveSkill()
-        {
-
-        }
-
         internal void WaitingForFingerprint()
         {
             var eventManagerTutorial = FindObjectOfType<TutorialEventManager>();
