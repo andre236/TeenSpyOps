@@ -1106,7 +1106,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1432590107}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.82, y: -0.55, z: 0}
+  m_LocalPosition: {x: -4.5, y: -0.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1696,10 +1696,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 197768703}
     m_Modifications:
-    - target: {fileID: 1500380379764977309, guid: 1e7790b426d15e2479330bc9774220ae, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 8eaf2caaeb52504498be7429e32b6ed7, type: 3}
     - target: {fileID: 1500380380899638306, guid: 1e7790b426d15e2479330bc9774220ae, type: 3}
       propertyPath: m_Name
       value: NightVisionScene
@@ -1804,22 +1800,6 @@ PrefabInstance:
     - target: {fileID: 1858555417122483493, guid: 9ab120fdf68455c47a325297eaa42e54, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1858555417919543742, guid: 9ab120fdf68455c47a325297eaa42e54, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1858555417919543742, guid: 9ab120fdf68455c47a325297eaa42e54, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1858555417919543743, guid: 9ab120fdf68455c47a325297eaa42e54, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f3ee1641c49d72a45849f582f1eb3cf1, type: 3}
-    - target: {fileID: 1858555417919543743, guid: 9ab120fdf68455c47a325297eaa42e54, type: 3}
-      propertyPath: m_Color.a
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ab120fdf68455c47a325297eaa42e54, type: 3}
@@ -2451,10 +2431,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7365865805172079727, guid: 28713eb14a1bd8f418ab686090d5c762, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f3ee1641c49d72a45849f582f1eb3cf1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28713eb14a1bd8f418ab686090d5c762, type: 3}
 --- !u!1001 &8474351395844857190
@@ -2512,9 +2488,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8474351396615999726, guid: 48ad96f815968784db3d33c5fb580978, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f3ee1641c49d72a45849f582f1eb3cf1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 48ad96f815968784db3d33c5fb580978, type: 3}

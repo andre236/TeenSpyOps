@@ -112,13 +112,13 @@ namespace Controllers
 
         public AudioClip GetAudioClipFromAudioTrack(AudioType type, AudioTrack track)
         {
-            foreach (AudioObject audioObject in track.Audio)
-            {
-                if (audioObject.Type == type)
-                {
-                    return audioObject.Clip;
-                }
-            }
+            //foreach (AudioObject audioObject in track.Audio)
+            //{
+            //    if (audioObject.Type == type)
+            //    {
+            //        return audioObject.Clip;
+            //    }
+            //}
 
             return null;
         }
@@ -140,21 +140,21 @@ namespace Controllers
         {
             foreach (AudioTrack track in Tracks)
             {
-                foreach (AudioObject audioObject in track.Audio)
-                {
-                    // Do not duplicate keys
-                    if (_audioTable.ContainsKey(audioObject.Type))
-                    {
-                        LogWarning("You are trying to register audio [" + audioObject.Type + "] that has already been registered");
+                //foreach (AudioObject audioObject in track.Audio)
+                //{
+                //    // Do not duplicate keys
+                //    if (_audioTable.ContainsKey(audioObject.Type))
+                //    {
+                //        LogWarning("You are trying to register audio [" + audioObject.Type + "] that has already been registered");
 
-                    }
-                    else
-                    {
-                        _audioTable.Add(audioObject, track);
-                        Log("Registering audio [" + audioObject.Type + "].");
-                    }
+                //    }
+                //    else
+                //    {
+                //        _audioTable.Add(audioObject, track);
+                //        Log("Registering audio [" + audioObject.Type + "].");
+                //    }
 
-                }
+                //}
             }
         }
 
