@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using UnityEngine;
 
+
+// https: //www.youtube.com/watch?v=3hsBFxrIgQI - Referencia do código.
 namespace Controllers
 {
     public class AudioController : MonoBehaviour
@@ -12,8 +14,6 @@ namespace Controllers
         public static AudioController Instance;
 
         public bool IsDebugging;
-
-
 
         public AudioTrack[] Tracks;
 
@@ -140,18 +140,18 @@ namespace Controllers
         {
             foreach (AudioTrack track in Tracks)
             {
-                foreach (AudioObject audioObject in Tracks.audio)
+                foreach (AudioObject audioObject in track.Audio)
                 {
                     // Do not duplicate keys
                     if (_audioTable.ContainsKey(audioObject.Type))
                     {
-                        LogWarning("You are trying to register audio [" + audioObject + "] that has already been registered");
+                        LogWarning("You are trying to register audio [" + audioObject.Type + "] that has already been registered");
 
                     }
                     else
                     {
                         _audioTable.Add(audioObject, track);
-                        Log("Registering audio [" + audioObject + "].");
+                        Log("Registering audio [" + audioObject.Type + "].");
                     }
 
                 }

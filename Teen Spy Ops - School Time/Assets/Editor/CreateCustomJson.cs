@@ -35,29 +35,32 @@ public class CreateCustomJson : EditorWindow
         _depth = EditorGUILayout.IntField("Depth", Mathf.Clamp(_depth, 0, 50), GUILayout.MaxWidth(200));
         EditorGUILayout.EndHorizontal();
 
-        //EditorGUILayout.BeginHorizontal();
-        //for (int i = 0; i < _width; i++)
-        //{
-        //    _datasX[i] = EditorGUILayout.TextField("X" + i + ": ", _datasX[i]);
-        //}
-        //EditorGUILayout.EndHorizontal();
-        //EditorGUILayout.BeginVertical();
-        
-        //for (int j = 0; j < _height; j++)
-        //{
-        //    if(j%3 == 0)
-        //    {
-        //        EditorGUILayout.BeginVertical();
-        //        _datasY[j] = EditorGUILayout.TextField("Y" + j, _datasY[j], GUILayout.MaxWidth(500));
-        //        EditorGUILayout.EndVertical();
-        //    }
-        //    else
-        //    {
-        //        _datasY[j] = EditorGUILayout.TextField("Y" + j, _datasY[j], GUILayout.MaxWidth(500));
+        _datasX = new string[_width];
+        _datasY = new string[_height];
 
-        //    }
-        //}
-        //EditorGUILayout.EndVertical();
+        EditorGUILayout.BeginHorizontal();
+        for (int i = 0; i < _width; i++)
+        {
+            _datasX[i] = EditorGUILayout.TextField("x" + i + ": ", _datasX[i]);
+        }
+        EditorGUILayout.EndHorizontal();
+        EditorGUILayout.BeginVertical();
+
+        for (int j = 0; j < _height; j++)
+        {
+            if (j % 3 == 0)
+            {
+                EditorGUILayout.BeginVertical();
+                _datasY[j] = EditorGUILayout.TextField("y" + j, _datasY[j], GUILayout.MaxWidth(500));
+                EditorGUILayout.EndVertical();
+            }
+            else
+            {
+                _datasY[j] = EditorGUILayout.TextField("y" + j, _datasY[j], GUILayout.MaxWidth(500));
+
+            }
+        }
+        EditorGUILayout.EndVertical();
     }
 }
 #endif
