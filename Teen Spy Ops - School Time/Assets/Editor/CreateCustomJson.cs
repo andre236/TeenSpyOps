@@ -23,7 +23,7 @@ public class CreateCustomJson : EditorWindow
         EditorWindow.GetWindow(typeof(CreateCustomJson));
     }
 
-    void OnGUI()
+    private void OnGUI()
     {
 
         GUILayout.Label("Base Settings", EditorStyles.boldLabel);

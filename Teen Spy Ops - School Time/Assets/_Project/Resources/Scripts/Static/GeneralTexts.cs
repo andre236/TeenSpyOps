@@ -6,6 +6,8 @@ namespace Statics
 {
     public class GeneralTexts : MonoBehaviour
     {
+        [SerializeField] private bool _onTesting;
+
         [SerializeField] private string[] _nameObjects;
 
 
@@ -54,6 +56,9 @@ namespace Statics
 
         private void Start()
         {
+            if (_onTesting)
+                return;
+
             StartCoroutine(TesteDelay());
         }
 
@@ -119,6 +124,7 @@ namespace Statics
 
         IEnumerator TesteDelay()
         {
+
             yield return new WaitForSeconds(0.5f);
             GetSchoolObjectsName(); 
             GetTinaLinesTutorial();
