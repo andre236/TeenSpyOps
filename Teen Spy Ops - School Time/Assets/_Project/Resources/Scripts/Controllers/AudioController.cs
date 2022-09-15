@@ -88,6 +88,19 @@ namespace Controllers
 
         }
 
+        public AudioClip GetAudioClipFromAudioTrack(AudioType type, AudioTrack track)
+        {
+            //foreach (AudioObject audioObject in track.Audio)
+            //{
+            //    if (audioObject.Type == type)
+            //    {
+            //        return audioObject.Clip;
+            //    }
+            //}
+
+            return null;
+        }
+
         #endregion
 
         #region Private Functions
@@ -110,18 +123,7 @@ namespace Controllers
             }
         }
 
-        public AudioClip GetAudioClipFromAudioTrack(AudioType type, AudioTrack track)
-        {
-            //foreach (AudioObject audioObject in track.Audio)
-            //{
-            //    if (audioObject.Type == type)
-            //    {
-            //        return audioObject.Clip;
-            //    }
-            //}
 
-            return null;
-        }
 
         private void Log(string msg)
         {
