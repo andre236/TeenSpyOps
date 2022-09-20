@@ -13,7 +13,7 @@ namespace Manager
 {
     public class LevelManager : MonoBehaviour
     {
-        [SerializeField] private string _levelName;
+        
         [SerializeField] protected GameObject _prefabSchoolObject;
         [SerializeField] private string[] _allowedSchoolObjects;
 
@@ -27,8 +27,11 @@ namespace Manager
         public GameObject CurrentObject { get; private set; }
         public virtual int ItemsLeft { get; protected set; }
         public string[] AllowedSchoolObjects { get => _allowedSchoolObjects; set => _allowedSchoolObjects = value; }
+        
 
         public List<Collectable> ItemsCollectable = new List<Collectable>();
+        [Space]
+        public string LevelName;
 
         public Action StoppedTimer;
 

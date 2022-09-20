@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEngine;
 
 namespace Manager
 {
@@ -8,7 +9,11 @@ namespace Manager
 
         protected override void Awake() => _menuUIManager = FindObjectOfType<MenuUIManager>();
         protected override void Update() { }
-        protected override void Start() => LoadedNextScene += _menuUIManager.OnLoadedNextScene;
+        protected override void Start()
+        {
+            PlayerPrefs.DeleteAll();
+            LoadedNextScene += _menuUIManager.OnLoadedNextScene;
+        }
 
         internal override void LoadNextLevelScene() => base.LoadNextLevelScene();
 

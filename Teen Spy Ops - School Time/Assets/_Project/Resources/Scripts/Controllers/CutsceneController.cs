@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Controllers
@@ -75,32 +76,13 @@ namespace Controllers
             StartCoroutine(SetFadeOutBlackScreen());
         }
 
-        private IEnumerator ShowCutsceneLine()
-        {
-            var lastCutsceneLineIndex = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex]._allCutsceneLines.Length - 1;
 
-            _currentCutsceneLineText.text = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex]._allCutsceneLines[_currentCutsceneLineIndex];
-            _dialogBoxAnimator.SetBool("CanFadeIn", true);
-
-
-            _skipCutsceneLineButton.interactable = true;
-
-            if (_currentCutsceneLineIndex >= lastCutsceneLineIndex)
-            {
-                _skipCutsceneLineButton.onClick.AddListener(ShowNextSectionCutsceneLine);
-            }
-            else
-            {
-                _skipCutsceneLineButton.onClick.AddListener(ShowNextFrameworkLine);
-            }
-
-            yield return null;
-
-        }
 
         private void ShowNextSectionCutsceneLine()
         {
-            if (_currentSectionCutsceneLinesIndex < _sectionCutsceneLinesList.Count - 1)
+            var lastSectionCutsceneLinesIndex = _sectionCutsceneLinesList.Count - 1;
+
+            if (_currentSectionCutsceneLinesIndex < lastSectionCutsceneLinesIndex)
             {
                 _dialogBoxAnimator.SetBool("CanFadeIn", false);
                 _skipCutsceneLineButton.onClick.RemoveAllListeners();
@@ -108,6 +90,7 @@ namespace Controllers
                 _currentCutsceneLineIndex = 0;
                 StartCoroutine(ShowNextFrame());
             }
+
         }
 
         private void ShowNextFrameworkLine()
@@ -118,20 +101,64 @@ namespace Controllers
             StartCoroutine(ShowCutsceneLine());
         }
 
+        private void LoadNextScene() => StartCoroutine(StartLoadNextScene());
+
+        private IEnumerator ShowCutsceneLine()
+        {
+            var lastCutsceneLineIndex = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex]._allCutsceneLines.Length - 1;
+            var lastFrameworkIndex = _allFrames.Length - 1;
+
+            _currentCutsceneLineText.text = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex]._allCutsceneLines[_currentCutsceneLineIndex];
+            _dialogBoxAnimator.SetBool("CanFadeIn", true);
+
+            _skipCutsceneLineButton.interactable = true;
+
+            if (_currentFrameIndex < lastFrameworkIndex)
+            {
+                if (_currentCutsceneLineIndex >= lastCutsceneLineIndex)
+                {
+                    _skipCutsceneLineButton.onClick.AddListener(ShowNextSectionCutsceneLine);
+                }
+                else
+                {
+                    _skipCutsceneLineButton.onClick.AddListener(ShowNextFrameworkLine);
+                }
+            }
+            else
+            {
+                _skipCutsceneLineButton.onClick.AddListener(LoadNextScene);
+            }
+
+            yield return null;
+
+        }
+
+        private IEnumerator StartLoadNextScene()
+        {
+            yield return new WaitForSeconds(1.6f);
+            SceneManager.LoadScene("LEVELSELECT");
+        }
+
         private IEnumerator ShowNextFrame()
         {
             var lastFrameworkIndex = _allFrames.Length - 1;
+
+            var nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
 
             SetFadeInBlackScreen();
             _dialogBoxAnimator.SetBool("CanFadeIn", false);
 
             if (_currentFrameIndex < lastFrameworkIndex)
+            {
                 _currentFrameIndex++;
+                yield return new WaitForSeconds(1.6f);
+                SetOffAllFrames();
+            }
 
-            yield return new WaitForSeconds(1.6f);
-
-            SetOffAllFrames();
+            yield return null;
         }
+
+
 
     }
 }

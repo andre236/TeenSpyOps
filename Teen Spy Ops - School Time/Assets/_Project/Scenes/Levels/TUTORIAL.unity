@@ -5641,6 +5641,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6082798520729722370, guid: 9c369896e86259744b7aedb4daad20d3, type: 3}
+      propertyPath: m_Text
+      value: 'Fase: Tutorial'
+      objectReference: {fileID: 0}
     - target: {fileID: 6082798520740819461, guid: 9c369896e86259744b7aedb4daad20d3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -5880,12 +5884,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8ce52872a12554bb3a16e0b1f14852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelName: 
   _prefabSchoolObject: {fileID: 7577296197177340029, guid: bc418877e38b6e54d96f068ee69b0a0c, type: 3}
   _allowedSchoolObjects: []
   _spawnSchoolObject: []
   <InitialTimerLevel>k__BackingField: 780
   ItemsCollectable: []
+  LevelName: TUTORIAL
   _itemTutorial:
   - {fileID: 11400000, guid: fbb4f0ebb6a62a34a9eb005df81b810e, type: 2}
   - {fileID: 11400000, guid: 971f7046eb49b3643bd69eedd9df7564, type: 2}

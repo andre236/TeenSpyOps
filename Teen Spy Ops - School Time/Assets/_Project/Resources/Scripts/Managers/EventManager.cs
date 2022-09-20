@@ -36,6 +36,8 @@ namespace Manager
 
         public Action<int> EarnedStars;
 
+        public Action<string> GotLevelInformation;
+
         // -- Player Skills -- //
         public Action ActivedXRay;
         public Action UpgradeXRayVision;
@@ -107,6 +109,8 @@ namespace Manager
             LosedGame += _questPlayer.OnLosedGame;
             LosedGame += _uiManager.OnLosedGame;
 
+            GotLevelInformation += _uiManager.OnGotLevelInformation;
+
             ActivedXRay += _gameManager.OnActivedXRay;
             ActivedXRay += _sceneryManager.OnActivedXRay;
             ActivedXRay += _skills.OnActivedXRay;
@@ -176,6 +180,7 @@ namespace Manager
 
         internal virtual void OnInitialized()
         {
+            GotLevelInformation?.Invoke(_levelManager.LevelName);
             foreach (Collectable coll in _levelManager.ItemsCollectable)
             {
                 coll.GotQuestion += _uiManager.OnGotQuestion;

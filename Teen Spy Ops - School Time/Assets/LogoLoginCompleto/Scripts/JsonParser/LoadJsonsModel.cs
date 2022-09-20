@@ -37,7 +37,8 @@ namespace JsonsUnip
         public void SetTinaLinesTutorialJson()
         {
             GeneralTexts.TinaLinesTutorial = JsonParserWeb.instance.JStringReturnValue().data;
-            Debug.Log("TinaLinesTutorial Loaded");
+            //Debug.Log("TinaLinesTutorial Loaded");
+            Debug.Log(nameof(GeneralTexts.TinaLinesTutorial) + " Loaded");
         }
 
         public void SetHintsPerPhaseJson()
@@ -74,6 +75,8 @@ namespace JsonsUnip
         {
             Texts.AchievementNames = JsonParserWeb.instance.JStringReturnValue().data;
             Debug.Log("AchievementNames Loaded");
+            //Debug.Log(nameof(Texts.AchievementNames)+" Loaded");
+
         }
 
         public void SetAchievementsInfoJson()

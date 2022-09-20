@@ -267,6 +267,7 @@ namespace Tutorial
             yield return new WaitForSeconds(2f);
             _currentTutorialSection = (TinaSectionLinesTutorialStage)12;
             _tutorialUIManager.CallTinaLine(GeneralTexts.Instance.TinaSectionLinesTutorialsList[(int)_currentTutorialSection].TinaLines);
+            PlayerPrefs.SetInt("TUTORIAL_ISDONE", 1);
 
         }
 

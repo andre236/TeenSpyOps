@@ -6,6 +6,8 @@ using UnityEngine.UI;
 using Statics;
 using Random = System.Random;
 using System.Collections;
+using UnityEngine.SceneManagement;
+using System.Text.RegularExpressions;
 
 namespace Manager
 {
@@ -117,7 +119,6 @@ namespace Manager
 
             _hintButton.onClick.AddListener(FindObjectOfType<EventManager>().OnGotHint);
             _closeHintButton.onClick.AddListener(CloseHintPage);
-            //_phasesButton.onClick.AddListener(FindObjectOfType<EventManager>().LoadLevelSelectScene);
         }
 
         protected virtual void PlayHudAnimation()
@@ -208,9 +209,14 @@ namespace Manager
             _nightVisionCooldownImage.gameObject.SetActive(false);
 
 
-            //_barsAnimation.enabled = false;
+        }
 
-            _informationLevelText.text = string.Concat("Fase ", 3, ": ", "Sala de aula");
+        internal void OnGotLevelInformation(string namePhase)
+        {
+            string numberLevelString = Regex.Match(SceneManager.GetActiveScene().name, @"\d+").Value;
+            int correctNumberLevel = int.Parse(numberLevelString) + 1;
+
+            _informationLevelText.text = string.Concat("Fase ", correctNumberLevel, ": ", namePhase);
 
         }
 

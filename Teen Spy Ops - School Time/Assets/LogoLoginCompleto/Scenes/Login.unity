@@ -339,7 +339,7 @@ MonoBehaviour:
   InputLogin: {fileID: 1969260183}
   InputSenha: {fileID: 1969260182}
   plataformApi: {fileID: 603390130}
-  nextScene: STARTtemplate
+  nextScene: MAINMENU
   UserMessage: {fileID: 1969260181}
 --- !u!1001 &1969260180
 PrefabInstance:
