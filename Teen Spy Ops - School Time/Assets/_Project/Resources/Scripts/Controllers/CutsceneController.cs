@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 namespace Controllers
 {
@@ -16,7 +17,7 @@ namespace Controllers
         private Text _currentCutsceneLineText;
         private Button _skipCutsceneLineButton;
 
-        private Image[] _allFrames;
+        private VideoPlayer[] _allVideoClips;
         private Animator _transitionAnimator;
         private Animator _dialogBoxAnimator;
 
@@ -24,14 +25,20 @@ namespace Controllers
         private class SectionsCutsceneLines
         {
             public string NameArray;
-            public string[] _allCutsceneLines;
+            public AllCutsceneLines[] CutsceneLines;
+            [Serializable]
+            public class AllCutsceneLines
+            {
+                public string LineAuthor;
+                public string[] AllLines;
+            }
         }
 
         [SerializeField] private List<SectionsCutsceneLines> _sectionCutsceneLinesList = new List<SectionsCutsceneLines>();
 
         private void Awake()
         {
-            _allFrames = GameObject.Find("Frameworks").GetComponentsInChildren<Image>();
+            _allVideoClips = GameObject.Find("Frameworks").GetComponentsInChildren<VideoPlayer>();
 
             _transitionAnimator = GameObject.Find("TransitionCutscene").GetComponent<Animator>();
             _dialogBoxAnimator = GameObject.Find("BlackDialogBox").GetComponent<Animator>();
@@ -49,14 +56,14 @@ namespace Controllers
             // 4 - Show next Cutscene Line * If have other Cutscene Line.
             // 5 - Fade in with next scene and Repeat.
 
-            SetOffAllFrames();
+            //SetOffAllFrames();
         }
 
         private IEnumerator SetFadeOutBlackScreen()
         {
             _transitionAnimator.SetBool("CanFadeOut", true);
             yield return new WaitForSeconds(1.4f);
-            StartCoroutine(ShowCutsceneLine());
+            //StartCoroutine(ShowCutsceneLine());
         }
 
         private void SetFadeInBlackScreen()
@@ -64,14 +71,16 @@ namespace Controllers
             _transitionAnimator.SetBool("CanFadeOut", false);
         }
 
-        private void SetOffAllFrames()
+        [ContextMenu("Invoke: " + nameof(SetOffAllVideoPlayer))]
+
+        private void SetOffAllVideoPlayer()
         {
             _skipCutsceneLineButton.interactable = false;
 
-            for (int frameIndex = 0; frameIndex < _allFrames.Length; frameIndex++)
-                _allFrames[frameIndex].gameObject.SetActive(false);
+            for (int frameIndex = 0; frameIndex < _allVideoClips.Length; frameIndex++)
+                _allVideoClips[frameIndex].gameObject.SetActive(false);
 
-            _allFrames[_currentFrameIndex].gameObject.SetActive(true);
+            _allVideoClips[_currentFrameIndex].gameObject.SetActive(true);
 
             StartCoroutine(SetFadeOutBlackScreen());
         }
@@ -98,40 +107,41 @@ namespace Controllers
             _skipCutsceneLineButton.onClick.RemoveAllListeners();
             _skipCutsceneLineButton.interactable = false;
             _currentCutsceneLineIndex++;
-            StartCoroutine(ShowCutsceneLine());
+            //StartCoroutine(ShowCutsceneLine());
         }
 
+        [ContextMenu("Invoke: " + nameof(LoadNextScene))]
         private void LoadNextScene() => StartCoroutine(StartLoadNextScene());
 
-        private IEnumerator ShowCutsceneLine()
-        {
-            var lastCutsceneLineIndex = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex]._allCutsceneLines.Length - 1;
-            var lastFrameworkIndex = _allFrames.Length - 1;
+        //private IEnumerator ShowCutsceneLine()
+        //{
+        //    var lastCutsceneLineIndex = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex]._allCutsceneLines.Length - 1;
+        //    var lastFrameworkIndex = _allFrames.Length - 1;
 
-            _currentCutsceneLineText.text = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex]._allCutsceneLines[_currentCutsceneLineIndex];
-            _dialogBoxAnimator.SetBool("CanFadeIn", true);
+        //    _currentCutsceneLineText.text = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex]._allCutsceneLines[_currentCutsceneLineIndex];
+        //    _dialogBoxAnimator.SetBool("CanFadeIn", true);
 
-            _skipCutsceneLineButton.interactable = true;
+        //    _skipCutsceneLineButton.interactable = true;
 
-            if (_currentFrameIndex < lastFrameworkIndex)
-            {
-                if (_currentCutsceneLineIndex >= lastCutsceneLineIndex)
-                {
-                    _skipCutsceneLineButton.onClick.AddListener(ShowNextSectionCutsceneLine);
-                }
-                else
-                {
-                    _skipCutsceneLineButton.onClick.AddListener(ShowNextFrameworkLine);
-                }
-            }
-            else
-            {
-                _skipCutsceneLineButton.onClick.AddListener(LoadNextScene);
-            }
+        //    if (_currentFrameIndex < lastFrameworkIndex)
+        //    {
+        //        if (_currentCutsceneLineIndex >= lastCutsceneLineIndex)
+        //        {
+        //            _skipCutsceneLineButton.onClick.AddListener(ShowNextSectionCutsceneLine);
+        //        }
+        //        else
+        //        {
+        //            _skipCutsceneLineButton.onClick.AddListener(ShowNextFrameworkLine);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        _skipCutsceneLineButton.onClick.AddListener(LoadNextScene);
+        //    }
 
-            yield return null;
+        //    yield return null;
 
-        }
+        //}
 
         private IEnumerator StartLoadNextScene()
         {
@@ -141,7 +151,7 @@ namespace Controllers
 
         private IEnumerator ShowNextFrame()
         {
-            var lastFrameworkIndex = _allFrames.Length - 1;
+            var lastFrameworkIndex = _allVideoClips.Length - 1;
 
             var nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
 
@@ -152,7 +162,7 @@ namespace Controllers
             {
                 _currentFrameIndex++;
                 yield return new WaitForSeconds(1.6f);
-                SetOffAllFrames();
+                SetOffAllVideoPlayer();
             }
 
             yield return null;
