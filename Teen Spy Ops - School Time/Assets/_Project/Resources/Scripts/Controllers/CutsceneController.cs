@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -10,14 +11,19 @@ namespace Controllers
 {
     public class CutsceneController : MonoBehaviour
     {
-        [SerializeField] private int _currentFrameIndex = 0;
+        [SerializeField] private int _currentVideoClipIndex = 0;
         [SerializeField] private int _currentCutsceneLineIndex = 0;
         [SerializeField] private int _currentSectionCutsceneLinesIndex = 0;
+
+        [SerializeField] private int _currentStep = 0;
 
         private Text _currentCutsceneLineText;
         private Button _skipCutsceneLineButton;
 
-        private VideoPlayer[] _allVideoClips;
+        [SerializeField] private VideoPlayer[] _allVideoClips;
+        [SerializeField] private VideoPlayer _currentVideoClip;
+        [SerializeField] private UnityEvent[] _allStepsCutscene;
+
         private Animator _transitionAnimator;
         private Animator _dialogBoxAnimator;
 
@@ -25,13 +31,7 @@ namespace Controllers
         private class SectionsCutsceneLines
         {
             public string NameArray;
-            public AllCutsceneLines[] CutsceneLines;
-            [Serializable]
-            public class AllCutsceneLines
-            {
-                public string LineAuthor;
-                public string[] AllLines;
-            }
+            public string[] CutsceneLines;
         }
 
         [SerializeField] private List<SectionsCutsceneLines> _sectionCutsceneLinesList = new List<SectionsCutsceneLines>();
@@ -39,6 +39,7 @@ namespace Controllers
         private void Awake()
         {
             _allVideoClips = GameObject.Find("Frameworks").GetComponentsInChildren<VideoPlayer>();
+
 
             _transitionAnimator = GameObject.Find("TransitionCutscene").GetComponent<Animator>();
             _dialogBoxAnimator = GameObject.Find("BlackDialogBox").GetComponent<Animator>();
@@ -56,7 +57,145 @@ namespace Controllers
             // 4 - Show next Cutscene Line * If have other Cutscene Line.
             // 5 - Fade in with next scene and Repeat.
 
-            //SetOffAllFrames();
+            InnitialStep();
+        }
+
+        private void InnitialStep()
+        {
+            _transitionAnimator.gameObject.SetActive(false);
+
+            _currentVideoClip = _allVideoClips[_currentVideoClipIndex];
+            InvokeNextStep();
+        }
+
+        public void InvokeNextStep()
+        {
+            //if (CheckHaveMoreLines())
+            //{
+            //    ShowNextLine();
+            //    return;
+            //}
+
+            _allStepsCutscene[_currentStep]?.Invoke();
+
+            if (_currentStep < _allStepsCutscene.Length - 1)
+                _currentStep++;
+
+        }
+
+        public void PlayCurrentVideo()
+        {
+            _currentVideoClip.Play();
+        }
+
+        public void PauseCurrentVideo()
+        {
+            _currentVideoClip.Pause();
+
+        }
+
+        public void PlayVideoByIndex(int videoIndex)
+        {
+            _currentVideoClip = _allVideoClips[videoIndex];
+
+            _currentVideoClip.Play();
+
+        }
+
+        public void GoNextStepInTheEnd()
+        {
+            StartCoroutine(WaitCurrentPlayerEnd());
+        }
+
+        private IEnumerator WaitCurrentPlayerEnd()
+        {
+            var currentFrameVideoPlayer = _currentVideoClip.frame;
+            var totalFramesVideoPlayer = Convert.ToInt64(_currentVideoClip.frameCount);
+
+            yield return new WaitUntil(() => currentFrameVideoPlayer >= totalFramesVideoPlayer);
+
+            InvokeNextStep();
+        }
+
+
+        public void ShowCutsceneLine()
+        {
+            var blackDialogBox = GameObject.Find("BlackDialogBox").GetComponent<Animator>();
+            var buttonDialog = GameObject.Find("PassLineButton").GetComponent<Button>();
+            var amountLines = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex].CutsceneLines.Length - 1;
+
+
+            blackDialogBox.SetBool("CanFadeIn", true);
+
+            _currentCutsceneLineText.text = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex].CutsceneLines[_currentCutsceneLineIndex];
+
+            if (amountLines > _currentCutsceneLineIndex)
+            {
+                buttonDialog.interactable = true;
+            }
+            else
+            {
+                buttonDialog.interactable = false;
+
+            }
+        }
+
+        public void ShowNextLine()
+        {
+            var amountLines = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex].CutsceneLines.Length - 1;
+
+            _currentCutsceneLineText.text = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex].CutsceneLines[_currentCutsceneLineIndex];
+
+            if (_currentCutsceneLineIndex >= amountLines)
+            {
+
+                _currentSectionCutsceneLinesIndex++;
+                _currentCutsceneLineIndex = 0;
+
+
+            }
+            else
+                _currentCutsceneLineIndex++;
+        }
+
+        public void ShowNextLine(int indexSectionCutscene)
+        {
+            var amountLines = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex].CutsceneLines.Length - 1;
+
+            _currentSectionCutsceneLinesIndex = indexSectionCutscene;
+
+            _currentCutsceneLineText.text = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex].CutsceneLines[_currentCutsceneLineIndex];
+
+            if (_currentCutsceneLineIndex >= amountLines)
+            {
+                _currentSectionCutsceneLinesIndex++;
+                _currentCutsceneLineIndex = 0;
+            }
+            else
+                _currentCutsceneLineIndex++;
+        }
+
+        public void HideCutsceneLine()
+        {
+            var blackDialogBox = GameObject.Find("BlackDialogBox").GetComponent<Animator>();
+
+            blackDialogBox.SetBool("CanFadeIn", false);
+        }
+
+        private bool CheckHaveMoreLines()
+        {
+            var amountLines = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex].CutsceneLines.Length - 1;
+
+            if (_currentCutsceneLineIndex >= amountLines)
+            {
+                print("Não há mais falas na seção: " + _currentSectionCutsceneLinesIndex);
+                return false;
+            }
+            else
+            {
+                print("Há mais falas na seção: " + _currentSectionCutsceneLinesIndex);
+                return true;
+            }
         }
 
         private IEnumerator SetFadeOutBlackScreen()
@@ -80,7 +219,7 @@ namespace Controllers
             for (int frameIndex = 0; frameIndex < _allVideoClips.Length; frameIndex++)
                 _allVideoClips[frameIndex].gameObject.SetActive(false);
 
-            _allVideoClips[_currentFrameIndex].gameObject.SetActive(true);
+            _allVideoClips[_currentVideoClipIndex].gameObject.SetActive(true);
 
             StartCoroutine(SetFadeOutBlackScreen());
         }
@@ -158,9 +297,9 @@ namespace Controllers
             SetFadeInBlackScreen();
             _dialogBoxAnimator.SetBool("CanFadeIn", false);
 
-            if (_currentFrameIndex < lastFrameworkIndex)
+            if (_currentVideoClipIndex < lastFrameworkIndex)
             {
-                _currentFrameIndex++;
+                _currentVideoClipIndex++;
                 yield return new WaitForSeconds(1.6f);
                 SetOffAllVideoPlayer();
             }
