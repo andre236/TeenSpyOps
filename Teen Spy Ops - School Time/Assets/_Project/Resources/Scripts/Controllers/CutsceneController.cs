@@ -14,10 +14,16 @@ namespace Controllers
         [SerializeField] private int _currentVideoClipIndex = 0;
         [SerializeField] private int _currentCutsceneLineIndex = 0;
         [SerializeField] private int _currentSectionCutsceneLinesIndex = 0;
+        [Space]
 
         [SerializeField] private int _currentStep = 0;
+        [Space]
+        [SerializeField] private int _currentFrameVideoPlayer;
+        [SerializeField] private int _totalFramesVideoPlayer;
 
+        private Image _arrowIndicatingCanJump;
         private Text _currentCutsceneLineText;
+        private Button _invokeNextStepInvisible;
         private Button _skipCutsceneLineButton;
 
         [SerializeField] private VideoPlayer[] _allVideoClips;
@@ -40,6 +46,7 @@ namespace Controllers
         {
             _allVideoClips = GameObject.Find("Frameworks").GetComponentsInChildren<VideoPlayer>();
 
+            _arrowIndicatingCanJump = GameObject.Find("ArrowIndicateCanJump").GetComponent<Image>();
 
             _transitionAnimator = GameObject.Find("TransitionCutscene").GetComponent<Animator>();
             _dialogBoxAnimator = GameObject.Find("BlackDialogBox").GetComponent<Animator>();
@@ -47,6 +54,18 @@ namespace Controllers
             _currentCutsceneLineText = GameObject.Find("CurrentCutsceneLineText").GetComponent<Text>();
 
             _skipCutsceneLineButton = GameObject.Find("SkipToNextLineOrFramkeworkButton").GetComponent<Button>();
+            _invokeNextStepInvisible = GameObject.Find("InvokeNextStepInvisible").GetComponent<Button>();
+        }
+
+        private void FixedUpdate()
+        {
+            RefreshFrames();
+        }
+
+        private void RefreshFrames()
+        {
+            _currentFrameVideoPlayer = (int)_currentVideoClip.frame;
+            _totalFramesVideoPlayer = (int)(_currentVideoClip.frameCount);
         }
 
         private void Start()
@@ -62,6 +81,8 @@ namespace Controllers
 
         private void InnitialStep()
         {
+            _arrowIndicatingCanJump.gameObject.SetActive(false);
+
             _transitionAnimator.gameObject.SetActive(false);
 
             _currentVideoClip = _allVideoClips[_currentVideoClipIndex];
@@ -104,24 +125,32 @@ namespace Controllers
 
         public void GoNextStepInTheEnd()
         {
-            StartCoroutine(WaitCurrentPlayerEnd());
+            StartCoroutine(WaitingFinishVideoPlayer());
         }
 
-        private IEnumerator WaitCurrentPlayerEnd()
+        public void CanInvokeNextStep(float seconds)
         {
-            var currentFrameVideoPlayer = _currentVideoClip.frame;
-            var totalFramesVideoPlayer = Convert.ToInt64(_currentVideoClip.frameCount);
+            StartCoroutine(WaitingForJump(seconds));
 
-            yield return new WaitUntil(() => currentFrameVideoPlayer >= totalFramesVideoPlayer);
+        }
 
+        private IEnumerator WaitingForJump(float cooldown)
+        {
+            yield return new WaitForSeconds(cooldown);
+            _arrowIndicatingCanJump.gameObject.SetActive(true);
+            _invokeNextStepInvisible.gameObject.SetActive(true);
+        }
+
+        private IEnumerator WaitingFinishVideoPlayer()
+        {
+            yield return new WaitForSeconds(0.5f);
+            yield return new WaitUntil(() => _currentFrameVideoPlayer >= _totalFramesVideoPlayer - 10);
             InvokeNextStep();
         }
-
 
         public void ShowCutsceneLine()
         {
             var blackDialogBox = GameObject.Find("BlackDialogBox").GetComponent<Animator>();
-            var buttonDialog = GameObject.Find("PassLineButton").GetComponent<Button>();
             var amountLines = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex].CutsceneLines.Length - 1;
 
 
@@ -129,15 +158,7 @@ namespace Controllers
 
             _currentCutsceneLineText.text = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex].CutsceneLines[_currentCutsceneLineIndex];
 
-            if (amountLines > _currentCutsceneLineIndex)
-            {
-                buttonDialog.interactable = true;
-            }
-            else
-            {
-                buttonDialog.interactable = false;
 
-            }
         }
 
         public void ShowNextLine()
@@ -180,6 +201,11 @@ namespace Controllers
             var blackDialogBox = GameObject.Find("BlackDialogBox").GetComponent<Animator>();
 
             blackDialogBox.SetBool("CanFadeIn", false);
+        }
+
+        public void LoadLevelSelectScene()
+        {
+            LoadNextScene();
         }
 
         private bool CheckHaveMoreLines()
@@ -284,7 +310,7 @@ namespace Controllers
 
         private IEnumerator StartLoadNextScene()
         {
-            yield return new WaitForSeconds(1.6f);
+            yield return new WaitForSeconds(3f);
             SceneManager.LoadScene("LEVELSELECT");
         }
 
