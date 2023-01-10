@@ -510,12 +510,15 @@ namespace Manager
             Button mainMenuButton = GameObject.Find("MainMenuButton").GetComponent<Button>();
             mainMenuButton.onClick.AddListener(eventManager.LoadMainMenuScene);
 
-            if (!eventManager.CheckLastLevel())
-            {
-                Button nextLevelButton = GameObject.Find("NextLevelButton").GetComponent<Button>();
-                nextLevelButton.onClick.AddListener(eventManager.LoadNextLevelScene);
+            Button nextLevelButton = GameObject.Find("NextLevelButton").GetComponent<Button>();
+            nextLevelButton.onClick.AddListener(eventManager.LoadNextLevelScene);
 
-            }
+            //if (!eventManager.CheckLastLevel())
+            //{
+            //    Button nextLevelButton = GameObject.Find("NextLevelButton").GetComponent<Button>();
+            //    nextLevelButton.onClick.AddListener(eventManager.LoadNextLevelScene);
+
+            //}
         }
 
         internal void OnLosedGame()

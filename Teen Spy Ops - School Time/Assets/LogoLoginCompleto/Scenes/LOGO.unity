@@ -290,6 +290,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vinheta
       objectReference: {fileID: 0}
+    - target: {fileID: 1391738085881348, guid: 73baff127804b3b4c89b0c2308c4b873, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4701087295866696, guid: 73baff127804b3b4c89b0c2308c4b873, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -344,6 +348,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4701087295866696, guid: 73baff127804b3b4c89b0c2308c4b873, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 212101672560652880, guid: 73baff127804b3b4c89b0c2308c4b873, type: 3}
+      propertyPath: m_SortingOrder
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -788,7 +796,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!224 &1466670016
 RectTransform:
