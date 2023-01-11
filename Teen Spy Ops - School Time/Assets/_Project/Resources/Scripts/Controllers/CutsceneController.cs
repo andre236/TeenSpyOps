@@ -115,11 +115,25 @@ namespace Controllers
 
         }
 
-        public void PlayVideoByIndex(int videoIndex)
+        public void PlayVideoByIndex(int currentVideoIndex)
         {
-            _currentVideoClip = _allVideoClips[videoIndex];
+            _allVideoClips[currentVideoIndex].gameObject.SetActive(true);
+
+            _currentVideoClip = _allVideoClips[currentVideoIndex];
 
             _currentVideoClip.Play();
+
+            for (int indexVideo = 0; indexVideo < currentVideoIndex; indexVideo++)
+            {
+                if (indexVideo != currentVideoIndex)
+                {
+                    _allVideoClips[indexVideo].Pause();
+                    _allVideoClips[indexVideo].gameObject.SetActive(false);
+
+                }
+            }
+
+
 
         }
 
