@@ -45,6 +45,14 @@ namespace Controllers
         private void Awake()
         {
             _allVideoClips = GameObject.Find("Frameworks").GetComponentsInChildren<VideoPlayer>();
+            // Assets/_Project/Resources/StreamingAssets/Videos/Cutcenes/CutsceneInicial
+            for (int videoIndex = 0; videoIndex < 3; videoIndex++)
+            {
+                _allVideoClips[videoIndex].url = System.IO.Path.Combine("Assets/_Project/Resources/StreamingAssets/Videos/Cutcenes/CutsceneInicial/", "INICIAL_" + (videoIndex+1) + ".mp4");
+            }
+
+            //_allVideoClips[0].url = System.IO.Path.Combine(Application.streamingAssetsPath, "INICIAL_0.mp4");
+
 
             _arrowIndicatingCanJump = GameObject.Find("ArrowIndicateCanJump").GetComponent<Image>();
 
