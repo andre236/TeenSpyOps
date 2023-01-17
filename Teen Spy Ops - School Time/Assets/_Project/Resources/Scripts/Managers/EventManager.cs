@@ -220,8 +220,8 @@ namespace Manager
 
                 if (_levelManager.TimerLevel <= 30)
                     _achievementManager.UnlockedInTime?.Invoke();
-                
-                if(SceneManager.GetActiveScene().name != "TUTORIAL")
+
+                if (SceneManager.GetActiveScene().name != "TUTORIAL")
                     EarnedStars?.Invoke(_questPlayer.CurrentNumberStars);
                 else
                     EarnedStars?.Invoke(5);
@@ -263,6 +263,8 @@ namespace Manager
             yield return new WaitForSeconds(1.5f);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
+
+
         }
 
         internal bool CheckLastLevel()
@@ -271,6 +273,22 @@ namespace Manager
                 return true;
             else
                 return false;
+        }
+
+        internal bool CheckHaveNextScene()
+        {
+            var totalScenes = SceneManager.sceneCount;
+            var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+            if (currentSceneIndex >= totalScenes)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
         }
     }
 }

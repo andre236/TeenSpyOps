@@ -46,11 +46,8 @@ namespace Controllers
         {
             _allVideoClips = GameObject.Find("Frameworks").GetComponentsInChildren<VideoPlayer>();
             // Assets/_Project/Resources/StreamingAssets/Videos/Cutcenes/CutsceneInicial
-            for (int videoIndex = 0; videoIndex < 3; videoIndex++)
-            {
-                _allVideoClips[videoIndex].url = System.IO.Path.Combine("Assets/_Project/Resources/StreamingAssets/Videos/Cutcenes/CutsceneInicial/", "INICIAL_" + (videoIndex+1) + ".mp4");
-            }
-
+            GetAllVideosInnitialCutscene();
+            // https://sistemashomologacao.suafaculdade.com.br/Jogos/unity/TeenSpyOps1/
             //_allVideoClips[0].url = System.IO.Path.Combine(Application.streamingAssetsPath, "INICIAL_0.mp4");
 
 
@@ -86,7 +83,8 @@ namespace Controllers
 
             InnitialStep();
         }
-
+        // h ttps://sistemashomologacao.suafaculdade.com.br/Jogos/unity/TeenSpyOps1/Videos/CutsceneInicial
+        // h ttps://sistemashomologacao.suafaculdade.com.br/Jogos/unity/TeenSpyOps1/Videos/CutsceneInicial/INICIAL_1.mp4
         private void InnitialStep()
         {
             _arrowIndicatingCanJump.gameObject.SetActive(false);
@@ -272,7 +270,27 @@ namespace Controllers
             StartCoroutine(SetFadeOutBlackScreen());
         }
 
+        private void GetAllVideosInnitialCutscene()
+        {
+            var currentScene = SceneManager.GetActiveScene();
 
+            if (currentScene.name == "CUTSCENE")
+            {
+
+                for (int videoIndex = 0; videoIndex < 17; videoIndex++)
+                {
+                    _allVideoClips[videoIndex].url = System.IO.Path.Combine("https://sistemashomologacao.suafaculdade.com.br/Jogos/unity/TeenSpyOps1/Videos/CutsceneInicial/", "INICIAL_" + (videoIndex + 1) + ".mp4");
+                }
+            }
+            else
+            {
+                for (int videoIndex = 0; videoIndex < 9; videoIndex++)
+                {
+                    _allVideoClips[videoIndex].url = System.IO.Path.Combine("https://sistemashomologacao.suafaculdade.com.br/Jogos/unity/TeenSpyOps1/Videos/CutsceneInicial/", "FINAL_" + (videoIndex + 1) + ".mp4");
+                }
+            }
+
+        }
 
         private void ShowNextSectionCutsceneLine()
         {
