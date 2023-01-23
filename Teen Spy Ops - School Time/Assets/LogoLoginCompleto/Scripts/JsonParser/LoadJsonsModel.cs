@@ -19,6 +19,9 @@ namespace JsonsUnip
             Urls[2] = CurrentUrl + "/HintsPerPhase.json";
             Urls[3] = CurrentUrl + "/SchoolObjects.json";
             Urls[4] = CurrentUrl + "/TinaLinesTutorial.json";
+            Urls[5] = CurrentUrl + "/InnitialCutscene.json";
+            Urls[6] = CurrentUrl + "/FinalCutscene.json";
+
 
         }
         private void Start()
@@ -29,6 +32,9 @@ namespace JsonsUnip
             JsonParserWeb.instance.JsonStringReturn(Urls[2], nameof(SetHintsPerPhaseJson));
             JsonParserWeb.instance.JsonStringReturn(Urls[3], nameof(SetSchoolObjectsJson));
             JsonParserWeb.instance.JsonStringReturn(Urls[4], nameof(SetTinaLinesTutorialJson));
+            JsonParserWeb.instance.JsonStringReturn(Urls[5], nameof(SetInnitialCutsceneJson));
+            JsonParserWeb.instance.JsonStringReturn(Urls[6], nameof(SetFinalCutsceneJson));
+
 
 
         }
@@ -47,29 +53,6 @@ namespace JsonsUnip
             Debug.Log("HintsPerPhase Loaded");
         }
 
-        public void SetHintsLevel3Json()
-        {
-            Texts.HintsLevel3 = JsonParserWeb.instance.JStringReturnValue().data;
-            Debug.Log("HintsLevel3 Loaded");
-        }
-
-        public void SetHintsLevel2Json()
-        {
-            Texts.HintsLevel2 = JsonParserWeb.instance.JStringReturnValue().data;
-            Debug.Log("HintsLevel2 Loaded");
-        }
-
-        public void SetHintsLevel1Json()
-        {
-            Texts.HintsLevel1 = JsonParserWeb.instance.JStringReturnValue().data;
-            Debug.Log("HintsLevel1 Loaded");
-        }
-
-        public void SetHintsLevel0Json()
-        {
-            Texts.HintsLevel0 = JsonParserWeb.instance.JStringReturnValue().data;
-            Debug.Log("HintsLevel0 Loaded");
-        }
 
         public void SetAchievementsNameJson()
         {
@@ -97,6 +80,20 @@ namespace JsonsUnip
             Texts.PedagogicText = JsonParserWeb.instance.JStringReturnValue().data;
             //Texts.setPedagogicText(JsonParserWeb.instance.JStringReturnValue().data); //apos fazer a conexão aplica o valor do json pra variavel statoca da classe Texts
             Debug.Log("pedagogic loaded");
+        }
+
+        public void SetInnitialCutsceneJson()
+        {
+            GeneralTexts.InnitialCutscene = JsonParserWeb.instance.JStringReturnValue().data;
+            Debug.Log("InnitialCutscene loaded");
+
+        }
+
+        public void SetFinalCutsceneJson()
+        {
+            GeneralTexts.FinalCutscene = JsonParserWeb.instance.JStringReturnValue().data;
+            Debug.Log("FinalCutscene loaded");
+
         }
 
         #endregion

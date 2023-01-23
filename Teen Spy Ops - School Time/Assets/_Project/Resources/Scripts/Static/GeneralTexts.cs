@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
+using System;
 
 namespace Statics
 {
@@ -13,13 +14,13 @@ namespace Statics
 
         public string[] NameObjects { get => _nameObjects; set => _nameObjects = value; }
 
-        [System.Serializable]
+        [Serializable]
         public class TinaSectionLinesTutorial
         {
             public string[] TinaLines;
         }
 
-        [System.Serializable]
+        [Serializable]
         public class HintsPhase
         {
             public HintsString[] RespawnHint;
@@ -31,6 +32,17 @@ namespace Statics
             }
         }
 
+        [Serializable]
+        public class SectionsCutsceneLines
+        {
+            public string NameArray;
+            public string[] CutsceneLines;
+        }
+
+        public string[] SectionInnitialCutsceneLinesList;
+        public string[] SectionFinalCutsceneLinesList;
+
+
         public List<HintsPhase> HintsPerPhaseList;
         public List<TinaSectionLinesTutorial> TinaSectionLinesTutorialsList;
 
@@ -39,6 +51,10 @@ namespace Statics
         public static string[,,] SchoolObjectsNameFromJSON { get; internal set; }
         public static string[,,] TinaLinesTutorial { get; internal set; }
         public static string[,,] HintsFromJSON { get; internal set; }
+
+        public static string[,,] InnitialCutscene { get; internal set; }
+        public static string[,,] FinalCutscene { get; internal set; }
+
 
         private void Awake()
         {
@@ -67,11 +83,11 @@ namespace Statics
             int limitNumberHints = 2;
             int currentNumberHint = 0;
 
-            for(int phase = 0; phase < HintsFromJSON.GetLength(0); phase++)
+            for (int phase = 0; phase < HintsFromJSON.GetLength(0); phase++)
             {
-                for(int respawn = 0; respawn < 5; respawn++)
+                for (int respawn = 0; respawn < 5; respawn++)
                 {
-                    for(int numberHint =0; numberHint < limitNumberHints; numberHint++)
+                    for (int numberHint = 0; numberHint < limitNumberHints; numberHint++)
                     {
                         HintsPerPhaseList[phase].RespawnHint[respawn].Hint[numberHint] = HintsFromJSON[phase, currentNumberHint, 0];
                         //HintsPerPhaseList[phase + 3].RespawnHint[respawn].Hint[numberHint] = HintsFromJSON[phase, currentNumberHint, 0];
@@ -126,10 +142,23 @@ namespace Statics
         {
 
             yield return new WaitForSeconds(0.5f);
-            GetSchoolObjectsName(); 
+            GetSchoolObjectsName();
             GetTinaLinesTutorial();
+            GetAllCutsceneLines();
             GetHints();
         }
 
+        private void GetAllCutsceneLines()
+        {
+            SectionInnitialCutsceneLinesList = new string[InnitialCutscene.GetLength(1)];
+            SectionFinalCutsceneLinesList = new string[FinalCutscene.GetLength(1)];
+
+            for (int cutsceneLineIndex = 0; cutsceneLineIndex < InnitialCutscene.GetLength(1); cutsceneLineIndex++)
+                SectionInnitialCutsceneLinesList[cutsceneLineIndex] = InnitialCutscene[0, cutsceneLineIndex, 0];
+
+            for (int cutsceneLineIndex = 0; cutsceneLineIndex < FinalCutscene.GetLength(1); cutsceneLineIndex++)
+                SectionFinalCutsceneLinesList[cutsceneLineIndex]  = FinalCutscene[0, cutsceneLineIndex, 0];
+
+        }
     }
 }

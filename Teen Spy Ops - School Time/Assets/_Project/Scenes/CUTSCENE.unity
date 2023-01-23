@@ -3455,80 +3455,25 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _sectionCutsceneLinesList:
-  - NameArray: 0
-    CutsceneLines:
-    - "Em\xEDlio: - T\xF4 indo m\xE3e, at\xE9 mais tarde!"
-  - NameArray: 1
-    CutsceneLines:
-    - "Narrador: - Emilio \xE9 um jovem adolescente muito inteligente. Notas boas,
-      gentil, astuto e nada pega ele desprevenido. "
-  - NameArray: 2
-    CutsceneLines:
-    - "Narrador: - De fato \xE9 praticamente imposs\xEDvel surpreend\xEA-lo. Ele
-      parece sempre estar preparado pra tudo!"
-  - NameArray: 3
-    CutsceneLines:
-    - "Narrador: - O que ningu\xE9m sabe \xE9 que na verdade Em\xEDlio \xE9..."
-  - NameArray: 4
-    CutsceneLines:
-    - "Narrador: - Um super espi\xE3o! "
-  - NameArray: 5
-    CutsceneLines:
-    - "Narrador: - Em\xEDlio faz parte da Teen Spy Ops, uma organiza\xE7\xE3o que
-      recruta talentos mirins para miss\xF5es de espionagem para proteger o mundo. "
-  - NameArray: 6
-    CutsceneLines:
-    - "Tina: - Opa! Feliz anivers\xE1rio chefinho. Como t\xE1 aproveitando seu dia
-      de folga? "
-  - NameArray: 7
-    CutsceneLines:
-    - "Em\xEDlio: - Ahh Tina! Obrigado por lembrar. T\xF4 indo pra aula, nada de
-      especial. "
-  - NameArray: 8
-    CutsceneLines:
-    - "Tina: - Poxa, a gente n\xE3o t\xE1 numa opera\xE7\xE3o radical por ser seu
-      anivers\xE1rio e voc\xEA faz algo chato como ir pra aula? Eu nem posso hackear
-      nada l\xE1."
-  - NameArray: 9
-    CutsceneLines:
-    - "Em\xEDlio: - Eu sei que voc\xEA \xE9 um g\xEAnio da inform\xE1tica e tudo
-      mais mas poxa, n\xE3o d\xE1 pra pensar um pouco em coisas de crian\xE7a? Uma
-      crian\xE7a normal? "
-  - NameArray: 10
-    CutsceneLines:
-    - "Em\xEDlio: - Pelo menos chegando cedo eu posso evitar de ser pego por alguma
-      pegadinha de anivers\xE1rio e... Espera, o que \xE9 isso?!?! "
-  - NameArray: 11
-    CutsceneLines:
-    - "Em\xEDlio: - \xC9 s\xE9rio? Pegadinha de anivers\xE1rio? E t\xE3o espalhando
-      minhas coisas pela escola inteira!!!"
-  - NameArray: 12
-    CutsceneLines:
-    - "Em\xEDlio: - TINA! Eu tenho algo pra voc\xEA hackear. Vamos fazer uma opera\xE7\xE3o
-      extraodin\xE1ria pra achar minhas coisas."
-  - NameArray: 13
-    CutsceneLines:
-    - 'Tina: - UHUL! Sabia que podia contar contigo, chefinho! Vou preparar meus
-      equipamentos.'
-  - NameArray: 14
-    CutsceneLines:
-    - "Tina: - Ei chefinho! Temos que ser r\xE1pidos. Pelo que vi aqui o sinal vai
-      bater daqui a pouco!"
-  - NameArray: 15
-    CutsceneLines:
-    - "Tina: - E pelo visto eu tamb\xE9m n\xE3o vou poder ajudar muito! Se os chefes
-      repararem que eu estou na ativa v\xE3o vir me questionar. Afinal, dever\xEDamos
-      estar de folga!"
-  - NameArray: 16
-    CutsceneLines:
-    - "Em\xEDlio: - Fique tranquila, Tina. A gente n\xE3o vai levar nem cinco minutos.
-      N\xE3o confia em mim? "
-  - NameArray: 17
-    CutsceneLines:
-    - "Em\xEDlio: - E tamb\xE9m, n\xE3o vamos fazer tudo agora. Eu s\xF3 preciso
-      SABER onde os objetos est\xE3o. Quando o sinal tocar eu vou at\xE9 os locais
-      e recolho tudo."
+  _allCutsceneLines:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 17
 --- !u!1 &2018350166
 GameObject:
   m_ObjectHideFlags: 0

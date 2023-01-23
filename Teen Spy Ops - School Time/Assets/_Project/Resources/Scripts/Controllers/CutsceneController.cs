@@ -1,3 +1,4 @@
+using Statics;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,17 +31,12 @@ namespace Controllers
         [SerializeField] private VideoPlayer _currentVideoClip;
         [SerializeField] private UnityEvent[] _allStepsCutscene;
 
+        [SerializeField] private string[] _allCutsceneLines;
+
         private Animator _transitionAnimator;
         private Animator _dialogBoxAnimator;
 
-        [Serializable]
-        private class SectionsCutsceneLines
-        {
-            public string NameArray;
-            public string[] CutsceneLines;
-        }
 
-        [SerializeField] private List<SectionsCutsceneLines> _sectionCutsceneLinesList = new List<SectionsCutsceneLines>();
 
         private void Awake()
         {
@@ -60,7 +56,11 @@ namespace Controllers
 
             _skipCutsceneLineButton = GameObject.Find("SkipToNextLineOrFramkeworkButton").GetComponent<Button>();
             _invokeNextStepInvisible = GameObject.Find("InvokeNextStepInvisible").GetComponent<Button>();
+
+            GetAllJsonsText();
         }
+
+
 
         private void FixedUpdate()
         {
@@ -95,6 +95,33 @@ namespace Controllers
             InvokeNextStep();
         }
 
+        private void GetAllJsonsText()
+        {
+            var currentScene = SceneManager.GetActiveScene();
+            var generalText = FindObjectOfType<GeneralTexts>();
+
+            if (currentScene.name == "CUTSCENE")
+            {
+
+                for (int cutsceneLineIndex = 0; cutsceneLineIndex < 17; cutsceneLineIndex++)
+                {
+                    _allCutsceneLines[cutsceneLineIndex] = generalText.SectionInnitialCutsceneLinesList[cutsceneLineIndex];
+                    //_sectionCutsceneLinesList[cutsceneLineIndex].CutsceneLines[0] = generalText.InnitialCutscene[0,cutsceneLineIndex]
+                    //_allVideoClips[cutsceneLineIndex].url = System.IO.Path.Combine("https://sistemashomologacao.suafaculdade.com.br/Jogos/unity/TeenSpyOps1/Videos/CutsceneInicial/", "INICIAL_" + (cutsceneLineIndex + 1) + ".mp4");
+                }
+            }
+            else
+            {
+                for (int cutsceneLineIndex = 0; cutsceneLineIndex < 9; cutsceneLineIndex++)
+                {
+                    // _sectionCutsceneLinesList[cutsceneLineIndex].CutsceneLines[0] = "";
+                    _allCutsceneLines[cutsceneLineIndex] = generalText.SectionFinalCutsceneLinesList[cutsceneLineIndex];
+
+                    //_allVideoClips[videoIndex].url = System.IO.Path.Combine("https://sistemashomologacao.suafaculdade.com.br/Jogos/unity/TeenSpyOps1/Videos/CutsceneInicial/", "FINAL_" + (videoIndex + 1) + ".mp4");
+                }
+            }
+        }
+
         public void InvokeNextStep()
         {
             //if (CheckHaveMoreLines())
@@ -110,7 +137,7 @@ namespace Controllers
 
         }
 
-        public void PlayCurrentVideo()
+        public void PlayCurrentVideo() 
         {
             _currentVideoClip.Play();
         }
@@ -171,21 +198,22 @@ namespace Controllers
         public void ShowCutsceneLine()
         {
             var blackDialogBox = GameObject.Find("BlackDialogBox").GetComponent<Animator>();
-            var amountLines = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex].CutsceneLines.Length - 1;
+            var generalTexts = FindObjectOfType<GeneralTexts>();
+            var amountLines = _allCutsceneLines[_currentSectionCutsceneLinesIndex].Length - 1;
 
 
             blackDialogBox.SetBool("CanFadeIn", true);
 
-            _currentCutsceneLineText.text = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex].CutsceneLines[_currentCutsceneLineIndex];
+            _currentCutsceneLineText.text = _allCutsceneLines[_currentSectionCutsceneLinesIndex];
 
 
         }
 
         public void ShowNextLine()
         {
-            var amountLines = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex].CutsceneLines.Length - 1;
+            var amountLines = _allCutsceneLines[_currentSectionCutsceneLinesIndex].Length - 1;
 
-            _currentCutsceneLineText.text = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex].CutsceneLines[_currentCutsceneLineIndex];
+            _currentCutsceneLineText.text = _allCutsceneLines[_currentSectionCutsceneLinesIndex];
 
             if (_currentCutsceneLineIndex >= amountLines)
             {
@@ -201,11 +229,11 @@ namespace Controllers
 
         public void ShowNextLine(int indexSectionCutscene)
         {
-            var amountLines = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex].CutsceneLines.Length - 1;
+            var amountLines = _allCutsceneLines[_currentSectionCutsceneLinesIndex].Length - 1;
 
             _currentSectionCutsceneLinesIndex = indexSectionCutscene;
 
-            _currentCutsceneLineText.text = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex].CutsceneLines[_currentCutsceneLineIndex];
+            _currentCutsceneLineText.text = _allCutsceneLines[_currentSectionCutsceneLinesIndex];
 
             if (_currentCutsceneLineIndex >= amountLines)
             {
@@ -230,7 +258,7 @@ namespace Controllers
 
         private bool CheckHaveMoreLines()
         {
-            var amountLines = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex].CutsceneLines.Length - 1;
+            var amountLines = _allCutsceneLines[_currentSectionCutsceneLinesIndex].Length - 1;
 
             if (_currentCutsceneLineIndex >= amountLines)
             {
@@ -294,7 +322,7 @@ namespace Controllers
 
         private void ShowNextSectionCutsceneLine()
         {
-            var lastSectionCutsceneLinesIndex = _sectionCutsceneLinesList.Count - 1;
+            var lastSectionCutsceneLinesIndex = 0;
 
             if (_currentSectionCutsceneLinesIndex < lastSectionCutsceneLinesIndex)
             {
