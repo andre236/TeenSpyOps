@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 namespace Statics
 {
@@ -120,6 +120,24 @@ namespace Statics
             {
                 allSchoolObjects[i].NameObject = NameObjects[i];
             }
+        }
+
+        [ContextMenu("Get all school objects name.")]
+        private void GetSchoolObjectsInEditor()
+        {
+            ItemConfig[] allSchoolObjects = Resources.LoadAll<ItemConfig>("Scripts/ScriptableObject/SchoolObjects");
+
+            _nameObjects = new string[allSchoolObjects.Length];
+
+            for (int indexSchoolObject = 0; indexSchoolObject < allSchoolObjects.Length; indexSchoolObject++)
+            {
+                NameObjects[indexSchoolObject] = allSchoolObjects[indexSchoolObject].NameObject;
+            }
+
+            //for (int i = 0; i < allSchoolObjects.Length; i++)
+            //{
+            //    allSchoolObjects[i].NameObject = NameObjects[i];
+            //}
         }
 
         IEnumerator TesteDelay()

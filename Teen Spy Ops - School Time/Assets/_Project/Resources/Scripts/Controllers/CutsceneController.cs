@@ -71,6 +71,9 @@ namespace Controllers
         {
             _currentFrameVideoPlayer = (int)_currentVideoClip.frame;
             _totalFramesVideoPlayer = (int)(_currentVideoClip.frameCount);
+
+            if (Input.GetKeyDown(KeyCode.P))
+                InvokeLastStep();
         }
 
         private void Start()
@@ -85,6 +88,8 @@ namespace Controllers
         }
         // h ttps://sistemashomologacao.suafaculdade.com.br/Jogos/unity/TeenSpyOps1/Videos/CutsceneInicial
         // h ttps://sistemashomologacao.suafaculdade.com.br/Jogos/unity/TeenSpyOps1/Videos/CutsceneInicial/INICIAL_1.mp4
+
+        
         private void InnitialStep()
         {
             _arrowIndicatingCanJump.gameObject.SetActive(false);
@@ -107,6 +112,16 @@ namespace Controllers
 
             if (_currentStep < _allStepsCutscene.Length - 1)
                 _currentStep++;
+
+        }
+
+        public void InvokeLastStep()
+        {
+            if (_currentStep == 26)
+                return;
+
+            _currentStep = 26;
+            _allStepsCutscene[_currentStep]?.Invoke();
 
         }
 

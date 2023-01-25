@@ -248,8 +248,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135563436}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.18, y: 3.1936, z: 0}
-  m_LocalScale: {x: 1.085151, y: 0.37656617, z: 1}
+  m_LocalPosition: {x: 0.2367, y: 3.1936, z: 0}
+  m_LocalScale: {x: 1.070393, y: 0.37656617, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1642853703}
@@ -986,7 +986,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.9921569, g: 0.80392164, b: 0.45882356, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1003,7 +1003,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.1359253
+  orthographic size: 2.160033
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1646,6 +1646,110 @@ PrefabInstance:
       propertyPath: m_Name
       value: GENERALTEXTS
       objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _onTesting
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.size
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.data[0]
+      value: Automatic Pencil
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.data[1]
+      value: Book
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.data[2]
+      value: Brush
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.data[3]
+      value: Calculator
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.data[4]
+      value: Cartography Notebook
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.data[5]
+      value: Case
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.data[6]
+      value: Colored Pencils
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.data[7]
+      value: Compass
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.data[8]
+      value: Crayons
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.data[9]
+      value: Folder
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.data[10]
+      value: Glue Stick
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.data[11]
+      value: Gouache paint
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.data[12]
+      value: Highlighter
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.data[13]
+      value: Hydrographic Pen
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.data[14]
+      value: Liquid Paper
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.data[15]
+      value: Notebook
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.data[16]
+      value: Pen
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.data[17]
+      value: Pencil
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.data[18]
+      value: Protractor
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.data[19]
+      value: Rubber
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.data[20]
+      value: Ruler
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.data[21]
+      value: Scissor
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.data[22]
+      value: Sharpener
+      objectReference: {fileID: 0}
+    - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
+      propertyPath: _nameObjects.Array.data[23]
+      value: White Glue
+      objectReference: {fileID: 0}
     - target: {fileID: 2134023914987053090, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1955,6 +2059,10 @@ PrefabInstance:
     - target: {fileID: 3745632803803643631, guid: 9c369896e86259744b7aedb4daad20d3, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5158588002415873811, guid: 9c369896e86259744b7aedb4daad20d3, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6082798519473511965, guid: 9c369896e86259744b7aedb4daad20d3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2286,6 +2394,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6082798521450274784, guid: 9c369896e86259744b7aedb4daad20d3, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7873490169290729502, guid: 9c369896e86259744b7aedb4daad20d3, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8855526953784550747, guid: 9c369896e86259744b7aedb4daad20d3, type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -261,7 +261,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.882353, g: 0.52156866, b: 0.454902, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -278,7 +278,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.1359253
+  orthographic size: 2.160033
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2105,6 +2105,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: XRayScene
       objectReference: {fileID: 0}
+    - target: {fileID: 27397662805789782, guid: 6b2b975fe51260841a0d96dc55d09bc5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 27397662805789783, guid: 6b2b975fe51260841a0d96dc55d09bc5, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2206,6 +2210,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FingerprintScene
       objectReference: {fileID: 0}
+    - target: {fileID: 3118523851203023162, guid: e1dc9ce42a17146498873e8668572e33, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e1dc9ce42a17146498873e8668572e33, type: 3}
 --- !u!1001 &4196863507525301922
@@ -2218,6 +2226,10 @@ PrefabInstance:
     - target: {fileID: 4196863508293979694, guid: 822406ace1e836e41a3ef1bfd3e4deaa, type: 3}
       propertyPath: m_Name
       value: NightVisionScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 4196863508293979694, guid: 822406ace1e836e41a3ef1bfd3e4deaa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4196863508293979695, guid: 822406ace1e836e41a3ef1bfd3e4deaa, type: 3}
       propertyPath: m_RootOrder
