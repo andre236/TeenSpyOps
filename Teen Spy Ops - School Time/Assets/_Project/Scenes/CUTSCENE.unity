@@ -619,7 +619,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 0
-  m_AspectRatio: 2
+  m_AspectRatio: 3
   m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 0
@@ -689,7 +689,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 0
-  m_AspectRatio: 2
+  m_AspectRatio: 3
   m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 0
@@ -835,7 +835,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 0
-  m_AspectRatio: 2
+  m_AspectRatio: 3
   m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 0
@@ -905,7 +905,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 0
-  m_AspectRatio: 2
+  m_AspectRatio: 3
   m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 0
@@ -955,7 +955,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 0
-  m_AspectRatio: 2
+  m_AspectRatio: 3
   m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 0
@@ -1112,7 +1112,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 0
-  m_AspectRatio: 2
+  m_AspectRatio: 3
   m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 0
@@ -1262,7 +1262,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 0
-  m_AspectRatio: 2
+  m_AspectRatio: 3
   m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 0
@@ -1586,7 +1586,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 0
-  m_AspectRatio: 2
+  m_AspectRatio: 3
   m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 0
@@ -1656,7 +1656,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 0
-  m_AspectRatio: 2
+  m_AspectRatio: 3
   m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 0
@@ -1757,7 +1757,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.1359253
+  orthographic size: 2.160033
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1842,7 +1842,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 0
-  m_AspectRatio: 2
+  m_AspectRatio: 3
   m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 0
@@ -1950,7 +1950,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 0
-  m_AspectRatio: 2
+  m_AspectRatio: 3
   m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 0
@@ -2020,7 +2020,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 0
-  m_AspectRatio: 2
+  m_AspectRatio: 3
   m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 0
@@ -2346,7 +2346,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 0
-  m_AspectRatio: 2
+  m_AspectRatio: 3
   m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 0
@@ -2416,7 +2416,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 0
-  m_AspectRatio: 2
+  m_AspectRatio: 3
   m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 0
@@ -2486,7 +2486,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 0
-  m_AspectRatio: 2
+  m_AspectRatio: 3
   m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 0
@@ -2568,7 +2568,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 0
-  m_AspectRatio: 2
+  m_AspectRatio: 3
   m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 0
@@ -3583,7 +3583,7 @@ VideoPlayer:
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: <noninit>
   m_RenderMode: 0
-  m_AspectRatio: 2
+  m_AspectRatio: 3
   m_DataSource: 1
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 0
