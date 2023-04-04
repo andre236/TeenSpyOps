@@ -33,6 +33,7 @@ namespace Manager
             if (PlayerPrefs.GetInt("AMOUNT_HINTS_USED") >= 10)
             {
                 PlayerPrefs.SetInt("HACKERMAN", 1);
+                XuxaApiController.AddAchievement("61");
                 Debug.Log("Conquista HACKERMAN desbloqueada!");
             }
         }
@@ -44,6 +45,8 @@ namespace Manager
                 return;
 
             PlayerPrefs.SetInt("CODEC_MASTER", 1);
+            XuxaApiController.AddAchievement("65");
+
             Debug.Log("Conquista CODEC_MASTER desbloqueada!");
 
         }
@@ -56,6 +59,7 @@ namespace Manager
 
             if (PlayerPrefs.GetInt("LEVEL1") == 1)
             {
+                XuxaApiController.AddAchievement("60");
                 PlayerPrefs.SetInt("SPY_ROOKIE", 1);
                 Debug.Log("Conquista SPY_ROOKIE desbloqueada!");
 
@@ -71,6 +75,8 @@ namespace Manager
             if (PlayerPrefs.GetInt("LEVEL8") == 1)
             {
                 PlayerPrefs.SetInt("TACTICAL_ESPIONAGE_ACTION", 1);
+                XuxaApiController.AddAchievement("64");
+
                 Debug.Log("Conquista TACTICAL_ESPIONAGE_ACTION desbloqueada!");
 
             }
@@ -95,6 +101,8 @@ namespace Manager
                 return;
 
             PlayerPrefs.SetInt("SOLO_AGENT", 1);
+            XuxaApiController.AddAchievement("63");
+
             Debug.Log("Conquista SOLO_AGENT desbloqueada!");
 
         }
