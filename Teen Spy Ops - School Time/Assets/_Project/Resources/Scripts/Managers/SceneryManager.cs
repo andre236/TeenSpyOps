@@ -13,6 +13,7 @@ namespace Manager
         private GameObject _firstDistace;
         private GameObject _nightVisionScene;
         private GameObject _fingerprintScene;
+        private GameObject _fingerprintsHand;
 
         private Animator _xRayAnimator;
         private Animator _nightVisionAnimator;
@@ -38,6 +39,7 @@ namespace Manager
             _nightVisionAnimator = _nightVisionScene.GetComponent<Animator>();
 
             _fingerprintScene = GameObject.FindGameObjectWithTag("Fingerprint");
+            _fingerprintsHand = GameObject.Find("Fingerprints");
         }
 
         private void Start()
@@ -124,6 +126,21 @@ namespace Manager
             }
 
             DefinedActivedScenery(_fingerprintScene);
+            ActiveHintHands();
+        }
+
+        private void ActiveHintHands()
+        {
+            Transform respawnSchoolObjects = GameObject.FindGameObjectWithTag("RespawnObject").transform.parent;
+
+            for (int handIndex = 0; handIndex < _fingerprintsHand.transform.childCount; handIndex++)
+            {
+                if (respawnSchoolObjects.transform.GetChild(handIndex).transform.childCount > 0)
+                    _fingerprintsHand.transform.GetChild(handIndex).gameObject.SetActive(true);
+                else
+                    _fingerprintsHand.transform.GetChild(handIndex).gameObject.SetActive(false);
+
+            }
         }
 
         internal void OnActivedNightVision()
