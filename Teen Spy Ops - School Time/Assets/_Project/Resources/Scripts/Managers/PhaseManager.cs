@@ -54,7 +54,9 @@ namespace Manager
             }
 
             if (allStars >= 8)
+            {
                 _achievementManager.UnlockedCodecMaster?.Invoke();
+            }
         }
 
         private void CheckHavePhaseSelected()

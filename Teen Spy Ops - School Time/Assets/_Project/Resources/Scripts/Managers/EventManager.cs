@@ -219,7 +219,16 @@ namespace Manager
                 WonGame?.Invoke();
 
                 if (_levelManager.TimerLevel <= 30)
+                {
                     _achievementManager.UnlockedInTime?.Invoke();
+                    XuxaApiController.AddAchievement("62");
+                }
+
+                if(SceneManager.GetActiveScene().name == "LEVEL0")
+                {
+                    _achievementManager.UnlockedSpyRookie?.Invoke();
+
+                }
 
                 if (SceneManager.GetActiveScene().name != "TUTORIAL")
                     EarnedStars?.Invoke(_questPlayer.CurrentNumberStars);
@@ -227,7 +236,9 @@ namespace Manager
                     EarnedStars?.Invoke(5);
 
                 if (SceneManager.GetActiveScene().name == "LEVEL7" && _questPlayer.CurrentNumberStars >= 5 && _hintController.AmountHint >= 2)
+                {
                     _achievementManager.UnlockedSoloAgent?.Invoke();
+                }
             }
         }
 
