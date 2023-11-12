@@ -2074,7 +2074,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2134023914987053089, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
       propertyPath: _onTesting
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2134023914987053090, guid: b3ddc53d60524a6439aaa8400f190767, type: 3}
       propertyPath: m_RootOrder
