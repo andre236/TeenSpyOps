@@ -14,17 +14,19 @@ namespace Tutorial
 
         private GameObject _tinaPageTutorial;
         private GameObject _highlightObject;
+        private GameObject _canvasForFocus;
 
 
         private Transform _previousGameObjectParent;
-        private Canvas _canvasForFocus;
 
         protected override void Awake()
         {
             base.Awake();
             _tinaPageTutorial = GameObject.Find("TinaPageTutorial");
             _tinaText = GameObject.Find("TinaText").GetComponent<Text>();
-            _canvasForFocus = GameObject.Find("CanvasForFocus").GetComponent<Canvas>();
+            //_canvasForFocus = GameObject.Find("CanvasForFocus").GetComponent<Canvas>();
+            _canvasForFocus = GameObject.Find("CanvasForFocus");
+
             _highlightObject = GameObject.Find("HighlightObject");
         }
 
