@@ -5097,7 +5097,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <GetPossibleSkillState>k__BackingField: 01000000
   <FinalSkillState>k__BackingField: 0
-  <FinalDistance>k__BackingField: 0
+  <FinalDistance>k__BackingField: 1
   <HintsThisPlace>k__BackingField:
   - 
   - 

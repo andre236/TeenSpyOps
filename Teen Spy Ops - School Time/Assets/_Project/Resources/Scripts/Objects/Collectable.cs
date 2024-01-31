@@ -155,7 +155,8 @@ namespace Objects
             GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
             gameObject.SetActive(true);
 
-            if (gameManager.CurrentSkill == CurrentTypeObject && gameManager.CurrentDistance <= CurrentDistanceHidden)
+
+            if (gameManager.CurrentSkill == CurrentTypeObject && gameManager.CurrentDistance == CurrentDistanceHidden)
             {
                 GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.VisibleInsideMask;
                 gameObject.SetActive(true);
@@ -165,6 +166,8 @@ namespace Objects
                 GetComponent<SpriteRenderer>().maskInteraction = SpriteMaskInteraction.None;
                 gameObject.SetActive(false);
             }
+
+
         }
 
         internal void OnActivedNightVision()

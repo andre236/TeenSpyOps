@@ -96,13 +96,13 @@ namespace Manager
             {
                 case XRayDistance.First:
                     _firstDistace.SetActive(true);
-                    _secondDistance.SetActive(true);
-                    _thirdDistance.SetActive(true);
+                    _secondDistance.SetActive(false);
+                    _thirdDistance.SetActive(false);
                     break;
                 case XRayDistance.Second:
                     _firstDistace.SetActive(false);
                     _secondDistance.SetActive(true);
-                    _thirdDistance.SetActive(true);
+                    _thirdDistance.SetActive(false);
                     break;
                 case XRayDistance.Third:
                     _firstDistace.SetActive(false);
