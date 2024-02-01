@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -22,7 +23,7 @@ namespace Controllers
         [SerializeField] private int _totalFramesVideoPlayer;
 
         private Image _arrowIndicatingCanJump;
-        private Text _currentCutsceneLineText;
+        private TextMeshProUGUI _currentCutsceneLineText;
         private Button _invokeNextStepInvisible;
         private Button _skipCutsceneLineButton;
 
@@ -56,7 +57,7 @@ namespace Controllers
             _transitionAnimator = GameObject.Find("TransitionCutscene").GetComponent<Animator>();
             _dialogBoxAnimator = GameObject.Find("BlackDialogBox").GetComponent<Animator>();
 
-            _currentCutsceneLineText = GameObject.Find("CurrentCutsceneLineText").GetComponent<Text>();
+            _currentCutsceneLineText = GameObject.Find("CurrentCutsceneLineText").GetComponent<TextMeshProUGUI>();
 
             _skipCutsceneLineButton = GameObject.Find("SkipToNextLineOrFramkeworkButton").GetComponent<Button>();
             _invokeNextStepInvisible = GameObject.Find("InvokeNextStepInvisible").GetComponent<Button>();
@@ -301,7 +302,7 @@ namespace Controllers
             {
                 for (int videoIndex = 0; videoIndex < 9; videoIndex++)
                 {
-                    _allVideoClips[videoIndex].url = System.IO.Path.Combine("https://sistemashomologacao.suafaculdade.com.br/Jogos/unity/TeenSpyOps1/Videos/CutsceneInicial/", "FINAL_" + (videoIndex + 1) + ".mp4");
+                    _allVideoClips[videoIndex].url = System.IO.Path.Combine("https://sistemashomologacao.suafaculdade.com.br/Jogos/unity/TeenSpyOps1/Videos/CutsceneFinal/", "FINAL_" + (videoIndex + 1) + ".mp4");
                 }
             }
 

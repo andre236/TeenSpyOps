@@ -56,7 +56,7 @@ namespace Player
         public Action<float, float> CountdownXrayTimer;
         public Action<float, float> CountdownFingerprintTimer;
         public Action<float, float> CountdownNightVisionTimer;
- 
+
 
         private void Awake()
         {
@@ -133,11 +133,27 @@ namespace Player
 
         internal void OnActivedNightVision()
         {
+            //if(AlreadyNightVision == false)
+            //{
+            //    StartCoroutine(TimerForSkill(CurrentTimerNightVision, TimerNightVision, CurrentCooldownNightVision, CooldownNightVision, AlreadyNightVision, CountdownNightVisionTimer, CountdownNightVisionCooldown));
+            //    return;
+            //}
+
             _laserMask.SetActive(false);
             _cursorMaskVision.SetActive(false);
 
             StartCoroutine(TimerForSkill(CurrentTimerNightVision, TimerNightVision, CurrentCooldownNightVision, CooldownNightVision, AlreadyNightVision, CountdownNightVisionTimer, CountdownNightVisionCooldown));
             AlreadyNightVision = false;
+
+            Debug.Log("Passei por aqui");
+        }
+
+        internal void OnResetSkillNightVision()
+        {
+            //if (AlreadyNightVision == false)
+            //    Reset = true;
+
+            //StartCoroutine(TimerForSkill(CurrentTimerNightVision, TimerNightVision, CurrentCooldownNightVision, CooldownNightVision, AlreadyNightVision, CountdownNightVisionTimer, CountdownNightVisionCooldown));
 
         }
 
