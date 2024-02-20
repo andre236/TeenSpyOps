@@ -164,6 +164,18 @@ namespace Tutorial
         internal void RemoveXRaySkill()
         {
             _xRayButton.onClick.RemoveAllListeners();
+            _xRayButton.interactable = false;
+            _resetNightVisionButton.onClick.RemoveAllListeners();
+
+            //if (_xRayButton.onClick.GetPersistentEventCount() > 0)
+            //{
+            //    Debug.Log("Ainda há Eventos aqui!");
+            //}
+            //else
+            //{
+            //    Debug.Log("Não há mais eventos!");
+
+            //}
         }
 
         internal void RemoveFingerprintSkill()

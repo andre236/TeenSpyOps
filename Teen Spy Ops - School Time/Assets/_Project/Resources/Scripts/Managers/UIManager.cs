@@ -45,9 +45,11 @@ namespace Manager
         protected Button _pauseMenuButton;
         private Button _closeButton;
         private Button _returnButton;
-        protected Button _xRayButton;
+        [SerializeField] protected Button _xRayButton;
         protected Button _fingerprintButton;
         protected Button _nightVisionButton;
+        protected Button _resetNightVisionButton;
+
         private Button _phasesButton;
         private Button _mainMenuButton;
         protected Button _closeHintButton;
@@ -82,6 +84,7 @@ namespace Manager
             _xRayButton = GameObject.Find("XRayButton").GetComponent<Button>();
             _fingerprintButton = GameObject.Find("FingerprintButton").GetComponent<Button>();
             _nightVisionButton = GameObject.Find("NightVisionButton").GetComponent<Button>();
+            _resetNightVisionButton = GameObject.Find("ResetNightVisionButton").GetComponent<Button>();
             _hintButton = GameObject.Find("HintButton").GetComponent<Button>();
             _closeHintButton = GameObject.Find("ClosingHintButton").GetComponent<Button>();
 
@@ -109,6 +112,9 @@ namespace Manager
 
             _nightVisionButton.onClick.AddListener(FindObjectOfType<EventManager>().OnActivedNightVision);
             _nightVisionButton.onClick.AddListener(PlayHudAnimation);
+
+            _resetNightVisionButton.onClick.AddListener(FindObjectOfType<Player.Skills>().OnResetSkillNightVision);
+            _resetNightVisionButton.onClick.AddListener(PlayHudAnimation);
 
             _closeButton.onClick.AddListener(FindObjectOfType<EventManager>().OnUnPausedGame);
             _returnButton.onClick.AddListener(FindObjectOfType<EventManager>().OnUnPausedGame);
@@ -207,6 +213,9 @@ namespace Manager
             _fingerprintCooldownImage.gameObject.SetActive(false);
             _nightVisionTimerImage.gameObject.SetActive(false);
             _nightVisionCooldownImage.gameObject.SetActive(false);
+
+            _resetNightVisionButton.GetComponent<Image>().raycastTarget = false;
+            _resetNightVisionButton.interactable = false;
 
 
         }
@@ -464,6 +473,10 @@ namespace Manager
         {
             _nightVisionButton.interactable = false;
 
+            _resetNightVisionButton.GetComponent<Image>().raycastTarget = true;
+            _resetNightVisionButton.interactable = true;
+
+
             if (timer > 0)
             {
                 _nightVisionTimerImage.gameObject.SetActive(true);
@@ -489,6 +502,9 @@ namespace Manager
                 _nightVisionCooldownImage.fillAmount = 0;
                 _nightVisionCooldownImage.gameObject.SetActive(false);
                 _nightVisionButton.interactable = true;
+                _resetNightVisionButton.GetComponent<Image>().raycastTarget = false;
+                _resetNightVisionButton.interactable = false;
+
             }
         }
 

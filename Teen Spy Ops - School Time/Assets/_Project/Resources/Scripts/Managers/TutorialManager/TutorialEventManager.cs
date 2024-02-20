@@ -5,7 +5,7 @@ using UnityEngine;
 using Objects;
 using Statics;
 using Player;
-
+using UnityEngine.UI;
 
 namespace Tutorial
 {

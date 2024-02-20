@@ -12,6 +12,9 @@ namespace Controllers
 {
     public class CutsceneController : MonoBehaviour
     {
+        [SerializeField] private bool _needSkip = false;
+        [SerializeField] private bool _isFinishedVideo = false;
+
         [SerializeField] private int _currentVideoClipIndex = 0;
         [SerializeField] private int _currentCutsceneLineIndex = 0;
         [SerializeField] private int _currentSectionCutsceneLinesIndex = 0;
@@ -68,52 +71,34 @@ namespace Controllers
             RefreshFrames();
         }
 
-        private void RefreshFrames()
-        {
-            _currentFrameVideoPlayer = (int)_currentVideoClip.frame;
-            _totalFramesVideoPlayer = (int)(_currentVideoClip.frameCount);
-
-            if (Input.GetKeyDown(KeyCode.P))
-                InvokeLastStep();
-        }
 
         private void Start()
         {
-            // 1 - Fade out.
-            // 2 - Show FrameWork.
-            // 3 - Show Cutscene Line.
-            // 4 - Show next Cutscene Line * If have other Cutscene Line.
-            // 5 - Fade in with next scene and Repeat.
-
             InnitialStep();
         }
-        // h ttps://sistemashomologacao.suafaculdade.com.br/Jogos/unity/TeenSpyOps1/Videos/CutsceneInicial
-        // h ttps://sistemashomologacao.suafaculdade.com.br/Jogos/unity/TeenSpyOps1/Videos/CutsceneInicial/INICIAL_1.mp4
 
-        
-        private void InnitialStep()
+        public void InvokeNextStep(VideoPlayer video)
         {
-            _arrowIndicatingCanJump.gameObject.SetActive(false);
-
-            _transitionAnimator.gameObject.SetActive(false);
-
-            _currentVideoClip = _allVideoClips[_currentVideoClipIndex];
-            InvokeNextStep();
-        }
-
-        public void InvokeNextStep()
-        {
-            //if (CheckHaveMoreLines())
-            //{
-            //    ShowNextLine();
-            //    return;
-            //}
-
             _allStepsCutscene[_currentStep]?.Invoke();
 
             if (_currentStep < _allStepsCutscene.Length - 1)
                 _currentStep++;
 
+        }
+
+        public void InvokeNextStep()
+        {
+            _allStepsCutscene[_currentStep]?.Invoke();
+
+            if (_currentStep < _allStepsCutscene.Length - 1)
+                _currentStep++;
+
+            _isFinishedVideo = false;
+        }
+
+        public void SetNeedSkip(bool need)
+        {
+            _needSkip = need;
         }
 
         public void InvokeLastStep()
@@ -169,6 +154,52 @@ namespace Controllers
             StartCoroutine(WaitingForJump(seconds));
 
         }
+
+        private void RefreshFrames()
+        {
+            _currentFrameVideoPlayer = (int)_currentVideoClip.frame;
+            _totalFramesVideoPlayer = (int)(_currentVideoClip.frameCount);
+
+            if (Input.GetKeyDown(KeyCode.P))
+                InvokeLastStep();
+
+            NextStep();
+        }
+
+        public void NextStep()
+        {
+            _currentVideoClip.loopPointReached += ChangeBoolFinished;
+
+            if (_isFinishedVideo)
+                InvokeNextStep();
+        }
+
+        public void ChangeBoolFinished(VideoPlayer video)
+        {
+            
+            _isFinishedVideo = true;
+            Debug.Log("O " + _currentVideoClip.name + " Finalizou!");
+        }
+
+        // h ttps://sistemashomologacao.suafaculdade.com.br/Jogos/unity/TeenSpyOps1/Videos/CutsceneInicial
+        // h ttps://sistemashomologacao.suafaculdade.com.br/Jogos/unity/TeenSpyOps1/Videos/CutsceneInicial/INICIAL_1.mp4
+
+        public void LoadLevelSelectScene()
+        {
+            LoadNextScene();
+        }
+
+        private void InnitialStep()
+        {
+            _arrowIndicatingCanJump.gameObject.SetActive(false);
+
+            _transitionAnimator.gameObject.SetActive(false);
+
+            _currentVideoClip = _allVideoClips[_currentVideoClipIndex];
+            InvokeNextStep();
+        }
+
+
 
         private IEnumerator WaitingForJump(float cooldown)
         {
@@ -234,37 +265,16 @@ namespace Controllers
 
         public void HideCutsceneLine()
         {
-            var blackDialogBox = GameObject.Find("BlackDialogBox").GetComponent<Animator>();
+            _dialogBoxAnimator.SetBool("CanFadeIn", false);
 
-            blackDialogBox.SetBool("CanFadeIn", false);
         }
 
-        public void LoadLevelSelectScene()
-        {
-            LoadNextScene();
-        }
 
-        private bool CheckHaveMoreLines()
-        {
-            var amountLines = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex].CutsceneLines.Length - 1;
-
-            if (_currentCutsceneLineIndex >= amountLines)
-            {
-                print("Não há mais falas na seção: " + _currentSectionCutsceneLinesIndex);
-                return false;
-            }
-            else
-            {
-                print("Há mais falas na seção: " + _currentSectionCutsceneLinesIndex);
-                return true;
-            }
-        }
 
         private IEnumerator SetFadeOutBlackScreen()
         {
             _transitionAnimator.SetBool("CanFadeOut", true);
             yield return new WaitForSeconds(1.4f);
-            //StartCoroutine(ShowCutsceneLine());
         }
 
         private void SetFadeInBlackScreen()
@@ -308,61 +318,13 @@ namespace Controllers
 
         }
 
-        private void ShowNextSectionCutsceneLine()
-        {
-            var lastSectionCutsceneLinesIndex = _sectionCutsceneLinesList.Count - 1;
 
-            if (_currentSectionCutsceneLinesIndex < lastSectionCutsceneLinesIndex)
-            {
-                _dialogBoxAnimator.SetBool("CanFadeIn", false);
-                _skipCutsceneLineButton.onClick.RemoveAllListeners();
-                _currentSectionCutsceneLinesIndex++;
-                _currentCutsceneLineIndex = 0;
-                StartCoroutine(ShowNextFrame());
-            }
 
-        }
 
-        private void ShowNextFrameworkLine()
-        {
-            _skipCutsceneLineButton.onClick.RemoveAllListeners();
-            _skipCutsceneLineButton.interactable = false;
-            _currentCutsceneLineIndex++;
-            //StartCoroutine(ShowCutsceneLine());
-        }
 
         [ContextMenu("Invoke: " + nameof(LoadNextScene))]
         private void LoadNextScene() => StartCoroutine(StartLoadNextScene());
 
-        //private IEnumerator ShowCutsceneLine()
-        //{
-        //    var lastCutsceneLineIndex = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex]._allCutsceneLines.Length - 1;
-        //    var lastFrameworkIndex = _allFrames.Length - 1;
-
-        //    _currentCutsceneLineText.text = _sectionCutsceneLinesList[_currentSectionCutsceneLinesIndex]._allCutsceneLines[_currentCutsceneLineIndex];
-        //    _dialogBoxAnimator.SetBool("CanFadeIn", true);
-
-        //    _skipCutsceneLineButton.interactable = true;
-
-        //    if (_currentFrameIndex < lastFrameworkIndex)
-        //    {
-        //        if (_currentCutsceneLineIndex >= lastCutsceneLineIndex)
-        //        {
-        //            _skipCutsceneLineButton.onClick.AddListener(ShowNextSectionCutsceneLine);
-        //        }
-        //        else
-        //        {
-        //            _skipCutsceneLineButton.onClick.AddListener(ShowNextFrameworkLine);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        _skipCutsceneLineButton.onClick.AddListener(LoadNextScene);
-        //    }
-
-        //    yield return null;
-
-        //}
 
         private IEnumerator StartLoadNextScene()
         {

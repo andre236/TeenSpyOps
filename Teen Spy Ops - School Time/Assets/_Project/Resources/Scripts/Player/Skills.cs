@@ -11,7 +11,7 @@ namespace Player
         private bool _alreadyFingerprint;
         private bool _alreadyNightVision;
 
-        private bool _reset;
+        [SerializeField] private bool _reset;
 
 
         [field: Range(0, 90)] [field: SerializeField] public float TimerXray { get; private set; }
@@ -37,7 +37,7 @@ namespace Player
         public bool AlreadyXRayCast { get => _alreadyXRayCast; protected set => _alreadyXRayCast = value; }
         public bool AlreadyFingerprint { get => _alreadyFingerprint; protected set => _alreadyFingerprint = value; }
         public bool AlreadyNightVision { get => _alreadyNightVision; protected set => _alreadyNightVision = value; }
-        public bool Reset { get => _reset; set => _reset = value; }
+         public bool Reset { get => _reset; set => _reset = value; }
 
         [Space]
         [Range(0, 99)] [SerializeField] private float _firstDistanceRangeXray;
@@ -150,9 +150,8 @@ namespace Player
 
         internal void OnResetSkillNightVision()
         {
-            //if (AlreadyNightVision == false)
-            //    Reset = true;
-
+            Reset = true;
+            StartCoroutine(TurnReset());
             //StartCoroutine(TimerForSkill(CurrentTimerNightVision, TimerNightVision, CurrentCooldownNightVision, CooldownNightVision, AlreadyNightVision, CountdownNightVisionTimer, CountdownNightVisionCooldown));
 
         }
@@ -227,7 +226,11 @@ namespace Player
             }
         }
 
-
+        private IEnumerator TurnReset()
+        {
+            yield return new WaitForSeconds(2f);
+            Reset = false;
+        }
 
 
 

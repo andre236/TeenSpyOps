@@ -1734,7 +1734,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 0
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []
@@ -2784,6 +2784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a35e726f8e906ee499716eff725a07cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _needSkip: 0
   _currentVideoClipIndex: 0
   _currentCutsceneLineIndex: 0
   _currentSectionCutsceneLinesIndex: 0
@@ -3731,7 +3732,7 @@ VideoPlayer:
   m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 0
   m_SkipOnDrop: 1
-  m_Looping: 0
+  m_Looping: 1
   m_WaitForFirstFrame: 1
   m_FrameReadyEventEnabled: 0
   m_VideoShaders: []

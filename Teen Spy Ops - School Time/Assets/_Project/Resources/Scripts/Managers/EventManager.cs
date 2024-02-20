@@ -127,7 +127,7 @@ namespace Manager
 
             ActivedNightVision += _gameManager.OnActivedNightVision;
             ActivedNightVision += _sceneryManager.OnActivedNightVision;
-            ActivedNightVision += _skills.OnResetSkillNightVision;
+            //ActivedNightVision += _skills.OnResetSkillNightVision;
             ActivedNightVision += _skills.OnActivedNightVision;
             //ActivedNightVision += _skills.OnResetSkill;
 
