@@ -164,8 +164,7 @@ namespace Tutorial
         internal void RemoveXRaySkill()
         {
             _xRayButton.onClick.RemoveAllListeners();
-            _xRayButton.interactable = false;
-            _resetNightVisionButton.onClick.RemoveAllListeners();
+            _xRayButton.enabled = false;
 
             //if (_xRayButton.onClick.GetPersistentEventCount() > 0)
             //{
@@ -181,6 +180,7 @@ namespace Tutorial
         internal void RemoveFingerprintSkill()
         {
             _fingerprintButton.onClick.RemoveAllListeners();
+            _fingerprintButton.enabled = false;
         }
 
         internal override void OnGotQuestion(string nameObject, Sprite itemSprite)
