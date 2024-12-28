@@ -54,13 +54,6 @@ namespace Statics
 
         }
 
-        private void Start()
-        {
-            if (_onTesting)
-                return;
-
-            StartCoroutine(TesteDelay());
-        }
 
         private void GetHints()
         {
@@ -134,20 +127,8 @@ namespace Statics
                 NameObjects[indexSchoolObject] = allSchoolObjects[indexSchoolObject].NameObject;
             }
 
-            //for (int i = 0; i < allSchoolObjects.Length; i++)
-            //{
-            //    allSchoolObjects[i].NameObject = NameObjects[i];
-            //}
         }
 
-        IEnumerator TesteDelay()
-        {
-
-            yield return new WaitForSeconds(0.5f);
-            GetSchoolObjectsName(); 
-            GetTinaLinesTutorial();
-            GetHints();
-        }
 
     }
 }

@@ -12,6 +12,7 @@ namespace Controllers
 {
     public class CutsceneController : MonoBehaviour
     {
+        private bool _canSkipVideo = true;
         [SerializeField] private bool _needSkip = false;
         [SerializeField] private bool _isFinishedVideo = false;
 
@@ -24,6 +25,9 @@ namespace Controllers
         [Space]
         [SerializeField] private int _currentFrameVideoPlayer;
         [SerializeField] private int _totalFramesVideoPlayer;
+        [Space]
+        [SerializeField] private float _delayToSkipVideo;
+
 
         private Image _arrowIndicatingCanJump;
         private TextMeshProUGUI _currentCutsceneLineText;
@@ -50,7 +54,7 @@ namespace Controllers
         {
             _allVideoClips = GameObject.Find("Frameworks").GetComponentsInChildren<VideoPlayer>();
             // Assets/_Project/Resources/StreamingAssets/Videos/Cutcenes/CutsceneInicial
-            GetAllVideosInnitialCutscene();
+            //GetAllVideosInnitialCutscene();
             // https://sistemashomologacao.suafaculdade.com.br/Jogos/unity/TeenSpyOps1/
             //_allVideoClips[0].url = System.IO.Path.Combine(Application.streamingAssetsPath, "INICIAL_0.mp4");
 
@@ -88,12 +92,18 @@ namespace Controllers
 
         public void InvokeNextStep()
         {
+            if (!_canSkipVideo)
+                return;
+
             _allStepsCutscene[_currentStep]?.Invoke();
 
             if (_currentStep < _allStepsCutscene.Length - 1)
                 _currentStep++;
 
             _isFinishedVideo = false;
+            _canSkipVideo = false;
+            StartCoroutine(CountdownDelaySkipVideo());
+
         }
 
         public void SetNeedSkip(bool need)
@@ -176,7 +186,7 @@ namespace Controllers
 
         public void ChangeBoolFinished(VideoPlayer video)
         {
-            
+
             _isFinishedVideo = true;
             Debug.Log("O " + _currentVideoClip.name + " Finalizou!");
         }
@@ -196,6 +206,7 @@ namespace Controllers
             _transitionAnimator.gameObject.SetActive(false);
 
             _currentVideoClip = _allVideoClips[_currentVideoClipIndex];
+            StartCoroutine(CountdownDelaySkipVideo());
             InvokeNextStep();
         }
 
@@ -305,14 +316,20 @@ namespace Controllers
 
                 for (int videoIndex = 0; videoIndex < 17; videoIndex++)
                 {
-                    _allVideoClips[videoIndex].url = System.IO.Path.Combine("https://sistemashomologacao.suafaculdade.com.br/Jogos/unity/TeenSpyOps1/Videos/CutsceneInicial/", "INICIAL_" + (videoIndex + 1) + ".mp4");
+                    //_allVideoClips[videoIndex].url = System.IO.Path.Combine(
+                    //    "https://sistemashomologacao.suafaculdade.com.br/Jogos/unity/TeenSpyOps1/Videos/CutsceneInicial/",
+                    //    "INICIAL_" 
+                    //    + (videoIndex + 1) + ".mp4");
                 }
             }
             else
             {
                 for (int videoIndex = 0; videoIndex < 9; videoIndex++)
                 {
-                    _allVideoClips[videoIndex].url = System.IO.Path.Combine("https://sistemashomologacao.suafaculdade.com.br/Jogos/unity/TeenSpyOps1/Videos/CutsceneFinal/", "FINAL_" + (videoIndex + 1) + ".mp4");
+                    //_allVideoClips[videoIndex].url = System.IO.Path.Combine(
+                    //    "https://sistemashomologacao.suafaculdade.com.br/Jogos/unity/TeenSpyOps1/Videos/CutsceneFinal/",
+                    //    "FINAL_" +
+                    //    (videoIndex + 1) + ".mp4");
                 }
             }
 
@@ -330,6 +347,12 @@ namespace Controllers
         {
             yield return new WaitForSeconds(3f);
             SceneManager.LoadScene("LEVELSELECT");
+        }
+
+        private IEnumerator CountdownDelaySkipVideo()
+        {
+            yield return new WaitForSeconds(_delayToSkipVideo);
+            _canSkipVideo = true;
         }
 
         private IEnumerator ShowNextFrame()
